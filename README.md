@@ -15,15 +15,16 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
 ### Lints and fixes files
 ```
 npm run lint
 ```
+
+### Pertinent Documentation
+* [VueJS Front-end Framework](https://vuejs.org/)
+* [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
+* [Database](#)
+* [Material Design Icons](https://material.io/tools/icons/)
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
