@@ -39,10 +39,7 @@ export default {
 <style lang="css"></style>
 
 <!-- TO DO
-* Add CCC Logo
 * Add Icon to Login
 * Retrieve Login status from state regarding whether user is logged in or not.
 * Add login modal with username and password fields
-
-
 -->

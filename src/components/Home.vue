@@ -1,32 +1,34 @@
 <template lang="html">
-  <v-tabs
-    v-model="activePage"
-    color="secondary"
-    dark
-    grow
-    centered
-    icons-and-text
-    slider-color="info"
-  >
-    <v-tab>
-      Create New Case
-      <v-icon>add_box</v-icon>
-    </v-tab>
-    <v-tab>
-      Search for Case
-      <v-icon>search</v-icon>
-    </v-tab>
-    <v-tab-item>
-      <newCase></newCase>
-    </v-tab-item>
-    <v-tab-item>
-      <caseSearch></caseSearch>
-    </v-tab-item>
-  </v-tabs>
+  <v-container grid-list-xs,sm,md,lg,xl>
+    <v-layout row wrap v-if="activePage == ''">
+      <v-flex xs6 class="text-xs-center">
+        <v-btn color="primary" large class="title" @click="activatePage('add')">
+          <v-icon left>add_circle</v-icon>
+          Create New Case
+        </v-btn>
+      </v-flex>
+      <v-flex xs6 class="text-xs-center">
+        <v-btn color="secondary" large class="title" @click="activatePage('search')">
+          <v-icon left>search</v-icon>
+          Search for Existing Case
+        </v-btn>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap v-if="activePage == 'add'">
+      <v-flex xs12>
+        <newCase @closePage="closePage()"></newCase>
+      </v-flex>
+    </v-layout>
+    <v-layout row wrap v-if="activePage == 'search'">
+      <v-flex xs12>
+        <searchCase @closePage="closePage()"></searchCase>
+      </v-flex>
+    </v-layout>
+  </v-container>
 </template>
 
 <script>
-import caseSearch from "@/components/caseSearch";
+import searchCase from "@/components/searchCase";
 import newCase from "@/components/newCase";
 export default {
   data() {
@@ -34,8 +36,16 @@ export default {
       activePage: ""
     };
   },
+  methods: {
+    activatePage(pg){
+      this.activePage = pg
+    },
+    closePage(){
+      this.activePage = ""
+    }
+  },
   components: {
-    caseSearch,
+    searchCase,
     newCase
   }
 };

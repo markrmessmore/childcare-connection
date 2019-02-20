@@ -5,6 +5,12 @@
         <v-icon>search</v-icon>
         Case Search
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn icon color="secondary" @click="closePage()">
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-card-text>
       <v-layout row wrap>
@@ -22,7 +28,7 @@
             Search
           </v-btn>
           <v-btn large color="primary" @click="clearSearch()">
-            <v-icon left>clear</v-icon>
+            <v-icon left>undo</v-icon>
             Reset Search
           </v-btn>
         </v-flex>
@@ -93,6 +99,9 @@ export default {
       this.showCase = true;
       this.caseTitle = `Case ID: ${this.search}`;
       console.log(this.search);
+    },
+    closePage(){
+      this.$emit('closePage')
     }
   }
 };

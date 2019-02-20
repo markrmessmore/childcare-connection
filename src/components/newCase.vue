@@ -5,6 +5,12 @@
         <v-icon>add_box</v-icon>
         Create New Case
       </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn icon color="secondary" @click="closePage()">
+          <v-icon>close</v-icon>
+        </v-btn>
+      </v-toolbar-items>
     </v-toolbar>
     <v-card-text>
       <v-card>
@@ -56,11 +62,14 @@
 export default {
   data() {
     return {
-      activeTab: ""
+      activeTab: "",
+      caseTitle: ""
     };
   },
   methods: {
-
+    closePage(){
+      this.$emit('closePage')
+    }
   }
 };
 </script>
