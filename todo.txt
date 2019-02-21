@@ -1,0 +1,4 @@
+
+GENERAL
+* Login Page/Dialog
+* Admin Page to administrate logins

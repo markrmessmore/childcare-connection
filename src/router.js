@@ -20,3 +20,6 @@ export default new Router({
     }
   ]
 });
+
+// TO DO
+// * Only allow logged in users to access the dashboard
