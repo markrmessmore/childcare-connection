@@ -10,7 +10,7 @@
       </v-tooltip>
     </v-toolbar-title>
     <v-spacer></v-spacer>
-    <v-btn small color="white" outline @click="setLoginState()">
+    <v-btn small color="white" outline to="/dashboard">
       <v-icon left>{{ btnIcon() }}</v-icon>
       {{ btnText() }}
     </v-btn>

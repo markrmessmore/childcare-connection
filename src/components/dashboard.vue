@@ -1,21 +1,20 @@
 <template lang="html">
   <v-card>
-    <caseInfo></caseInfo>
+    Dashboard
   </v-card>
 </template>
 
 <script>
-import caseInfo from '@/components/sub-components/caseInfo.vue'
 export default {
-  components: {
-    caseInfo
-  },
   data() {
     return {
 
     };
   },
   methods: {
+
+  },
+  components: {
 
   }
 };

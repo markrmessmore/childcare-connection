@@ -9,3 +9,5 @@ export default {};
 </script>
 
 <style lang="css"></style>
+
+<!-- CREATE ABOUT CONTENT POTENTIALLY INCLUDING TECHNOLOGIES USED AND LIST OF CONTRIBUTORS -->

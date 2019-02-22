@@ -5,8 +5,7 @@
       <v-container fluid>
         <v-layout row wrap>
           <v-flex xs12>
-            <defaultView v-if="!getLoginState"></defaultView>
-            <router-view v-else></router-view>
+            <router-view></router-view>
           </v-flex>
         </v-layout>
       </v-container>
@@ -16,22 +15,17 @@
 </template>
 
 <script>
-import appHeader from "@/components/Header.vue";
-import appFooter from "@/components/Footer.vue";
-import defaultView from "@/components/Default.vue";
+import appHeader from "@/components/sub-components/header.vue";
+import appFooter from "@/components/sub-components/footer.vue";
 export default {
   data() {
     return {};
   },
   components: {
-    appHeader,
-    appFooter,
-    defaultView
+    appHeader, appFooter
   },
   computed: {
-    getLoginState() {
-      return this.$store.getters.getLoginState;
-    }
+
   }
 };
 </script>
@@ -42,4 +36,5 @@ export default {
 * Add Icon to Login
 * Retrieve Login status from state regarding whether user is logged in or not.
 * Add login modal with username and password fields
+* Change the navBar based on whether the user is an Admin, standard user or unauthenticated user.
 -->
