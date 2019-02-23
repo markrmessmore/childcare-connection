@@ -24,7 +24,7 @@ npm install
 * [Material Design Icons](https://material.io/tools/icons/)
 
 #### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #### App Structure
 ##### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
