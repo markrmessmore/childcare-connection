@@ -1,4 +1,4 @@
-# childcare-connection
+# Child Care Connection || Mercer County Subsidy Management System
 
 ## Project setup
 ```
@@ -23,7 +23,7 @@ npm run lint
 ### Pertinent Documentation
 * [VueJS Front-end Framework](https://vuejs.org/)
 * [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
-* [Database](#)
+* [Database](https://www.mongodb.com/)
 * [Material Design Icons](https://material.io/tools/icons/)
 
 ### Customize configuration
@@ -33,7 +33,7 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 
 ### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
 
-+ Everything in the `/src/components/ directory` is a file with a ROUTE in router.js
++ Everything in the `/src/components/directory` is a file with a ROUTE in router.js
 + Everything in the `/src/components/sub-components/` directory is NOT a routed file and instead is included within another component
 
 App
