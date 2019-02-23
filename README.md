@@ -24,10 +24,10 @@ npm install
 * [Material Design Icons](https://material.io/tools/icons/)
 
 #### Customize configuration
-    See [Configuration Reference](https://cli.vuejs.org/config/).
+See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #### App Structure
-###### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
+##### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
 
 + Everything in the `/src/components/directory` is a file with a ROUTE in router.js
 + Everything in the `/src/components/sub-components/` directory is NOT a routed file and instead is included within another component
