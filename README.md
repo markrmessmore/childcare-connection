@@ -1,25 +1,22 @@
 # Child Care Connection
 ### Mercer County Subsidy Management System
 
-<details>
-  <summary>Project setup</summary>
-  <p>
-   Downloading and installing the package for use: 
-    ```
-    git clone https://github.com/markrmessmore/childcare-connection.git
-    cd childcare-connection
-    npm install
-    ```
-   Compiling and hot-reloading for development:
-   ```npm run serve```
+#### Project setup:
+Downloading and installing the package for use: 
+```
+git clone https://github.com/markrmessmore/childcare-connection.git
+cd childcare-connection
+npm install
+```
+#### Compiling and hot-reloading for development:
+```npm run serve```
 
-   Compiling and minifying for production:
-   ```npm run build```
+#### Compiling and minifying for production:
+```npm run build```
 
-   Linting files:
-   ```npm run lint```
-  </p>
-</details>
+#### Linting files:
+```npm run lint```
+  
 <details>
   <summary>Pertinent Documentation</summary>
   <p>
