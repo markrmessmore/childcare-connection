@@ -2,7 +2,7 @@
 ### Mercer County Subsidy Management System
 
 <details>
-  <summary>### Project setup</summary>
+  <summary>Project setup</summary>
   <p>
     ```
     npm install
@@ -25,7 +25,7 @@
   </p>
 </details>
 <details>
-  <summary>### Pertinent Documentation</summary>
+  <summary>Pertinent Documentation</summary>
   <p>
     * [VueJS Front-end Framework](https://vuejs.org/)
     * [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
