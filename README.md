@@ -43,7 +43,7 @@ App
   - admin*
     - users
   - newCase*
-        - caseInfo*
+    - caseInfo*
       - familyInfo
       - providerInfo
       - attendanceLog
