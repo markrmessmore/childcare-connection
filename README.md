@@ -17,20 +17,17 @@ npm install
 #### Linting files:
 ```npm run lint```
   
-<details>
-  <summary>Pertinent Documentation</summary>
-    * [VueJS Front-end Framework](https://vuejs.org/)
-    * [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
-    * [Database](https://www.mongodb.com/)
-    * [Material Design Icons](https://material.io/tools/icons/)
+#### Pertinent Documentation:
+* [VueJS Front-end Framework](https://vuejs.org/)
+* [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
+* [Database](https://www.mongodb.com/)
+* [Material Design Icons](https://material.io/tools/icons/)
 
-    ### Customize configuration
+#### Customize configuration
     See [Configuration Reference](https://cli.vuejs.org/config/).
-</details>
-<details>
-  <summary>App Structure</summary>
-  <p>
-### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
+
+#### App Structure
+###### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
 
 + Everything in the `/src/components/directory` is a file with a ROUTE in router.js
 + Everything in the `/src/components/sub-components/` directory is NOT a routed file and instead is included within another component
@@ -58,5 +55,3 @@ App
         - letters
 
 `* = this component and all sub-components require login permissions to access`
-  </p>
-</details>
