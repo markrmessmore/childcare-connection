@@ -1,4 +1,5 @@
-# Child Care Connection || Mercer County Subsidy Management System
+# Child Care Connection
+## Mercer County Subsidy Management System
 
 ## Project setup
 ```
