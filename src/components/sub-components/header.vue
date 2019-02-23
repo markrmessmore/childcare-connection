@@ -11,10 +11,10 @@
         Sign In
       </v-btn>
     </v-toolbar>
-    <v-toolbar flat dense color="primary">
+    <v-toolbar flat dense color="primary lighten-1">
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn flat color="white lighten-1" v-for="item in getNav" :key="item.item" :to="item.link">{{item.item}}</v-btn>
+        <v-btn flat color="white" v-for="item in getNav" :key="item.item" :to="item.link">{{item.item}}</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </div>
