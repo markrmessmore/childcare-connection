@@ -1,12 +1,12 @@
 <template lang="html">
   <v-card>
-
+    Search
   </v-card>
 </template>
 
 <script>
 export default {
-  
+
 };
 </script>
 

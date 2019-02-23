@@ -5,12 +5,6 @@
         <v-icon>add_box</v-icon>
         Create New Case
       </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn icon color="secondary" @click="closePage()">
-          <v-icon>close</v-icon>
-        </v-btn>
-      </v-toolbar-items>
     </v-toolbar>
     <v-card-text>
       <v-card>
@@ -86,3 +80,7 @@ export default {
 
 <style lang="css">
 </style>
+
+<!-- ADD PROPS TO BE RECEIVED (AS OBJECTS) FOR EACH OF THE SUB-COMPONENTS.
+PASS THE DATA TO THESE SUB-COMPONENTS -->
+<!-- ADD SOME FORM OF INDICATION IN THE TOOLBAR TO SHOW THE STATUS OF THE CASE AT A GLANCE -->

@@ -1,7 +1,7 @@
 <template lang="html">
-  <v-container>
+  <v-card>
     Family Info
-  </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -11,3 +11,6 @@ export default {
 
 <style lang="css">
 </style>
+
+<!-- ADD PROP TO RECEIVE DATA (AS AN OBJECT) REGARDING FAMILY INFORMATION
+ADD PERTINENT FIELDS INCLUDING THE ABILITY TO ADD CHILDREN AS NEEDED -->

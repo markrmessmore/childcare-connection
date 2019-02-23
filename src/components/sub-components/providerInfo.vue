@@ -1,7 +1,7 @@
 <template lang="html">
-  <v-container grid-list-xs,sm,md,lg,xl>
+  <v-card>
     Provider Info
-  </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -12,10 +12,10 @@ export default {
 <style lang="css">
 </style>
 
-Add ability to input multiple records capturing the following information:
+<!-- Add ability to input multiple records capturing the following information:
 * Provider Name
 * Provider Address
 * EIN
 * provider phone number
 * Child name (from family info) using this provider
-* Amount designated 
+* Amount designated  -->

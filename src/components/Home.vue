@@ -6,8 +6,10 @@
         Welcome
       </v-toolbar-title>
     </v-toolbar>
-    <v-card-text class="subheading">
-      Please sign in to access the Mercer County Subsidy Management System.
+    <v-card-text class="title">
+      <p>Please sign in to access the Mercer County Subsidy Management System.</p>
+      <br>
+      <p>Unauthorized access to this database is prohibited!</p>
     </v-card-text>
   </v-card>
 </template>

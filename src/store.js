@@ -5,7 +5,34 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    loggedIn: false
+    loggedIn: false,
+    nav     : [
+      {
+        item: "Dashboard",
+        link: "/dashboard",
+        icon: ""
+      },
+      {
+        item: "New Case",
+        link: "/new",
+        icon: ""
+      },
+      {
+        item: "Search Case",
+        link: "/search",
+        icon: ""
+      },
+      {
+        item: "About",
+        link: "/about",
+        icon: ""
+      },
+      {
+        item: "Admin",
+        link: "/admin",
+        icon: ""
+      }
+    ]
   },
   mutations: {
     setLoginState(state, payload) {
@@ -20,6 +47,9 @@ export default new Vuex.Store({
   getters: {
     getLoginState(state) {
       return state.loggedIn;
+    },
+    getNav(state){
+      return state.nav
     }
   }
 });

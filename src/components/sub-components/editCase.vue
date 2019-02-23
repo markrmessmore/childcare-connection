@@ -11,3 +11,6 @@ export default {
 
 <style lang="css">
 </style>
+
+<!-- ADD AND INCLUDE CASEINFO COMPONENT
+ADD PROPS (AS OBJECTS) TO BE RECEIVED THEN SENT TO CASEINFO COMPONENT -->

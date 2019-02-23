@@ -1,49 +1,40 @@
 <template lang="html">
-  <v-toolbar color="primary" dark dense>
-    <v-toolbar-title>
-      <v-tooltip bottom>
-        <template slot="activator">
-          <v-icon>dns</v-icon>
-          Childcare Connection Mercer Co. SMS.
-        </template>
-        <span>CCC Mercer County Subsidy Management System</span>
-      </v-tooltip>
-    </v-toolbar-title>
-    <v-spacer></v-spacer>
-    <v-btn small color="white" outline to="/dashboard">
-      <v-icon left>{{ btnIcon() }}</v-icon>
-      {{ btnText() }}
-    </v-btn>
-  </v-toolbar>
+  <div class="">
+    <v-toolbar dense color="primary" dark>
+      <img src="@/assets/ccc-logo.png" height="42px" width="auto"></img>
+      <v-toolbar-title>
+        Mercer Co. Subsidy Mgt. System
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn small color="white" outline to="/dashboard">
+        <!-- <v-icon left>Sign In</v-icon> -->
+        Sign In
+      </v-btn>
+    </v-toolbar>
+    <v-toolbar flat dense color="primary">
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn flat color="white lighten-1" v-for="item in getNav" :key="item.item" :to="item.link">{{item.item}}</v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+  </div>
 </template>
 
 <script>
 export default {
   methods: {
-    btnIcon() {
-      if (this.getLoginState == false) {
-        return "account_box";
-      } else {
-        return "exit_to_app";
-      }
-    },
-    btnText() {
-      if (this.getLoginState == true) {
-        return "Sign Out";
-      } else {
-        return "Sign In";
-      }
-    },
-    setLoginState() {
-      this.$store.dispatch("setLoginState", !this.getLoginState);
-    }
+
   },
   computed: {
-    getLoginState() {
-      return this.$store.getters.getLoginState;
+    getNav(){
+      return this.$store.getters.getNav
     }
   }
 };
 </script>
 
 <style lang="css"></style>
+
+<!-- CHANGE BUTTON LANGUAGE BASED ON WHETHER A USER IS SIGNED IN
+ADD APPROPRIATE ICON
+POTENTIAL: CHANGE ICON BASED ON LOGIN STATUS -->

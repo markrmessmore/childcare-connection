@@ -24,3 +24,4 @@ export default {
 <style lang="css"></style>
 
 <!-- see caseInfo.vue and listed sub-components for changes -->
+<!-- add data for a new record with all pertinent areas being blank. Send data to caseinfo -->

@@ -1,7 +1,7 @@
 <template lang="html">
-  <v-container grid-list-xs,sm,md,lg,xl>
+  <v-card>
     Letters
-  </v-container>
+  </v-card>
 </template>
 
 <script>
@@ -11,3 +11,7 @@ export default {
 
 <style lang="css">
 </style>
+
+<!-- ADD BUTTONS FOR THE FOLLOWING LETTERS:
+*
+When clicked generate a PDF based on the record info (and provided letters) that can be printed -->
