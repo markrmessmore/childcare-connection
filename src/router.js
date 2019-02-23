@@ -47,4 +47,4 @@ export default new Router({
 
 // TO DO
 // * Only allow logged in users to access the dashboard
-// * Add routes to dashboard, newCase, searchCase and admin pages
+// * Only allow admin to access the admin page.

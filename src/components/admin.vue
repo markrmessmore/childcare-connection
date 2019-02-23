@@ -11,3 +11,8 @@ export default {
 
 <style lang="css">
 </style>
+
+<!-- Create user management interface to:
+* Add users
+* Set passwords
+* Delete Users -->

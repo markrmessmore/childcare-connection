@@ -22,3 +22,5 @@ export default {
 </script>
 
 <style lang="css"></style>
+
+<!-- see caseInfo.vue and listed sub-components for changes -->

@@ -18,3 +18,5 @@ export default {
   components: {}
 };
 </script>
+
+<!-- SEE App.vue for changes -->

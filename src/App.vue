@@ -34,7 +34,7 @@ export default {
 
 <!-- TO DO
 * Add Icon to Login
-* Retrieve Login status from state regarding whether user is logged in or not.
-* Add login modal with username and password fields
+* Retrieve Login status regarding whether user is logged in or not.
+* Add login modal(v-dialog)/page with username and password fields
 * Change the navBar based on whether the user is an Admin, standard user or unauthenticated user.
 -->
