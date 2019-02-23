@@ -1,37 +1,45 @@
 # Child Care Connection
-Mercer County Subsidy Management System
+### Mercer County Subsidy Management System
 
-## Project setup
-```
-npm install
-```
+<details>
+  <summary>### Project setup</summary>
+  <p>
+    ```
+    npm install
+    ```
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+    ### Compiles and hot-reloads for development
+    ```
+    npm run serve
+    ```
 
-### Compiles and minifies for production
-```
-npm run build
-```
+    ### Compiles and minifies for production
+    ```
+    npm run build
+    ```
 
-### Lints and fixes files
-```
-npm run lint
-```
+    ### Lints and fixes files
+    ```
+    npm run lint
+    ```
+  </p>
+</details>
+<details>
+  <summary>### Pertinent Documentation</summary>
+  <p>
+    * [VueJS Front-end Framework](https://vuejs.org/)
+    * [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
+    * [Database](https://www.mongodb.com/)
+    * [Material Design Icons](https://material.io/tools/icons/)
 
-### Pertinent Documentation
-* [VueJS Front-end Framework](https://vuejs.org/)
-* [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
-* [Database](https://www.mongodb.com/)
-* [Material Design Icons](https://material.io/tools/icons/)
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
-
+    ### Customize configuration
+    See [Configuration Reference](https://cli.vuejs.org/config/).
+  </p>
+</details>
 ===========================
-
+<details>
+  <summary>App Structure</summary>
+  <p>
 ### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
 
 + Everything in the `/src/components/directory` is a file with a ROUTE in router.js
@@ -60,3 +68,5 @@ App
         - letters
 
 `* = this component and all sub-components require login permissions to access`
+  </p>
+</details>
