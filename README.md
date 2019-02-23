@@ -19,7 +19,6 @@ npm install
   
 <details>
   <summary>Pertinent Documentation</summary>
-  <p>
     * [VueJS Front-end Framework](https://vuejs.org/)
     * [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
     * [Database](https://www.mongodb.com/)
@@ -27,7 +26,6 @@ npm install
 
     ### Customize configuration
     See [Configuration Reference](https://cli.vuejs.org/config/).
-  </p>
 </details>
 <details>
   <summary>App Structure</summary>
