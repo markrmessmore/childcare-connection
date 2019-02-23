@@ -4,24 +4,20 @@
 <details>
   <summary>Project setup</summary>
   <p>
+   Downloading and installing the package for use: 
     ```
+    git clone https://github.com/markrmessmore/childcare-connection.git
+    cd childcare-connection
     npm install
     ```
+   Compiling and hot-reloading for development:
+   ```npm run serve```
 
-    ### Compiles and hot-reloads for development
-    ```
-    npm run serve
-    ```
+   Compiling and minifying for production:
+   ```npm run build```
 
-    ### Compiles and minifies for production
-    ```
-    npm run build
-    ```
-
-    ### Lints and fixes files
-    ```
-    npm run lint
-    ```
+   Linting files:
+   ```npm run lint```
   </p>
 </details>
 <details>
