@@ -36,7 +36,6 @@
     See [Configuration Reference](https://cli.vuejs.org/config/).
   </p>
 </details>
-===========================
 <details>
   <summary>App Structure</summary>
   <p>
