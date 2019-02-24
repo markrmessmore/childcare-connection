@@ -1,5 +1,5 @@
-import Vue from "vue";
-import Vuex from "vuex";
+import Vue  from  "vue";
+import Vuex from  "vuex";
 
 Vue.use(Vuex);
 
@@ -48,8 +48,8 @@ export default new Vuex.Store({
     getLoginState(state) {
       return state.loggedIn;
     },
-    getNav(state){
-      return state.nav
+    getNav(state) {
+      return state.nav;
     }
   }
 });

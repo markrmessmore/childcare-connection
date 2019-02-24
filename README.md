@@ -2,7 +2,7 @@
 ### Mercer County Subsidy Management System
 
 #### Project setup:
-Downloading and installing the package for use: 
+Downloading and installing the package for use:
 ```
 git clone https://github.com/markrmessmore/childcare-connection.git
 cd childcare-connection
@@ -16,11 +16,11 @@ npm install
 
 #### Linting files:
 ```npm run lint```
-  
+
 #### Pertinent Documentation:
 * [VueJS Front-end Framework](https://vuejs.org/)
 * [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)
-* [Database](https://www.mongodb.com/)
+* [Google Firebase](https://firebase.google.com/)
 * [Material Design Icons](https://material.io/tools/icons/)
 
 #### Customize configuration
