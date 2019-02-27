@@ -21,4 +21,7 @@ export default {
 };
 </script>
 
-<!-- SEE App.vue for changes -->
+<!--
+* ADAPT FOR ONE VIEW TO BE THE APP AND ANOTHER FOR PRINTED REPORTS/LETTERS (BLANK)
+* ADD CCC & MERCER CO LOGOS TO CARD ON HOME PAGE
+-->

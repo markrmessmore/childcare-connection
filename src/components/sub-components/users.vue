@@ -11,4 +11,7 @@ export default {}
 <style lang="css">
 </style>
 
-<!-- Add a basic form to add, edit, list and delete users -->
+<!--
+* Add a basic form to add, edit, list and delete users
+* Tie into firebase functions
+-->

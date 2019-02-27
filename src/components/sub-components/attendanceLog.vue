@@ -11,5 +11,7 @@ export default {}
 <style lang="css">
 </style>
 
-<!-- ADD PROP TO RECEIVE ATTENDANCE LOG (AS AN OBJECT) -->
-<!-- Add input for the attendance log (see Mark for the appropriate report) -->
+<!--
+* ADD PROP TO RECEIVE ATTENDANCE LOG (AS AN OBJECT)
+* Add input for the attendance log (see Mark for the appropriate report)
+-->

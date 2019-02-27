@@ -12,6 +12,8 @@ export default {
 
 <style lang="css"></style>
 
-<!-- Add ability to search for last name (parent or child), or case ID
+<!--
+* Add ability to search for last name (parent or child), or case ID
 display search results (names & case IDs)
-select a case and open it in the editCase component -->
+* select a case and open it in the editCase component
+-->

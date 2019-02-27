@@ -12,7 +12,9 @@ export default {
 <style lang="css">
 </style>
 
-<!-- Create report list
-Add ability to select a report to run
-Add ability to set a date range for a report.
-Add functionality to send pre-set report to PDF including specified options. -->
+<!--
+* Create report list
+* Add ability to select a report to run
+* Add ability to set a date range for a report.
+* Add functionality to send pre-set report to PDF including specified options.
+-->
