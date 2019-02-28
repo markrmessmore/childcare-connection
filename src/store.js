@@ -9,7 +9,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    user    : null,
+    cases: example,
     nav     : [
       {
         item: "Dashboard",
@@ -37,10 +37,18 @@ export default new Vuex.Store({
         icon: ""
       }
     ],
-    cases: example
+    signInStatus: false,
+    signOutStatus: false,
+    user    : "Mark",
   },
   mutations: {
     // LOGIN/LOGOUT MUTATIONS
+    activateSignIn(state, payload){
+      state.signInStatus = payload
+    },
+    activateSignOut(state, payload){
+      state.signOutStatus = payload
+    },
     setUser(state, payload) {
       state.user = payload;
     },
@@ -54,27 +62,34 @@ export default new Vuex.Store({
   },
   actions: {
     // LOGIN/LOGOUT ACTIONS
+    activateSignIn({commit}, payload){
+      commit('activateSignIn', payload)
+    },
+    activateSignOut({commit}, payload){
+      commit('activateSignOut', payload)
+    },
     autoSignIn ({commit}, payload) {
       commit('setUser', {id: payload.uid})
     },
     signIn ({commit}, payload) {
-      commit('setLoading', true)
-      firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
-      .then(
-        user => {
-          console.log(user)
-          commit('setLoading', false)
-          const newUser = {
-            id: user.uid
-          }
-          commit('setUser', newUser);
-        }
-      )
-      .catch(
-        error => {
-          console.log(error.message)
-        }
-      )
+      console.log(payload)
+      // commit('setLoading', true)
+      // firebase.auth().signInWithEmailAndPassword(payload.email, payload.password)
+      // .then(
+      //   user => {
+      //     console.log(user)
+      //     commit('setLoading', false)
+      //     const newUser = {
+      //       id: user.uid
+      //     }
+      //     commit('setUser', newUser);
+      //   }
+      // )
+      // .catch(
+      //   error => {
+      //     console.log(error.message)
+      //   }
+      // )
     },
     signOut ({commit}) {
       commit('signOut')
@@ -94,6 +109,12 @@ export default new Vuex.Store({
     },
     getCases(state){
       return state.cases
+    },
+    getSignInStatus(state){
+      return state.signInStatus
+    },
+    getSignOutStatus(state){
+      return state.signOutStatus
     }
   }
 });

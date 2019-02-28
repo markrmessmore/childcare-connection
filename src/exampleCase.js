@@ -127,13 +127,13 @@ export default [
           typeOfCare          : "After School"      //FULL DAY/BEFORE SCHOOL/AFTER SCHOOL/SUMMER CAMP/NONE
         }
       ],
-      notes   : [                                   //ABILITY TO ADD AS MANY AS NEEDED
-        {
-          date            : "1/26/2019",
-          text            : "John faxed in the application."
-        }
-      ]
     },
+    notes: [                                      //ABILITY TO ADD AS MANY AS NEEDED
+      {
+        date            : "1/26/2019",
+        text            : "John faxed in the application."
+      }
+    ],
     providers: [                                  //ABILITY TO ADD AS MANY AS NEEDED
       {
         name              : "ABC Childcare",
