@@ -5,6 +5,7 @@
 </template>
 
 <script>
+import caseInfo from '@/src/components/sub-components/caseInfo.vue'
 export default {}
 </script>
 
@@ -13,5 +14,5 @@ export default {}
 
 <!--
 * ADD AND INCLUDE CASEINFO COMPONENT
-* ADD PROPS (AS OBJECTS) TO BE RECEIVED THEN SENT TO CASEINFO COMPONENT 
+* ADD PROPS (AS OBJECTS) TO BE RECEIVED THEN SENT TO CASEINFO COMPONENT
 -->
