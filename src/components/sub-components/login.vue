@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar color="primary" dark>
+    <v-toolbar color="primary" dark dense>
       <v-toolbar-title>
         Mercer Co. SMS
       </v-toolbar-title>

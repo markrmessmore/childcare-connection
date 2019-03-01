@@ -1,7 +1,7 @@
 <template lang="html">
-  <v-container grid-list-xs,sm,md,lg,xl>
+  <v-card>
     Reports
-  </v-container>
+  </v-card>
 </template>
 
 <script>

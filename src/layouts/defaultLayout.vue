@@ -8,7 +8,7 @@
         </v-flex>
       </v-layout>
     </v-container>
-    <appFooter></appFooter>
+    <!-- <appFooter></appFooter> -->
   </div>
 </template>
 

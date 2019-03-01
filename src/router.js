@@ -5,6 +5,7 @@ import About from "@/components/about.vue";
 import Dashboard from "@/components/dashboard.vue"
 import New from "@/components/newCase.vue"
 import Search from "@/components/searchCase.vue"
+import Reports from "@/components/reports.vue"
 import Admin from "@/components/admin.vue"
 
 Vue.use(Router);
@@ -46,6 +47,12 @@ export default new Router({
       path: "/dashboard",
       name: "/dashboard",
       component: Dashboard,
+      meta: {layout: "defaultLayout"}
+    },
+    {
+      path: "/reports",
+      name: "/reports",
+      component: Reports,
       meta: {layout: "defaultLayout"}
     }
   ]

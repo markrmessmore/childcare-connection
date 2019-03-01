@@ -9,7 +9,7 @@
     <v-card-text class="display-1">
       <v-layout row wrap class="text-xs-center">
         <v-flex xs12>
-          <p>Please sign in to access the Mercer County Subsidy Management System.</p>
+          <p>Please sign in to access the<br>Mercer County Subsidy Management System.</p>
         </v-flex>
         <v-flex xs12>
           <p>Unauthorized access to this database is prohibited!</p>

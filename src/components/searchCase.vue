@@ -45,6 +45,9 @@ export default {
           align: 'left',
           sortable: 'false',
           value: 'endDate'
+        },
+        {
+          align: 'center',
         }
       ]
     }

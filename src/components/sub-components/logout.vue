@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar color="secondary" dark>
+    <v-toolbar color="primary" dark dense>
       <v-toolbar-title>
         Are you sure you want to sign out?
       </v-toolbar-title>

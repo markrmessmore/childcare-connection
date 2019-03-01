@@ -10,36 +10,60 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     cases: example,
+    loading: false,
     nav     : [
       {
         item: "Dashboard",
         link: "/dashboard",
-        icon: ""
+        icon: "dashboard",
+        access: "user",
+        color: "primary darken-1",
+        dark: true
       },
       {
         item: "New Case",
         link: "/new",
-        icon: ""
+        icon: "add_circle",
+        access: "user",
+        color: "secondary lighten-1",
+        dark: true
       },
       {
         item: "Search Case",
         link: "/search",
-        icon: ""
+        icon: "search",
+        access: "user",
+        color: "accent1",
+        dark: false
+      },
+      {
+        item: "Run Reports",
+        link: "/reports",
+        icon: "insert_drive_file",
+        access: "user",
+        color: "secondary lighten-3",
+        dark: true
       },
       {
         item: "About",
         link: "/about",
-        icon: ""
+        icon: "info",
+        access: "all",
+        color: "accent2",
+        dark: true
       },
       {
         item: "Admin",
         link: "/admin",
-        icon: ""
+        icon: "person_outline",
+        access: "admin",
+        color: "info",
+        dark: false
       }
     ],
     signInStatus: false,
     signOutStatus: false,
-    user    : "Mark",
+    user    : "admin",
   },
   mutations: {
     // LOGIN/LOGOUT MUTATIONS
@@ -115,6 +139,9 @@ export default new Vuex.Store({
     },
     getSignOutStatus(state){
       return state.signOutStatus
+    },
+    getLoading(state){
+      return state.loading
     }
   }
 });

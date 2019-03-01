@@ -1,27 +1,45 @@
 <template lang="html">
   <v-card>
-    Dashboard
-    {{getCases}}
+    <v-toolbar color="primary" dark dense>
+      <v-toolbar-title>
+        Dashboard
+      </v-toolbar-title>
+    </v-toolbar>
+    <v-card-text>
+      <v-layout row wrap align-center justify-center>
+        <v-flex xs2 v-for="navItem in getDashboard" class="mb-1" :key="navItem.item">
+          <v-card
+            ripple width="100%"
+            max-width="150px"
+            max-height="150px"
+            :color="navItem.color"
+            :dark="navItem.dark"
+            :to="navItem.link"
+            class="elevation-5"
+          >
+            <v-card-text>
+              <v-container>
+                <v-layout column align-center>
+                  <v-icon large>{{navItem.icon}}</v-icon>
+                </v-layout>
+                <br>
+                <v-layout column align-center class="title text-xs-center">
+                  {{navItem.item}}
+                </v-layout>
+              </v-container>
+            </v-card-text>
+          </v-card>
+        </v-flex>
+      </v-layout>
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
-import appHeader from "@/components/sub-components/header.vue";
-import appFooter from "@/components/sub-components/footer.vue";
 export default {
-  components: {appHeader, appFooter},
-  data() {
-    return {
-
-    };
-  },
-  methods: {
-
-  },
   computed: {
-    getCases(){
-      console.log(this.$store.getters.getCases)
-      // return this.$store.getters.getCases
+    getDashboard(){
+      return this.$store.getters.getNav
     }
   }
 };

@@ -19,7 +19,10 @@
     <v-toolbar flat dense color="primary lighten-1">
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn flat color="white" v-for="item in getNav" :key="item.item" :to="item.link">{{item.item}}</v-btn>
+        <v-btn flat color="white" v-for="item in checkUser()" :key="item.item" :to="item.link">
+          <v-icon left>{{item.icon}}</v-icon>
+          {{item.item}}
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
     <!-- DIALOG/MODAL TO LOG IN -->
@@ -58,6 +61,29 @@ export default {
     },
     activateSignOut(){
       this.$store.dispatch('activateSignOut', true)
+    },
+    checkUser(){
+      let user  = this.getUser
+      let nav   = this.getNav
+      let navList = []
+      if (user == null){
+        nav.forEach(navItem => {
+          if (navItem.access == "all") {
+            navList.push(navItem)
+          }
+        })
+      }
+      else if (user == "admin") {
+        navList = nav
+      }
+      else {
+        nav.forEach(navItem => {
+          if (navItem.access == "all" || navItem.access == "user"){
+            navList.push(navItem)
+          }
+        })
+      }
+      return navList
     }
   },
   computed: {
