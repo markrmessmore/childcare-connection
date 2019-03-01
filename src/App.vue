@@ -1,31 +1,22 @@
 <template lang="html">
   <v-app>
-    <appHeader></appHeader>
-    <main>
-      <v-container fluid>
-        <v-layout row wrap>
-          <v-flex xs12>
-            <router-view></router-view>
-          </v-flex>
-        </v-layout>
-      </v-container>
-    </main>
-    <appFooter></appFooter>
+    <component :is="layout"></component>
   </v-app>
 </template>
 
 <script>
-import appHeader from "@/components/sub-components/header.vue";
-import appFooter from "@/components/sub-components/footer.vue";
+
 export default {
   data() {
     return {};
   },
   components: {
-    appHeader, appFooter
+
   },
   computed: {
-
+    layout(){
+      return this.$route.meta.layout
+    }
   }
 };
 </script>

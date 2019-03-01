@@ -10,6 +10,12 @@ import router from "./router";
 // import 'firebase/auth'
 // import 'firebase/database'
 
+// DIFFERENT LAYOUT VIEWS
+import defaultLayout from '@/layouts/defaultLayout.vue'
+import reportLayout from '@/layouts/reportLayout.vue'
+Vue.component('defaultLayout', defaultLayout)
+Vue.component('reportLayout', reportLayout)
+
 // Vue.use(firebase)
 Vue.config.productionTip = false;
 

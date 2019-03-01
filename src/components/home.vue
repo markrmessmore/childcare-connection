@@ -16,18 +16,15 @@
         </v-flex>
       </v-layout>
       <v-layout row align-center justify-space-between>
-        <v-img :src="require('@/assets/ccc-logo-original.jpg')" height="250px" width="auto" contain></v-img>
-        <v-img :src="require('@/assets/mercerColor.png')" height="250px" width="auto" contain></v-img>
+        <v-img :src="require('@/assets/ccc-logo-original.jpg')" height="200px" width="auto" contain></v-img>
+        <v-img :src="require('@/assets/mercerColor.png')" height="200px" width="auto" contain></v-img>
       </v-layout>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-export default {
-  name: "home",
-  components: {}
-};
+export default {};
 </script>
 
 <!--

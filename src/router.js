@@ -14,33 +14,39 @@ export default new Router({
   routes: [
     {
       path: "/",
-      name: "home",
-      component: Home
+      name: "/",
+      component: Home,
+      meta: {layout: "defaultLayout"}
     },
     {
       path: "/about",
       name: "/about",
-      component: About
+      component: About,
+      meta: {layout: "defaultLayout"}
     },
     {
       path: "/new",
       name: "/new",
-      component: New
+      component: New,
+      meta: {layout: "defaultLayout"}
     },
     {
       path: "/search",
       name: "/search",
-      component: Search
+      component: Search,
+      meta: {layout: "defaultLayout"}
     },
     {
       path: "/admin",
       name: "/admin",
-      component: Admin
+      component: Admin,
+      meta: {layout: "defaultLayout"}
     },
     {
       path: "/dashboard",
       name: "/dashboard",
-      component: Dashboard
+      component: Dashboard,
+      meta: {layout: "defaultLayout"}
     }
   ]
 });
