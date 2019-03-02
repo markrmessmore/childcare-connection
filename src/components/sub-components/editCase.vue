@@ -1,12 +1,17 @@
 <template lang="html">
-  <v-container grid-list-xs,sm,md,lg,xl>
-    edit case
-  </v-container>
+  <caseInfo :caseData="selectedCase"></caseInfo>
 </template>
 
 <script>
-import caseInfo from '@/src/components/sub-components/caseInfo.vue'
-export default {}
+import caseInfo from '@/components/sub-components/caseInfo.vue'
+export default {
+  props: {
+    selectedCase: Object
+  },
+  components: {
+    caseInfo
+  }
+}
 </script>
 
 <style lang="css">

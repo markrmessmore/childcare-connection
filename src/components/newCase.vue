@@ -1,6 +1,14 @@
 <template lang="html">
   <v-card>
-    <caseInfo></caseInfo>
+    <v-toolbar flat>
+      <v-toolbar-title>
+        <v-icon>add_circle</v-icon>
+        Create a New Case
+      </v-toolbar-title>
+    </v-toolbar>
+    <v-card-text>
+      <!-- <caseInfo></caseInfo> -->
+    </v-card-text>
   </v-card>
 </template>
 

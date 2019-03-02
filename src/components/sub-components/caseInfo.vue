@@ -1,18 +1,55 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat>
-      <v-toolbar-title>
-        <v-icon>add_box</v-icon>
-        Create New Case
-      </v-toolbar-title>
-    </v-toolbar>
     <v-card-text>
       <v-card>
-        <v-toolbar color="primary" dark>
+        <v-toolbar color="primary" dark dense>
           <v-toolbar-title>
-            {{ caseTitle }}
+            Case ID: {{ caseData.caseId }}
           </v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-toolbar-items>
+            <v-text-field
+              solo label="Case Status"
+              :value="getStatus"
+              :background-color="statusColor"
+              readonly flat>
+            </v-text-field>
+          </v-toolbar-items>
         </v-toolbar>
+        <div class="text-xs-left">
+          <v-btn color="secondary" dark @click="statusModal = true" small outline>
+            <v-icon left>track_changes</v-icon>
+            Set Case Status
+          </v-btn>
+        </div>
+        <!-- STATUS MODAL -->
+        <v-dialog
+          v-model="statusModal"
+          persistent :overlay="false"
+          max-width="500px"
+          transition="dialog-transition"
+        >
+          <v-card>
+            <v-toolbar color="primary" dark>
+              <v-toolbar-title>Select Current Case Status</v-toolbar-title>
+              <v-spacer></v-spacer>
+              <v-btn color="white" outline icon @click="statusModal = false">
+                <v-icon>close</v-icon>
+              </v-btn>
+            </v-toolbar>
+            <v-card-text>
+              <v-layout column>
+                <v-select
+                  :items="statusList"
+                  v-model="selectedStatus"
+                  label="Case Status"
+                ></v-select>
+                <v-btn color="primary" @click="saveStatus()">Set Status</v-btn>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-dialog>
+        <!-- TABS -->
         <v-card-text>
           <v-tabs
             v-model="activeTab"
@@ -21,36 +58,36 @@
             grow
             slider-color="secondary"
           >
-            <v-tab>
+            <v-tab class="subheading">
               Family Information
             </v-tab>
-            <v-tab>
+            <v-tab class="subheading">
               Provider Information
             </v-tab>
-            <v-tab>
+            <v-tab class="subheading">
               Attendance Log
             </v-tab>
-            <v-tab>
+            <v-tab class="subheading">
               Letters
             </v-tab>
-            <v-tab>
+            <v-tab class="subheading">
               Notes
             </v-tab>
             <!-- BEGIN TAB COMPONENTS -->
             <v-tab-item>
-              <familyInfo></familyInfo>
+              <familyInfo :familyData="getFamilyData()"></familyInfo>
             </v-tab-item>
             <v-tab-item>
-              <providerInfo></providerInfo>
+              <!-- <providerInfo></providerInfo> -->
             </v-tab-item>
             <v-tab-item>
-              <attendanceLog></attendanceLog>
+              <!-- <attendanceLog></attendanceLog> -->
             </v-tab-item>
             <v-tab-item>
-              <letters></letters>
+              <!-- <letters></letters> -->
             </v-tab-item>
             <v-tab-item>
-              <notes></notes>
+              <!-- <notes></notes> -->
             </v-tab-item>
           </v-tabs>
         </v-card-text>
@@ -69,10 +106,50 @@ export default {
   components: {
     familyInfo, providerInfo, attendanceLog, letters, notes
   },
+  props: {
+    caseData: {}
+  },
   data(){
     return{
       activeTab: "",
-      caseTitle: ""
+      selectedCase: this.caseData,
+      selectedStatus: "",
+      statusColor: "",
+      statusList: ['Approved','Approved with Conditions', 'Reactivated','Pending', 'Ineligible', 'Waiting List', 'Received, Not Reviewed'],
+      statusModal: false
+    }
+  },
+  methods: {
+    getFamilyData(){
+      return this.selectedCase.familyInfo
+    },
+    saveStatus(){
+      let now = new Date().toString().split(" ")
+      let statusSetDate = `${now[1]}/${now[2]}/${now[3]}`
+      let statusUpdate  = {
+        status  : this.selectedStatus,
+        date    : statusSetDate
+      }
+      this.selectedCase.caseStatus.push(statusUpdate)
+      this.statusModal = false
+    }
+  },
+  computed: {
+    getStatus(){
+      let allStatusColors={
+        'Approved'                  : "green darken-5",
+        'Approved with Conditions'  : "orange darken-2",
+        'Reactivated'               : "green lighten-2",
+        'Pending'                   : "yellow darken-3",
+        'Ineligible'                : "brown lighten-4",
+        'Waiting List'              : "blue darken-5",
+        'Received, Not Yet Reviewed': "grey darken-2"
+      }
+      let allStatus     = this.selectedCase.caseStatus
+      let lastStatus    = (this.selectedCase.caseStatus.length - 1)
+      let currentStatus = allStatus[lastStatus].status
+      this.statusColor   = allStatusColors[currentStatus]
+      return currentStatus
     }
   }
 }
@@ -80,9 +157,3 @@ export default {
 
 <style lang="css">
 </style>
-
-<!--
-* ADD PROPS TO BE RECEIVED (AS OBJECTS) FOR EACH OF THE SUB-COMPONENTS.
-* PASS THE DATA TO THESE SUB-COMPONENTS
-* ADD SOME FORM OF INDICATION IN THE TOOLBAR TO SHOW THE STATUS OF THE CASE AT A GLANCE
--->

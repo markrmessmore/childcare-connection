@@ -129,7 +129,15 @@ export default new Vuex.Store({
       return state.user;
     },
     getNav(state) {
-      return state.nav;
+      if (state.user == ""){
+        return state.nav.filter(navItem => navItem.access == "all")
+      }
+      else if (state.user == "admin") {
+        return state.nav
+      }
+      else {
+        return state.nav.filter(navItem => navItem.access == "user" || navItem.access == "all")
+      }
     },
     getCases(state){
       return state.cases

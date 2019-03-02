@@ -1,7 +1,8 @@
 <template lang="html">
   <v-card>
-    <v-toolbar color="primary" dark dense>
+    <v-toolbar flat>
       <v-toolbar-title>
+        <v-icon>dashboard</v-icon>
         Dashboard
       </v-toolbar-title>
     </v-toolbar>
