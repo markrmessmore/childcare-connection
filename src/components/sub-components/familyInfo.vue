@@ -2,713 +2,785 @@
   <div class="">
     <br>
     <!-- APPLICANT INFORMATION -->
-      <v-toolbar color="secondary" dense dark class="subheading">Applicant Information</v-toolbar>
-      <v-card flat>
-        <v-card-text>
-          <v-layout row wrap>
-            <v-flex xs4 class="ma-1">
-              <v-text-field
-                label="Applicant First Name"
-                v-model="familyInfo.applicant.firstName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs1 class="ma-1">
-              <v-text-field
-                box
-                label="Mid. Init."
-                v-model="familyInfo.applicant.midInitial">
-              </v-text-field>
-            </v-flex>
-            <v-flex xs6 class="ma-1">
-              <v-text-field
-                label="Applicant Last Name"
-                v-model="familyInfo.applicant.lastName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs5 class="ma-1">
-              <v-text-field
-                label="Applicant Social Security Number"
-                v-model="familyInfo.applicant.ssn"
-                mask="social"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs6 class="ma-1">
-              <v-select
-                label="Relationship to Child(ren)"
-                :items="relationshipItems"
-                v-model="familyInfo.applicant.appRelation"
-                box>
-              </v-select>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-      <!-- CO-APPLICANT INFORMATION -->
-      <v-toolbar color="secondary" dense dark class="subheading">Co-applicant Information</v-toolbar>
-      <v-card flat>
-        <v-card-text>
-          <v-layout row wrap>
-            <v-flex xs4 class="ma-1">
-              <v-text-field
-                label="Co-applicant First Name"
-                v-model="familyInfo.coapplicant.firstName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs1 class="ma-1">
-              <v-text-field
-                box
-                label="Mid. Init."
-                v-model="familyInfo.coapplicant.midInitial">
-              </v-text-field>
-            </v-flex>
-            <v-flex xs6 class="ma-1">
-              <v-text-field
-                label="Co-applicant Last Name"
-                v-model="familyInfo.coapplicant.lastName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs5 class="ma-1">
-              <v-text-field
-                label="Co-pplicant Social Security Number"
-                v-model="familyInfo.coapplicant.ssn"
-                mask="social"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs6 class="ma-1">
-              <v-select
-                label="Co-applicant Relationship to Child(ren)"
-                :items="relationshipItems"
-                v-model="familyInfo.coapplicant.appRelation"
-                box>
-              </v-select>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-      <!-- HOME INFORMATION -->
-      <v-toolbar color="secondary" dense dark class="subheading">Home Information</v-toolbar>
-      <v-card flat>
-        <v-card-text>
-          <v-layout row wrap>
-            <v-flex xs12>
-              <v-text-field
-                label="Address"
-                box
-                v-model="familyInfo.address"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs12>
-              <v-text-field
-                label="Address 2"
-                box
-                v-model="familyInfo.address2"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs5 class="ma-1">
-              <v-text-field
-                box
-                label="City"
-                v-model="familyInfo.city"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                box
-                label="State"
-                v-model="familyInfo.state"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs4 class="ma-1">
-              <v-text-field
-                box
-                label="Zip"
-                v-model="familyInfo.zip"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                box
-                label="Home Phone"
-                v-model="familyInfo.homephone"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                box
-                label="Cell Phone"
-                v-model="familyInfo.cellphone"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="# of Adults in the Home"
-                box
-                @blur="calcFamily()"
-                v-model="familyInfo.numAdults"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="# of Kids in the Home"
-                box
-                v-model="familyInfo.numKids"
-                @blur="calcFamily()"
-              ></v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-              label="Total # in Home"
-              box
-              readonly
-              v-model="calcFamily"
-              ></v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-      <!-- FINANCIAL INFO: APPLICANT -->
-      <v-toolbar color="secondary" dense dark class="subheading">Family Income Information</v-toolbar>
-      <v-card flat>
-        <v-card-text>
-          <p class="subheading">
-            Click into the appropriate cell. Calculations will be performed automatically.
-          </p>
-          <v-toolbar color="accent2" dense dark>Primary Applicant</v-toolbar>
-          <v-data-table
-            :headers="incomeHeaders"
-            :items="familyInfo.applicant.income"
-            hide-actions
-            item-key="id"
-          >
-            <template slot="items" slot-scope="props">
-              <td class="text-xs-left subheading">{{props.item.title}}</td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.weekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.biWeekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.monthly"
-                >
-                </v-text-field>
-              </td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.biWeekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="text-xs-right subheading">${{calcTotal(props.item)}}</td>
-            </template>
-          </v-data-table>
-        </v-card-text>
-      </v-card>
-      <!-- FINANCIAL INFO: CO-APPLICANT -->
-      <v-card flat color="grey lighten-2">
-        <v-card-text>
-          <v-toolbar color="accent2" dense dark>Co-applicant</v-toolbar>
-          <v-data-table
-            :headers="incomeHeaders"
-            :items="familyInfo.coapplicant.income"
-            hide-actions
-            item-key="id"
-          >
-            <template slot="items" slot-scope="props">
-              <td class="text-xs-left subheading">{{props.item.title}}</td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.weekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.biWeekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.monthly"
-                >
-                </v-text-field>
-              </td>
-              <td class="subheading" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.biWeekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="text-xs-right subheading">{{calcTotal(props.item)}}</td>
-            </template>
-          </v-data-table>
-        </v-card-text>
-      </v-card>
-      <br>
-      <!-- WORK/SCHOOL/TRAINING INFO -->
-      <v-toolbar color="secondary" dense dark class="subheading">
-        Work/School/Training Information (Primary Applicant)
-      </v-toolbar>
-      <v-card flat>
-        <v-card-text>
-          <v-toolbar color="accent2" dense dark>Primary Location</v-toolbar>
-          <v-layout row wrap>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="Name of the Location"
-                v-model="familyInfo.applicant.primaryWork.locationName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationItems"
-                v-model="familyInfo.applicant.primaryWork.type"
-                label="Type of Location"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationStatus"
-                v-model="familyInfo.applicant.primaryWork.status"
-                label="Employment Status"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Hours/Week"
-                v-model="familyInfo.applicant.primaryWork.hoursPerWeek"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Months/Year"
-                v-model="familyInfo.applicant.primaryWork.monthsPerYear"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs12 class="ma-1">
-              <v-text-field
-                label="Location Address"
-                v-model="familyInfo.applicant.primaryWork.address"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="City"
-                v-model="familyInfo.applicant.primaryWork.city"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="State"
-                v-model="familyInfo.applicant.primaryWork.state"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Zip"
-                v-model="familyInfo.applicant.primaryWork.zip"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Phone"
-                v-model="familyInfo.applicant.primaryWork.phone"
-                mask="phone"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Ext"
-                v-model="familyInfo.applicant.primaryWork.phoneext"
-                box>
-              </v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-      <v-card flat>
-        <v-card-text>
-          <v-toolbar color="accent2" dense dark>Secondary Location</v-toolbar>
-          <v-layout row wrap>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="Name of the Location"
-                v-model="familyInfo.applicant.secondaryWork.locationName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationItems"
-                v-model="familyInfo.applicant.secondaryWork.type"
-                label="Type of Location"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationStatus"
-                v-model="familyInfo.applicant.secondaryWork.status"
-                label="Employment Status"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Hours/Week"
-                v-model="familyInfo.applicant.secondaryWork.hoursPerWeek"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Months/Year"
-                v-model="familyInfo.applicant.secondaryWork.monthsPerYear"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs12 class="ma-1">
-              <v-text-field
-                label="Location Address"
-                v-model="familyInfo.applicant.secondaryWork.address"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="City"
-                v-model="familyInfo.applicant.secondaryWork.city"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="State"
-                v-model="familyInfo.applicant.secondaryWork.state"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Zip"
-                v-model="familyInfo.applicant.secondaryWork.zip"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Phone"
-                v-model="familyInfo.applicant.secondaryWork.phone"
-                mask="phone"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Ext"
-                v-model="familyInfo.applicant.secondaryWork.phoneext"
-                box>
-              </v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-      <v-toolbar color="secondary" dense dark class="subheading">
-        Work/School/Training Information (Co-applicant)
-      </v-toolbar>
-      <v-card flat>
-        <v-card-text>
-          <v-toolbar color="accent2" dense dark>Primary Location</v-toolbar>
-          <v-layout row wrap>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="Name of the Location"
-                v-model="familyInfo.coapplicant.primaryWork.locationName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationItems"
-                v-model="familyInfo.coapplicant.primaryWork.type"
-                label="Type of Location"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationStatus"
-                v-model="familyInfo.coapplicant.primaryWork.status"
-                label="Employment Status"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Hours/Week"
-                v-model="familyInfo.coapplicant.primaryWork.hoursPerWeek"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Months/Year"
-                v-model="familyInfo.coapplicant.primaryWork.monthsPerYear"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs12 class="ma-1">
-              <v-text-field
-                label="Location Address"
-                v-model="familyInfo.coapplicant.primaryWork.address"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="City"
-                v-model="familyInfo.coapplicant.primaryWork.city"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="State"
-                v-model="familyInfo.coapplicant.primaryWork.state"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Zip"
-                v-model="familyInfo.coapplicant.primaryWork.zip"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Phone"
-                v-model="familyInfo.coapplicant.primaryWork.phone"
-                mask="phone"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Ext"
-                v-model="familyInfo.coapplicant.primaryWork.phoneext"
-                box>
-              </v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-      <v-card flat>
-        <v-card-text>
-          <v-toolbar color="accent2" dense dark>Secondary Location</v-toolbar>
-          <v-layout row wrap>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="Name of the Location"
-                v-model="familyInfo.coapplicant.secondaryWork.locationName"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationItems"
-                v-model="familyInfo.coapplicant.secondaryWork.type"
-                label="Type of Location"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-select
-                box
-                :items="locationStatus"
-                v-model="familyInfo.coapplicant.secondaryWork.status"
-                label="Employment Status"
-              ></v-select>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Hours/Week"
-                v-model="familyInfo.coapplicant.secondaryWork.hoursPerWeek"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Months/Year"
-                v-model="familyInfo.coapplicant.secondaryWork.monthsPerYear"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs12 class="ma-1">
-              <v-text-field
-                label="Location Address"
-                v-model="familyInfo.coapplicant.secondaryWork.address"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs3 class="ma-1">
-              <v-text-field
-                label="City"
-                v-model="familyInfo.coapplicant.secondaryWork.city"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="State"
-                v-model="familyInfo.coapplicant.secondaryWork.state"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Zip"
-                v-model="familyInfo.coapplicant.secondaryWork.zip"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Phone"
-                v-model="familyInfo.coapplicant.secondaryWork.phone"
-                mask="phone"
-                box>
-              </v-text-field>
-            </v-flex>
-            <v-flex xs2 class="ma-1">
-              <v-text-field
-                label="Ext"
-                v-model="familyInfo.coapplicant.secondaryWork.phoneext"
-                box>
-              </v-text-field>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-      <!-- CHILD INFORMATION -->
-      <v-toolbar color="secondary" dense dark class="subheading">Child Information</v-toolbar>
-      <v-card flat color="grey lighten-2">
-        <div class="text-xs-right">
-          <v-btn color="primary" @click="addChild()">
-            <v-icon>add</v-icon>
-            Add Child
-          </v-btn>
-        </div>
-        <v-card-text>
-          <v-card v-for="(kid, index) in familyInfo.children" class="mb-1" :key="index">
+      <v-expansion-panel>
+        <v-expansion-panel-content lazy class="elevation-3">
+          <div class="subheading" slot="header">Applicant Information</div>
+          <v-card>
             <v-card-text>
               <v-layout row wrap>
                 <v-flex xs4 class="ma-1">
                   <v-text-field
-                    label="First Name"
-                    box
-                    v-model="kid.firstName"
-                  ></v-text-field>
+                    label="Applicant First Name"
+                    v-model="familyInfo.applicant.firstName"
+                    box>
+                  </v-text-field>
                 </v-flex>
                 <v-flex xs1 class="ma-1">
                   <v-text-field
+                    box
                     label="Mid. Init."
-                    box
-                    v-model="kid.midInitial"
-                  ></v-text-field>
+                    v-model="familyInfo.applicant.midInitial">
+                  </v-text-field>
                 </v-flex>
-                <v-flex xs4 class="ma-1">
+                <v-flex xs6 class="ma-1">
                   <v-text-field
-                    label="Last Name"
-                    box
-                    v-model="kid.lastName"
-                  ></v-text-field>
+                    label="Applicant Last Name"
+                    v-model="familyInfo.applicant.lastName"
+                    box>
+                  </v-text-field>
                 </v-flex>
-                <v-flex xs1 class="ma-1">
+                <v-flex xs5 class="ma-1">
                   <v-text-field
-                    label="Child-ID"
-                    box
-                    :value="getChildId(index + 1)"
-                  ></v-text-field>
-                </v-flex>
-                <v-flex xs3 class="ma-1">
-                  <v-text-field
-                    label="Child Social Security Number"
-                    box
+                    label="Applicant Social Security Number"
+                    v-model="familyInfo.applicant.ssn"
                     mask="social"
-                    v-model="kid.ssn"
-                  ></v-text-field>
+                    box>
+                  </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
-                  <v-text-field
-                    label="Child Date of Birth"
-                    box
-                    mask="##-##-####"
-                    v-model="kid.dob"
-                  ></v-text-field>
-                </v-flex>
-                <v-flex xs1>
-                  <v-text-field class="ma-1" box label="Age" readonly :value="getAge(kid.dob)"></v-text-field>
-                </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs6 class="ma-1">
                   <v-select
-                    box
-                    :items="gender"
-                    v-model="kid.gender"
-                    label="Gender"
-                  ></v-select>
-                </v-flex>
-                <v-flex xs3 class="ma-1">
-                  <v-select
-                    box
-                    :items="careType"
-                    v-model="kid.typeOfCare"
-                    label="Type Of Care"
-                  ></v-select>
+                    label="Relationship to Child(ren)"
+                    :items="relationshipItems"
+                    v-model="familyInfo.applicant.appRelation"
+                    box>
+                  </v-select>
                 </v-flex>
               </v-layout>
             </v-card-text>
           </v-card>
-        </v-card-text>
-      </v-card>
-          <v-layout row wrap>
-            <v-flex xs2 offset-xs10>
-              <v-btn color="primary" @click="saveData()">Save</v-btn>
-            </v-flex>
-          </v-layout>
-        </v-card-text>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <!-- CO-APPLICANT INFORMATION -->
+      <br>
+      <v-expansion-panel>
+        <v-expansion-panel-content lazy class="grey white--text elevation-3">
+          <div class="subheading" slot="header">Co-applicant Information</div>
+          <v-card flat>
+            <v-card-text>
+              <v-layout row wrap>
+                <v-flex xs4 class="ma-1">
+                  <v-text-field
+                    label="Co-applicant First Name"
+                    v-model="familyInfo.coapplicant.firstName"
+                    box>
+                  </v-text-field>
+                </v-flex>
+                <v-flex xs1 class="ma-1">
+                  <v-text-field
+                    box
+                    label="Mid. Init."
+                    v-model="familyInfo.coapplicant.midInitial">
+                  </v-text-field>
+                </v-flex>
+                <v-flex xs6 class="ma-1">
+                  <v-text-field
+                    label="Co-applicant Last Name"
+                    v-model="familyInfo.coapplicant.lastName"
+                    box>
+                  </v-text-field>
+                </v-flex>
+                <v-flex xs5 class="ma-1">
+                  <v-text-field
+                    label="Co-pplicant Social Security Number"
+                    v-model="familyInfo.coapplicant.ssn"
+                    mask="social"
+                    box>
+                  </v-text-field>
+                </v-flex>
+                <v-flex xs6 class="ma-1">
+                  <v-select
+                    label="Co-applicant Relationship to Child(ren)"
+                    :items="relationshipItems"
+                    v-model="familyInfo.coapplicant.appRelation"
+                    box>
+                  </v-select>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <br>
+      <!-- HOME INFORMATION -->
+      <v-expansion-panel>
+        <v-expansion-panel-content lazy class="elevation-3">
+          <div class="subheading" slot="header">Home Information</div>
+          <v-card flat>
+            <v-card-text>
+              <v-layout row wrap>
+                <v-flex xs12>
+                  <v-text-field
+                    label="Address"
+                    box
+                    v-model="familyInfo.address"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs12>
+                  <v-text-field
+                    label="Address 2"
+                    box
+                    v-model="familyInfo.address2"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs5 class="ma-1">
+                  <v-text-field
+                    box
+                    label="City"
+                    v-model="familyInfo.city"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs2 class="ma-1">
+                  <v-text-field
+                    box
+                    label="State"
+                    v-model="familyInfo.state"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs4 class="ma-1">
+                  <v-text-field
+                    box
+                    label="Zip"
+                    v-model="familyInfo.zip"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs2 class="ma-1">
+                  <v-text-field
+                    box
+                    label="Home Phone"
+                    v-model="familyInfo.homephone"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs2 class="ma-1">
+                  <v-text-field
+                    box
+                    label="Cell Phone"
+                    v-model="familyInfo.cellphone"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs2 class="ma-1">
+                  <v-text-field
+                    label="# of Adults in the Home"
+                    box
+                    @blur="calcFamily()"
+                    v-model="familyInfo.numAdults"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs2 class="ma-1">
+                  <v-text-field
+                    label="# of Kids in the Home"
+                    box
+                    v-model="familyInfo.numKids"
+                    @blur="calcFamily()"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs2 class="ma-1">
+                  <v-text-field
+                  label="Total # in Home"
+                  box
+                  readonly
+                  v-model="calcFamily"
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <br>
+      <!-- FINANCIAL INFO: APPLICANT -->
+      <v-expansion-panel>
+        <v-expansion-panel-content lazy class="elevation-3 grey white--text">
+          <div class="subheading" slot="header">Family Income Information</div>
+          <v-card flat>
+            <v-card-text>
+              <p class="subheading">
+                Click into the appropriate cell. Calculations will be performed automatically.
+              </p>
+              <v-expansion-panel>
+                <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
+                  <div slot="header" class="subheading">Primary Applicant</div>
+                  <v-data-table
+                    :headers="incomeHeaders"
+                    :items="familyInfo.applicant.income"
+                    hide-actions
+                    item-key="id"
+                  >
+                    <template slot="items" slot-scope="props">
+                      <td class="text-xs-left subheading">{{props.item.title}}</td>
+                      <td class="" @blur="calcTotal(props.item)">
+                        <v-text-field
+                          prepend-inner-icon="attach_money"
+                          v-model="props.item.weekly"
+                        >
+                        </v-text-field>
+                      </td>
+                      <td class="" @blur="calcTotal(props.item)">
+                        <v-text-field
+                          prepend-inner-icon="attach_money"
+                          v-model="props.item.biWeekly"
+                        >
+                        </v-text-field>
+                      </td>
+                      <td class="" @blur="calcTotal(props.item)">
+                        <v-text-field
+                          prepend-inner-icon="attach_money"
+                          v-model="props.item.monthly"
+                        >
+                        </v-text-field>
+                      </td>
+                      <td class="" @blur="calcTotal(props.item)">
+                        <v-text-field
+                          prepend-inner-icon="attach_money"
+                          v-model="props.item.annually"
+                        >
+                        </v-text-field>
+                      </td>
+                      <td class="text-xs-right">${{calcTotal(props.item)}}</td>
+                    </template>
+                  </v-data-table>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+              <br>
+      <!-- FINANCIAL INFO: CO-APPLICANT -->
+            <v-expansion-panel>
+              <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
+                <div slot="header" class="subheading">Co-applicant</div>
+                  <v-card flat>
+                    <v-card-text>
+                      <v-data-table
+                        :headers="incomeHeaders"
+                        :items="familyInfo.coapplicant.income"
+                        hide-actions
+                        item-key="id"
+                      >
+                        <template slot="items" slot-scope="props">
+                          <td class="text-xs-left subheading">{{props.item.title}}</td>
+                          <td class="subheading" @blur="calcTotal(props.item)">
+                            <v-text-field
+                              prepend-inner-icon="attach_money"
+                              v-model="props.item.weekly"
+                            >
+                            </v-text-field>
+                          </td>
+                          <td class="subheading" @blur="calcTotal(props.item)">
+                            <v-text-field
+                              prepend-inner-icon="attach_money"
+                              v-model="props.item.biWeekly"
+                            >
+                            </v-text-field>
+                          </td>
+                          <td class="subheading" @blur="calcTotal(props.item)">
+                            <v-text-field
+                              prepend-inner-icon="attach_money"
+                              v-model="props.item.monthly"
+                            >
+                            </v-text-field>
+                          </td>
+                          <td class="subheading" @blur="calcTotal(props.item)">
+                            <v-text-field
+                              prepend-inner-icon="attach_money"
+                              v-model="props.item.biWeekly"
+                            >
+                            </v-text-field>
+                          </td>
+                          <td class="text-xs-right subheading">{{calcTotal(props.item)}}</td>
+                        </template>
+                      </v-data-table>
+                    </v-card-text>
+                  </v-card>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-card-text>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <br>
+      <!-- WORK/SCHOOL/TRAINING INFO -->
+      <v-expansion-panel>
+        <v-expansion-panel-content lazy class="elevation-3">
+          <div class="subheading" slot="header">Work/School/Training Information</div>
+          <v-card flat>
+            <v-card-text>
+              <v-expansion-panel>
+                <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
+                  <div class="subheading" slot="header">Primary Applicant</div>
+                  <v-card>
+                    <v-card-text>
+                      <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location</v-toolbar>
+                      <br>
+                      <v-layout row wrap>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="Name of the Location"
+                            v-model="familyInfo.applicant.primaryWork.locationName"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationItems"
+                            v-model="familyInfo.applicant.primaryWork.type"
+                            label="Type of Location"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationStatus"
+                            v-model="familyInfo.applicant.primaryWork.status"
+                            label="Employment Status"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Hours/Week"
+                            v-model="familyInfo.applicant.primaryWork.hoursPerWeek"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Months/Year"
+                            v-model="familyInfo.applicant.primaryWork.monthsPerYear"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs12 class="ma-1">
+                          <v-text-field
+                            label="Location Address"
+                            v-model="familyInfo.applicant.primaryWork.address"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="City"
+                            v-model="familyInfo.applicant.primaryWork.city"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="State"
+                            v-model="familyInfo.applicant.primaryWork.state"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Zip"
+                            v-model="familyInfo.applicant.primaryWork.zip"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Phone"
+                            v-model="familyInfo.applicant.primaryWork.phone"
+                            mask="phone"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Ext"
+                            v-model="familyInfo.applicant.primaryWork.phoneext"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                      </v-layout>
+                      <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location</v-toolbar>
+                      <br>
+                      <v-layout row wrap>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="Name of the Location"
+                            v-model="familyInfo.applicant.secondaryWork.locationName"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationItems"
+                            v-model="familyInfo.applicant.secondaryWork.type"
+                            label="Type of Location"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationStatus"
+                            v-model="familyInfo.applicant.secondaryWork.status"
+                            label="Employment Status"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Hours/Week"
+                            v-model="familyInfo.applicant.secondaryWork.hoursPerWeek"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Months/Year"
+                            v-model="familyInfo.applicant.secondaryWork.monthsPerYear"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs12 class="ma-1">
+                          <v-text-field
+                            label="Location Address"
+                            v-model="familyInfo.applicant.secondaryWork.address"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="City"
+                            v-model="familyInfo.applicant.secondaryWork.city"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="State"
+                            v-model="familyInfo.applicant.secondaryWork.state"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Zip"
+                            v-model="familyInfo.applicant.secondaryWork.zip"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Phone"
+                            v-model="familyInfo.applicant.secondaryWork.phone"
+                            mask="phone"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Ext"
+                            v-model="familyInfo.coapplicant.secondaryWork.phoneext"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-card-text>
+                  </v-card>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+              <br>
+              <v-expansion-panel>
+                <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
+                  <div class="subheading" slot="header">Co-applicant</div>
+                  <v-card>
+                    <v-card-text>
+                      <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location</v-toolbar>
+                      <br>
+                      <v-layout row wrap>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="Name of the Location"
+                            v-model="familyInfo.coapplicant.primaryWork.locationName"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationItems"
+                            v-model="familyInfo.coapplicant.primaryWork.type"
+                            label="Type of Location"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationStatus"
+                            v-model="familyInfo.coapplicant.primaryWork.status"
+                            label="Employment Status"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Hours/Week"
+                            v-model="familyInfo.coapplicant.primaryWork.hoursPerWeek"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Months/Year"
+                            v-model="familyInfo.coapplicant.primaryWork.monthsPerYear"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs12 class="ma-1">
+                          <v-text-field
+                            label="Location Address"
+                            v-model="familyInfo.coapplicant.primaryWork.address"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="City"
+                            v-model="familyInfo.coapplicant.primaryWork.city"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="State"
+                            v-model="familyInfo.coapplicant.primaryWork.state"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Zip"
+                            v-model="familyInfo.coapplicant.primaryWork.zip"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Phone"
+                            v-model="familyInfo.coapplicant.primaryWork.phone"
+                            mask="phone"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Ext"
+                            v-model="familyInfo.coapplicant.primaryWork.phoneext"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                      </v-layout>
+                      <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location</v-toolbar>
+                      <br>
+                      <v-layout row wrap>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="Name of the Location"
+                            v-model="familyInfo.coapplicant.secondaryWork.locationName"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationItems"
+                            v-model="familyInfo.coapplicant.secondaryWork.type"
+                            label="Type of Location"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-select
+                            box
+                            :items="locationStatus"
+                            v-model="familyInfo.coapplicant.secondaryWork.status"
+                            label="Employment Status"
+                          ></v-select>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Hours/Week"
+                            v-model="familyInfo.coapplicant.secondaryWork.hoursPerWeek"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Months/Year"
+                            v-model="familyInfo.coapplicant.secondaryWork.monthsPerYear"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs12 class="ma-1">
+                          <v-text-field
+                            label="Location Address"
+                            v-model="familyInfo.coapplicant.secondaryWork.address"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs3 class="ma-1">
+                          <v-text-field
+                            label="City"
+                            v-model="familyInfo.coapplicant.secondaryWork.city"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="State"
+                            v-model="familyInfo.coapplicant.secondaryWork.state"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Zip"
+                            v-model="familyInfo.coapplicant.secondaryWork.zip"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Phone"
+                            v-model="familyInfo.coapplicant.secondaryWork.phone"
+                            mask="phone"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                        <v-flex xs2 class="ma-1">
+                          <v-text-field
+                            label="Ext"
+                            v-model="familyInfo.coapplicant.secondaryWork.phoneext"
+                            box>
+                          </v-text-field>
+                        </v-flex>
+                      </v-layout>
+                    </v-card-text>
+                  </v-card>
+                </v-expansion-panel-content>
+              </v-expansion-panel>
+            </v-card-text>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      <br>
+      <!-- CHILD INFORMATION -->
+      <v-expansion-panel>
+        <v-expansion-panel-content lazy class="elevation-3 grey white--text">
+          <div class="subheading" slot="header">Child Information</div>
+          <v-card flat>
+            <v-card-text>
+              <div class="text-xs-right">
+                <v-btn color="primary" @click="addChild()">
+                  <v-icon>add</v-icon>
+                  Add Child
+                </v-btn>
+              </div>
+              <v-card v-for="(kid, index) in familyInfo.children" class="mb-1 mt-1" :key="index">
+                <v-card-title class="subheading">
+                  Child {{`0${index+1}`}}
+                  <v-spacer></v-spacer>
+                  <v-btn color="primary" small icon outline @click="confirmDel(index)">
+                    <v-icon color="primary">close</v-icon>
+                  </v-btn>
+                  <!-- DELETE CHILD RECORD CONFIRM DIALOG -->
+                  <v-dialog
+                    v-model="confirmChildDel"
+                    persistent :overlay="false"
+                    max-width="500px"
+                    transition="dialog-transition"
+                  >
+                    <v-card>
+                      <v-toolbar color="secondary" dark dense>
+                        <v-toolbar-title>
+                          Remove child record: {{childRecordToRemove}}?
+                        </v-toolbar-title>
+                      </v-toolbar>
+                      <v-layout row justify-space-around>
+                        <v-btn color="primary" @click="removeChildRecord()">
+                          <v-icon left>check</v-icon>
+                          Yes
+                        </v-btn>
+                        <v-btn color="red darken-3" outline @click="confirmChildDel = !confirmChildDel">
+                          <v-icon left>close</v-icon>
+                          No
+                        </v-btn>
+                      </v-layout>
+                    </v-card>
+                  </v-dialog>
+                </v-card-title>
+                <v-divider inset></v-divider>
+                <v-card-text>
+                  <v-layout row wrap>
+                    <v-flex xs4 class="ma-1">
+                      <v-text-field
+                        label="First Name"
+                        box
+                        v-model="kid.firstName"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs1 class="ma-1">
+                      <v-text-field
+                        label="Mid. Init."
+                        box
+                        v-model="kid.midInitial"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs4 class="ma-1">
+                      <v-text-field
+                        label="Last Name"
+                        box
+                        v-model="kid.lastName"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs1 class="ma-1">
+                      <v-text-field
+                        label="Child-ID"
+                        box
+                        :value="getChildId(index + 1)"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs3 class="ma-1">
+                      <v-text-field
+                        label="Child Social Security Number"
+                        box
+                        mask="social"
+                        v-model="kid.ssn"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs2 class="ma-1">
+                      <v-text-field
+                        label="Child Date of Birth"
+                        box
+                        mask="##-##-####"
+                        v-model="kid.dob"
+                      ></v-text-field>
+                    </v-flex>
+                    <v-flex xs1>
+                      <v-text-field class="ma-1" box label="Age" readonly :value="getAge(kid.dob)"></v-text-field>
+                    </v-flex>
+                    <v-flex xs2 class="ma-1">
+                      <v-select
+                        box
+                        :items="gender"
+                        v-model="kid.gender"
+                        label="Gender"
+                      ></v-select>
+                    </v-flex>
+                    <v-flex xs3 class="ma-1">
+                      <v-select
+                        box
+                        :items="careType"
+                        v-model="kid.typeOfCare"
+                        label="Type Of Care"
+                      ></v-select>
+                    </v-flex>
+                  </v-layout>
+                </v-card-text>
+              </v-card>
+            </v-card-text>
+          </v-card>
+        </v-expansion-panel-content>
+      </v-expansion-panel>
+      </v-layout>
+      </v-card-text>
     </v-card>
   </div>
 
@@ -722,6 +794,8 @@ export default {
   data(){
     return {
       careType: ["Full Day", "Before School", "After School", "Summer Camp", "None"],
+      childRecordToRemove: "",
+      confirmChildDel: false,
       editDialog: false,
       familyInfo: this.familyData,
       gender: ["Female", "Male"],
@@ -787,6 +861,10 @@ export default {
     calcTotal(values){
       return (Number(values.weekly) * 52) + (Number(values.biWeekly) * 26) + (Number(values.monthly) * 12) + Number(values.annually)
     },
+    confirmDel(index){
+      this.childRecordToRemove = this.getChildId(index + 1)
+      this.confirmChildDel     = true
+    },
     getAge(dob){
       let year  = dob.substr(4,4)
       let month = dob.substr(0,2)
@@ -803,6 +881,10 @@ export default {
     },
     getChildId(id){
       return `0${id}`
+    },
+    removeChildRecord(){
+      this.familyInfo.children.splice((Number(this.childRecordToRemove) - 1), 1)
+      this.confirmChildDel = false
     }
   },
   computed: {

@@ -122,11 +122,17 @@ export default new Vuex.Store({
     //GET CASES
     getCases({commit}) {
       commit('setCases')
+    },
+    saveCase({commit}, payload){
+      // commit('saveCase', payload)
     }
   },
   getters: {
-    getUser(state) {
-      return state.user;
+    getCases(state){
+      return state.cases
+    },
+    getLoading(state){
+      return state.loading
     },
     getNav(state) {
       if (state.user == ""){
@@ -139,17 +145,14 @@ export default new Vuex.Store({
         return state.nav.filter(navItem => navItem.access == "user" || navItem.access == "all")
       }
     },
-    getCases(state){
-      return state.cases
-    },
     getSignInStatus(state){
       return state.signInStatus
     },
     getSignOutStatus(state){
       return state.signOutStatus
     },
-    getLoading(state){
-      return state.loading
+    getUser(state) {
+      return state.user;
     }
   }
 });

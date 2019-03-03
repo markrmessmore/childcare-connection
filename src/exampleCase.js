@@ -3,7 +3,12 @@
 export default [
   {
     caseId      : 99999,
-    caseStatus  : [],       //COULD BE: APPROVED WITH CONDITIONS, REACTIVATED, APPROVED, PENDING, INELIGIBLE, WAITING LIST OR RECEIVED - NOT YET REVIEWED.
+    caseStatus  : [
+      {
+        status: "Active",
+        date  : "02/10/2019"
+      }
+    ],       //COULD BE: APPROVED WITH CONDITIONS, REACTIVATED, APPROVED, PENDING, INELIGIBLE, WAITING LIST OR RECEIVED - NOT YET REVIEWED.
     activeDate  : "02/01/2019",
     endDate     : "01/31/2020",
     familyInfo  : {

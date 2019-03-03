@@ -4,7 +4,7 @@
       <v-card>
         <v-toolbar color="primary" dark dense>
           <v-toolbar-title>
-            Case ID: {{ caseData.caseId }}
+            Case ID: {{ selectedCase.caseId == 0 ? "TBD" : selectedCase.caseId }}
           </v-toolbar-title>
           <v-spacer></v-spacer>
           <v-toolbar-items>
@@ -93,6 +93,14 @@
         </v-card-text>
       </v-card>
     </v-card-text>
+    <v-layout row wrap>
+      <v-flex xs12 class="text-xs-right">
+        <v-btn color="primary" @click="saveCase()">
+          <v-icon left>save</v-icon>
+          Save Case Information
+        </v-btn>
+      </v-flex>
+    </v-layout>
   </v-card>
 </template>
 
@@ -132,6 +140,9 @@ export default {
       }
       this.selectedCase.caseStatus.push(statusUpdate)
       this.statusModal = false
+    },
+    saveCase(){
+      this.$store.dispatch('saveCase', this.selectedCase)
     }
   },
   computed: {
@@ -145,11 +156,11 @@ export default {
         'Waiting List'              : "blue darken-5",
         'Received, Not Yet Reviewed': "grey darken-2"
       }
-      let allStatus     = this.selectedCase.caseStatus
-      let lastStatus    = (this.selectedCase.caseStatus.length - 1)
-      let currentStatus = allStatus[lastStatus].status
-      this.statusColor   = allStatusColors[currentStatus]
-      return currentStatus
+        let allStatus     = this.selectedCase.caseStatus
+        let lastStatus    = (this.selectedCase.caseStatus.length - 1)
+        let currentStatus = allStatus[lastStatus].status
+        this.statusColor   = allStatusColors[currentStatus]
+        return currentStatus
     }
   }
 }

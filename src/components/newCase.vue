@@ -7,7 +7,7 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-      <!-- <caseInfo></caseInfo> -->
+      <caseInfo :caseData="blankCase"></caseInfo>
     </v-card-text>
   </v-card>
 </template>
@@ -20,12 +20,210 @@ export default {
   },
   data() {
     return {
-
+      blankCase: {
+        caseId      : 0,
+        caseStatus  : [
+          {
+            status  : "TBD",
+            date    : ""
+          }
+        ],
+        activeDate  : "",
+        endDate     : "",
+        familyInfo  : {
+          address     : "",
+          address2    : "",
+          city        : "",
+          state       : "NJ",
+          zip         : "",
+          homephone   : "",
+          cellphone   : "",
+          numAdults   : null,
+          numKids     : null,
+          applicant   : {
+            firstName             : "",
+            midInitial            : "",
+            lastName              : "",
+            ssn                   : "",
+            appRelation           : "",
+            income    : [
+              {
+                title   : "Wages & Salary",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title: "Pension/Retirement/Supplemental/Social Security",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Unemployment/Worker's Comp.",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Public Assistance/TANF",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Child Support/Alimony",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Other Income",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              }
+            ],
+            primaryWork : {
+              locationName        : "",
+              type                : "",
+              address             : "",
+              city                : "",
+              state               : "",
+              zip                 : "",
+              phone               : "",
+              phoneext            : "",
+              startDate           : "",
+              status              : "",
+              hoursPerWeek        : null,
+              monthsPerYear       : null,
+            },
+            secondaryWork : {
+              locationName        : "",
+              type                : "",
+              address             : "",
+              city                : "",
+              state               : "",
+              zip                 : "",
+              phone               : "",
+              phoneext            : "",
+              startDate           : "",
+              status              : "",
+              hoursPerWeek        : null,
+              monthsPerYear       : null,
+            }
+          },
+          coapplicant   : {
+            firstName             : "",
+            midInitial            : "",
+            lastName              : "",
+            ssn                   : "",
+            appRelation           : "",
+            income    : [
+              {
+                title   : "Wages & Salary",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title: "Pension/Retirement/Supplemental/Social Security",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Unemployment/Worker's Comp.",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Public Assistance/TANF",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Child Support/Alimony",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              },
+              {
+                title   : "Other Income",
+                weekly  : 0,
+                biWeekly: 0,
+                monthly : 0,
+                annually: 0,
+                total   : 0
+              }
+            ],
+            primaryWork  : {
+              locationName        : "",
+              type                : "",
+              address             : "",
+              city                : "",
+              state               : "",
+              zip                 : "",
+              phone               : "",
+              phoneext            : "",
+              startDate           : "",
+              status              : "",
+              hoursPerWeek        : null,
+              monthsPerYear       : null,
+            },
+            secondaryWork : {
+              locationName        : "",
+              type                : "",
+              address             : "",
+              city                : "",
+              state               : "",
+              zip                 : "",
+              phone               : "",
+              phoneext            : "",
+              startDate           : "",
+              status              : "",
+              hoursPerWeek        : null,
+              monthsPerYear       : null,
+            }
+          },
+          children    : [],
+        },
+        notes: [
+          {
+            date            : "",
+            text            : ""
+          }
+        ],
+        providers: [],
+        attendance: []
+      }
     };
   },
-  methods: {
-
-  }
+  methods: {}
 };
 </script>
 
