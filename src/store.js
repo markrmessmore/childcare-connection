@@ -124,6 +124,7 @@ export default new Vuex.Store({
       commit('setCases')
     },
     saveCase({commit}, payload){
+      console.log(payload)
       // commit('saveCase', payload)
     }
   },

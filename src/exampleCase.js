@@ -228,13 +228,13 @@ export default [
         federalId         : "11111-11",
         licenseNum        : "11111111",
         typeOfProvider    : "Licensed Center",    //COULD BE LICENSED CENTER OR REGISTERED FAMILY CHILD CARE
-        typeOfCare        : ["Full Day"],         //COULD SELECT MULTIPLE: FULL DAY, BEFORE SCHOOL, AFTER SCHOOL, SUMMER CAMP
+        typeOfCare        : "Full Day",         //COULD SELECT MULTIPLE: FULL DAY, BEFORE SCHOOL, AFTER SCHOOL, SUMMER CAMP
         address           : "987 6th St.",
         address2          : "Suite 201",
         city              : "Trenton",
         state             : "NJ",
         zip               : "08638",
-        phone             : "987-654-3210",
+        phone             : "9876543210",
         papaStart         : "2/1/2019",
         papaEnd           : "1/31/2019",
         monthlyAmt        : 300,
@@ -244,14 +244,13 @@ export default [
         federalId         : "2222-11",
         licenseNum        : "222222",
         typeOfProvider    : "Registered Family Child Care",    //COULD BE LICENSED CENTER OR REGISTERED FAMILY CHILD CARE
-        typeOfCare        : ["After School"],         //COULD SELECT MULTIPLE: FULL DAY, BEFORE SCHOOL, AFTER SCHOOL, SUMMER CAMP
         typeOfCare        : "After School",
         address           : "441 8th St.",
         address2          : "",
         city              : "Trenton",
         state             : "NJ",
         zip               : "08642",
-        phone             : "987-444-3333",
+        phone             : "9874443333",
         papaStart         : "2/1/2019",
         papaEnd           : "1/31/2019",
         monthlyAmt        : 75

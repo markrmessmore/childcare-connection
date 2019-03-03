@@ -78,7 +78,7 @@
               <familyInfo :familyData="getFamilyData()"></familyInfo>
             </v-tab-item>
             <v-tab-item>
-              <!-- <providerInfo></providerInfo> -->
+              <providerInfo :providerInfo="getProviderData()"></providerInfo>
             </v-tab-item>
             <v-tab-item>
               <!-- <attendanceLog></attendanceLog> -->
@@ -130,6 +130,9 @@ export default {
   methods: {
     getFamilyData(){
       return this.selectedCase.familyInfo
+    },
+    getProviderData(){
+      return this.selectedCase.providers
     },
     saveStatus(){
       let now = new Date().toString().split(" ")
