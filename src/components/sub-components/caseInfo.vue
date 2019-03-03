@@ -81,7 +81,12 @@
               <providerInfo :providerInfo="getProviderData()"></providerInfo>
             </v-tab-item>
             <v-tab-item>
-              <!-- <attendanceLog></attendanceLog> -->
+              <attendanceLog
+                :recordedAtt="getAttendance()"
+                :kids="getFamilyData().children"
+                :providers="getProviderData()"
+              >  
+              </attendanceLog>
             </v-tab-item>
             <v-tab-item>
               <!-- <letters></letters> -->
@@ -133,6 +138,9 @@ export default {
     },
     getProviderData(){
       return this.selectedCase.providers
+    },
+    getAttendance(){
+      return this.selectedCase.attendance
     },
     saveStatus(){
       let now = new Date().toString().split(" ")

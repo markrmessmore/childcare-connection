@@ -260,14 +260,16 @@ export default [
       {
         child             : "Elizabeth",
         facility          : "ABC Childcare",
-        month             : "February",
+        month             : "02 - Feb",
+        year              : "2019",
         attendance        : 20,
         amount            : 300,
       },
       {
         child             : "Levi",
         facility          : "Little Einsteins",
-        month             : "February",
+        month             : "02 - Feb",
+        year              : "2019",
         attendance        : 24,
         amount            : 75,
       }

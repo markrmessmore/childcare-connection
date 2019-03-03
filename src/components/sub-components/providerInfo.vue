@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card>
+  <v-card flat>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
         <v-btn color="primary" outline small @click="addProvider()">
