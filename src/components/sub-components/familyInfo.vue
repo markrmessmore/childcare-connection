@@ -12,12 +12,11 @@
                   <v-text-field
                     label="Applicant First Name"
                     v-model="familyInfo.applicant.firstName"
-                    box>
+                    >
                   </v-text-field>
                 </v-flex>
                 <v-flex xs1 class="ma-1">
                   <v-text-field
-                    box
                     label="Mid. Init."
                     v-model="familyInfo.applicant.midInitial">
                   </v-text-field>
@@ -26,7 +25,7 @@
                   <v-text-field
                     label="Applicant Last Name"
                     v-model="familyInfo.applicant.lastName"
-                    box>
+                    >
                   </v-text-field>
                 </v-flex>
                 <v-flex xs5 class="ma-1">
@@ -34,7 +33,7 @@
                     label="Applicant Social Security Number"
                     v-model="familyInfo.applicant.ssn"
                     mask="social"
-                    box>
+                    >
                   </v-text-field>
                 </v-flex>
                 <v-flex xs6 class="ma-1">
@@ -42,7 +41,7 @@
                     label="Relationship to Child(ren)"
                     :items="relationshipItems"
                     v-model="familyInfo.applicant.appRelation"
-                    box>
+                    >
                   </v-select>
                 </v-flex>
               </v-layout>
@@ -62,12 +61,12 @@
                   <v-text-field
                     label="Co-applicant First Name"
                     v-model="familyInfo.coapplicant.firstName"
-                    box>
+                    >
                   </v-text-field>
                 </v-flex>
                 <v-flex xs1 class="ma-1">
                   <v-text-field
-                    box
+
                     label="Mid. Init."
                     v-model="familyInfo.coapplicant.midInitial">
                   </v-text-field>
@@ -76,7 +75,7 @@
                   <v-text-field
                     label="Co-applicant Last Name"
                     v-model="familyInfo.coapplicant.lastName"
-                    box>
+                    >
                   </v-text-field>
                 </v-flex>
                 <v-flex xs5 class="ma-1">
@@ -84,7 +83,7 @@
                     label="Co-pplicant Social Security Number"
                     v-model="familyInfo.coapplicant.ssn"
                     mask="social"
-                    box>
+                    >
                   </v-text-field>
                 </v-flex>
                 <v-flex xs6 class="ma-1">
@@ -92,7 +91,7 @@
                     label="Co-applicant Relationship to Child(ren)"
                     :items="relationshipItems"
                     v-model="familyInfo.coapplicant.appRelation"
-                    box>
+                    >
                   </v-select>
                 </v-flex>
               </v-layout>
@@ -111,48 +110,48 @@
                 <v-flex xs12>
                   <v-text-field
                     label="Address"
-                    box
+
                     v-model="familyInfo.address"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs12>
                   <v-text-field
                     label="Address 2"
-                    box
+
                     v-model="familyInfo.address2"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs5 class="ma-1">
                   <v-text-field
-                    box
+
                     label="City"
                     v-model="familyInfo.city"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs2 class="ma-1">
                   <v-text-field
-                    box
+
                     label="State"
                     v-model="familyInfo.state"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs4 class="ma-1">
                   <v-text-field
-                    box
+
                     label="Zip"
                     v-model="familyInfo.zip"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs2 class="ma-1">
                   <v-text-field
-                    box
+
                     label="Home Phone"
                     v-model="familyInfo.homephone"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs2 class="ma-1">
                   <v-text-field
-                    box
+
                     label="Cell Phone"
                     v-model="familyInfo.cellphone"
                   ></v-text-field>
@@ -160,7 +159,7 @@
                 <v-flex xs2 class="ma-1">
                   <v-text-field
                     label="# of Adults in the Home"
-                    box
+
                     @blur="calcFamily()"
                     v-model="familyInfo.numAdults"
                   ></v-text-field>
@@ -168,7 +167,7 @@
                 <v-flex xs2 class="ma-1">
                   <v-text-field
                     label="# of Kids in the Home"
-                    box
+
                     v-model="familyInfo.numKids"
                     @blur="calcFamily()"
                   ></v-text-field>
@@ -176,7 +175,7 @@
                 <v-flex xs2 class="ma-1">
                   <v-text-field
                   label="Total # in Home"
-                  box
+
                   readonly
                   v-model="calcFamily"
                   ></v-text-field>
@@ -313,12 +312,12 @@
                           <v-text-field
                             label="Name of the Location"
                             v-model="familyInfo.applicant.primaryWork.locationName"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationItems"
                             v-model="familyInfo.applicant.primaryWork.type"
                             label="Type of Location"
@@ -326,7 +325,7 @@
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationStatus"
                             v-model="familyInfo.applicant.primaryWork.status"
                             label="Employment Status"
@@ -336,42 +335,42 @@
                           <v-text-field
                             label="Hours/Week"
                             v-model="familyInfo.applicant.primaryWork.hoursPerWeek"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Months/Year"
                             v-model="familyInfo.applicant.primaryWork.monthsPerYear"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs12 class="ma-1">
                           <v-text-field
                             label="Location Address"
                             v-model="familyInfo.applicant.primaryWork.address"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs3 class="ma-1">
                           <v-text-field
                             label="City"
                             v-model="familyInfo.applicant.primaryWork.city"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="State"
                             v-model="familyInfo.applicant.primaryWork.state"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Zip"
                             v-model="familyInfo.applicant.primaryWork.zip"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
@@ -379,14 +378,14 @@
                             label="Phone"
                             v-model="familyInfo.applicant.primaryWork.phone"
                             mask="phone"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Ext"
                             v-model="familyInfo.applicant.primaryWork.phoneext"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                       </v-layout>
@@ -397,12 +396,12 @@
                           <v-text-field
                             label="Name of the Location"
                             v-model="familyInfo.applicant.secondaryWork.locationName"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationItems"
                             v-model="familyInfo.applicant.secondaryWork.type"
                             label="Type of Location"
@@ -410,7 +409,7 @@
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationStatus"
                             v-model="familyInfo.applicant.secondaryWork.status"
                             label="Employment Status"
@@ -420,42 +419,42 @@
                           <v-text-field
                             label="Hours/Week"
                             v-model="familyInfo.applicant.secondaryWork.hoursPerWeek"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Months/Year"
                             v-model="familyInfo.applicant.secondaryWork.monthsPerYear"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs12 class="ma-1">
                           <v-text-field
                             label="Location Address"
                             v-model="familyInfo.applicant.secondaryWork.address"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs3 class="ma-1">
                           <v-text-field
                             label="City"
                             v-model="familyInfo.applicant.secondaryWork.city"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="State"
                             v-model="familyInfo.applicant.secondaryWork.state"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Zip"
                             v-model="familyInfo.applicant.secondaryWork.zip"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
@@ -463,14 +462,14 @@
                             label="Phone"
                             v-model="familyInfo.applicant.secondaryWork.phone"
                             mask="phone"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Ext"
                             v-model="familyInfo.coapplicant.secondaryWork.phoneext"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                       </v-layout>
@@ -491,12 +490,12 @@
                           <v-text-field
                             label="Name of the Location"
                             v-model="familyInfo.coapplicant.primaryWork.locationName"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationItems"
                             v-model="familyInfo.coapplicant.primaryWork.type"
                             label="Type of Location"
@@ -504,7 +503,7 @@
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationStatus"
                             v-model="familyInfo.coapplicant.primaryWork.status"
                             label="Employment Status"
@@ -514,42 +513,42 @@
                           <v-text-field
                             label="Hours/Week"
                             v-model="familyInfo.coapplicant.primaryWork.hoursPerWeek"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Months/Year"
                             v-model="familyInfo.coapplicant.primaryWork.monthsPerYear"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs12 class="ma-1">
                           <v-text-field
                             label="Location Address"
                             v-model="familyInfo.coapplicant.primaryWork.address"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs3 class="ma-1">
                           <v-text-field
                             label="City"
                             v-model="familyInfo.coapplicant.primaryWork.city"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="State"
                             v-model="familyInfo.coapplicant.primaryWork.state"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Zip"
                             v-model="familyInfo.coapplicant.primaryWork.zip"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
@@ -557,14 +556,14 @@
                             label="Phone"
                             v-model="familyInfo.coapplicant.primaryWork.phone"
                             mask="phone"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Ext"
                             v-model="familyInfo.coapplicant.primaryWork.phoneext"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                       </v-layout>
@@ -575,12 +574,12 @@
                           <v-text-field
                             label="Name of the Location"
                             v-model="familyInfo.coapplicant.secondaryWork.locationName"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationItems"
                             v-model="familyInfo.coapplicant.secondaryWork.type"
                             label="Type of Location"
@@ -588,7 +587,7 @@
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-select
-                            box
+
                             :items="locationStatus"
                             v-model="familyInfo.coapplicant.secondaryWork.status"
                             label="Employment Status"
@@ -598,42 +597,42 @@
                           <v-text-field
                             label="Hours/Week"
                             v-model="familyInfo.coapplicant.secondaryWork.hoursPerWeek"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Months/Year"
                             v-model="familyInfo.coapplicant.secondaryWork.monthsPerYear"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs12 class="ma-1">
                           <v-text-field
                             label="Location Address"
                             v-model="familyInfo.coapplicant.secondaryWork.address"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs3 class="ma-1">
                           <v-text-field
                             label="City"
                             v-model="familyInfo.coapplicant.secondaryWork.city"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="State"
                             v-model="familyInfo.coapplicant.secondaryWork.state"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Zip"
                             v-model="familyInfo.coapplicant.secondaryWork.zip"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
@@ -641,14 +640,14 @@
                             label="Phone"
                             v-model="familyInfo.coapplicant.secondaryWork.phone"
                             mask="phone"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                         <v-flex xs2 class="ma-1">
                           <v-text-field
                             label="Ext"
                             v-model="familyInfo.coapplicant.secondaryWork.phoneext"
-                            box>
+                            >
                           </v-text-field>
                         </v-flex>
                       </v-layout>
@@ -673,7 +672,7 @@
                   Add Child
                 </v-btn>
               </div>
-              <v-card v-for="(kid, index) in familyInfo.children" class="mb-1 mt-1" :key="index">
+              <v-card v-for="(kid, index) in familyInfo.children" class="mb-1 mt-1" :key="index" :color="getColor(index)">
                 <v-card-title class="subheading">
                   Child {{`0${index+1}`}}
                   <v-spacer></v-spacer>
@@ -712,35 +711,35 @@
                     <v-flex xs4 class="ma-1">
                       <v-text-field
                         label="First Name"
-                        box
+
                         v-model="kid.firstName"
                       ></v-text-field>
                     </v-flex>
                     <v-flex xs1 class="ma-1">
                       <v-text-field
                         label="Mid. Init."
-                        box
+
                         v-model="kid.midInitial"
                       ></v-text-field>
                     </v-flex>
                     <v-flex xs4 class="ma-1">
                       <v-text-field
                         label="Last Name"
-                        box
+
                         v-model="kid.lastName"
                       ></v-text-field>
                     </v-flex>
                     <v-flex xs1 class="ma-1">
                       <v-text-field
                         label="Child-ID"
-                        box
+                        readonly
                         :value="getChildId(index + 1)"
                       ></v-text-field>
                     </v-flex>
                     <v-flex xs3 class="ma-1">
                       <v-text-field
                         label="Child Social Security Number"
-                        box
+
                         mask="social"
                         v-model="kid.ssn"
                       ></v-text-field>
@@ -748,17 +747,17 @@
                     <v-flex xs2 class="ma-1">
                       <v-text-field
                         label="Child Date of Birth"
-                        box
+
                         mask="##-##-####"
                         v-model="kid.dob"
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs1>
-                      <v-text-field class="ma-1" box label="Age" readonly :value="getAge(kid.dob)"></v-text-field>
+                    <v-flex xs1 class="ma-1">
+                      <v-text-field  label="Age" readonly :value="getAge(kid.dob)"></v-text-field>
                     </v-flex>
                     <v-flex xs2 class="ma-1">
                       <v-select
-                        box
+
                         :items="gender"
                         v-model="kid.gender"
                         label="Gender"
@@ -766,7 +765,7 @@
                     </v-flex>
                     <v-flex xs3 class="ma-1">
                       <v-select
-                        box
+
                         :items="careType"
                         v-model="kid.typeOfCare"
                         label="Type Of Care"
@@ -881,6 +880,14 @@ export default {
     },
     getChildId(id){
       return `0${id}`
+    },
+    getColor(i){
+      if ((i % 2) == 0) {
+        return
+      }
+      else {
+        return "grey lighten-2"
+      }
     },
     removeChildRecord(){
       this.familyInfo.children.splice((Number(this.childRecordToRemove) - 1), 1)

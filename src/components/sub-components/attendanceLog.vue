@@ -21,7 +21,6 @@
           <v-layout row wrap>
             <v-flex xs5>
               <v-select
-                box
                 :items="kidList"
                 v-model="attRec.child"
                 label="Select Child"
@@ -29,7 +28,6 @@
             </v-flex>
             <v-flex xs6 offset-xs1>
               <v-select
-                box
                 :items="providerList"
                 v-model="attRec.facility"
                 label="Select Facility"
@@ -37,7 +35,6 @@
             </v-flex>
             <v-flex xs2>
               <v-select
-                box
                 :items="months"
                 v-model="attRec.month"
                 label="Select Month"
@@ -45,21 +42,18 @@
             </v-flex>
             <v-flex xs2 offset-xs1>
               <v-text-field
-                box
                 label="Enter Year"
                 v-model="attRec.year"
               ></v-text-field>
             </v-flex>
             <v-flex xs2 offset-xs1>
               <v-text-field
-                box
                 label="Enter Days Present"
                 v-model="attRec.attendance"
               ></v-text-field>
             </v-flex>
             <v-flex xs2 offset-xs1>
               <v-text-field
-              box
               label="Enter Amount"
               v-model="attRec.amount"
               ></v-text-field>
@@ -120,8 +114,14 @@ export default {
   },
   methods: {
     addRecord(){
-      let add = this.blankAttRecord
-      this.attendanceRecords.push(add)
+      let add = {
+        child             : "",
+        facility          : "",
+        month             : "",
+        attendance        : null,
+        amount            : null,
+      }
+      this.attendanceRecords.unshift(add)
     },
     confirmDelete(i){
       this.recordToDelete = i
@@ -150,7 +150,7 @@ export default {
         return
       }
       else {
-        return "grey lighten-4"
+        return "grey lighten-2"
       }
     }
   }

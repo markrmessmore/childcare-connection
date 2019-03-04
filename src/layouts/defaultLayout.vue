@@ -3,7 +3,7 @@
     <appHeader></appHeader>
     <v-container fluid>
       <v-layout row wrap>
-        <v-flex xs12>
+        <v-flex xs12 sm10 offset-xs1>
           <router-view></router-view>
         </v-flex>
       </v-layout>

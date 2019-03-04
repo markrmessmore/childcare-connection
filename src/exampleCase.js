@@ -218,7 +218,7 @@ export default [
     },
     notes: [                                      //ABILITY TO ADD AS MANY AS NEEDED
       {
-        date            : "1/26/2019",
+        date            : "02-01-2019",
         text            : "John faxed in the application."
       }
     ],

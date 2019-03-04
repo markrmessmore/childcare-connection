@@ -85,14 +85,14 @@
                 :recordedAtt="getAttendance()"
                 :kids="getFamilyData().children"
                 :providers="getProviderData()"
-              >  
+              >
               </attendanceLog>
             </v-tab-item>
             <v-tab-item>
               <!-- <letters></letters> -->
             </v-tab-item>
             <v-tab-item>
-              <!-- <notes></notes> -->
+              <notes :caseNotes="getNotes()"></notes>
             </v-tab-item>
           </v-tabs>
         </v-card-text>
@@ -141,6 +141,9 @@ export default {
     },
     getAttendance(){
       return this.selectedCase.attendance
+    },
+    getNotes(){
+      return this.selectedCase.notes
     },
     saveStatus(){
       let now = new Date().toString().split(" ")
