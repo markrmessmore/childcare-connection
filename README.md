@@ -14,9 +14,6 @@ npm install
 #### Compiling and minifying for production:
 ```npm run build```
 
-#### Linting files:
-```npm run lint```
-
 #### Pertinent Documentation:
 * [VueJS Front-end Framework](https://vuejs.org/)
 * [Vuetify Material Design Framework](https://vuetifyjs.com/en/getting-started/quick-start)

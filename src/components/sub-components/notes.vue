@@ -44,7 +44,6 @@
       <v-card>
         <v-toolbar color="primary" dense dark>
           <v-toolbar-title>Delete this note?</v-toolbar-title>
-          <v-spacer></v-spacer>
         </v-toolbar>
         <v-layout row wrap justify-space-around>
           <v-btn color="primary" outline @click="deleteNote()">

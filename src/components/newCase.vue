@@ -7,7 +7,7 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-      <caseInfo :caseData="blankCase"></caseInfo>
+      <caseInfo :caseData="blankCase" ref="caseInfo"></caseInfo>
     </v-card-text>
   </v-card>
 </template>
@@ -223,7 +223,19 @@ export default {
       }
     };
   },
-  methods: {}
+  methods: {
+    leaveConfirmed(){
+      console.log('confirmed')
+    },
+  },
+  // beforeRouteLeave: function(to, from, next){
+    // if (this.$refs.caseInfo.confirm() == true) {
+    //   next()
+    // }
+    // else {
+    //   next(from)
+    // }
+  // }
 };
 </script>
 

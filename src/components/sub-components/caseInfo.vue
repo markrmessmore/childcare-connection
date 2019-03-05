@@ -106,6 +106,14 @@
         </v-btn>
       </v-flex>
     </v-layout>
+    <v-dialog
+      v-model="confirmModal"
+      persistent :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <confirmLeave return-value=""></confirmLeave>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -115,9 +123,10 @@ import providerInfo from "@/components/sub-components/providerInfo.vue"
 import attendanceLog from "@/components/sub-components/attendanceLog.vue"
 import letters from "@/components/sub-components/letters.vue"
 import notes from "@/components/sub-components/notes.vue"
+import confirmLeave from '@/components/sub-components/confirmLeave.vue'
 export default {
   components: {
-    familyInfo, providerInfo, attendanceLog, letters, notes
+    familyInfo, providerInfo, attendanceLog, letters, notes, confirmLeave
   },
   props: {
     caseData: {}
@@ -125,6 +134,7 @@ export default {
   data(){
     return{
       activeTab: "",
+      confirmModal: false,
       selectedCase: this.caseData,
       selectedStatus: "",
       statusColor: "",
@@ -133,6 +143,15 @@ export default {
     }
   },
   methods: {
+    confirm(){
+      // this.confirmModal = true
+      // if (this.confirmResponse() == true){
+      //   return true
+      // }
+      // else {
+      //   return false
+      // }
+    },
     getFamilyData(){
       return this.selectedCase.familyInfo
     },

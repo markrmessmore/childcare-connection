@@ -1,5 +1,5 @@
 <template lang="html">
-  <caseInfo :caseData="selectedCase"></caseInfo>
+  <caseInfo :caseData="selectedCase" ref="caseInfo"></caseInfo>
 </template>
 
 <script>
@@ -10,6 +10,11 @@ export default {
   },
   components: {
     caseInfo
+  },
+  methods: {
+    confirmLeave(){
+      this.$refs.caseInfo.confirmLeave()
+    }
   }
 }
 </script>

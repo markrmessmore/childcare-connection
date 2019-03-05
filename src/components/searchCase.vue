@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <editSelected v-if="caseEdit" :selectedCase="selectedCase"></editSelected>
+    <editSelected v-if="caseEdit" :selectedCase="selectedCase" ref="editCase"></editSelected>
     <v-card v-else>
       <v-toolbar flat>
         <v-toolbar-title>
@@ -173,6 +173,10 @@ export default {
     getCases(){
       return this.$store.getters.getCases
     }
+  },
+  beforeRouteLeave: function(to, from, next){
+    // this.$refs.editCase.confirmLeave()
+    next()
   }
 };
 </script>
