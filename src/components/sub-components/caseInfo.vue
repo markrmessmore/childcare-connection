@@ -2,7 +2,7 @@
   <v-card>
     <v-card-text>
       <v-card>
-        <v-toolbar color="primary" dark dense>
+        <v-toolbar color="primary" dark dense flat>
           <v-toolbar-title>
             Case ID: {{ selectedCase.caseId == 0 ? "TBD" : selectedCase.caseId }}
           </v-toolbar-title>
@@ -89,7 +89,7 @@
               </attendanceLog>
             </v-tab-item>
             <v-tab-item>
-              <!-- <letters></letters> -->
+              <letters :caseInfo="selectedCase"></letters>
             </v-tab-item>
             <v-tab-item>
               <notes :caseNotes="getNotes()"></notes>

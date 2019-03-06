@@ -1,11 +1,24 @@
 <template lang="html">
   <v-card>
-    Reports
+    <v-toolbar flat>
+      <v-toolbar-title>
+        <v-icon>view_carousel</v-icon>
+        Reports
+      </v-toolbar-title>
+    </v-toolbar>
+    <v-card-text>
+
+    </v-card-text>
   </v-card>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      
+    }
+  }
 }
 </script>
 

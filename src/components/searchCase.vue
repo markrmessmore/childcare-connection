@@ -174,10 +174,10 @@ export default {
       return this.$store.getters.getCases
     }
   },
-  beforeRouteLeave: function(to, from, next){
-    // this.$refs.editCase.confirmLeave()
-    next()
-  }
+  // beforeRouteLeave: function(to, from, next){
+  //   // this.$refs.editCase.confirmLeave()
+  //   next()
+  // }
 };
 </script>
 
