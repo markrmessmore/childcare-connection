@@ -7,7 +7,6 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-
     </v-card-text>
   </v-card>
 </template>
@@ -16,8 +15,11 @@
 export default {
   data(){
     return{
-      
+
     }
+  },
+  computed: {
+    
   }
 }
 </script>

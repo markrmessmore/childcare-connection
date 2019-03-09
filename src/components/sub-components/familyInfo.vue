@@ -130,7 +130,6 @@
                 </v-flex>
                 <v-flex xs2 class="ma-1">
                   <v-text-field
-
                     label="State"
                     v-model="familyInfo.state"
                   ></v-text-field>
@@ -144,14 +143,14 @@
                 </v-flex>
                 <v-flex xs2 class="ma-1">
                   <v-text-field
-
+                    mask="phone"
                     label="Home Phone"
                     v-model="familyInfo.homephone"
                   ></v-text-field>
                 </v-flex>
                 <v-flex xs2 class="ma-1">
                   <v-text-field
-
+                    mask="phone"
                     label="Cell Phone"
                     v-model="familyInfo.cellphone"
                   ></v-text-field>

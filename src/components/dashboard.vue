@@ -7,8 +7,8 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs2 v-for="navItem in getDashboard" class="mb-1" :key="navItem.item">
+      <v-layout row wrap align-center justify-space-between>
+        <!-- <v-flex xs1 v-for="navItem in getDashboard" class="mb-1" :key="navItem.item"> -->
           <v-card
             ripple width="100%"
             max-width="150px"
@@ -16,7 +16,9 @@
             :color="navItem.color"
             :dark="navItem.dark"
             :to="navItem.link"
-            class="elevation-5"
+            class="elevation-5 mb-1"
+            v-for="navItem in getDashboard"
+            :key="navItem.item"
           >
             <v-card-text>
               <v-container>
@@ -30,7 +32,7 @@
               </v-container>
             </v-card-text>
           </v-card>
-        </v-flex>
+        <!-- </v-flex> -->
       </v-layout>
     </v-card-text>
   </v-card>

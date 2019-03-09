@@ -93,7 +93,6 @@
               </v-flex>
               <v-flex xs3>
                 <v-text-field
-                  name="phone"
                   mask="phone"
                   label="Phone"
                   v-model="facility.phone"

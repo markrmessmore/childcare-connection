@@ -7,7 +7,7 @@
     </v-toolbar>
     <v-card-text>
       <v-layout row wrap align-center justify-space-around>
-          <v-btn color="secondary">
+          <v-btn color="secondary" @click="signOut()">
             <v-icon left>check</v-icon>
             Sign out
           </v-btn>

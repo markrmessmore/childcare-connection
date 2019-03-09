@@ -1,13 +1,13 @@
 <template lang="html">
   <div class="">
     <v-toolbar dense color="primary" dark>
-      <img src="@/assets/ccc-logo.png" height="42px" width="auto"></img>
-      <v-toolbar-title>
+      <img src="@/assets/ccc-logo.png" height="42px" width="auto" style="cursor: pointer" @click="goHome()"></img>
+      <v-toolbar-title style="cursor: pointer" @click="goHome()">
         Mercer Co. Subsidy Mgt. System
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- CHANGE BUTTON BASED ON WHETHER A USER IS LOGGED IN OR OUT -->
-      <v-btn v-if="getUser == ''" small color="white" outline @click="activateSignIn">
+      <v-btn v-if="getUser == null" small color="white" outline @click="activateSignIn">
         <v-icon left small>navigate_next</v-icon>
         Sign In
       </v-btn>
@@ -61,6 +61,9 @@ export default {
     },
     activateSignOut(){
       this.$store.dispatch('activateSignOut', true)
+    },
+    goHome(){
+      this.$router.push('/')
     }
   },
   computed: {
