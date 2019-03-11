@@ -1,3 +1,5 @@
+import router from '@/router/router.js'
+
 export default {
   activateSignIn(state, payload){
     state.signInStatus = payload
@@ -9,16 +11,11 @@ export default {
     state.allUsers.push(payload)
   },
   changeUserRole(state, payload){
-    let user = state.allUsers.find(usr => {
-      return usr.email === payload.email
+    Object.entries(state.allUsers).forEach(usr => {
+      if (usr[1].email === payload.email){
+        usr[1].role = payload.role
+      }
     })
-    user.role = payload.role
-  },
-  deleteUser(state, payload){
-    let user = state.allUsers.find(usr => {
-      return usr.email === payload.email
-    })
-    state.allUsers.splice(state.allUsers.indexOf(user), 1)
   },
   setAllUsers(state, payload){
     state.allUsers = payload
@@ -37,10 +34,13 @@ export default {
     state.user = payload;
   },
   setUserRole(state, payload){
-    let allUsers = state.allUsers
+    let allUsers = Object.values(state.allUsers)
     allUsers.forEach(user => {
       if (user.email === payload.usr) {
         state.userRole = user.role
+        if (state.userRole == "inactive"){
+          router.push('/accountDeactivated')
+        }
       }
     })
   },

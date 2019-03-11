@@ -6,7 +6,7 @@ export default {
     return state.loading
   },
   getNav(state) {
-    if (state.userRole === null){
+    if (state.userRole === null || state.userRole === "inactive"){
       return state.nav.filter(navItem => navItem.access === "all")
     }
     else if (state.userRole === 'user') {
@@ -32,6 +32,6 @@ export default {
     return state.userRole
   },
   getUsersAndRoles(state){
-    return state.allUsers
+    return Object.values(state.allUsers)
   }
 }

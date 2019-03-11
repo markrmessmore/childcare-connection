@@ -10,6 +10,7 @@ const   New       = () => import("@/components/newCase.vue")
 const   Search    = () => import("@/components/searchCase.vue")
 const   Reports   = () => import("@/components/reports.vue")
 const   Admin     = () => import("@/components/admin.vue")
+const   accountDeactivated = () => import("@/components/accountDeactivated.vue")
 
 Vue.use(Router);
 
@@ -62,6 +63,12 @@ export default new Router({
       component: Reports,
       meta: {layout: "defaultLayout"},
       beforeEnter: AuthGuard
+    },
+    {
+      path: "/accountDeactivated",
+      name: "/accountDeactivated",
+      component: accountDeactivated,
+      meta: {layout: "defaultLayout"},
     }
   ]
 });
