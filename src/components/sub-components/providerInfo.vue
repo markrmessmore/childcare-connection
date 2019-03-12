@@ -161,7 +161,7 @@ export default {
       careTypes: ['After School', 'Before School', 'Full Day', 'Summer Camp'],
       providers: this.providerInfo,
       providerToRemove: null,
-      providerTypes: ['Licensed Center', 'Registered Family Child Care'],
+      providerTypes: ['Camp','Licensed Center', 'Registered Family Child Care'],
       confirmRemoveProvider: false
     }
   },

@@ -95,17 +95,53 @@ export default {
             status: true,
             msg   : err.message
           }
-          commit('setToast', toastMsg)
+          setToast message
+
         })
       }
     })
   },
   getCases({commit}) {
+    firebase.database().ref('')
     commit('setCases')
+  },
+  getCaseId({commit, dispatch}){
+    firebase.database().ref('CaseIDs').once('value', id => {
+      console.log(id.val())
+      // commit()
+    })
   },
   getUsersAndRoles({commit}){
     firebase.database().ref('Users').on('value', allUsers => {
       commit('setAllUsers', allUsers.val())
+    })
+  },
+  newCase({commit, dispatch}, payload){
+    // FIRST WE GET OUR NEW CASE ID
+    firebase.database().ref('CaseIds').once('value')
+    .then(id => {
+      let cid = id.val() + 1
+      firebase.database().ref('CaseIds').set(cid)
+      // WE NOW ATTACH THE NEW CASE ID TO THE CASE OBJECT
+      payload.caseId = cid
+      firebase.database().ref('Cases').push(payload)
+      .then(res => {
+        let toastMsg = {
+          status: true,
+          msg   : `This case has been saved and given the number ${cid}.`
+        }
+        let newKey = `${res.key}`
+        let firebaseData = { [newKey] : payload}
+        commit('newCase', firebaseData)
+        commit('setToast', toastMsg)
+      })
+      .catch(err => {
+        let toastMsg = {
+          status: true,
+          msg   : err.message
+        }
+        commit('setToast', toastMsg)
+      })
     })
   },
   resetPassword({commit}, payload){
@@ -151,6 +187,22 @@ export default {
   },
   saveCase({commit}, payload){
     console.log(payload)
-    // commit('saveCase', payload)
+  //   firebase.database().ref('Cases').set(payload)
+  //   .then(res => {
+  //     console.log(res)
+  //     let toastMsg = {
+  //       status: true,
+  //       msg   : `Case ${payload.caseId} has been saved.`
+  //     }
+  //     commit('setToast', toastMsg)
+  //     // commit('saveCase', payload)
+  //   })
+  //   .catch(() => {
+  //     let toastMsg = {
+  //       status: true,
+  //       msg   : err.message
+  //     }
+  //     commit('setToast', toastMsg)
+  //   })
   }
-}
+} 

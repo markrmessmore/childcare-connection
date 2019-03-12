@@ -74,7 +74,6 @@
 
 <script>
 const mercerLogo = require('@/assets/mercerLogo.json')
-import * as html2pdf from 'html2pdf.js'
 import letterTemplate from '@/components/sub-components/letters/letterTemplate.vue'
 export default {
   props: {

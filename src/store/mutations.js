@@ -17,11 +17,15 @@ export default {
       }
     })
   },
+  newCase(state, payload){
+    state.cases.push(payload)
+  },
   setAllUsers(state, payload){
     state.allUsers = payload
   },
   setCases(state, payload) {
-    state.cases.push(payload)
+    // state.cases.push(payload)
+    console.log(payload)
   },
   setLoading(state, payload){
     state.loading = payload

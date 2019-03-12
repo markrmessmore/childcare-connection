@@ -175,7 +175,12 @@ export default {
       this.statusModal = false
     },
     saveCase(){
-      this.$store.dispatch('saveCase', this.selectedCase)
+      if (this.selectedCase.caseId === null){
+        this.$store.dispatch('newCase', this.selectedCase)
+      }
+      else {
+        this.$store.dispatch('saveCase', this.selectedCase)
+      }
     }
   },
   computed: {
@@ -189,10 +194,10 @@ export default {
         'Waiting List'              : "blue darken-5",
         'Received, Not Yet Reviewed': "grey darken-2"
       }
-        let allStatus     = this.selectedCase.caseStatus
-        let lastStatus    = (this.selectedCase.caseStatus.length - 1)
-        let currentStatus = allStatus[lastStatus].status
-        this.statusColor   = allStatusColors[currentStatus]
+        let allStatus       = this.selectedCase.caseStatus
+        let lastStatus      = (this.selectedCase.caseStatus.length - 1)
+        let currentStatus   = allStatus[lastStatus].status
+        this.statusColor    = allStatusColors[currentStatus]
         return currentStatus
     }
   }

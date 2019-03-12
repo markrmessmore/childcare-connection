@@ -2,7 +2,7 @@ import example from './exampleCase.js'
 
 export default {
   allUsers: [],
-  cases: example,
+  cases: [],
   loading: false,
   nav     : [
     {

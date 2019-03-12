@@ -21,7 +21,7 @@ export default {
   data() {
     return {
       blankCase: {
-        caseId      : 0,
+        caseId      : null,
         caseStatus  : [
           {
             status  : "TBD",

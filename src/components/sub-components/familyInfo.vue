@@ -751,18 +751,17 @@
                         v-model="kid.dob"
                       ></v-text-field>
                     </v-flex>
-                    <v-flex xs1 class="ma-1">
+                    <v-flex xs3 class="ma-1">
                       <v-text-field  label="Age" readonly :value="getAge(kid.dob)"></v-text-field>
                     </v-flex>
-                    <v-flex xs2 class="ma-1">
+                    <v-flex xs1 class="ma-1">
                       <v-select
-
                         :items="gender"
                         v-model="kid.gender"
                         label="Gender"
                       ></v-select>
                     </v-flex>
-                    <v-flex xs3 class="ma-1">
+                    <v-flex xs2 class="ma-1">
                       <v-select
 
                         :items="careType"
@@ -785,6 +784,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
     familyData: Object
@@ -851,7 +851,7 @@ export default {
         gender              : "",
         ssn                 : "",
         dob                 : "",
-        age                 : null,
+        age                 : "",
         typeOfCare          : ""
       }
       this.familyInfo.children.push(blankChild)
@@ -864,17 +864,19 @@ export default {
       this.confirmChildDel     = true
     },
     getAge(dob){
+      let now   = moment()
       let year  = dob.substr(4,4)
       let month = dob.substr(0,2)
       let day   = dob.substr(2,2)
-      let bday  = new Date(Number(year), Number(month), Number(day))
-      let ageDifMs = Date.now() - bday
-      let ageDate = new Date(ageDifMs); // miliseconds from epoch
-      if (!dob){
-        return null
+      let bday  = moment(`${month}-${day}-${year}`, "MM-DD-YYYY")
+      let difference = now.diff(bday, 'months')
+      let ageYears = (difference/12).toString().split(".")[0]
+      let ageMonths = (difference % 12)
+      if (dob == ""){
+        return ""
       }
       else {
-        return (Math.abs(ageDate.getUTCFullYear() - 1970))
+        return `${ageYears} years, ${ageMonths} months`
       }
     },
     getChildId(id){

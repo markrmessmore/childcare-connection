@@ -25,20 +25,23 @@
                 <v-text-field box label="Applicant Last Name" v-model="search.applicantLastName"></v-text-field>
               </v-flex>
               <v-flex xs5>
-                <v-text-field box label="Child's First Name" v-model="search.childName"></v-text-field>
+                <v-text-field box label="Co-Applicant Last Name" v-model="search.coApplicantLastName"></v-text-field>
               </v-flex>
-              <v-flex xs3 offset-xs1 class="text-xs-left">
+              <v-flex xs6 offset-xs1>
+                <v-text-field box label="Child's Last Name" v-model="search.childLastName"></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row justify-space-around>
+              <!-- <v-flex xs10 offset-xs1 justify-space-between> -->
                 <v-btn color="accent2" outline dark large @click="resetSearch()">
                   <v-icon left>undo</v-icon>
                   Reset Search
                 </v-btn>
-              </v-flex>
-              <v-flex xs2 offset-xs1 class="text-xs-right">
                 <v-btn large color="primary" @click="searchCases()">
                   <v-icon left>search</v-icon>
                   Search
                 </v-btn>
-              </v-flex>
+              <!-- </v-flex> -->
             </v-layout>
           </v-card-text>
         </v-card>
@@ -49,7 +52,6 @@
           <v-data-table
             :headers="tableHeaders"
             :items="searchResults"
-            class=""
             pagination.sync="pagination"
             item-key="id"
             :rows-per-page-items="rowsPerPageItems"
@@ -57,11 +59,6 @@
             <template v-slot:no-data>
               <v-alert :value="true" color="secondary" outline icon="search">
                 Please enter search criteria and search for a case.
-              </v-alert>
-            </template>
-            <template v-slot:no-results>
-              <v-alert :value="true" color="secondary" icon="search">
-                Sorry your search did not yield any results. Please broaden your search criteria and try again.
               </v-alert>
             </template>
             <template slot="items" slot-scope="props">
@@ -97,7 +94,8 @@ export default {
       rowsPerPageItems: [25,50,100],
       search: {
         applicantLastName: "",
-        childName: "",
+        coApplicantLastName: "",
+        childLastName: "",
         caseId: ""
       },
       selectedCase: {},
@@ -142,25 +140,33 @@ export default {
     resetSearch(){
       this.search = {
         applicantLastName: "",
-        childName: "",
+        coApplicantLastName: "",
+        childLastName: "",
         caseId: ""
       }
       this.searchResults = []
     },
     searchCases(){
-    let filteredCases = this.getCases
+    let filteredCases = []
       if (this.search.caseId) {
-        filteredCases = filteredCases.filter(record => record.caseId.toString().includes(this.search.caseId))
+        let filteredByCase = this.getCases.filter(record => record.caseId.toString().includes(this.search.caseId))
+        filteredCases.push(filteredByCase)
       }
       if (this.search.applicantLastName) {
-        filteredCases = filteredCases.filter(record => record.familyInfo.applicant.lastName.includes(this.search.applicantLastName))
+        let filteredByAppLastName = this.getCases.filter(record => record.familyInfo.applicant.lastName.toLowerCase().includes(this.search.applicantLastName.toLowerCase()))
+        filteredCases.push(filtedByAppLastName)
       }
-      if (this.search.childName) {
-        filteredCases = filteredCases.filter(record => {
+      if (this.search.coApplicantLastName) {
+        let filteredByCoAppLastName = this.getCases.filter(record => record.familyInfo.coapplicant.lastName.toLowerCase().includes(this.search.coApplicantLastName.toLowerCase()))
+        filteredCases.push(filtedByCoAppLastName)
+      }
+      if (this.search.childLastName) {
+        let filteredByChildLastName = this.getCases.filter(record => {
           return record.familyInfo.children.some(child => {
-            return child.name.toLowerCase().includes(this.search.childName.toLowerCase())
+            return child.lastName.toLowerCase().includes(this.search.childName.toLowerCase())
           })
         })
+        filteredCases.push(filteredByChildLastName)
       }
       this.searchResults = filteredCases
     },
