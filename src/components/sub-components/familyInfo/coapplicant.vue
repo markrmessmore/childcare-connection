@@ -2,27 +2,27 @@
   <v-card>
     <v-card-text>
       <v-layout row wrap>
-        <v-flex xs4 class="ma-1">
+        <v-flex xs4>
           <v-text-field
             label="Co-applicant First Name"
             v-model="coapplicant.firstName"
             >
           </v-text-field>
         </v-flex>
-        <v-flex xs1 class="ma-1">
+        <v-flex xs1 offset-xs1>
           <v-text-field
             label="Mid. Init."
             v-model="coapplicant.midInitial">
           </v-text-field>
         </v-flex>
-        <v-flex xs6 class="ma-1">
+        <v-flex xs5 offset-xs1>
           <v-text-field
             label="Co-applicant Last Name"
             v-model="coapplicant.lastName"
             >
           </v-text-field>
         </v-flex>
-        <v-flex xs5 class="ma-1">
+        <v-flex xs5>
           <v-text-field
             label="Co-applicant Social Security Number"
             v-model="coapplicant.ssn"
@@ -30,7 +30,7 @@
             >
           </v-text-field>
         </v-flex>
-        <v-flex xs6 class="ma-1">
+        <v-flex xs6 offset-xs1>
           <v-select
             label="Relationship to Child(ren)"
             :items="relationshipItems"

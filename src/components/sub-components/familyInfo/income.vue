@@ -98,6 +98,16 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
+      <br>
+      <v-layout row wrap>
+        <v-flex xs2 offset-xs10>
+          <v-text-field
+            readonly
+            label="Combined Total:"
+            v-model="grandTotal"
+          ></v-text-field>
+        </v-flex>
+      </v-layout>
     </v-card-text>
   </v-card>
 </template>
@@ -112,6 +122,7 @@ export default {
     return{
       applicant: this.appIncome,
       coapplicant: this.coAppIncome,
+      grandTotal: null,
       incomeHeaders: [
         {sortable: false},
         {
@@ -154,9 +165,26 @@ export default {
   },
   methods: {
     calcTotal(values){
+      // this.getGrandTotal()
       return (Number(values.weekly) * 52) + (Number(values.biWeekly) * 26) + (Number(values.monthly) * 12) + Number(values.annually)
+    },
+    getGrandTotal(){
+      let runningTotal = 0
+      let app   = this.applicant
+      let coapp = this.coapplicant
+      this.applicant.forEach(item => {
+        let amounts = Object.entries(item)
+        amounts.forEach(amt => {
+          if (amt[0] == "total"){
+            console.log(amt[1])
+          }
+        })
+      })
+      this.grandTotal = runningTotal
     }
   },
+  computed: {
+  }
 }
 </script>
 

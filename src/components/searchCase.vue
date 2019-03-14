@@ -1,7 +1,6 @@
 <template lang="html">
   <div class="">
-    <editSelected v-if="caseEdit" :selectedCase="selectedCase" ref="editCase"></editSelected>
-    <v-card v-else>
+    <v-card>
       <v-toolbar flat>
         <v-toolbar-title>
           <v-icon>search</v-icon>
@@ -16,71 +15,72 @@
         </v-toolbar-items>
       </v-toolbar>
       <v-card-text>
-        <v-card flat color="">
-          <v-toolbar color="secondary" flat dense dark class="subheading">
-            Search By:
-          </v-toolbar>
-          <v-card-text>
-            <p class="subheading">
-              Enter any pieces of information and click the search button.
-            </p>
-            <v-layout row wrap>
-              <v-flex xs5>
-                <v-text-field box label="Case ID" v-model="search.caseId"></v-text-field>
-              </v-flex>
-              <v-flex xs6 offset-xs1>
-                <v-text-field box label="Applicant Last Name" v-model="search.applicantLastName"></v-text-field>
-              </v-flex>
-              <v-flex xs5>
-                <v-text-field box label="Co-Applicant Last Name" v-model="search.coApplicantLastName"></v-text-field>
-              </v-flex>
-              <v-flex xs6 offset-xs1>
-                <v-text-field box label="Child's Last Name" v-model="search.childLastName"></v-text-field>
-              </v-flex>
-            </v-layout>
-            <v-layout row justify-space-around>
-              <!-- <v-flex xs10 offset-xs1 justify-space-between> -->
-
+        <editSelected v-if="caseEdit" :selectedCase="selectedCase" ref="editCase"></editSelected>
+        <div v-else>
+          <v-card flat >
+            <v-toolbar color="secondary" flat dense dark class="subheading">
+              Search By:
+            </v-toolbar>
+            <v-card-text>
+              <p class="subheading">
+                Enter any pieces of information and click the search button.
+              </p>
+              <v-layout row wrap>
+                <v-flex xs5>
+                  <v-text-field box label="Case ID" v-model="search.caseId"></v-text-field>
+                </v-flex>
+                <v-flex xs6 offset-xs1>
+                  <v-text-field box label="Applicant Last Name" v-model="search.applicantLastName"></v-text-field>
+                </v-flex>
+                <v-flex xs5>
+                  <v-text-field box label="Co-Applicant Last Name" v-model="search.coApplicantLastName"></v-text-field>
+                </v-flex>
+                <v-flex xs6 offset-xs1>
+                  <v-text-field box label="Child's Last Name" v-model="search.childLastName"></v-text-field>
+                </v-flex>
+              </v-layout>
+              <v-layout row justify-end>
                 <v-btn large color="primary" @click="searchCases()">
                   <v-icon left>search</v-icon>
                   Search
                 </v-btn>
-              <!-- </v-flex> -->
-            </v-layout>
-          </v-card-text>
-        </v-card>
-        <v-card flat>
-          <v-toolbar color="secondary" flat dense dark class="subheading">
-            Search Results:
-          </v-toolbar>
-          <v-data-table
-            :headers="tableHeaders"
-            :items="searchResults"
-            pagination.sync="pagination"
-            item-key="id"
-            :rows-per-page-items="rowsPerPageItems"
-          >
-            <template v-slot:no-data>
-              <v-alert :value="true" color="secondary" outline icon="search">
-                Please enter search criteria and search for a case.
-              </v-alert>
-            </template>
-            <template slot="items" slot-scope="props">
-              <td class="text-xs-left subheading">{{props.item.caseId}}</td>
-              <td class="text-xs-left subheading">
-                {{props.item.familyInfo.applicant.lastName}}, {{props.item.familyInfo.applicant.firstName}}
-              </td>
-              <td class="text-xs-left subheading">{{props.item.activeDate}}</td>
-              <td class="text-xs-left subheading">{{props.item.endDate}}</td>
-              <td class="text-xs-right">
-                <v-btn color="primary" @click="selectCase(props.item)">
-                  <v-icon small left>edit</v-icon>
-                  Select
-                </v-btn>
-              </td>
-            </template>
-          </v-data-table>
-        </v-card>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+          <v-card flat>
+            <v-toolbar color="secondary" flat dense dark class="subheading">
+              Search Results:
+            </v-toolbar>
+            <v-data-table
+              :headers="tableHeaders"
+              :items="searchResults"
+              pagination.sync="pagination"
+              item-key="id"
+              :rows-per-page-items="rowsPerPageItems"
+            >
+              <template v-slot:no-data>
+                <v-alert :value="true" color="secondary" outline icon="search">
+                  Please enter search criteria and search for a case.
+                </v-alert>
+              </template>
+              <template slot="items" slot-scope="props">
+                <td class="text-xs-left subheading">{{props.item.caseId}}</td>
+                <td class="text-xs-left subheading">
+                  {{props.item.familyInfo.applicant.lastName}}, {{props.item.familyInfo.applicant.firstName}}
+                </td>
+                <td class="text-xs-left subheading">{{props.item.activeDate}}</td>
+                <td class="text-xs-left subheading">{{props.item.endDate}}</td>
+                <td class="text-xs-right">
+                  <v-btn color="primary" @click="selectCase(props.item)">
+                    <v-icon small left>edit</v-icon>
+                    Select
+                  </v-btn>
+                </td>
+              </template>
+            </v-data-table>
+          </v-card>
+        </div>
+
       </v-card-text>
     </v-card>
   </div>
@@ -149,6 +149,7 @@ export default {
         caseId: ""
       }
       this.searchResults = []
+      this.caseEdit = false
     },
     searchCases(){
       if (
@@ -184,19 +185,6 @@ export default {
         }
         this.searchResults = filteredCases
       }
-        // if (this.search.coApplicantLastName) {
-        //   let filteredByCoAppLastName = this.getCases.filter(record => record.familyInfo.coapplicant.lastName.toLowerCase().includes(this.search.coApplicantLastName.toLowerCase()))
-        //   filteredCases.push(filtedByCoAppLastName)
-        // }
-        // if (this.search.childLastName) {
-        //   let filteredByChildLastName = this.getCases.filter(record => {
-        //     return record.familyInfo.children.some(child => {
-        //       return child.lastName.toLowerCase().includes(this.search.childName.toLowerCase())
-        //     })
-        //   })
-        //   filteredCases.push(filteredByChildLastName)
-        // }
-      // }
     },
     selectCase(selected){
       this.selectedCase = selected

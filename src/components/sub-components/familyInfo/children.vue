@@ -43,35 +43,35 @@
         <v-divider inset></v-divider>
         <v-card-text>
           <v-layout row wrap>
-            <v-flex xs4 class="ma-1">
+            <v-flex xs3>
               <v-text-field
                 label="First Name"
 
                 v-model="kid.firstName"
               ></v-text-field>
             </v-flex>
-            <v-flex xs1 class="ma-1">
+            <v-flex xs1 offset-xs1>
               <v-text-field
                 label="Mid. Init."
 
                 v-model="kid.midInitial"
               ></v-text-field>
             </v-flex>
-            <v-flex xs4 class="ma-1">
+            <v-flex xs4 offset-xs1>
               <v-text-field
                 label="Last Name"
 
                 v-model="kid.lastName"
               ></v-text-field>
             </v-flex>
-            <v-flex xs1 class="ma-1">
+            <v-flex xs1 offset-xs1>
               <v-text-field
                 label="Child-ID"
                 readonly
                 :value="getChildId(index + 1)"
               ></v-text-field>
             </v-flex>
-            <v-flex xs3 class="ma-1">
+            <v-flex xs2>
               <v-text-field
                 label="Child Social Security Number"
 
@@ -79,7 +79,7 @@
                 v-model="kid.ssn"
               ></v-text-field>
             </v-flex>
-            <v-flex xs2 class="ma-1">
+            <v-flex xs2 offset-xs1>
               <v-text-field
                 label="Child Date of Birth"
 
@@ -87,17 +87,17 @@
                 v-model="kid.dob"
               ></v-text-field>
             </v-flex>
-            <v-flex xs3 class="ma-1">
+            <v-flex xs3 offset-xs1>
               <v-text-field  label="Age" readonly :value="getAge(kid.dob)"></v-text-field>
             </v-flex>
-            <v-flex xs2 class="ma-1">
+            <v-flex xs2 offset-xs1>
               <v-select
                 :items="gender"
                 v-model="kid.gender"
                 label="Gender"
               ></v-select>
             </v-flex>
-            <v-flex xs11 class="ma-1">
+            <v-flex xs12>
               <v-select
                 multiple
                 :items="careType"

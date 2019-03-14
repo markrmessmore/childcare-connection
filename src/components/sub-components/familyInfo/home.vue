@@ -14,53 +14,51 @@
             v-model="familyInfo.address2"
           ></v-text-field>
         </v-flex>
-        <v-flex xs5 class="ma-1">
+        <v-flex xs5>
           <v-text-field
             label="City"
             v-model="familyInfo.city"
           ></v-text-field>
         </v-flex>
-        <v-flex xs2 class="ma-1">
+        <v-flex xs2 offset-xs1>
           <v-text-field
             label="State"
             v-model="familyInfo.state"
           ></v-text-field>
         </v-flex>
-        <v-flex xs4 class="ma-1">
+        <v-flex xs3 offset-xs1>
           <v-text-field
             label="Zip"
             v-model="familyInfo.zip"
           ></v-text-field>
         </v-flex>
-        <v-flex xs2 class="ma-1">
+        <v-flex xs2>
           <v-text-field
             mask="phone"
             label="Home Phone"
             v-model="familyInfo.homephone"
           ></v-text-field>
         </v-flex>
-        <v-flex xs2 class="ma-1">
+        <v-flex xs2 offset-xs1>
           <v-text-field
             mask="phone"
             label="Cell Phone"
             v-model="familyInfo.cellphone"
           ></v-text-field>
         </v-flex>
-        <v-flex xs2 class="ma-1">
+        <v-flex xs1 offset-xs1>
           <v-text-field
             label="# of Adults in the Home"
-            @blur="calcFamily()"
             v-model="familyInfo.numAdults"
           ></v-text-field>
         </v-flex>
-        <v-flex xs2 class="ma-1">
+        <v-flex xs1 offset-xs1>
           <v-text-field
             label="# of Kids in the Home"
             v-model="familyInfo.numKids"
-            @blur="calcFamily()"
           ></v-text-field>
         </v-flex>
-        <v-flex xs2 class="ma-1">
+        <v-flex xs2 offset-xs1>
           <v-text-field
           label="Total # in Home"
           readonly

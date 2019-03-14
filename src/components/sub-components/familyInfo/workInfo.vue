@@ -9,72 +9,70 @@
               <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location</v-toolbar>
               <br>
               <v-layout row wrap>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs6>
                   <v-text-field
                     label="Name of the Location"
                     v-model="applicant.primaryWork.locationName"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs5 offset-xs1>
                   <v-select
-
                     :items="locationItems"
                     v-model="applicant.primaryWork.type"
                     label="Type of Location"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs4>
                   <v-select
-
                     :items="locationStatus"
                     v-model="applicant.primaryWork.status"
                     label="Employment Status"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Hours/Week"
                     v-model="applicant.primaryWork.hoursPerWeek"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Months/Year"
                     v-model="applicant.primaryWork.monthsPerYear"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs12 class="ma-1">
+                <v-flex xs12>
                   <v-text-field
                     label="Location Address"
                     v-model="applicant.primaryWork.address"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs2>
                   <v-text-field
                     label="City"
                     v-model="applicant.primaryWork.city"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="State"
                     v-model="applicant.primaryWork.state"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Zip"
                     v-model="applicant.primaryWork.zip"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Phone"
                     v-model="applicant.primaryWork.phone"
@@ -82,7 +80,7 @@
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="Ext"
                     v-model="applicant.primaryWork.phoneext"
@@ -93,14 +91,14 @@
               <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location</v-toolbar>
               <br>
               <v-layout row wrap>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs6>
                   <v-text-field
                     label="Name of the Location"
                     v-model="applicant.secondaryWork.locationName"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs5 offset-xs1>
                   <v-select
 
                     :items="locationItems"
@@ -108,7 +106,7 @@
                     label="Type of Location"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs4>
                   <v-select
 
                     :items="locationStatus"
@@ -116,49 +114,49 @@
                     label="Employment Status"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Hours/Week"
                     v-model="applicant.secondaryWork.hoursPerWeek"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Months/Year"
                     v-model="applicant.secondaryWork.monthsPerYear"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs12 class="ma-1">
+                <v-flex xs12>
                   <v-text-field
                     label="Location Address"
                     v-model="applicant.secondaryWork.address"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs2>
                   <v-text-field
                     label="City"
                     v-model="applicant.secondaryWork.city"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="State"
                     v-model="applicant.secondaryWork.state"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Zip"
                     v-model="applicant.secondaryWork.zip"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Phone"
                     v-model="applicant.secondaryWork.phone"
@@ -166,7 +164,7 @@
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="Ext"
                     v-model="coapplicant.secondaryWork.phoneext"
@@ -187,14 +185,14 @@
               <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location</v-toolbar>
               <br>
               <v-layout row wrap>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs6>
                   <v-text-field
                     label="Name of the Location"
                     v-model="coapplicant.primaryWork.locationName"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs5 offset-xs1>
                   <v-select
 
                     :items="locationItems"
@@ -202,7 +200,7 @@
                     label="Type of Location"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs4>
                   <v-select
 
                     :items="locationStatus"
@@ -210,49 +208,49 @@
                     label="Employment Status"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Hours/Week"
                     v-model="coapplicant.primaryWork.hoursPerWeek"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Months/Year"
                     v-model="coapplicant.primaryWork.monthsPerYear"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs12 class="ma-1">
+                <v-flex xs12>
                   <v-text-field
                     label="Location Address"
                     v-model="coapplicant.primaryWork.address"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs2>
                   <v-text-field
                     label="City"
                     v-model="coapplicant.primaryWork.city"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="State"
                     v-model="coapplicant.primaryWork.state"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Zip"
                     v-model="coapplicant.primaryWork.zip"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Phone"
                     v-model="coapplicant.primaryWork.phone"
@@ -260,7 +258,7 @@
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="Ext"
                     v-model="coapplicant.primaryWork.phoneext"
@@ -271,14 +269,14 @@
               <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location</v-toolbar>
               <br>
               <v-layout row wrap>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs6>
                   <v-text-field
                     label="Name of the Location"
                     v-model="coapplicant.secondaryWork.locationName"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs5 offset-xs1>
                   <v-select
 
                     :items="locationItems"
@@ -286,7 +284,7 @@
                     label="Type of Location"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs4>
                   <v-select
 
                     :items="locationStatus"
@@ -294,49 +292,49 @@
                     label="Employment Status"
                   ></v-select>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Hours/Week"
                     v-model="coapplicant.secondaryWork.hoursPerWeek"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs3 offset-xs1>
                   <v-text-field
                     label="Months/Year"
                     v-model="coapplicant.secondaryWork.monthsPerYear"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs12 class="ma-1">
+                <v-flex xs12>
                   <v-text-field
                     label="Location Address"
                     v-model="coapplicant.secondaryWork.address"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs3 class="ma-1">
+                <v-flex xs2>
                   <v-text-field
                     label="City"
                     v-model="coapplicant.secondaryWork.city"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="State"
                     v-model="coapplicant.secondaryWork.state"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Zip"
                     v-model="coapplicant.secondaryWork.zip"
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs2 offset-xs1>
                   <v-text-field
                     label="Phone"
                     v-model="coapplicant.secondaryWork.phone"
@@ -344,7 +342,7 @@
                     >
                   </v-text-field>
                 </v-flex>
-                <v-flex xs2 class="ma-1">
+                <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="Ext"
                     v-model="coapplicant.secondaryWork.phoneext"

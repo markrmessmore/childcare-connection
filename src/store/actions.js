@@ -178,7 +178,11 @@ export default {
     )
     .catch(
       error => {
-        console.log(error.message)
+        let toastMsg = {
+          status: true,
+          msg   : err.msg
+        }
+        commit('setToast', toastMsg)
       }
     )
   },

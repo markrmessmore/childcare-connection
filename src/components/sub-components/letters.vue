@@ -38,7 +38,7 @@
             Waiting List
           </v-btn>
           <v-btn color="primary" large>
-            <v-icon left>pause</v-icon>
+            <v-icon left>hourglass_empty</v-icon>
             Pending
           </v-btn>
           <v-btn color="primary" large>
