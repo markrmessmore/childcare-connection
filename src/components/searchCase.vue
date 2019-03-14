@@ -5,8 +5,15 @@
       <v-toolbar flat>
         <v-toolbar-title>
           <v-icon>search</v-icon>
-          Search for an existing case
+          Case Search:
         </v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-toolbar-items>
+          <v-btn color="accent2" outline dark small @click="resetSearch()">
+            <v-icon left>undo</v-icon>
+            Reset Search
+          </v-btn>
+        </v-toolbar-items>
       </v-toolbar>
       <v-card-text>
         <v-card flat color="">
@@ -33,10 +40,7 @@
             </v-layout>
             <v-layout row justify-space-around>
               <!-- <v-flex xs10 offset-xs1 justify-space-between> -->
-                <v-btn color="accent2" outline dark large @click="resetSearch()">
-                  <v-icon left>undo</v-icon>
-                  Reset Search
-                </v-btn>
+
                 <v-btn large color="primary" @click="searchCases()">
                   <v-icon left>search</v-icon>
                   Search
@@ -147,28 +151,52 @@ export default {
       this.searchResults = []
     },
     searchCases(){
-    let filteredCases = []
-      if (this.search.caseId) {
-        let filteredByCase = this.getCases.filter(record => record.caseId.toString().includes(this.search.caseId))
-        filteredCases.push(filteredByCase)
+      if (
+        this.search.caseId == "" &&
+        this.search.applicantLastName == "" &&
+        this.search.coApplicantLastName == "" &&
+        this.search.childLastName == ""
+      ){
+        this.searchResults = this.getCases
       }
-      if (this.search.applicantLastName) {
-        let filteredByAppLastName = this.getCases.filter(record => record.familyInfo.applicant.lastName.toLowerCase().includes(this.search.applicantLastName.toLowerCase()))
-        filteredCases.push(filtedByAppLastName)
-      }
-      if (this.search.coApplicantLastName) {
-        let filteredByCoAppLastName = this.getCases.filter(record => record.familyInfo.coapplicant.lastName.toLowerCase().includes(this.search.coApplicantLastName.toLowerCase()))
-        filteredCases.push(filtedByCoAppLastName)
-      }
-      if (this.search.childLastName) {
-        let filteredByChildLastName = this.getCases.filter(record => {
-          return record.familyInfo.children.some(child => {
-            return child.lastName.toLowerCase().includes(this.search.childName.toLowerCase())
+      else {
+        let filteredCases = []
+        if (this.search.caseId !== "") {
+          this.getCases.forEach(record => {
+            if (record.caseId.toString().includes(this.search.caseId)) {
+              filteredCases.push(record)
+            }
           })
-        })
-        filteredCases.push(filteredByChildLastName)
+        }
+        if (this.search.applicantLastName !== "") {
+          this.getCases.forEach(record => {
+            if (record.familyInfo.applicant.lastName.toString().includes(this.search.applicantLastName)) {
+              filteredCases.push(record)
+            }
+          })
+        }
+        if (this.search.coApplicantLastName !== "") {
+          this.getCases.forEach(record => {
+            if (record.familyInfo.coapplicant.lastName.toString().includes(this.search.coApplicantLastName)) {
+              filteredCases.push(record)
+            }
+          })
+        }
+        this.searchResults = filteredCases
       }
-      this.searchResults = filteredCases
+        // if (this.search.coApplicantLastName) {
+        //   let filteredByCoAppLastName = this.getCases.filter(record => record.familyInfo.coapplicant.lastName.toLowerCase().includes(this.search.coApplicantLastName.toLowerCase()))
+        //   filteredCases.push(filtedByCoAppLastName)
+        // }
+        // if (this.search.childLastName) {
+        //   let filteredByChildLastName = this.getCases.filter(record => {
+        //     return record.familyInfo.children.some(child => {
+        //       return child.lastName.toLowerCase().includes(this.search.childName.toLowerCase())
+        //     })
+        //   })
+        //   filteredCases.push(filteredByChildLastName)
+        // }
+      // }
     },
     selectCase(selected){
       this.selectedCase = selected
@@ -177,13 +205,13 @@ export default {
   },
   computed: {
     getCases(){
-      return this.$store.getters.getCases
+      let cases = []
+      Object.entries(this.$store.getters.getCases).forEach(c => {
+        cases.push(c[1])
+      })
+      return cases
     }
-  },
-  // beforeRouteLeave: function(to, from, next){
-  //   // this.$refs.editCase.confirmLeave()
-  //   next()
-  // }
+  }
 };
 </script>
 

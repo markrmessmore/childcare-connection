@@ -95,19 +95,21 @@ export default {
             status: true,
             msg   : err.message
           }
-          setToast message
-
+          commit('setToast', toastMsg)
         })
       }
     })
   },
   getCases({commit}) {
-    firebase.database().ref('')
-    commit('setCases')
+    commit('setLoading', true)
+    firebase.database().ref('Cases').on('value', allCases => {
+      commit('setCases', allCases.val())
+      commit('setLoading', false)
+    })
   },
   getCaseId({commit, dispatch}){
-    firebase.database().ref('CaseIDs').once('value', id => {
-      console.log(id.val())
+    firebase.database().ref('CaseIds').once('value', id => {
+      let firebaseData = {}
       // commit()
     })
   },
@@ -185,24 +187,32 @@ export default {
     commit('signOut')
     commit('activateSignOut', false)
   },
-  saveCase({commit}, payload){
-    console.log(payload)
-  //   firebase.database().ref('Cases').set(payload)
-  //   .then(res => {
-  //     console.log(res)
-  //     let toastMsg = {
-  //       status: true,
-  //       msg   : `Case ${payload.caseId} has been saved.`
-  //     }
-  //     commit('setToast', toastMsg)
-  //     // commit('saveCase', payload)
-  //   })
-  //   .catch(() => {
-  //     let toastMsg = {
-  //       status: true,
-  //       msg   : err.message
-  //     }
-  //     commit('setToast', toastMsg)
-  //   })
+  saveCase({commit, state}, payload){
+    commit('setLoading', true)
+    let allCases    = Object.entries(state.cases)
+    let firebaseId  = ""
+    allCases.forEach(c => {
+      if (c[1].caseId === payload.caseId){
+        firebaseId = c[0]
+      }
+    })
+    firebase.database().ref('Cases').child(firebaseId).set(payload)
+    .then(res => {
+      let toastMsg = {
+        status: true,
+        msg   : `Case ${payload.caseId} has been saved.`
+      }
+      commit('setToast', toastMsg)
+      commit('saveCase', payload)
+      commit('setLoading', false)
+    })
+    .catch(() => {
+      let toastMsg = {
+        status: true,
+        msg   : err.message
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
   }
-} 
+}

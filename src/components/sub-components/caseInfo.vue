@@ -156,10 +156,21 @@ export default {
       return this.selectedCase.familyInfo
     },
     getProviderData(){
-      return this.selectedCase.providers
+      if (this.selectedCase.providers){
+        return this.selectedCase.providers
+      }
+      else {
+        return []
+      }
+      return []
     },
     getAttendance(){
-      return this.selectedCase.attendance
+      if (this.selectedCase.attendance){
+        return this.selectedCase.attendance
+      }
+      else {
+        return []
+      }
     },
     getNotes(){
       return this.selectedCase.notes

@@ -32,5 +32,6 @@ new Vue({
     //   }
     // })
     this.$store.dispatch('getUsersAndRoles')
+    this.$store.dispatch('getCases')
   }
 }).$mount("#app");

@@ -20,12 +20,19 @@ export default {
   newCase(state, payload){
     state.cases.push(payload)
   },
+  saveCase(state, payload){
+    let allCases = Object.entries(state.cases)
+    for (let i=0; i < allCases.length; i++){
+      if(allCases[i][1].caseId === payload.caseId) {
+        state.cases[allCases[i][0]] = payload
+      }
+    }
+  },
   setAllUsers(state, payload){
     state.allUsers = payload
   },
   setCases(state, payload) {
-    // state.cases.push(payload)
-    console.log(payload)
+    state.cases = payload
   },
   setLoading(state, payload){
     state.loading = payload

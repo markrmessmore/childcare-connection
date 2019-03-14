@@ -133,16 +133,20 @@ export default {
     },
     getKidList(){
       let children = []
-      this.kids.forEach(child => {
-        children.push(child.firstName)
-      })
+      if (this.kids){
+        this.kids.forEach(child => {
+          children.push(child.firstName)
+        })
+      }
       return children
     },
     getProviderList(){
       let list = []
-      this.providers.forEach(prov => {
-        list.push(prov.name)
-      })
+      if (this.providers){
+        this.providers.forEach(prov => {
+          list.push(prov.name)
+        })
+      }
       return list
     },
     setCardColor(i){
