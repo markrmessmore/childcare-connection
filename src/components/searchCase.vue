@@ -183,6 +183,15 @@ export default {
             }
           })
         }
+        if (this.search.childLastName !== "") {
+          this.getCases.forEach(record => {
+            if (record.familyInfo.children){
+              record.familyInfo.children.forEach(kid => {
+                filteredCases.push(record)
+              })
+            }
+          })
+        }
         this.searchResults = filteredCases
       }
     },

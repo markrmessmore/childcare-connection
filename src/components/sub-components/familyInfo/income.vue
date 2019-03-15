@@ -7,45 +7,18 @@
       <v-expansion-panel>
         <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
           <div slot="header" class="subheading">Primary Applicant</div>
-          <v-data-table
-            :headers="incomeHeaders"
-            :items="applicant"
-            hide-actions
-            item-key="id"
-          >
-            <template slot="items" slot-scope="props">
-              <td class="text-xs-left subheading">{{props.item.title}}</td>
-              <td class="" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.weekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.biWeekly"
-                >
-                </v-text-field>
-              </td>
-              <td class="" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.monthly"
-                >
-                </v-text-field>
-              </td>
-              <td class="" @blur="calcTotal(props.item)">
-                <v-text-field
-                  prepend-inner-icon="attach_money"
-                  v-model="props.item.annually"
-                >
-                </v-text-field>
-              </td>
-              <td class="text-xs-right">${{calcTotal(props.item)}}</td>
-            </template>
-          </v-data-table>
+          <v-card>
+            <v-card-title>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" outline @click="addIncome(true)">
+                <v-icon left>add_circle</v-icon>
+                Add Applicant Income
+              </v-btn>
+            </v-card-title>
+            <v-card-text>
+
+            </v-card-text>
+          </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
       <br>
@@ -54,46 +27,15 @@
       <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
         <div slot="header" class="subheading">Co-applicant</div>
           <v-card flat>
+            <v-card-title primary-title>
+              <v-spacer></v-spacer>
+              <v-btn color="primary" outline @click="addIncome(false)">
+                <v-icon left>add_circle</v-icon>
+                Add Applicant Income
+              </v-btn>
+            </v-card-title>
             <v-card-text>
-              <v-data-table
-                :headers="incomeHeaders"
-                :items="coapplicant"
-                hide-actions
-                item-key="id"
-              >
-                <template slot="items" slot-scope="props">
-                  <td class="text-xs-left subheading">{{props.item.title}}</td>
-                  <td class="subheading" @blur="calcTotal(props.item)">
-                    <v-text-field
-                      prepend-inner-icon="attach_money"
-                      v-model="props.item.weekly"
-                    >
-                    </v-text-field>
-                  </td>
-                  <td class="subheading" @blur="calcTotal(props.item)">
-                    <v-text-field
-                      prepend-inner-icon="attach_money"
-                      v-model="props.item.biWeekly"
-                    >
-                    </v-text-field>
-                  </td>
-                  <td class="subheading" @blur="calcTotal(props.item)">
-                    <v-text-field
-                      prepend-inner-icon="attach_money"
-                      v-model="props.item.monthly"
-                    >
-                    </v-text-field>
-                  </td>
-                  <td class="subheading" @blur="calcTotal(props.item)">
-                    <v-text-field
-                      prepend-inner-icon="attach_money"
-                      v-model="props.item.biWeekly"
-                    >
-                    </v-text-field>
-                  </td>
-                  <td class="text-xs-right subheading">{{calcTotal(props.item)}}</td>
-                </template>
-              </v-data-table>
+
             </v-card-text>
           </v-card>
         </v-expansion-panel-content>
@@ -101,14 +43,104 @@
       <br>
       <v-layout row wrap>
         <v-flex xs2 offset-xs10>
-          <v-text-field
+          <!-- <v-text-field
             readonly
             label="Combined Total:"
-            v-model="grandTotal"
-          ></v-text-field>
+            v-model="getGrandTotal"
+          ></v-text-field> -->
         </v-flex>
       </v-layout>
     </v-card-text>
+    <!-- ADD INCOME DIALOG -->
+    <v-dialog
+      v-model="addIncomeDialog"
+      persistent :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <v-card>
+        <v-toolbar color="primary" dense dark>
+          <v-toolbar-title>Add Income for {{addIncomePerson ? "Applicant" : "Co-Applicant"}}:</v-toolbar-title>
+          <v-spacer></v-spacer>
+          <v-btn color="white" outline icon small @click="addIncomeDialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+        </v-toolbar>
+        <v-card-text>
+          <v-layout row wrap>
+            <v-flex xs12>
+              <v-select
+                :items="incomeType"
+                v-model="tempIncome.type"
+                label="Income Type:"
+              ></v-select>
+            </v-flex>
+            <v-flex xs12>
+              <v-select
+                :items="incomeFrequency"
+                v-model="tempIncome.frequency"
+                label="Frequency:"
+              ></v-select>
+            </v-flex>
+          </v-layout>
+          <v-layout v-if="tempIncome.frequency">
+            <v-flex xs2>
+              <v-text-field
+                label="Amount 1"
+                v-model="tempIncome.amount1"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs2 offset-xs1 v-if="tempIncome.frequency != 'Monthly'">
+              <v-text-field
+                label="Amount 2"
+                v-model="tempIncome.amount2"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs2 offset-xs1 v-if="tempIncome.frequency == 'Weekly'">
+              <v-text-field
+                label="Amount 3"
+                v-model="tempIncome.amount3"
+              ></v-text-field>
+            </v-flex>
+            <v-flex xs2 offset-xs1 v-if="tempIncome.frequency == 'Weekly'">
+              <v-text-field
+                label="Amount 4"
+                v-model="tempIncome.amount4"
+              ></v-text-field>
+            </v-flex>
+          </v-layout>
+          <v-card>
+            <v-card-text>
+              <v-layout row wrap>
+                <v-flex xs5>
+                  <v-text-field
+                    label="Average:"
+                    prepend-inner-icon="attach_money"
+                    readonly
+                    v-model="getTempAvg"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs5 offset-xs1>
+                  <v-text-field
+                    label="Annual:"
+                    prepend-inner-icon="attach_money"
+                    v-model="getTempAnnual"
+                    readonly
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-card-text>
+        <v-layout row wrap>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" small @click="saveIncomeItem()">
+            <v-icon left>save</v-icon>
+            Save Income
+          </v-btn>
+        </v-layout>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
@@ -120,70 +152,85 @@ export default {
   },
   data(){
     return{
-      applicant: this.appIncome,
+      addIncomeDialog: false,
+      addIncomePerson: true,
+      applicant: this.getApplicantIncome,
       coapplicant: this.coAppIncome,
-      grandTotal: null,
-      incomeHeaders: [
-        {sortable: false},
-        {
-          text: 'Weekly',
-          align: 'center',
-          sortable: false,
-          value: 'weekly',
-          class: "subheading"
-        },
-        {
-          text: 'Bi-Weekly',
-          align: 'center',
-          sortable: false,
-          value: 'biweekly',
-          class: "subheading"
-        },
-        {
-          text: 'Monthly',
-          align: 'center',
-          sortable: false,
-          value: 'monthly',
-          class: "subheading"
-        },
-        {
-          text: 'Annually',
-          align: 'center',
-          sortable: false,
-          value: 'annually',
-          class: "subheading"
-        },
-        {
-          text: 'Total',
-          align: 'center',
-          sortable: false,
-          value: 'total',
-          class: "subheading"
-        }
-      ]
+      incomeFrequency: ['Weekly', 'Bi-Weekly', 'Semi-Monthly', 'Monthly'],
+      incomeType: ['Wages & Salary', 'Pension/Retirement/Supplemental/Social Sec.', 'Unemployment/Workers Comp.', 'Public Assist./TANF', 'Child Support/Alimony', 'Other'],
+      tempIncome: {
+        type: "",
+        frequency: "",
+        amount1: 0,
+        amount2: 0,
+        amount3: 0,
+        amount4: 0
+      }
     }
   },
   methods: {
-    calcTotal(values){
-      // this.getGrandTotal()
-      return (Number(values.weekly) * 52) + (Number(values.biWeekly) * 26) + (Number(values.monthly) * 12) + Number(values.annually)
+    addIncome(forWhom){
+      this.tempIncome = {
+        type: "",
+        frequency: "",
+        amount1: 0,
+        amount2: 0,
+        amount3: 0,
+        amount4: 0
+      }
+      this.addIncomeDialog = true
+      this.addIncomePerson = forWhom
     },
-    getGrandTotal(){
-      let runningTotal = 0
-      let app   = this.applicant
-      let coapp = this.coapplicant
-      this.applicant.forEach(item => {
-        let amounts = Object.entries(item)
-        amounts.forEach(amt => {
-          if (amt[0] == "total"){
-            console.log(amt[1])
-          }
-        })
-      })
-      this.grandTotal = runningTotal
+    saveIncomeItem(){
+      console.log(this.applicant)
+      // let incomeToPush = this.tempIncome
+      // incomeToPush.total = this.getTempAnnual
+      // if (this.addIncomePerson === true ){
+      //   this.applicant.push(incomeToPush)
+      // }
+      // else {
+      //   this.coapplicant.push(incomeToPush)
+      // }
+      // this.addIncomeDialog = false
     }
   },
   computed: {
+    getTempAvg(){
+      if (this.tempIncome.frequency == "Weekly"){
+        return ((Number(this.tempIncome.amount1) + Number(this.tempIncome.amount2) + Number(this.tempIncome.amount3) + Number(this.tempIncome.amount4))/4).toFixed(2)
+      }
+      else if (this.tempIncome.frequency == "Monthly") {
+        return Number(this.tempIncome.amount1).toFixed(2)
+      }
+      else {
+        return ((Number(this.tempIncome.amount1) + Number(this.tempIncome.amount2))/2).toFixed(2)
+      }
+    },
+    getTempAnnual(){
+      let avg = this.getTempAvg
+      if (this.tempIncome.frequency == "Weekly"){
+        return (avg * 52).toFixed(2)
+      }
+      else if (this.tempIncome.frequency == "Bi-Weekly") {
+        return (avg * 26).toFixed(2)
+      }
+      else if (this.tempIncome.frequency == "Semi-Monthly") {
+        return (avg * 24).toFixed(2)
+      }
+      else {
+        return (avg * 12).toFixed(2)
+      }
+    },
+    getApplicantIncome(){
+      if (Array.isArray(this.appIncome)) {
+        console.log('eys')
+        return this.appIncome
+      }
+      else {
+        console.log('asdfasdf')
+        return []
+      }
+    }
   }
 }
 </script>

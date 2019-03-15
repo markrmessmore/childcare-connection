@@ -46,56 +46,7 @@ export default {
             lastName              : "",
             ssn                   : "",
             appRelation           : "",
-            income    : [
-              {
-                title   : "Wages & Salary",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title: "Pension/Retirement/Supplemental/Social Security",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Unemployment/Worker's Comp.",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Public Assistance/TANF",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Child Support/Alimony",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Other Income",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              }
-            ],
+            income    : [],
             primaryWork : {
               locationName        : "",
               type                : "",
@@ -131,56 +82,7 @@ export default {
             lastName              : "",
             ssn                   : "",
             appRelation           : "",
-            income    : [
-              {
-                title   : "Wages & Salary",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title: "Pension/Retirement/Supplemental/Social Security",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Unemployment/Worker's Comp.",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Public Assistance/TANF",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Child Support/Alimony",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              },
-              {
-                title   : "Other Income",
-                weekly  : 0,
-                biWeekly: 0,
-                monthly : 0,
-                annually: 0,
-                total   : 0
-              }
-            ],
+            income    : [],
             primaryWork  : {
               locationName        : "",
               type                : "",
