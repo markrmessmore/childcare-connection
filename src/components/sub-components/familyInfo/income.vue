@@ -5,9 +5,9 @@
         Click into the appropriate cell. Calculations will be performed automatically.
       </p>
       <v-expansion-panel>
-        <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
+        <v-expansion-panel-content lazy class="accent2 white--text">
           <div slot="header" class="subheading">Primary Applicant</div>
-          <v-card>
+          <v-card flat>
             <v-card-title>
               <v-spacer></v-spacer>
               <v-btn color="primary" outline @click="addIncome(true)">
@@ -16,7 +16,41 @@
               </v-btn>
             </v-card-title>
             <v-card-text>
-
+              <v-card color="info" v-if="this.applicant.income" flat>
+                <v-card-text>
+                  <v-layout row wrap class="subheading text-xs-left">
+                    <v-flex xs5>
+                      Income Type
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      Frequency
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      Annual Total
+                    </v-flex>
+                  </v-layout>
+                </v-card-text>
+              </v-card>
+              <v-card v-for="(record, index) in this.applicant.income" flat :key='index' :color="getCardColor(index)">
+                <v-card-text>
+                  <v-layout row wrap class="subheading">
+                    <v-flex xs5>
+                      {{record.type}}
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      {{record.frequency}}
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      ${{record.total}}
+                    </v-flex>
+                    <v-flex xs1 class="text-xs-right">
+                      <v-btn color="primary" icon outline small @click="confirmDelete('app', index)">
+                        <v-icon small>delete</v-icon>
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                </v-card-text>
+              </v-card>
             </v-card-text>
           </v-card>
         </v-expansion-panel-content>
@@ -24,7 +58,7 @@
       <br>
 <!-- FINANCIAL INFO: CO-APPLICANT -->
     <v-expansion-panel>
-      <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
+      <v-expansion-panel-content lazy class="accent2 white--text">
         <div slot="header" class="subheading">Co-applicant</div>
           <v-card flat>
             <v-card-title primary-title>
@@ -35,22 +69,57 @@
               </v-btn>
             </v-card-title>
             <v-card-text>
-
+              <v-card color="info" v-if="this.coapplicant.income" flat>
+                <v-card-text>
+                  <v-layout row wrap class="subheading text-xs-left">
+                    <v-flex xs5>
+                      Income Type
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      Frequency
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      Annual Total
+                    </v-flex>
+                  </v-layout>
+                </v-card-text>
+              </v-card>
+              <v-card v-for="(record, index) in this.coapplicant.income" flat :key='index' :color="getCardColor(index)">
+                <v-card-text>
+                  <v-layout row wrap class="subheading">
+                    <v-flex xs5>
+                      {{record.type}}
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      {{record.frequency}}
+                    </v-flex>
+                    <v-flex xs2 offset-xs1>
+                      ${{record.total}}
+                    </v-flex>
+                    <v-flex xs1 class="text-xs-right">
+                      <v-btn color="primary" icon outline small @click="confirmDelete('coapp', index)">
+                        <v-icon small>delete</v-icon>
+                      </v-btn>
+                    </v-flex>
+                  </v-layout>
+                </v-card-text>
+              </v-card>
             </v-card-text>
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
       <br>
-      <v-layout row wrap>
-        <v-flex xs2 offset-xs10>
-          <!-- <v-text-field
-            readonly
-            label="Combined Total:"
-            v-model="getGrandTotal"
-          ></v-text-field> -->
+    </v-card-text>
+    <v-toolbar color="info" dense v-if="this.applicant.income" flat>
+      <v-layout row wrap class="subheading">
+        <v-flex xs10 class="text-xs-left pl-2">
+          HOUSEHOLD TOTAL:
+        </v-flex>
+        <v-flex xs2 class="text-xs-right pr-2">
+          ${{getTotal()}}
         </v-flex>
       </v-layout>
-    </v-card-text>
+    </v-toolbar>
     <!-- ADD INCOME DIALOG -->
     <v-dialog
       v-model="addIncomeDialog"
@@ -141,21 +210,46 @@
         </v-layout>
       </v-card>
     </v-dialog>
+    <v-dialog
+      v-model="deleteDialog"
+      persistent :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <v-card>
+        <v-toolbar color="primary" class="title" dark>
+          Delete this income record?
+        </v-toolbar>
+        <v-card-text>
+          <v-layout row wrap justify-space-around>
+            <v-btn color="primary" @click="delRecord()">
+              <v-icon left>check</v-icon>
+              Yes
+            </v-btn>
+            <v-btn color="red darken-4" @click="deleteDialog = false" dark>
+              <v-icon left>close</v-icon>
+              No
+            </v-btn>
+          </v-layout>
+        </v-card-text>
+      </v-card>
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
 export default {
   props: {
-    appIncome: Array,
-    coAppIncome: Array
+    appIncome: Object,
+    coAppIncome: Object
   },
   data(){
     return{
       addIncomeDialog: false,
       addIncomePerson: true,
-      applicant: this.getApplicantIncome,
+      applicant: this.appIncome,
       coapplicant: this.coAppIncome,
+      deleteDialog: false,
       incomeFrequency: ['Weekly', 'Bi-Weekly', 'Semi-Monthly', 'Monthly'],
       incomeType: ['Wages & Salary', 'Pension/Retirement/Supplemental/Social Sec.', 'Unemployment/Workers Comp.', 'Public Assist./TANF', 'Child Support/Alimony', 'Other'],
       tempIncome: {
@@ -165,7 +259,9 @@ export default {
         amount2: 0,
         amount3: 0,
         amount4: 0
-      }
+      },
+      whomToDel: "",
+      whomToDelIndex: null,
     }
   },
   methods: {
@@ -181,17 +277,64 @@ export default {
       this.addIncomeDialog = true
       this.addIncomePerson = forWhom
     },
+    confirmDelete(forWhom, index){
+      this.deleteDialog = true
+      this.whomToDel = forWhom
+      this.whomToDelIndex = index
+    },
+    delRecord(){
+      if (this.whomToDel == "app"){
+        this.applicant.income.splice(this.whomToDelIndex, 1)
+      }
+      else {
+        this.coapplicant.income.splice(this.whomToDelIndex, 1)
+      }
+      this.deleteDialog = false
+    },
+    getCardColor(i){
+      if (i % 2 != 0) {
+        return "grey lighten-5"
+      }
+      else {
+        return "white"
+      }
+    },
+    getTotal(){
+      let grandTotal = 0
+      let app = this.applicant.income
+      let coapp = this.coapplicant.income
+      if (app){
+        app.forEach(item => {
+          grandTotal = grandTotal + Number(item.total)
+        })
+      }
+      if (coapp){
+        coapp.forEach(item => {
+          grandTotal = grandTotal + Number(item.total)
+        })
+      }
+      return grandTotal.toFixed(2)
+    },
     saveIncomeItem(){
-      console.log(this.applicant)
-      // let incomeToPush = this.tempIncome
-      // incomeToPush.total = this.getTempAnnual
-      // if (this.addIncomePerson === true ){
-      //   this.applicant.push(incomeToPush)
-      // }
-      // else {
-      //   this.coapplicant.push(incomeToPush)
-      // }
-      // this.addIncomeDialog = false
+      let incomeRecord = this.tempIncome
+      incomeRecord.total = this.getTempAnnual
+      if (this.addIncomePerson === true ){
+        if (this.applicant.income) {
+            this.applicant.income.push(incomeRecord)
+        }
+        else {
+          this.applicant['income'] = [incomeRecord]
+        }
+      }
+      else {
+        if (this.coapplicant.income) {
+            this.coapplicant.income.push(incomeRecord)
+        }
+        else {
+          this.coapplicant['income'] = [incomeRecord]
+        }
+      }
+      this.addIncomeDialog = false
     }
   },
   computed: {
@@ -219,16 +362,6 @@ export default {
       }
       else {
         return (avg * 12).toFixed(2)
-      }
-    },
-    getApplicantIncome(){
-      if (Array.isArray(this.appIncome)) {
-        console.log('eys')
-        return this.appIncome
-      }
-      else {
-        console.log('asdfasdf')
-        return []
       }
     }
   }

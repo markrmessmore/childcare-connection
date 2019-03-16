@@ -29,7 +29,9 @@
       <v-expansion-panel>
         <v-expansion-panel-content lazy class="elevation-3 grey white--text">
           <div class="subheading" slot="header">Family Income Information</div>
-          <income :appIncome="familyInfo.applicant.income" :coAppIncome="familyInfo.coapplicant.income"></income>
+          <income
+            :appIncome="familyInfo.applicant" :coAppIncome="familyInfo.coapplicant">
+          </income>
         </v-expansion-panel-content>
       </v-expansion-panel>
       <br>

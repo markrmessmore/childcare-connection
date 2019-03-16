@@ -80,7 +80,6 @@
             </v-data-table>
           </v-card>
         </div>
-
       </v-card-text>
     </v-card>
   </div>
