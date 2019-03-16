@@ -3,19 +3,19 @@
     <v-card flat>
       <v-card-text>
         <v-layout row wrap justify-space-around>
-          <v-btn color="primary" large @click="openPrintDialog('letter-papa')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-papa')">
             <v-icon left>note</v-icon>
             PAPA Letter
           </v-btn>
-          <v-btn color="primary" large>
+          <v-btn outline color="primary" large>
             <v-icon left>description</v-icon>
             PAPA
           </v-btn>
-          <v-btn color="primary" large>
+          <v-btn outline color="primary" large>
             <v-icon left>close</v-icon>
             Termination Letter
           </v-btn>
-          <v-btn color="primary" large>
+          <v-btn outline color="primary" large>
             <v-icon left>date_range</v-icon>
             Attendance Voucher
           </v-btn>
@@ -29,19 +29,19 @@
         <v-divider inset></v-divider>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn color="primary" large @click="openPrintDialog('letter-accepted')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-accepted')">
             <v-icon left>check</v-icon>
             Accepted
           </v-btn>
-          <v-btn color="primary" large @click="openPrintDialog('letter-waiting')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-waiting')">
             <v-icon left>access_time</v-icon>
             Waiting List
           </v-btn>
-          <v-btn color="primary" large @click="openPrintDialog('letter-pending')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-pending')">
             <v-icon left>hourglass_empty</v-icon>
             Pending
           </v-btn>
-          <v-btn color="primary" large @click="openPrintDialog('letter-ineligible')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-ineligible')">
             <v-icon left>not_interested</v-icon>
             Ineligible
           </v-btn>
@@ -52,11 +52,12 @@
       v-model="printDialog"
       scrollable
       width="720"
+      height="auto"
       persistent
       transition="dialog-transition"
     >
     <v-card>
-      <v-toolbar color="primary">
+      <v-toolbar color="primary" dense>
         <v-btn color="white" outline @click="downloadForm()">
           <v-icon left>cloud_download</v-icon>
           Download Form
@@ -71,6 +72,16 @@
           :printType="printType"
           :caseData="caseInfo"
         ></eligibility>
+        <v-toolbar color="primary" dense>
+          <v-btn color="white" outline @click="downloadForm()">
+            <v-icon left>cloud_download</v-icon>
+            Download Form
+          </v-btn>
+          <v-spacer></v-spacer>
+          <v-btn color="secondary" icon outline @click="printDialog = false">
+            <v-icon>close</v-icon>
+          </v-btn>
+        </v-toolbar>
       </v-card>
     </v-dialog>
   </div>
