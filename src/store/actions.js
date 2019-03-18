@@ -114,8 +114,10 @@ export default {
     })
   },
   getUsersAndRoles({commit}){
+    commit('setLoading', true)
     firebase.database().ref('Users').on('value', allUsers => {
       commit('setAllUsers', allUsers.val())
+      commit('setLoading', false)
     })
   },
   newCase({commit, dispatch}, payload){

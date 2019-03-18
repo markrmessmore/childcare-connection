@@ -16,12 +16,16 @@
             </v-text-field>
           </v-toolbar-items>
         </v-toolbar>
-        <div class="text-xs-left">
+        <v-layout justify-space-between align-center>
           <v-btn color="secondary" dark @click="statusModal = true" small outline>
             <v-icon left>track_changes</v-icon>
             Set Case Status
           </v-btn>
-        </div>
+          <!-- <v-btn outline color="red darken-4" dark v-if="getUserRole == 'admin'" small>
+            <v-icon left>delete</v-icon>
+            Delete Case
+          </v-btn> -->
+        </v-layout>
         <!-- STATUS MODAL -->
         <v-dialog
           v-model="statusModal"
@@ -210,6 +214,9 @@ export default {
         let currentStatus   = allStatus[lastStatus].status
         this.statusColor    = allStatusColors[currentStatus]
         return currentStatus
+    },
+    getUserRole(){
+      return this.$store.getters.getUserRole
     }
   }
 }

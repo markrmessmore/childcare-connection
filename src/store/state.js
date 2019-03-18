@@ -1,4 +1,3 @@
-import example from './exampleCase.js'
 
 export default {
   allUsers: [],
