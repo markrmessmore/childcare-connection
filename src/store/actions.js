@@ -35,7 +35,7 @@ export default {
         .catch(err => {
           let toastMsg = {
             status: true,
-            msg   : err.message
+            msg   : err
           }
           commit('setToast', toastMsg)
         })
@@ -93,7 +93,7 @@ export default {
         .catch(err => {
           let toastMsg = {
             status: true,
-            msg   : err.message
+            msg   : err
           }
           commit('setToast', toastMsg)
         })
@@ -142,7 +142,7 @@ export default {
       .catch(err => {
         let toastMsg = {
           status: true,
-          msg   : err.message
+          msg   : err
         }
         commit('setToast', toastMsg)
       })
@@ -179,11 +179,12 @@ export default {
       }
     )
     .catch(
-      error => {
+      err => {
         let toastMsg = {
           status: true,
           msg   : err.msg
         }
+        commit('setLoading', false)
         commit('setToast', toastMsg)
       }
     )
@@ -212,10 +213,10 @@ export default {
       commit('saveCase', payload)
       commit('setLoading', false)
     })
-    .catch(() => {
+    .catch(err => {
       let toastMsg = {
         status: true,
-        msg   : err.message
+        msg   : err
       }
       commit('setToast', toastMsg)
       commit('setLoading', false)
