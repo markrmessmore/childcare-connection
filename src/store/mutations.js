@@ -7,9 +7,6 @@ export default {
   activateSignOut(state, payload){
     state.signOutStatus = payload
   },
-  addUser(state, payload){
-    state.allUsers.push(payload)
-  },
   changeUserRole(state, payload){
     Object.entries(state.allUsers).forEach(usr => {
       if (usr[1].email === payload.email){
@@ -58,5 +55,6 @@ export default {
   signOut (state) {
     state.user = null
     state.userRole = null
+    router.push('/')
   }
 }
