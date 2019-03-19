@@ -12,18 +12,12 @@ export default {
   activateSignOut({commit}, payload){
     commit('activateSignOut', payload)
   },
-  autoSignIn ({commit}, payload) {
-    commit('setUser', payload.uid)
-    commit('setUserRole', payload.email)
-  },
   changeUserRole({commit, state}, payload){
-    let allUsers = Object.entries(state.allUsers)
+    let allUsers = state.allUsers
     allUsers.forEach(user => {
-      if (user[1].email == payload.email){
-        firebase.database().ref('Users').child(user[0]).update({
-          email : payload.email,
+      if (user.email == payload.email){
+        firebase.firestore().collection('Users').doc(user.id).update({
           role  : payload.role,
-          uid   : payload.uid
         })
         .then(() =>{
           commit('changeUserRole', payload)
@@ -55,7 +49,7 @@ export default {
         uid   : res.user.uid
       }
       // DUPLICATE THIS RECORD IN MY USERS COLLECTION (NECESSARY TO SET ROLES WHICH IS HOW WE DISABLE ACCOUNTS)
-      firebase.database().ref('Users').push(usr)
+      firebase.firestore().collection('Users').add(usr)
       .then(() => {
         firebase.auth().sendPasswordResetEmail(payload.email)
         let toastMsg = {
@@ -75,19 +69,17 @@ export default {
     })
   },
   deactivateUser({commit}, payload){
-    let allUsers = Object.entries(state.allUsers)
+    let allUsers = state.allUsers
     allUsers.forEach(user => {
-      if (user[1].email == payload.email){
-        firebase.database().ref('Users').child(user[0]).update({
-          email : payload.email,
+      if (user.email == payload.email){
+        firebase.database().collection('Users').doc(user.id).update({
           role  : payload.role,
-          uid   : payload.uid
         })
         .then(() =>{
           commit('deactivate', payload)
           commit('setToast',{
             status: true,
-            msg   : `User ${payload.email} has been given the role of ${payload.role}`
+            msg   : `User ${payload.email} has been DEACTIVATED.`
           })
         })
         .catch(err => {
@@ -107,17 +99,25 @@ export default {
       commit('setLoading', false)
     })
   },
-  getCaseId({commit, dispatch}){
-    firebase.database().ref('CaseIds').once('value', id => {
-      let firebaseData = {}
-      // commit()
-    })
-  },
   getUsersAndRoles({commit}){
     commit('setLoading', true)
-    firebase.database().ref('Users').on('value', allUsers => {
-      commit('setAllUsers', allUsers.val())
+    firebase.firestore().collection('Users').onSnapshot(allUsers => {
+      let userData = []
+      allUsers.forEach(usr => {
+        let currentUser = usr.data()
+        currentUser.id = usr.id
+        userData.push(currentUser)
+      })
+      commit('setAllUsers', userData)
       commit('setLoading', false)
+    },
+      err => {
+        let toastMsg = {
+          status: true,
+          msg   : err
+        }
+        commit('setToast', toastMsg)
+        commit('setLoading', false)
     })
   },
   newCase({commit, dispatch}, payload){
