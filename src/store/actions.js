@@ -147,12 +147,14 @@ export default {
     commit('activateSignOut', false)
   },
   saveCase({commit, state}, payload){
-    console.log(payload)
     commit('setLoading', true)
     //IF IT IS A NEW CASE, ASSIGN A CASE ID
     if (payload.caseId == null) {
       firebase.firestore().collection('CaseIds').doc('nums').get()
       .then(number => {
+        firebase.firestore().collection('CaseIds').doc('nums').update({
+          currentNum: number.data().currentNum + 1
+        })
         payload.caseId = (number.data().currentNum + 1)
         firebase.firestore().collection('Cases').add(payload)
         let toastMsg = {

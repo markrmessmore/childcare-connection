@@ -1,16 +1,3 @@
 {
-  "rules": {
-    "CaseIds" : {
-      ".read": "auth != null",
-      ".write": "auth != null"
-    },
-    "Cases" : {
-      ".read": "auth != null",
-      ".write": "auth != null"
-    },
-    "Users" : {
-      ".read": "true",
-      ".write": "auth != null"
-    }
-  }
+  
 }
