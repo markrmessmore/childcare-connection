@@ -94,12 +94,18 @@ export default {
   },
   getCases({commit}) {
     commit('setLoading', true)
-    firebase.database().ref('Cases').on('value', allCases => {
-      commit('setCases', allCases.val())
+    firebase.firestore().collection('Cases').onSnapshot(allCases => {
+      let caseArray = []
+      allCases.forEach( getData => {
+        let currentcase = getData.data()
+        currentcase.id = getData.id
+        caseArray.push(currentcase)
+      })
+      commit('setCases', caseArray)
       commit('setLoading', false)
     })
   },
-  getUsersAndRoles({commit}){
+  getUsersAndRoles({commit, dispatch}){
     commit('setLoading', true)
     firebase.firestore().collection('Users').onSnapshot(allUsers => {
       let userData = []
@@ -120,34 +126,34 @@ export default {
         commit('setLoading', false)
     })
   },
-  newCase({commit, dispatch}, payload){
-    // FIRST WE GET OUR NEW CASE ID
-    firebase.database().ref('CaseIds').once('value')
-    .then(id => {
-      let cid = id.val() + 1
-      firebase.database().ref('CaseIds').set(cid)
-      // WE NOW ATTACH THE NEW CASE ID TO THE CASE OBJECT
-      payload.caseId = cid
-      firebase.database().ref('Cases').push(payload)
-      .then(res => {
-        let toastMsg = {
-          status: true,
-          msg   : `This case has been saved and given the number ${cid}.`
-        }
-        let newKey = `${res.key}`
-        let firebaseData = { [newKey] : payload}
-        commit('newCase', firebaseData)
-        commit('setToast', toastMsg)
-      })
-      .catch(err => {
-        let toastMsg = {
-          status: true,
-          msg   : err
-        }
-        commit('setToast', toastMsg)
-      })
-    })
-  },
+  // newCase({commit, dispatch}, payload){
+  //   // FIRST WE GET OUR NEW CASE ID
+  //   firebase.firestore().collection('CaseIds').doc('nums').onSnapshot(currentCaseId => {
+  //     payload.caseId = (currentCaseId.data().currentNum + 1)
+  //     console.log(payload.caseId, currentCaseId.data().currentNum)
+  //   })
+  //   firebase.firestore().collection('Cases').add(payload)
+  //   .then(res => {
+  //     let toastMsg = {
+  //       status: true,
+  //       msg   : `This case has been saved and given the number ${payload.caseId}.`
+  //     }
+  //     let newKey = `${res.id}`
+  //     let firebaseData = { [newKey] : payload}
+  //     firebase.firestore().collection('CaseIds').doc('nums').update({
+  //       currentNum: Number(payload.caseId)
+  //     })
+  //     commit('newCase', firebaseData)
+  //     commit('setToast', toastMsg)
+  //   })
+  //   .catch(err => {
+  //     let toastMsg = {
+  //       status: true,
+  //       msg   : err
+  //     }
+  //     commit('setToast', toastMsg)
+  //   })
+  // },
   resetPassword({commit}, payload){
     firebase.auth().sendPasswordResetEmail(payload)
     .then(() => {
@@ -165,11 +171,12 @@ export default {
     commit('setToast', payload)
   },
   signIn ({commit, dispatch}, payload) {
-    commit('setUserRole', payload)
     commit('setLoading', true)
     firebase.auth().signInWithEmailAndPassword(payload.usr, payload.pass)
     .then(
       user => {
+        dispatch('getCases')
+        commit('setUserRole', payload)
         commit('setLoading', false)
         commit('activateSignIn', false)
         const newUser = {
@@ -196,30 +203,34 @@ export default {
   },
   saveCase({commit, state}, payload){
     commit('setLoading', true)
-    let allCases    = Object.entries(state.cases)
-    let firebaseId  = ""
-    allCases.forEach(c => {
-      if (c[1].caseId === payload.caseId){
-        firebaseId = c[0]
-      }
-    })
-    firebase.database().ref('Cases').child(firebaseId).set(payload)
-    .then(res => {
-      let toastMsg = {
-        status: true,
-        msg   : `Case ${payload.caseId} has been saved.`
-      }
-      commit('setToast', toastMsg)
-      commit('saveCase', payload)
-      commit('setLoading', false)
-    })
-    .catch(err => {
-      let toastMsg = {
-        status: true,
-        msg   : err
-      }
-      commit('setToast', toastMsg)
-      commit('setLoading', false)
-    })
+    //IF IT IS A NEW CASE, ASSIGN A CASE ID
+    if (payload.caseId == null) {
+      firebase.firestore().collection('CaseIds').doc('nums').onSnapshot(caseData => {
+        payload.caseId = (caseData.data().currentNum + 1)
+      })
+      .then(() => {
+        firebase.firestore().collection('Cases').add(payload)
+        .then(() => {
+          let toastMsg = {
+            status: true,
+            msg   : `Case ${payload.caseId} has been saved.`
+          }
+          commit('newCase', payload)
+          commit('setToast', toastMsg)
+          commit('setLoading', false)
+        })
+        .catch(err => {
+          let toastMsg = {
+            status: true,
+            msg   : err
+          }
+          commit('setToast', toastMsg)
+          commit('setLoading', false)
+        })
+      })
+    }
+    else {
+      // firebase.firestore().collection('Cases')
+    }
   }
 }

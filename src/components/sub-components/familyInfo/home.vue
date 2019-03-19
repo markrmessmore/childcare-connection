@@ -29,6 +29,7 @@
         <v-flex xs3 offset-xs1>
           <v-text-field
             label="Zip"
+            mask="#####"
             v-model="familyInfo.zip"
           ></v-text-field>
         </v-flex>

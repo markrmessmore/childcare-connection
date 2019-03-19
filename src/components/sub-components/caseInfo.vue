@@ -147,15 +147,6 @@ export default {
     }
   },
   methods: {
-    confirm(){
-      // this.confirmModal = true
-      // if (this.confirmResponse() == true){
-      //   return true
-      // }
-      // else {
-      //   return false
-      // }
-    },
     getFamilyData(){
       return this.selectedCase.familyInfo
     },
@@ -190,12 +181,7 @@ export default {
       this.statusModal = false
     },
     saveCase(){
-      if (this.selectedCase.caseId === null){
-        this.$store.dispatch('newCase', this.selectedCase)
-      }
-      else {
-        this.$store.dispatch('saveCase', this.selectedCase)
-      }
+      this.$store.dispatch('saveCase', this.selectedCase)
     }
   },
   computed: {

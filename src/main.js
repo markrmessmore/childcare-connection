@@ -27,6 +27,5 @@ new Vue({
   created () {
     firebase.initializeApp(config)
     this.$store.dispatch('getUsersAndRoles')
-    this.$store.dispatch('getCases')
   }
 }).$mount("#app");
