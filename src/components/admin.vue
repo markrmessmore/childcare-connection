@@ -33,8 +33,8 @@
           >
             <template v-slot:items="props">
               <tr class="tableRow">
-                <td>{{ props.item.email }}</td>
-                <td>{{ props.item.role }}</td>
+                <td class="subheading">{{ props.item.email }}</td>
+                <td class="subheading">{{ props.item.role }}</td>
                 <td class="text-xs-center">
                   <v-btn color="accent" small icon @click="resetPassword(props.item)">
                     <v-icon small>settings_backup_restore</v-icon>

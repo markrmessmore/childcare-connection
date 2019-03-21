@@ -4,8 +4,8 @@
       <v-toolbar-title>{{facility.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn color="primary" icon small @click="close()">
-          <v-icon>far fa-times-circle</v-icon>
+        <v-btn color="white" icon small @click="close()" outline>
+          <v-icon>close</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
