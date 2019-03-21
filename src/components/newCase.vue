@@ -6,17 +6,36 @@
         Create a New Case
       </v-toolbar-title>
     </v-toolbar>
-    <v-card-text>
+    <v-card-text v-if="!createNewCase">
+      <v-layout row wrap>
+        <v-flex xs12 class="text-xs-right">
+          <v-btn color="primary" @click="createNewCase = true" large outline>
+            <v-icon left>add</v-icon>
+            Click to Create a New Case
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </v-card-text>
+    <v-card-text v-else>
       <caseInfo :caseData="blankCase" ref="caseInfo"></caseInfo>
     </v-card-text>
+    <v-dialog
+      v-model="confirmLeave"
+      persistent :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <confirmLeave @leave="leave()" @cancel="cancel()"></confirmLeave>
+    </v-dialog>
   </v-card>
 </template>
 
 <script>
 import caseInfo from '@/components/sub-components/caseInfo.vue'
+import confirmLeave from '@/components/sub-components/confirmLeave.vue'
 export default {
   components: {
-    caseInfo
+    caseInfo,confirmLeave
   },
   data() {
     return {
@@ -122,22 +141,31 @@ export default {
         ],
         providers: [],
         attendance: []
-      }
-    };
+      },
+      confirmLeave: false,
+      createNewCase: false,
+      nextRoute: null
+    }
   },
   methods: {
-    leaveConfirmed(){
-      console.log('confirmed')
+    cancel(){
+      this.confirmLeave = false
+      this.nextRoute    = null
+    },
+    leave(){
+      this.confirmLeave = false
+      this.nextRoute()
     },
   },
-  // beforeRouteLeave: function(to, from, next){
-    // if (this.$refs.caseInfo.confirm() == true) {
-    //   next()
-    // }
-    // else {
-    //   next(from)
-    // }
-  // }
+  beforeRouteLeave(to, from, next){
+    if (this.createNewCase == true){
+      this.confirmLeave = true
+      this.nextRoute = next
+    }
+    else {
+      next()
+    }
+  }
 };
 </script>
 

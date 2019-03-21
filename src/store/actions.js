@@ -134,7 +134,7 @@ export default {
       err => {
         let toastMsg = {
           status: true,
-          msg   : err.msg
+          msg   : err
         }
         commit('setLoading', false)
         commit('setToast', toastMsg)

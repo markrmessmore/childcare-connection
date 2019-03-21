@@ -1,99 +1,108 @@
 <template lang="html">
-  <div class="">
-    <v-card>
-      <v-toolbar flat>
-        <v-toolbar-title>
-          <v-icon>search</v-icon>
-          Case Search:
-        </v-toolbar-title>
-        <v-spacer></v-spacer>
-        <v-toolbar-items>
-          <v-btn color="accent2" outline dark small @click="resetSearch()">
-            <v-icon left>undo</v-icon>
-            Reset Search
-          </v-btn>
-        </v-toolbar-items>
-      </v-toolbar>
-      <v-card-text>
-        <editSelected v-if="caseEdit" :selectedCase="selectedCase" ref="editCase"></editSelected>
-        <div v-else>
-          <v-card flat >
-            <v-toolbar color="secondary" flat dense dark class="subheading">
-              Search By:
-            </v-toolbar>
-            <v-card-text>
-              <p class="subheading">
-                Enter any pieces of information and click the search button.
-              </p>
-              <v-layout row wrap>
-                <v-flex xs5>
-                  <v-text-field box label="Case ID" v-model="search.caseId"></v-text-field>
-                </v-flex>
-                <v-flex xs6 offset-xs1>
-                  <v-text-field box label="Applicant Last Name" v-model="search.applicantLastName"></v-text-field>
-                </v-flex>
-                <v-flex xs5>
-                  <v-text-field box label="Co-Applicant Last Name" v-model="search.coApplicantLastName"></v-text-field>
-                </v-flex>
-                <v-flex xs6 offset-xs1>
-                  <v-text-field box label="Child's Last Name" v-model="search.childLastName"></v-text-field>
-                </v-flex>
-              </v-layout>
-              <v-layout row justify-end>
-                <v-btn large color="primary" @click="searchCases()">
-                  <v-icon left>search</v-icon>
-                  Search
+  <v-card>
+    <v-toolbar flat>
+      <v-toolbar-title>
+        <v-icon>search</v-icon>
+        Case Search:
+      </v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-toolbar-items>
+        <v-btn color="accent2" outline dark small @click="confirmReset()">
+          <v-icon left>undo</v-icon>
+          Reset Search
+        </v-btn>
+      </v-toolbar-items>
+    </v-toolbar>
+    <v-card-text>
+      <editSelected v-if="caseEdit" :selectedCase="selectedCase" ref="editCase"></editSelected>
+      <div v-else>
+        <v-card flat >
+          <v-toolbar color="secondary" flat dense dark class="subheading">
+            Search By:
+          </v-toolbar>
+          <v-card-text>
+            <p class="subheading">
+              Enter any pieces of information and click the search button.
+            </p>
+            <v-layout row wrap>
+              <v-flex xs5>
+                <v-text-field box label="Case ID" v-model="search.caseId"></v-text-field>
+              </v-flex>
+              <v-flex xs6 offset-xs1>
+                <v-text-field box label="Applicant Last Name" v-model="search.applicantLastName"></v-text-field>
+              </v-flex>
+              <v-flex xs5>
+                <v-text-field box label="Co-Applicant Last Name" v-model="search.coApplicantLastName"></v-text-field>
+              </v-flex>
+              <v-flex xs6 offset-xs1>
+                <v-text-field box label="Child's Last Name" v-model="search.childLastName"></v-text-field>
+              </v-flex>
+            </v-layout>
+            <v-layout row justify-end>
+              <v-btn large color="primary" @click="searchCases()">
+                <v-icon left>search</v-icon>
+                Search
+              </v-btn>
+            </v-layout>
+          </v-card-text>
+        </v-card>
+        <v-card flat>
+          <v-toolbar color="secondary" flat dense dark class="subheading">
+            Search Results:
+          </v-toolbar>
+          <v-data-table
+            :headers="tableHeaders"
+            :items="searchResults"
+            pagination.sync="pagination"
+            item-key="id"
+            :rows-per-page-items="rowsPerPageItems"
+          >
+            <template v-slot:no-data>
+              <v-alert :value="true" color="secondary" outline icon="search">
+                Please enter search criteria and search for a case.
+              </v-alert>
+            </template>
+            <template slot="items" slot-scope="props">
+              <td class="text-xs-left subheading">{{props.item.caseId}}</td>
+              <td class="text-xs-left subheading">
+                {{props.item.familyInfo.applicant.lastName}}, {{props.item.familyInfo.applicant.firstName}}
+              </td>
+              <td class="text-xs-left subheading">{{props.item.activeDate}}</td>
+              <td class="text-xs-left subheading">{{props.item.endDate}}</td>
+              <td class="text-xs-right">
+                <v-btn color="primary" @click="selectCase(props.item)">
+                  <v-icon small left>edit</v-icon>
+                  Select
                 </v-btn>
-              </v-layout>
-            </v-card-text>
-          </v-card>
-          <v-card flat>
-            <v-toolbar color="secondary" flat dense dark class="subheading">
-              Search Results:
-            </v-toolbar>
-            <v-data-table
-              :headers="tableHeaders"
-              :items="searchResults"
-              pagination.sync="pagination"
-              item-key="id"
-              :rows-per-page-items="rowsPerPageItems"
-            >
-              <template v-slot:no-data>
-                <v-alert :value="true" color="secondary" outline icon="search">
-                  Please enter search criteria and search for a case.
-                </v-alert>
-              </template>
-              <template slot="items" slot-scope="props">
-                <td class="text-xs-left subheading">{{props.item.caseId}}</td>
-                <td class="text-xs-left subheading">
-                  {{props.item.familyInfo.applicant.lastName}}, {{props.item.familyInfo.applicant.firstName}}
-                </td>
-                <td class="text-xs-left subheading">{{props.item.activeDate}}</td>
-                <td class="text-xs-left subheading">{{props.item.endDate}}</td>
-                <td class="text-xs-right">
-                  <v-btn color="primary" @click="selectCase(props.item)">
-                    <v-icon small left>edit</v-icon>
-                    Select
-                  </v-btn>
-                </td>
-              </template>
-            </v-data-table>
-          </v-card>
-        </div>
-      </v-card-text>
-    </v-card>
-  </div>
+              </td>
+            </template>
+          </v-data-table>
+        </v-card>
+      </div>
+    </v-card-text>
+    <v-dialog
+      v-model="confirmLeave"
+      persistent :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <confirmLeave @leave="leave()" @cancel="cancel()"></confirmLeave>
+    </v-dialog>
+  </v-card>
 </template>
 
 <script>
 import editSelected from "@/components/sub-components/editCase.vue";
+import confirmLeave from '@/components/sub-components/confirmLeave.vue'
 export default {
   components: {
-    editSelected
+    editSelected, confirmLeave
   },
   data(){
     return{
       caseEdit: false,
+      confirmLeave: false,
+      nextRoute: null,
       rowsPerPageItems: [25,50,100],
       search: {
         applicantLastName: "",
@@ -140,6 +149,31 @@ export default {
     }
   },
   methods: {
+    cancel(){
+      this.confirmLeave = false
+      this.nextRoute    = null
+    },
+    confirmReset(){
+      if (this.selectedCase.caseId == undefined){
+        this.resetSearch()
+      }
+      else {
+        this.confirmLeave = true
+        this.nextRoute = "reset"
+      }
+    },
+    leave(){
+      this.confirmLeave = false
+      if (this.nextRoute == 'reset'){
+        this.resetSearch()
+      }
+      else {
+        this.nextRoute()
+      }
+    },
+    reload(){
+      this.$router.go()
+    },
     resetSearch(){
       this.search = {
         applicantLastName: "",
@@ -207,7 +241,16 @@ export default {
       })
       return cases
     }
-  }
+  },
+  beforeRouteLeave(to, from, next){
+    if (this.caseEdit == true){
+      this.confirmLeave = true
+      this.nextRoute = next
+    }
+    else {
+      next()
+    }
+  },
 };
 </script>
 
