@@ -29,6 +29,14 @@ export default {
       dark: false
     },
     {
+      item: "Providers",
+      link: "/providers",
+      icon: "fas fa-child",
+      access: "user",
+      color: "primary lighten-2",
+      dark: false
+    },
+    {
       item: "Run Reports",
       link: "/reports",
       icon: "view_carousel",
@@ -53,6 +61,7 @@ export default {
       dark: false
     }
   ],
+  providers: [],
   signInStatus  : false,
   signOutStatus : false,
   toast         : {

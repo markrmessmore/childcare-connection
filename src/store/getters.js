@@ -16,6 +16,9 @@ export default {
       return state.nav
     }
   },
+  getProviders(state){
+    return state.providers
+  },
   getSignInStatus(state){
     return state.signInStatus
   },

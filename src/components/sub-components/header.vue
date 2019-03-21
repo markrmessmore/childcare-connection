@@ -16,10 +16,10 @@
         Sign Out
       </v-btn>
     </v-toolbar>
-    <v-toolbar flat dense color="primary lighten-1">
+    <v-toolbar flat dense>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn flat color="white" v-for="item in getNav" :key="item.item" :to="item.link">
+        <v-btn flat color="" v-for="item in getNav" :key="item.item" :to="item.link">
           <v-icon left>{{item.icon}}</v-icon>
           {{item.item}}
         </v-btn>

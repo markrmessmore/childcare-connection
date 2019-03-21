@@ -10,6 +10,7 @@ const   New       = () => import("@/components/newCase.vue")
 const   Search    = () => import("@/components/searchCase.vue")
 const   Reports   = () => import("@/components/reports.vue")
 const   Admin     = () => import("@/components/admin.vue")
+const   Providers = () => import("@/components/providers.vue")
 const   accountDeactivated = () => import("@/components/accountDeactivated.vue")
 
 Vue.use(Router);
@@ -54,6 +55,13 @@ export default new Router({
       path: "/dashboard",
       name: "/dashboard",
       component: Dashboard,
+      meta: {layout: "defaultLayout"},
+      beforeEnter: AuthGuard
+    },
+    {
+      path: "/providers",
+      name: "/providers",
+      component: Providers,
       meta: {layout: "defaultLayout"},
       beforeEnter: AuthGuard
     },

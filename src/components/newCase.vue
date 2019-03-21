@@ -55,7 +55,14 @@ export default {
           city        : "",
           state       : "NJ",
           zip         : "",
-          homephone   : "",
+          phone1      : {
+            type                  : "",
+            num                   : ""
+          },
+          phone2      : {
+            type                  : "",
+            num                   : ""
+          },
           cellphone   : "",
           numAdults   : null,
           numKids     : null,

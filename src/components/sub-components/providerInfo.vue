@@ -21,83 +21,6 @@
           <v-divider inset></v-divider>
           <v-card-text>
             <v-layout row wrap>
-              <v-flex xs7>
-                <v-text-field
-                  name="name"
-                  label="Name"
-                  v-model="facility.name"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs4 offset-xs1>
-                <v-text-field
-                  name="federalId"
-                  label="Federal ID"
-                  v-model="facility.federalId"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field
-                  name="address"
-                  label="Address"
-                  v-model="facility.address"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs12>
-                <v-text-field
-                  name="address2"
-                  label="Address 2"
-                  v-model="facility.address2"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs5>
-                <v-text-field
-                  name="city"
-                  label="City"
-                  v-model="facility.city"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs2 offset-xs1>
-                <v-text-field
-                  name="state"
-                  label="State"
-                  v-model="facility.state"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs3 offset-xs1>
-                <v-text-field
-                  name="zip"
-                  label="Zip"
-                  v-model="facility.zip"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs4>
-                <v-select
-                  :items="providerTypes"
-                  v-model="facility.typeOfProvider"
-                  label="Provider Type"
-                ></v-select>
-              </v-flex>
-              <v-flex xs3 offset-xs1>
-                <v-text-field
-                  name="licenseNum"
-                  label="License Number"
-                  v-model="facility.licenseNum"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs3 offset-xs1>
-                <v-select
-                  :items="careTypes"
-                  v-model="facility.typeOfCare"
-                  label="Care Type"
-                ></v-select>
-              </v-flex>
-              <v-flex xs3>
-                <v-text-field
-                  mask="phone"
-                  label="Phone"
-                  v-model="facility.phone"
-                ></v-text-field>
-              </v-flex>
               <v-flex xs2 offset-xs1>
                 <v-text-field
                   name="monthlyAmt"
@@ -108,14 +31,14 @@
               <v-flex xs2 offset-xs1>
                 <v-text-field
                   name="papaStart"
-                  label="papaStart"
+                  label="PAPA Start"
                   v-model="facility.papaStart"
                 ></v-text-field>
               </v-flex>
               <v-flex xs2 offset-xs1>
                 <v-text-field
                   name="papaEnd"
-                  label="papaEnd"
+                  label="PAPA End"
                   v-model="facility.papaEnd"
                 ></v-text-field>
               </v-flex>

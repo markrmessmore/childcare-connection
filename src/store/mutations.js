@@ -7,6 +7,9 @@ export default {
   activateSignOut(state, payload){
     state.signOutStatus = payload
   },
+  addProvider(state, payload){
+    state.providers.push(payload)
+  },
   changeUserRole(state, payload){
     Object.entries(state.allUsers).forEach(usr => {
       if (usr[1].email === payload.email){
@@ -33,6 +36,9 @@ export default {
   },
   setLoading(state, payload){
     state.loading = payload
+  },
+  setProviders(state, payload){
+    state.providers = payload
   },
   setToast(state, payload){
     state.toast.status  = payload.status

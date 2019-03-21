@@ -10,6 +10,26 @@ export default {
   activateSignOut({commit}, payload){
     commit('activateSignOut', payload)
   },
+  addProvider({commit}, payload){
+    commit('setLoading', true)
+    firebase.firestore().collection('Providers').add(payload)
+    .then(() => {
+      let toastMsg = {
+        status: true,
+        msg   : `${payload.name} has been added as a provider`
+      }
+      commit('setLoading', false)
+      commit('setToast', toastMsg)
+    })
+    .catch(err => {
+      let toastMsg = {
+        status: true,
+        msg   : err
+      }
+      commit('setLoading', false)
+      commit('setToast', toastMsg)
+    })
+  },
   changeUserRole({commit, state}, payload){
     let allUsers = state.allUsers
     allUsers.forEach(user => {
@@ -78,6 +98,27 @@ export default {
       commit('setLoading', false)
     })
   },
+  getProviders({commit}){
+    commit('setLoading', true)
+    firebase.firestore().collection('Providers').onSnapshot(allProviders => {
+      let facilities = []
+      allProviders.forEach(provider => {
+        let currentFac  = provider.data()
+        currentFac.id   = provider.id
+        facilities.push(currentFac)
+      })
+      commit('setProviders', facilities)
+      commit('setLoading', false)
+    },
+    err => {
+      let toastMsg = {
+        status: true,
+        msg   : err
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+  },
   getUsersAndRoles({commit, dispatch}){
     commit('setLoading', true)
     firebase.firestore().collection('Users').onSnapshot(allUsers => {
@@ -121,6 +162,7 @@ export default {
     .then(
       user => {
         dispatch('getCases')
+        dispatch('getProviders')
         commit('setUserRole', payload)
         commit('setLoading', false)
         commit('activateSignIn', false)
@@ -194,5 +236,8 @@ export default {
         commit('setLoading', false)
       })
     }
+  },
+  updateProvider({commit}, payload){
+    console.log(payload)
   }
 }
