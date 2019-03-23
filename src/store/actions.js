@@ -204,9 +204,19 @@ export default {
     )
   },
   signOut ({commit}) {
+    let unsubCases = firebase.firestore().collection('allCases').onSnapshot()
     firebase.auth().signOut()
-    commit('signOut')
-    commit('activateSignOut', false)
+    .then(() => {
+      commit('signOut')
+      commit('activateSignOut', false)
+    })
+    .catch(err => {
+      let toastMsg = {
+        status: true,
+        msg   : err
+      }
+      commit('setToast', toastMsg)
+    })
   },
   saveCase({commit, state}, payload){
     commit('setLoading', true)
@@ -258,6 +268,24 @@ export default {
     }
   },
   updateProvider({commit}, payload){
-    console.log(payload)
+    commit('setLoading', true)
+    firebase.firestore().collection('Providers').doc(payload.id).update(payload)
+    .then(() => {
+      let toastMsg = {
+        status: true,
+        msg   : `Provider ${payload.name} has been saved.`
+      }
+      commit('saveCase', payload)
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+    .catch(err => {
+      let toastMsg = {
+        status: true,
+        msg   : err
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
   }
 }

@@ -22,7 +22,7 @@
       <v-data-table
         :headers="tableHeaders"
         :items="getProviders"
-        hide-actions
+        :rows-per-page-items='rows'
         class="elevation-2"
         item-key="id"
         expand
@@ -36,8 +36,8 @@
                 <v-icon small>edit</v-icon>
               </v-btn>
             </td>
-            <td class="text-xs-center">
-              <v-btn color="accent" small icon @click="confirmDelProvider(props.item)">
+            <td class="text-xs-center" v-if="getUserRole == 'admin'">
+              <v-btn color="accent" small icon @click="confirmDelProvider(props.item)" outline>
                 <v-icon small>delete</v-icon>
               </v-btn>
             </td>
@@ -95,11 +95,12 @@ export default {
       editDialogInfo: {},
       editType: "",
       expand: false,
+      rows: [25, 50, 100],
       tableHeaders: [
         { text: 'Name', value: 'name', class: "subheading",  sortable: false },
         { text: 'Type', value: 'type', class: "subheading",  sortable: false },
-        { text: "Edit", align: 'center', value: "", sortable: false, class: ""},
-        { text: "Delete", align: 'center', value: "", sortable: false, class: ""},
+        { text: "Edit", align: 'center', value: "", sortable: false, class: "subheading"},
+        // { text: "", align: 'center', value: "", sortable: false, class: ""},
       ],
     }
   },
@@ -107,6 +108,7 @@ export default {
     addProvider(){
       let blankProvider= {
         name              : "",
+        forChild          : [],
         federalId         : "",
         licenseNum        : "",
         typeOfProvider    : "",
@@ -117,8 +119,6 @@ export default {
         state             : "NJ",
         zip               : "",
         phone             : "",
-        papaStart         : "",
-        papaEnd           : "",
         monthlyAmt        : null,
       }
       this.editDialogInfo   = blankProvider
@@ -147,6 +147,9 @@ export default {
   computed: {
     getProviders(){
       return this.$store.getters.getProviders
+    },
+    getUserRole(){
+      return this.$store.getters.getUserRole
     }
   }
 }

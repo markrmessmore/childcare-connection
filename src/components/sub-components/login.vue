@@ -33,7 +33,10 @@
       </v-layout>
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="signIn()">Login</v-btn>
+          <v-btn color="primary" @click="signIn()" outline>
+            <v-icon left>fas fa-sign-in-alt</v-icon>
+            Login
+          </v-btn>
         </v-flex>
       </v-layout>
     </v-card-text>

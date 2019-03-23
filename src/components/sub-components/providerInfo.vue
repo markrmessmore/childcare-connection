@@ -21,26 +21,54 @@
           <v-divider inset></v-divider>
           <v-card-text>
             <v-layout row wrap>
-              <v-flex xs2 offset-xs1>
+              <v-flex xs6>
+                <v-select
+                  :items="getKids"
+                  v-model="facility.forChild"
+                  label="For Child:"
+                ></v-select>
+              </v-flex>
+              <v-flex xs5 offset-xs1>
+                <v-autocomplete
+                  clearable
+                  :items="getProviders"
+                  v-model="facility.name"
+                  label="Provider:"
+                ></v-autocomplete>
+              </v-flex>
+              <v-flex xs12>
+                <v-select
+                  :items="careTypes"
+                  multiple
+                  v-model="facility.typeOfCare"
+                  label="Type of Care:"
+                ></v-select>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap>
+              <v-flex xs3>
+                <v-text-field
+                name="papaStart"
+                label="PAPA Start"
+                v-model="facility.papaStart"
+                mask="##/##/####"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs3 offset-xs1>
+                <v-text-field
+                name="papaEnd"
+                label="PAPA End"
+                v-model="facility.papaEnd"
+                mask="##/##/####"
+                ></v-text-field>
+              </v-flex>
+              <v-flex xs4 offset-xs1>
                 <v-text-field
                   name="monthlyAmt"
                   label="Monthly Amount"
                   v-model="facility.monthlyAmt"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs2 offset-xs1>
-                <v-text-field
-                  name="papaStart"
-                  label="PAPA Start"
-                  v-model="facility.papaStart"
-                ></v-text-field>
-              </v-flex>
-              <v-flex xs2 offset-xs1>
-                <v-text-field
-                  name="papaEnd"
-                  label="PAPA End"
-                  v-model="facility.papaEnd"
-                ></v-text-field>
+                  prepend-icon="fas fa-dollar-sign"
+                  ></v-text-field>
               </v-flex>
             </v-layout>
           </v-card-text>
@@ -55,7 +83,7 @@
     >
       <v-card>
         <v-toolbar color="primary" dark>
-          <v-toolbar-title>Remove this Provider from this Case?</v-toolbar-title>
+          <v-toolbar-title>Remove this Provider Record from this Case?</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
           <v-layout row wrap justify-space-around>
@@ -77,12 +105,12 @@
 <script>
 export default {
   props: {
-    providerInfo: Array
+    caseInfo: Object
   },
   data(){
     return{
       careTypes: ['After School', 'Before School', 'Full Day', 'Summer Camp'],
-      providers: this.providerInfo,
+      providers: this.caseInfo.providers,
       providerToRemove: null,
       providerTypes: ['Camp','Licensed Center', 'Registered Family Child Care'],
       confirmRemoveProvider: false
@@ -91,30 +119,18 @@ export default {
   methods: {
     addProvider(){
       let blankProvider= {
-        name              : "New Provider Facility",
-        federalId         : "",
-        licenseNum        : "",
-        typeOfProvider    : "",
+        forChild          : "",
+        name              : "",
         typeOfCare        : "",
-        address           : "",
-        address2          : "",
-        city              : "",
-        state             : "NJ",
-        zip               : "",
-        phone             : "",
         papaStart         : "",
         papaEnd           : "",
-        monthlyAmt        : null,
+        monthlyAmt        : null
       }
       this.providers.unshift(blankProvider)
     },
     confirmRemoval(index){
       this.providerToRemove = index
       this.confirmRemoveProvider = true
-    },
-    deleteProvider(){
-      this.providers.splice(this.providerToRemove, 1)
-      this.confirmRemoveProvider = false
     },
     setCardColor(i){
       if ((i % 2) == 0) {
@@ -123,7 +139,26 @@ export default {
       else {
         return "grey lighten-2"
       }
+    }
+  },
+  computed: {
+    getKids(){
+      let children = this.caseInfo.familyInfo.children
+      let kids = []
+      children.forEach(child => {
+        let name = `${child.firstName} ${child.lastName}`
+        kids.push(name)
+      })
+      return kids
     },
+    getProviders(){
+      let list = []
+      let providerList = this.$store.getters.getProviders
+      providerList.forEach(prov => {
+        list.push(prov.name)
+      })
+      return list.sort()
+    }
   }
 }
 </script>

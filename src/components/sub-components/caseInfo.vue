@@ -82,15 +82,10 @@
               <familyInfo :familyData="getFamilyData()"></familyInfo>
             </v-tab-item>
             <v-tab-item>
-              <providerInfo :providerInfo="getProviderData()"></providerInfo>
+              <providerInfo :caseInfo="selectedCase"></providerInfo>
             </v-tab-item>
             <v-tab-item>
-              <attendanceLog
-                :recordedAtt="getAttendance()"
-                :kids="getFamilyData().children"
-                :providers="getProviderData()"
-              >
-              </attendanceLog>
+              <attendanceLog :caseData="selectedCase"></attendanceLog>
             </v-tab-item>
             <v-tab-item>
               <letters :caseInfo="selectedCase"></letters>
@@ -149,15 +144,6 @@ export default {
   methods: {
     getFamilyData(){
       return this.selectedCase.familyInfo
-    },
-    getProviderData(){
-      if (this.selectedCase.providers){
-        return this.selectedCase.providers
-      }
-      else {
-        return []
-      }
-      return []
     },
     getAttendance(){
       if (this.selectedCase.attendance){

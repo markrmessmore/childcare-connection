@@ -59,8 +59,8 @@ export default {
     })
   },
   signOut (state) {
+    router.push('/')
     state.user = null
     state.userRole = null
-    router.push('/')
   }
 }

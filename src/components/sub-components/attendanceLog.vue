@@ -28,7 +28,7 @@
             </v-flex>
             <v-flex xs6 offset-xs1>
               <v-select
-                :items="providerList"
+                :items="providerList(attRec.child)"
                 v-model="attRec.facility"
                 label="Select Facility"
               ></v-select>
@@ -47,18 +47,32 @@
               ></v-text-field>
             </v-flex>
             <v-flex xs2 offset-xs1>
-              <v-text-field
-                label="Enter Days Present"
+              <v-select
+                :items="yesNo"
                 v-model="attRec.attendance"
-              ></v-text-field>
+                label="Over 50% Attendance?"
+                @blur="(attRec.attendance == 'Yes') ? (attRec.amount = getPapaAmt(attRec)) : (attRec.amount = null)"
+              ></v-select>
             </v-flex>
-            <v-flex xs2 offset-xs1>
+            <v-flex xs3 offset-xs1>
               <v-text-field
-              label="Enter Amount"
-              v-model="attRec.amount"
+                readonly
+                label="Monthly Amount:"
+                v-if="attRec.attendance == 'Yes'"
+                :value="getPapaAmt(attRec)"
+                prepend-icon="fas fa-dollar-sign"
+              ></v-text-field>
+              <v-text-field
+                v-else
+                label="Monthly Amount:"
+                v-model="attRec.amount"
+                prepend-icon="fas fa-dollar-sign"
               ></v-text-field>
             </v-flex>
           </v-layout>
+          <v-alert color="red darken-4" :value="!getDates(attRec)" outline icon="warning">
+            "There is no record on the PROVIDER INFORMATION tab which matches this child, provider and within the specified dates"
+          </v-alert>
         </v-card-text>
       </v-card>
     </v-card-text>
@@ -69,7 +83,7 @@
       transition="dialog-transition"
     >
       <v-card>
-        <v-toolbar color="primary" dark>
+        <v-toolbar color="primary" dark dense>
           <v-toolbar-title>Delete this Attendance Record?</v-toolbar-title>
         </v-toolbar>
         <v-layout row wrap justify-space-around>
@@ -88,15 +102,14 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
-    recordedAtt : Array,
-    kids        : Array,
-    providers   : Array
+    caseData: Object
   },
   data(){
     return{
-      attendanceRecords : this.recordedAtt,
+      attendanceRecords : this.caseData.attendance,
       blankAttRecord    :
       {
         child             : "",
@@ -106,10 +119,9 @@ export default {
         amount            : null,
       },
       deleteDialog        : false,
-      kidList             : this.getKidList(),
       months              : ['01 - Jan', '02 - Feb', '03 - Mar', '04 - Apr', '05 - May', '06 - Jun', '07 - Jul', '08 - Aug', '09 - Sep', '10 - Oct', '11 - Nov', '12 - Dec'],
-      providerList        : this.getProviderList(),
       recordToDelete      : null,
+      yesNo               : ['No', 'Yes']
     }
   },
   methods: {
@@ -131,23 +143,41 @@ export default {
       this.attendanceRecords.splice(this.recordToDelete, 1)
       this.deleteDialog = false
     },
-    getKidList(){
-      let children = []
-      if (this.kids){
-        this.kids.forEach(child => {
-          children.push(child.firstName)
-        })
+    getDates(rec){
+      let providerRecords = this.caseData.providers
+      for (let i=0; i < providerRecords.length; i++){
+        let start = moment(providerRecords[i].papaStart, "MMDDYYYY")
+        let end   = moment(providerRecords[i].papaEnd, "MMDDYYYY")
+        let recordDate = moment(`${rec.month.slice(0,2)}28${rec.year}`, "MMDDYYYY")
+        if (moment(recordDate).isBetween(start, end)) {
+          if (rec.child == providerRecords[i].forChild && rec.facility == providerRecords[i].name) {
+            return true
+          }
+        }
+        else {
+          return false
+        }
       }
-      return children
     },
-    getProviderList(){
-      let list = []
-      if (this.providers){
-        this.providers.forEach(prov => {
-          list.push(prov.name)
+    getPapaAmt(record){
+      if (this.getDates(record) == true) {
+        let correctRecord = this.caseData.providers.filter(rec => {
+          return (rec.forChild == record.child && rec.name == record.facility)
         })
+        return correctRecord[0].monthlyAmt
       }
-      return list
+      else {
+        return false
+      }
+    },
+    providerList(kid){
+      let facilities = []
+      this.caseData.providers.forEach(place => {
+        if (place.forChild.includes(kid)){
+          facilities.push(`${place.name}`)
+        }
+      })
+      return facilities
     },
     setCardColor(i){
       if ((i % 2) == 0) {
@@ -157,6 +187,15 @@ export default {
         return "grey lighten-2"
       }
     }
+  },
+  computed: {
+    kidList(){
+      let children = []
+      this.caseData.familyInfo.children.forEach(kid => {
+        children.push(`${kid.firstName} ${kid.lastName}`)
+      })
+      return children
+    },
   }
 }
 </script>
