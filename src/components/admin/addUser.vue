@@ -1,8 +1,8 @@
 <template lang="html">
   <v-card>
     <v-toolbar color="primary" dense dark>
+      <v-icon>person_add</v-icon>
       <v-toolbar-title>
-        <v-icon>person_add</v-icon>
         Add User
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -32,7 +32,7 @@
         </v-flex>
         <v-flex xs12 class="text-xs-right">
           <v-tooltip top>
-            <v-btn color="primary" outline @click="createUser()" slot="activator" :disabled="checkUser">
+            <v-btn color="primary" outline @click="createUser()" slot="activator" :disabled="checkUser" round>
               <v-icon left>add_circle_outline</v-icon>
               Create User
             </v-btn>

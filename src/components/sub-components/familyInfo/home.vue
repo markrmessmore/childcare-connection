@@ -35,7 +35,7 @@
         </v-flex>
       </v-layout>
       <v-layout row wrap>
-        <v-flex xs6 class="grey lighten-4 pa-1">
+        <v-flex xs6 class="grey lighten-1 pa-1">
           <v-layout row wrap>
             <v-flex xs5>
               <v-select
@@ -74,19 +74,19 @@
       </v-layout>
       <br>
       <v-layout row wrap>
-        <v-flex xs1>
+        <v-flex xs3>
           <v-text-field
             label="# of Adults in the Home"
             v-model="familyInfo.numAdults"
           ></v-text-field>
         </v-flex>
-        <v-flex xs1 offset-xs1>
+        <v-flex xs3 offset-xs1>
           <v-text-field
             label="# of Kids in the Home"
             v-model="familyInfo.numKids"
           ></v-text-field>
         </v-flex>
-        <v-flex xs2 offset-xs1>
+        <v-flex xs3 offset-xs1>
           <v-text-field
           label="Total # in Home"
           readonly

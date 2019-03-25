@@ -1,8 +1,8 @@
 <template lang="html">
   <v-card flat>
     <v-layout row wrap>
-      <v-flex xs12 class="text-xs-right" @click="addNote()">
-        <v-btn color="primary" outline small>
+      <v-flex xs12 class="text-xs-right">
+        <v-btn color="primary" small  @click="addNote()" outline round>
           <v-icon left>add_circle</v-icon>
           Add Note:
         </v-btn>

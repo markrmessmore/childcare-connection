@@ -1,8 +1,8 @@
 <template lang="html">
   <v-card>
     <v-toolbar color="primary" dense dark>
+      <v-icon>security</v-icon>
       <v-toolbar-title>
-        <v-icon>security</v-icon>
         Change User Role
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -25,7 +25,7 @@
           ></v-select>
         </v-flex>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" outline @click="saveChanges()">
+          <v-btn color="primary" outline @click="saveChanges()" round outline>
             <v-icon left>save</v-icon>
             Save Changes
           </v-btn>

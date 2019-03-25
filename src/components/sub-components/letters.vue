@@ -3,19 +3,19 @@
     <v-card flat>
       <v-card-text>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" large @click="openPrintDialog('papa-letter')">
+          <v-btn outline color="primary" large @click="openPrintDialog('papa-letter')" round outline>
             <v-icon left>note</v-icon>
             PAPA Letter
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('papa-form')">
+          <v-btn outline color="primary" large @click="openPrintDialog('papa-form')" round outline>
             <v-icon left>description</v-icon>
             PAPA
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('termination')">
+          <v-btn outline color="primary" large @click="openPrintDialog('termination')" round outline>
             <v-icon left>close</v-icon>
             Termination Letter
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('attendance')">
+          <v-btn outline color="primary" large @click="openPrintDialog('attendance')" round outline>
             <v-icon left>date_range</v-icon>
             Attendance Voucher
           </v-btn>
@@ -29,19 +29,19 @@
         <v-divider inset></v-divider>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-accepted')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-accepted')" round outline>
             <v-icon left>check</v-icon>
             Accepted
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-waiting')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-waiting')" round outline>
             <v-icon left>access_time</v-icon>
             Waiting List
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-pending')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-pending')" round outline>
             <v-icon left>hourglass_empty</v-icon>
             Pending
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-ineligible')">
+          <v-btn outline color="primary" large @click="openPrintDialog('letter-ineligible')" round outline>
             <v-icon left>not_interested</v-icon>
             Ineligible
           </v-btn>

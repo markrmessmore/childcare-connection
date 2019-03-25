@@ -6,12 +6,12 @@
         Case Search:
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-toolbar-items>
-        <v-btn color="accent2" outline dark small @click="confirmReset()">
+      <!-- <v-toolbar-items> -->
+        <v-btn color="accent2" outline dark small @click="confirmReset()" round outline>
           <v-icon left>undo</v-icon>
           Reset Search
         </v-btn>
-      </v-toolbar-items>
+      <!-- </v-toolbar-items> -->
     </v-toolbar>
     <v-card-text>
       <editSelected v-if="caseEdit" :selectedCase="selectedCase" ref="editCase"></editSelected>
@@ -39,7 +39,7 @@
               </v-flex>
             </v-layout>
             <v-layout row justify-end>
-              <v-btn large color="primary" @click="searchCases()">
+              <v-btn large color="primary" @click="searchCases()" round outline>
                 <v-icon left>search</v-icon>
                 Search
               </v-btn>
@@ -70,7 +70,7 @@
               <td class="text-xs-left subheading">{{props.item.activeDate}}</td>
               <td class="text-xs-left subheading">{{props.item.endDate}}</td>
               <td class="text-xs-right">
-                <v-btn color="primary" @click="selectCase(props.item)">
+                <v-btn color="primary" @click="selectCase(props.item)" round outline>
                   <v-icon small left>edit</v-icon>
                   Select
                 </v-btn>

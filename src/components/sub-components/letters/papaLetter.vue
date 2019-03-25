@@ -20,7 +20,7 @@
         <v-flex xs4 class="body-1">
           {{familyInfo.applicant.firstName}} {{familyInfo.applicant.lastName}}<br>
           {{familyInfo.address}}<br>
-          {{familyInfo.address2}}<br>
+          <span v-if="familyInfo.address2">{{familyInfo.address2}}<br></span>
           {{familyInfo.city}}, NJ {{familyInfo.zip}}<br>
           {{getPhone}}
         </v-flex>
@@ -43,7 +43,7 @@
           </p>
           <p>
             We are happy to have this opportunity to provide these services to you and other eligible families in Mercer County. Should you have any questions or require further assistance regarding the Mercer County Child Care Voucher Program,
-            please feel free to call us at (609) 989-7889. 
+            please feel free to call us at (609) 989-7889.
           </p>
         </v-flex>
       </v-layout>
@@ -79,7 +79,7 @@ export default {
   },
   computed: {
     getPhone(){
-      let phone = this.familyInfo.homephone ? this.familyInfo.homephone : this.familyInfo.cellphone
+      let phone = this.familyInfo.phone1.num
       let areaCode  = phone.slice(0,3)
       let nxx       = phone.slice(3,6)
       let ext       = phone.slice(-4)

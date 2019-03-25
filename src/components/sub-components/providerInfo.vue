@@ -2,7 +2,7 @@
   <v-card flat>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
-        <v-btn color="primary" outline small @click="addProvider()">
+        <v-btn color="primary" outline small @click="addProvider()" round outline>
           <v-icon left>add_circle</v-icon>
           Add Provider Info
         </v-btn>
@@ -82,16 +82,17 @@
       transition="dialog-transition"
     >
       <v-card>
-        <v-toolbar color="primary" dark>
+        <v-toolbar color="primary" dark dense>
+          <v-icon>fas fa-question-circle</v-icon>
           <v-toolbar-title>Remove this Provider Record from this Case?</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
           <v-layout row wrap justify-space-around>
-            <v-btn color="primary" @click="deleteProvider()">
+            <v-btn color="primary" @click="deleteProvider()" outline round>
               <v-icon left>check</v-icon>
               Yes
             </v-btn>
-            <v-btn color="red darken-4" outline @click="confirmRemoveProvider = false">
+            <v-btn color="red darken-4" outline @click="confirmRemoveProvider = false" round>
               <v-icon left>close</v-icon>
               No
             </v-btn>
@@ -131,6 +132,10 @@ export default {
     confirmRemoval(index){
       this.providerToRemove = index
       this.confirmRemoveProvider = true
+    },
+    deleteProvider(){
+      this.providers.splice(this.providerToRemove, 1)
+      this.confirmRemoveProvider = false
     },
     setCardColor(i){
       if ((i % 2) == 0) {

@@ -20,7 +20,7 @@
         <v-flex xs4>
           {{familyInfo.applicant.firstName}} {{familyInfo.applicant.lastName}}<br>
           {{familyInfo.address}}<br>
-          {{familyInfo.address2}}<br>
+          <span v-if="familyInfo.address2">{{familyInfo.address2}}<br></span>
           {{familyInfo.city}}, NJ {{familyInfo.zip}}<br>
           {{getPhone}}
         </v-flex>
@@ -145,7 +145,7 @@ export default {
       return kidList
     },
     getPhone(){
-      let phone = this.familyInfo.homephone ? this.familyInfo.homephone : this.familyInfo.cellphone
+      let phone = this.familyInfo.phone1.num
       let areaCode  = phone.slice(0,3)
       let nxx       = phone.slice(3,6)
       let ext       = phone.slice(-4)

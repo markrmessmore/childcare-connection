@@ -2,7 +2,7 @@
   <v-card flat>
     <v-card-text>
       <div class="text-xs-right">
-        <v-btn color="primary" @click="addChild()">
+        <v-btn color="primary" @click="addChild()" round outline>
           <v-icon>add</v-icon>
           Add Child
         </v-btn>
@@ -22,21 +22,24 @@
             transition="dialog-transition"
           >
             <v-card>
-              <v-toolbar color="secondary" dark dense>
+              <v-toolbar color="primary" dark dense>
+                <v-icon>fas fa-question-circle</v-icon>
                 <v-toolbar-title>
                   Remove child record: {{childRecordToRemove}}?
                 </v-toolbar-title>
               </v-toolbar>
-              <v-layout row justify-space-around>
-                <v-btn color="primary" @click="removeChildRecord()">
-                  <v-icon left>check</v-icon>
-                  Yes
-                </v-btn>
-                <v-btn color="red darken-3" outline @click="confirmChildDel = !confirmChildDel">
-                  <v-icon left>close</v-icon>
-                  No
-                </v-btn>
-              </v-layout>
+              <v-card-text>
+                <v-layout row justify-space-around>
+                  <v-btn color="primary" @click="removeChildRecord()" round outline>
+                    <v-icon left>check</v-icon>
+                    Yes
+                  </v-btn>
+                  <v-btn color="red darken-3" outline @click="confirmChildDel = !confirmChildDel" round>
+                    <v-icon left>close</v-icon>
+                    No
+                  </v-btn>
+                </v-layout>
+              </v-card-text>
             </v-card>
           </v-dialog>
         </v-card-title>

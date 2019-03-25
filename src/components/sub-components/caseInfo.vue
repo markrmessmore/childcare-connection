@@ -99,7 +99,7 @@
     </v-card-text>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
-        <v-btn color="primary" @click="saveCase()">
+        <v-btn color="primary" @click="saveCase()" round outline>
           <v-icon left>save</v-icon>
           Save Case Information
         </v-btn>

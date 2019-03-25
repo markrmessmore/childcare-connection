@@ -1,8 +1,8 @@
 <template lang="html">
   <v-card>
     <v-toolbar color="primary" dense dark>
+      <v-icon>person_add</v-icon>
       <v-toolbar-title>
-        <v-icon>person_add</v-icon>
         Confirm user activation:
       </v-toolbar-title>
       <v-spacer></v-spacer>
@@ -19,11 +19,11 @@
         <b>{{userData.email.toUpperCase()}}</b>
       </p>
       <v-layout row wrap justify-space-around>
-        <v-btn color="primary" outline @click="activateUser()">
+        <v-btn color="primary" outline @click="activateUser()" outline round>
           <v-icon left>check_circle</v-icon>
           Yes
         </v-btn>
-        <v-btn color="red darken-4" dark @click="close()">
+        <v-btn color="red darken-4" dark @click="close()" outline round>
           <v-icon left>close</v-icon>
           No
         </v-btn>

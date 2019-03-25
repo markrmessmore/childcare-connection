@@ -9,7 +9,7 @@
     <v-container>
       <v-layout row>
         <v-spacer></v-spacer>
-        <v-btn color="accent2" outline @click="addUserDialog = true">
+        <v-btn color="accent2" outline @click="addUserDialog = true" round outline>
           <v-icon left>add_circle</v-icon>
           Add User
         </v-btn>

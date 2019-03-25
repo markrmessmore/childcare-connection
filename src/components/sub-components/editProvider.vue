@@ -87,11 +87,11 @@
       </v-layout>
     </v-card-text>
     <v-layout row wrap justify-space-around align-center>
-      <v-btn color="primary" outline @click="saveProvider()">
+      <v-btn color="primary" outline @click="saveProvider()" round outline>
         <v-icon left>save</v-icon>
         Save Provider
       </v-btn>
-      <v-btn color="red darken-4" dark @click="close()">
+      <v-btn color="red darken-4" dark @click="close()" round outline>
         <v-icon left>close</v-icon>
         Cancel
       </v-btn>
