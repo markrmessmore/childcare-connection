@@ -88,7 +88,7 @@ export default {
   getCases({commit}) {
     commit('setLoading', true)
     firebase.firestore().collection('Cases').onSnapshot(allCases => {
-      unsubCases = allCases
+      // unsubCases = allCases
       let caseArray = []
       allCases.forEach( getData => {
         let currentcase = getData.data()
@@ -102,7 +102,7 @@ export default {
   getProviders({commit}){
     commit('setLoading', true)
     firebase.firestore().collection('Providers').onSnapshot(allProviders => {
-      unsubProviders = allProviders
+      // unsubProviders = allProviders
       let facilities = []
       allProviders.forEach(provider => {
         let currentFac  = provider.data()
@@ -124,7 +124,7 @@ export default {
   getUsersAndRoles({commit, dispatch}){
     commit('setLoading', true)
     firebase.firestore().collection('Users').onSnapshot(allUsers => {
-      unsubUsersAndRoles = allUsers
+      // unsubUsersAndRoles = allUsers
       let userData = []
       allUsers.forEach(usr => {
         let currentUser = usr.data()

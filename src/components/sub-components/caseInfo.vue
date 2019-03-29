@@ -17,7 +17,7 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-layout justify-space-between align-center>
-          <v-btn color="secondary" dark @click="statusModal = true" small outline>
+          <v-btn color="secondary" dark @click="statusModal = true" small outline round>
             <v-icon left>track_changes</v-icon>
             Set Case Status
           </v-btn>

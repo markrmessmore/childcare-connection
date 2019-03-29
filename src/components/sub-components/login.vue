@@ -55,6 +55,9 @@ export default {
     }
   },
   methods: {
+    enter(){
+      console.log("enter")
+    },
     signIn(){
       this.$store.dispatch('signIn', this.login)
     },

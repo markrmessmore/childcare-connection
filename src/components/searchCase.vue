@@ -39,7 +39,7 @@
               </v-flex>
             </v-layout>
             <v-layout row justify-end>
-              <v-btn large color="primary" @click="searchCases()" round outline>
+              <v-btn color="primary" @click="searchCases()" round outline>
                 <v-icon left>search</v-icon>
                 Search
               </v-btn>
@@ -70,7 +70,7 @@
               <td class="text-xs-left subheading">{{props.item.activeDate}}</td>
               <td class="text-xs-left subheading">{{props.item.endDate}}</td>
               <td class="text-xs-right">
-                <v-btn color="primary" @click="selectCase(props.item)" round outline>
+                <v-btn color="primary" @click="selectCase(props.item)" round outline small>
                   <v-icon small left>edit</v-icon>
                   Select
                 </v-btn>

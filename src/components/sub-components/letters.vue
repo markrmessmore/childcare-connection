@@ -3,19 +3,19 @@
     <v-card flat>
       <v-card-text>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" large @click="openPrintDialog('papa-letter')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-letter')" round outline>
             <v-icon left>note</v-icon>
             PAPA Letter
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('papa-form')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" round outline>
             <v-icon left>description</v-icon>
-            PAPA
+            Pre-PAPA
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('termination')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('termination')" round outline>
             <v-icon left>close</v-icon>
             Termination Letter
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('attendance')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round outline>
             <v-icon left>date_range</v-icon>
             Attendance Voucher
           </v-btn>
@@ -29,19 +29,19 @@
         <v-divider inset></v-divider>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-accepted')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-accepted')" round outline>
             <v-icon left>check</v-icon>
             Accepted
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-waiting')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-waiting')" round outline>
             <v-icon left>access_time</v-icon>
             Waiting List
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-pending')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-pending')" round outline>
             <v-icon left>hourglass_empty</v-icon>
             Pending
           </v-btn>
-          <v-btn outline color="primary" large @click="openPrintDialog('letter-ineligible')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-ineligible')" round outline>
             <v-icon left>not_interested</v-icon>
             Ineligible
           </v-btn>
@@ -54,7 +54,7 @@
     >
     <v-card>
       <v-toolbar color="info" dense>
-        <v-btn outline @click="downloadForm()" small>
+        <v-btn outline @click="downloadForm()" small round>
           <v-icon left>cloud_download</v-icon>
           Download Form
         </v-btn>
@@ -63,7 +63,7 @@
           <v-icon>close</v-icon>
         </v-btn>
       </v-toolbar>
-      <eligibility
+        <eligibility
           v-if="printType.startsWith('letter')"
           id="letter"
           :printType="printType"
@@ -89,7 +89,7 @@
           id="termination"
         ></termination>
         <v-toolbar color="info" dense>
-          <v-btn outline @click="downloadForm()" small>
+          <v-btn outline @click="downloadForm()" small round>
             <v-icon left>cloud_download</v-icon>
             Download Form
           </v-btn>
@@ -105,13 +105,15 @@
 
 <script>
 const   mercerLogo  = require('@/assets/mercerLogo.json')
-import  attendance from '@/components/sub-components/letters/attendance.vue'
+import  attendance  from '@/components/sub-components/letters/attendance.vue'
 import  eligibility from '@/components/sub-components/letters/eligibility.vue'
-import  papaLetter from '@/components/sub-components/letters/papaLetter.vue'
-import  papa from '@/components/sub-components/letters/papa.vue'
+import  papaLetter  from '@/components/sub-components/letters/papaLetter.vue'
+import  papa        from '@/components/sub-components/letters/papa.vue'
 import  termination from '@/components/sub-components/letters/termination.vue'
-import  html2pdf    from 'html2pdf.js'
-import  moment from 'moment'
+import  html2canvas from 'html2canvas'
+import  jsPDF       from 'jspdf'
+// import  html2pdf    from 'html2pdf.js'
+import  moment      from 'moment'
 export  default {
   props: {
     caseInfo: Object
@@ -127,27 +129,29 @@ export  default {
   },
   methods: {
     openPrintDialog(id){
-      // LETTERS:
-      // * papa
-      // * attendance voucher
       this.printType    = id
       this.printDialog  = true
     },
     downloadForm(){
-      let toPrint;
+      let html2canvasOptions = {
+        letterRendering: true,
+        fixLigatures: true
+      }
+      let toPrint
       if (this.printType.startsWith('letter')){
         toPrint = document.getElementById('letter')
       }
       else {
         toPrint = document.getElementById(this.printType)
       }
-
-      let options = {
-        margin: .5,
-        filename: this.getFileName,
-        jsPDF : { unit: 'in', format: 'letter', orientation: 'portrait' }
-      }
-      html2pdf(toPrint, options)
+  		html2canvas(toPrint, html2canvasOptions).then(canvas => {
+        let url     = canvas.toDataURL("image/png")
+        let newDoc  = window.open()
+        newDoc.document.write('<img src="'+url+'"/>');
+  			// let pdf = new jsPDF('p', 'mm', 'a4');
+  			// pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
+  			// pdf.save(this.getFileName);
+  		});
     }
   },
   computed: {
@@ -160,8 +164,5 @@ export  default {
 </script>
 
 <style lang="css">
-</style>
 
-<!-- ADD BUTTONS FOR THE FOLLOWING LETTERS:
-* When clicked generate a PDF based on the record info (and provided letters) that can be printed
--->
+</style>
