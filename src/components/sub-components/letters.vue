@@ -110,9 +110,7 @@ import  eligibility from '@/components/sub-components/letters/eligibility.vue'
 import  papaLetter  from '@/components/sub-components/letters/papaLetter.vue'
 import  papa        from '@/components/sub-components/letters/papa.vue'
 import  termination from '@/components/sub-components/letters/termination.vue'
-import  html2canvas from 'html2canvas'
-import  jsPDF       from 'jspdf'
-// import  html2pdf    from 'html2pdf.js'
+import  html2pdf    from 'html2pdf.js'
 import  moment      from 'moment'
 export  default {
   props: {
@@ -133,25 +131,22 @@ export  default {
       this.printDialog  = true
     },
     downloadForm(){
-      let html2canvasOptions = {
-        letterRendering: true,
-        fixLigatures: true
-      }
       let toPrint
+      let opt = {
+        margin:       .5,
+        filename:     this.getFileName,
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2 },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+        pagebreak:    {mode: 'legacy'}
+      }
       if (this.printType.startsWith('letter')){
         toPrint = document.getElementById('letter')
       }
       else {
         toPrint = document.getElementById(this.printType)
       }
-  		html2canvas(toPrint, html2canvasOptions).then(canvas => {
-        let url     = canvas.toDataURL("image/png")
-        let newDoc  = window.open()
-        newDoc.document.write('<img src="'+url+'"/>');
-  			// let pdf = new jsPDF('p', 'mm', 'a4');
-  			// pdf.addImage(canvas.toDataURL('image/png'), 'PNG', 0, 0, 211, 298);
-  			// pdf.save(this.getFileName);
-  		});
+      html2pdf().set(opt).from(toPrint).save();
     }
   },
   computed: {

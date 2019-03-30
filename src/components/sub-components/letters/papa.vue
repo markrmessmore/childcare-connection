@@ -51,7 +51,7 @@
         </v-flex>
         <v-flex xs4 offset-xs1>
           <v-text-field
-            prefix="CaseID:"
+            prefix="Case ID:  "
             readonly
             v-model="caseData.caseId"
           ></v-text-field>
@@ -64,15 +64,18 @@
         <br>
         <v-layout row wrap>
           <v-flex xs7>
-            <v-text-field label="Provider Name:" class="pa-0 ma-0 fixfont"></v-text-field>
+            <label class="body-1">Provider Name:</label>
+            <input type="text" class="pa-0 ma-0 formbox">
           </v-flex>
           <v-flex xs4 offset-xs1>
-            <v-text-field class="pa-0 ma-0" label="Phone:" mask="phone"></v-text-field>
+            <label class="body-1">Phone Number:</label>
+            <input type="text" class="pa-0 ma-0 formbox" mask="phone">
+            <!-- <v-text-field class="pa-0 ma-0" label="Phone:" mask="phone"></v-text-field> -->
           </v-flex>
         </v-layout>
         <v-layout row wrap>
           <v-flex xs7>
-            <v-text-field label="Address Line 1:" class="pa-0 ma-0"></v-text-field>
+            <v-text-field label="Address Line 1:" class="pt-2"></v-text-field>
           </v-flex>
           <v-flex xs4 offset-xs1>
             <v-text-field label="City:" class="pa-0 ma-0" ></v-text-field>
@@ -123,7 +126,7 @@
           </v-flex>
           </v-layout>
       </v-card>
-      <br>
+      <br class="html2pdf__page-break">
       <v-card flat class="subheading">
         <v-layout row wrap class="secondary white--text subheading text-xs-center pl-1">
           PART B -	CHILD INFORMATION
@@ -165,6 +168,13 @@ export default {
 </script>
 
 <style lang="css" scoped>
+
+.formbox {
+  width: 100%;
+  border-style: solid;
+  border-color: #BDBDBD;
+  border-width: 0px 0px 1px 0px;
+}
 .num-box {
   border: 1px solid grey;
 }
