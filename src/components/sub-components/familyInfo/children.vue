@@ -133,7 +133,7 @@ export default {
   methods: {
     addChild(){
       let blankChild = {
-        childId             : null,
+        childId             : this.getChildId,
         lastName            : "",
         midInitial          : "",
         firstName           : "",

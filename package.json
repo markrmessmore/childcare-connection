@@ -15,6 +15,7 @@
     "moment": "^2.24.0",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
+    "vue-masked-input": "^0.5.2",
     "vue-router": "^3.0.1",
     "vuetify": "^1.5.8",
     "vuex": "^3.0.1"

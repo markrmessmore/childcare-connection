@@ -30,7 +30,7 @@
         <template v-slot:items="props">
           <tr class="tableRow">
             <td width="40%" class="subheading">{{ props.item.name }}</td>
-            <td width="40%" class="subheading">{{ props.item.typeOfProvider }}</td>
+            <td width="40%" class="subheading">{{ props.item.typeOfProvider.toString().replace(",", " , ") }}</td>
             <td class="text-xs-center">
               <v-btn color="accent" small icon @click="editProvider(props.item)">
                 <v-icon small>edit</v-icon>
@@ -99,8 +99,7 @@ export default {
       tableHeaders: [
         { text: 'Name', value: 'name', class: "subheading",  sortable: true },
         { text: 'Type', value: 'type', class: "subheading",  sortable: true },
-        { text: "Edit", align: 'center', value: "", sortable: false, class: "subheading"},
-        // { text: "", align: 'center', value: "", sortable: false, class: ""},
+        { text: "Edit", align: 'center', value: "", sortable: false, class: "subheading"}
       ],
     }
   },
@@ -111,7 +110,7 @@ export default {
         forChild          : [],
         federalId         : "",
         licenseNum        : "",
-        typeOfProvider    : "",
+        typeOfProvider    : [],
         typeOfCare        : "",
         address           : "",
         address2          : "",

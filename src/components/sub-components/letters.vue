@@ -2,25 +2,6 @@
   <div>
     <v-card flat>
       <v-card-text>
-        <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-letter')" round outline>
-            <v-icon left>note</v-icon>
-            PAPA Letter
-          </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" round outline>
-            <v-icon left>description</v-icon>
-            Pre-PAPA
-          </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('termination')" round outline>
-            <v-icon left>close</v-icon>
-            Termination Letter
-          </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round outline>
-            <v-icon left>date_range</v-icon>
-            Attendance Voucher
-          </v-btn>
-        </v-layout>
-        <br>
         <v-layout class="secondary white--text">
           <v-flex xs6 class="subheading ma-1">
               Eligibility Notification Letters
@@ -46,12 +27,91 @@
             Ineligible
           </v-btn>
         </v-layout>
+        <br>
+        <v-layout class="secondary white--text">
+          <v-flex xs6 class="subheading ma-1">
+              PAPA Forms
+          </v-flex>
+        </v-layout>
+        <br>
+        <v-layout row wrap justify-space-around>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-letter')" round outline>
+            <v-icon left>fas fa-envelope-open-text</v-icon>
+            PAPA Letter
+          </v-btn>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" round outline>
+            <v-icon left>description</v-icon>
+            Pre-PAPA
+          </v-btn>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-final')" round outline>
+            <v-icon left>fas fa-file-contract</v-icon>
+            Finalized PAPA
+          </v-btn>
+        </v-layout>
+        <br>
+        <v-layout class="secondary white--text">
+          <v-flex xs6 class="subheading ma-1">
+            Other Forms
+          </v-flex>
+        </v-layout>
+        <br>
+        <v-layout row wrap justify-space-around>
+          <v-btn outline color="primary" @click="openPrintDialog('termination')" round outline>
+            <v-icon left>close</v-icon>
+            Termination Letter
+          </v-btn>
+          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round outline>
+            <v-icon left>date_range</v-icon>
+            Attendance Voucher
+          </v-btn>
+        </v-layout>
       </v-card-text>
     </v-card>
     <v-container
       transition="dialog-transition"
       v-if="printDialog"
     >
+    <!-- SETTINGS FOR FINALAIZED PAPA FORM -->
+    <v-card color="info" v-if="printType == 'papa-final'" flat>
+      <v-toolbar color="secondary" dark dense flat>
+        <v-toolbar-title>Please select the appropriate child/provider</v-toolbar-title>
+      </v-toolbar>
+      <v-layout row wrap>
+        <v-flex xs6>
+          <v-select
+            class="pl-1"
+            :items="getKids"
+            v-model="selectedChild"
+            label="Select Child:"
+          ></v-select>
+        </v-flex>
+        <v-flex xs5 offset-xs1>
+          <v-select
+            class="pr-1"
+            :disabled="selectedChild == ''"
+            :items="getProviderNames"
+            v-model="selectedProvider"
+            label="Select Provider:"
+          ></v-select>
+        </v-flex>
+        <v-flex xs6>
+          <v-select
+            class="pl-1"
+            :disabled="selectedProvider == ''"
+            :items="getDates"
+            v-model="selectedDates"
+            label="Select Eligibility Dates:"
+          ></v-select>
+        </v-flex>
+        <v-flex xs6 class="text-xs-right pr-1">
+          <v-btn color="secondary" outline round @click="reset()">
+            <v-icon left small>fas fa-times</v-icon>
+            Reset
+          </v-btn>
+        </v-flex>
+      </v-layout>
+    </v-card>
+    <br>
     <v-card>
       <v-toolbar color="info" dense>
         <v-btn outline @click="downloadForm()" small round>
@@ -77,6 +137,13 @@
           v-if="printType == 'papa-form'"
           :caseData="caseInfo"
           id="papa-form"
+        ></papa>
+        <papa
+          v-if="printType == 'papa-final' && selectedChild != '' && selectedDates != '' && selectedProvider != ''"
+          :caseData="caseInfo"
+          :providerData="getProviderData[0]"
+          :eligDates="selectedDates"
+          id="papa-final"
         ></papa>
         <papaLetter
           v-if="printType == 'papa-letter'"
@@ -122,14 +189,13 @@ export  default {
   data(){
     return{
       printDialog: false,
-      printType: ""
+      printType: "",
+      selectedChild: "",
+      selectedDates: "",
+      selectedProvider: ""
     }
   },
   methods: {
-    openPrintDialog(id){
-      this.printType    = id
-      this.printDialog  = true
-    },
     downloadForm(){
       let toPrint
       let opt = {
@@ -147,12 +213,66 @@ export  default {
         toPrint = document.getElementById(this.printType)
       }
       html2pdf().set(opt).from(toPrint).save();
+    },
+    formatDate(dateStr){
+      let month = dateStr.slice(0,2)
+      let day   = dateStr.slice(2,4)
+      let year  = dateStr.slice(4,8)
+      return `${month}/${day}/${year}`
+    },
+    openPrintDialog(id){
+      this.printType    = id
+      this.printDialog  = true
+    },
+    reset(){
+      this.selectedChild    = ""
+      this.selectedDates    = ""
+      this.selectedProvider =""
     }
   },
   computed: {
     getFileName(){
       let appData = this.caseInfo.familyInfo.applicant
       return `${appData.firstName}_${appData.lastName}_${this.printType}_${moment().format('MM/DD/YYYY')}`
+    },
+    getDates(){
+      if (this.selectedChild == '' || this.selectedProvider == '') {
+        return
+      }
+      else {
+        let dates = []
+        this.caseInfo.providers.forEach(prov => {
+          if (prov.forChild == this.selectedChild && prov.name == this.selectedProvider) {
+            let start = this.formatDate(prov.papaStart)
+            let end   = this.formatDate(prov.papaEnd)
+            dates.push(`${start} - ${end}`)
+          }
+        })
+        return dates.sort()
+      }
+    },
+    getKids(){
+      let kids = []
+      this.caseInfo.providers.forEach(prov => {
+        kids.push(prov.forChild)
+      })
+      return kids
+    },
+    getProviderData(){
+      let prov = this.caseInfo.providers.filter(provider => {
+        return provider.forChild == this.selectedChild && provider.name == this.selectedProvider
+      })
+      return prov
+    },
+    getProviderNames(){
+      let caseProviders = this.caseInfo.providers
+      let childProviders = []
+      caseProviders.forEach(prov => {
+        if (prov.forChild == this.selectedChild) {
+          childProviders.push(prov.name)
+        }
+      })
+      return childProviders
     }
   }
 }

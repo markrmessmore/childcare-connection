@@ -68,6 +68,7 @@
             :items="providerTypes"
             v-model="facility.typeOfProvider"
             label="Provider Type"
+            multiple  
           ></v-select>
         </v-flex>
         <v-flex xs5>

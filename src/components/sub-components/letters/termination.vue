@@ -32,77 +32,74 @@
             Dear {{familyInfo.applicant.firstName}} {{familyInfo.applicant.lastName}}:
           </p>
           <p>
-            As of <v-text-field value="" class="myDateInput " mask="##/##/####"></v-text-field> the following action will occur for the child(ren) identified:
+            As of <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/> the following action will occur for the child(ren) identified:
             <v-select :items="getKids" class="body-1"></v-select>
           </p>
           <p>
             Your subsidy case under Mercer County Child Care Voucher Program is terminated for the following reason(s):
-            <br>
-            <table valign="middle">
-              <tr>
-                <td width="5%">
-                  <v-checkbox value=""></v-checkbox>
-                </td>
-                <td class="pl-1">
-                  Your family’s current eligibility period expires on <v-text-field value="" class="myDateInput" mask="##/##/####"></v-text-field> You will be eligible to apply again on <v-text-field value="" class="myDateInput" mask="##/##/####"></v-text-field>.
-                </td>
-              </tr>
-              <tr>
-                <td width="5%">
-                  <v-checkbox value=""></v-checkbox>
-                </td>
-                <td>
-                  Failure to submit required paperwork
-                </td>
-              </tr>
-              <tr>
-                <td width="5%">
-                  <v-checkbox value=""></v-checkbox>
-                </td>
-                <td>
-                  Non-use of subsidy
-                </td>
-              </tr>
-              <tr>
-                <td width="5%">
-                  <v-checkbox value=""></v-checkbox>
-                </td>
-                <td>
-                  No longer reside in Mercer County
-                </td>
-              </tr>
-              <tr>
-                <td width="5%">
-                  <v-checkbox value=""></v-checkbox>
-                </td>
-                <td>
-                  Child(ren) beyond the age of eligibility
-                </td>
-              </tr>
-              <tr>
-                <td width="5%">
-                  <v-checkbox value=""></v-checkbox>
-                </td>
-                <td>
-                  Your family is receiving other public subsidy
-                </td>
-              </tr>
-              <tr>
-                <td width="5%">
-                  <v-checkbox value=""></v-checkbox>
-                </td>
-                <td>
-                  <v-text-field value="" prefix="Other:"></v-text-field>
-                </td>
-              </tr>
-            </table>
-            <p>
-              Additional Comments:
-              <v-textarea value="" row-height="12" no-resize rows="2"></v-textarea>
-            </p>
+          </p>
+          <v-layout row align-center class="boxheight">
+            <v-flex xs1>
+              <v-checkbox value=""></v-checkbox>
+            </v-flex>
+            <v-flex xs11>
+              Your family’s current eligibility period expires on <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/> You will be eligible to apply again on <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/>.
+            </v-flex>
+          </v-layout>
+          <v-layout row align-center class="boxheight grey lighten-3">
+            <v-flex xs1>
+              <v-checkbox value=""></v-checkbox>
+            </v-flex>
+            <v-flex xs11>
+              Failure to submit required paperwork
+            </v-flex>
+          </v-layout>
+          <v-layout row align-center class="boxheight">
+            <v-flex xs1>
+              <v-checkbox value=""></v-checkbox>
+            </v-flex>
+            <v-flex xs11>
+              Non-use of subsidy
+            </v-flex>
+          </v-layout>
+          <v-layout row align-center class="boxheight grey lighten-3">
+            <v-flex xs1>
+              <v-checkbox value=""></v-checkbox>
+            </v-flex>
+            <v-flex xs11>
+              No longer reside in Mercer County
+            </v-flex>
+          </v-layout>
+          <v-layout row align-center class="boxheight">
+            <v-flex xs1>
+              <v-checkbox value=""></v-checkbox>
+            </v-flex>
+            <v-flex xs11>
+              Child(ren) beyond the age of eligibility
+            </v-flex>
+          </v-layout>
+          <v-layout row align-center class="boxheight grey lighten-3">
+            <v-flex xs1>
+              <v-checkbox value=""></v-checkbox>
+            </v-flex>
+            <v-flex xs11>
+              Your family is receiving other public subsidy
+            </v-flex>
+          </v-layout>
+          <v-layout row align-center class="boxheight">
+            <v-flex xs1>
+              <v-checkbox value=""></v-checkbox>
+            </v-flex>
+            <v-flex xs11>
+              Other:&nbsp;&nbsp; <input type="text" class="formbox2"></input>
+            </v-flex>
+          </v-layout>
+          <br class="html2pdf__page-break">
+          <p>
+            Additional Comments:
+            <v-textarea value="" row-height="12" no-resize rows="2"></v-textarea>
+          </p>
         </v-flex>
-      </v-layout>
-      <v-layout row wrap>
         <v-flex xs12>
           If you are not in agreement with the action (s) taken you have the right to request a review.  Should you have any questions or require further assistance regarding the Mercer County Child Care Voucher Program, please feel free to call us at 609-989-7889.
         </v-flex>
@@ -156,17 +153,23 @@ export default {
 </script>
 
 <style lang="css">
-
-table {
-  border-collapse: collapse;
+.boxheight {
+  height: 60px;
 }
 
-table tr td {
-  line-height: 5px;
+.formbox {
+  width: 200px;
+  border-style: solid;
+  border-color: #BDBDBD;
+  border-width: 0px 0px 1px 0px;
 }
-
-.myDateInput {
-  display: inline-block;
-  height: 15px
+.formbox2 {
+  width: 720px;
+  border-style: solid;
+  border-color: #BDBDBD;
+  border-width: 0px 0px 1px 0px;
+}
+.otherfield {
+  width: 80%;
 }
 </style>

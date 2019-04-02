@@ -7,16 +7,16 @@
       </v-toolbar-title>
     </v-toolbar>
     <v-card-text>
-      <v-layout row wrap align-center justify-space-between>
+      <v-layout row wrap align-center justify-space-around>
         <!-- <v-flex xs1 v-for="navItem in getDashboard" class="mb-1" :key="navItem.item"> -->
           <v-card
             ripple width="100%"
-            max-width="150px"
-            max-height="150px"
+            max-width="200px"
+            max-height="200px"
             :color="navItem.color"
             :dark="navItem.dark"
             :to="navItem.link"
-            class="elevation-5 mb-1"
+            class="elevation-5 ma-2"
             v-for="navItem in getDashboard"
             :key="navItem.item"
           >
