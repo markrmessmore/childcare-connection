@@ -10,5 +10,8 @@ service cloud.firestore {
     match /CaseIds/{id}  {
       allow read, write: if request.auth.uid != null;
     }
+    match /Providers/{prov} {
+      allow read, write: if request.auth.uid != null;
+    }
   }
 }
