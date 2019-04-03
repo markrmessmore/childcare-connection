@@ -39,11 +39,11 @@
             <v-icon left>fas fa-envelope-open-text</v-icon>
             PAPA Letter
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" disabled round outline>
             <v-icon left>description</v-icon>
             Pre-PAPA
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-final')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-final')" disabled round outline>
             <v-icon left>fas fa-file-contract</v-icon>
             Finalized PAPA
           </v-btn>
@@ -94,17 +94,8 @@
             label="Select Provider:"
           ></v-select>
         </v-flex>
-        <v-flex xs6>
-          <v-select
-            class="pl-1"
-            :disabled="selectedProvider == ''"
-            :items="getDates"
-            v-model="selectedDates"
-            label="Select Eligibility Dates:"
-          ></v-select>
-        </v-flex>
-        <v-flex xs6 class="text-xs-right pr-1">
-          <v-btn color="secondary" outline round @click="reset()">
+        <v-flex xs12 class="text-xs-right pr-1">
+          <v-btn color="secondary" outline small round @click="reset()">
             <v-icon left small>fas fa-times</v-icon>
             Reset
           </v-btn>
@@ -139,10 +130,9 @@
           id="papa-form"
         ></papa>
         <papa
-          v-if="printType == 'papa-final' && selectedChild != '' && selectedDates != '' && selectedProvider != ''"
+          v-if="printType == 'papa-final' && selectedChild != '' && selectedProvider != ''"
           :caseData="caseInfo"
           :providerData="getProviderData[0]"
-          :eligDates="selectedDates"
           id="papa-final"
         ></papa>
         <papaLetter
@@ -191,7 +181,6 @@ export  default {
       printDialog: false,
       printType: "",
       selectedChild: "",
-      selectedDates: "",
       selectedProvider: ""
     }
   },
@@ -226,7 +215,6 @@ export  default {
     },
     reset(){
       this.selectedChild    = ""
-      this.selectedDates    = ""
       this.selectedProvider =""
     }
   },
@@ -259,7 +247,7 @@ export  default {
       return kids
     },
     getProviderData(){
-      let prov = this.caseInfo.providers.filter(provider => {
+      let prov = this.caseInfo.providers.find(provider => {
         return provider.forChild == this.selectedChild && provider.name == this.selectedProvider
       })
       return prov

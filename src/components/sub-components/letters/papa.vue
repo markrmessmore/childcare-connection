@@ -40,11 +40,11 @@
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">From:</label>
-          <maskedInput class="formbox text-xs-right" :value="eligDates.split(' - ')[0]" mask="11 / 11 / 1111"/>
+          <input class="formbox text-xs-right" value="">
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">To:</label>
-          <maskedInput class="formbox text-xs-right" :value="eligDates.split(' - ')[1]" mask="11 / 11 / 1111"/>
+          <input class="formbox text-xs-right" value="">
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">Case ID:</label>
@@ -208,14 +208,15 @@
               </v-flex>
             </v-layout>
             <v-divider inset></v-divider>
-            <v-layout row wrap align-center>
-              <v-flex xs2 class="pl-1">
+            <v-layout row wrap align-center v-for="(prov, index) in providerData" :key="index">
+              {{prov}}
+              <!-- <v-flex xs2 class="pl-1">
                 <label class="body-1">From:</label>
-                <maskedInput class="formbox text-xs-right" mask="11 / 11 / 1111"/>
+                <input class="formbox text-xs-right" :value="prov.papaStart" readonly>
               </v-flex>
               <v-flex xs2 offset-xs1>
                 <label class="body-1">To:</label>
-                <maskedInput class="formbox text-xs-right" mask="11 / 11 / 1111"/>
+                <input class="formbox text-xs-right" :value="prov.papaEnd" readonly>
               </v-flex>
               <v-flex xs6 class="body-1">
                 <v-layout row align-center>
@@ -228,10 +229,10 @@
                   <v-checkbox class="pl-3"></v-checkbox>
                   <label class="body-1">Summer Camp:</label>
                 </v-layout>
-              </v-flex>
+              </v-flex> -->
             </v-layout>
           </v-layout>
-          <v-layout row wrap class="grey lighten-3">
+          <!-- <v-layout row wrap class="grey lighten-3">
             <v-flex xs2 class="pl-1">
               <label class="body-1">From:</label>
               <maskedInput class="formbox text-xs-right" mask="11 / 11 / 1111"/>
@@ -252,7 +253,7 @@
                 <label class="body-1">Summer Camp:</label>
               </v-layout>
             </v-flex>
-          </v-layout>
+          </v-layout> -->
         </div>
         <br>
         <v-layout row wrap class="secondary white--text subheading pl-1">
@@ -401,11 +402,11 @@
             </v-flex>
             <v-flex xs4 offset-xs1>
               <input type="text" class="pa-0 ma-0 formbox">
-              <label class="body-1">Provider/Authorized Staff (Signautre):</label>
+              <label class="body-1">Provider/Authorized Staff (Signature):</label>
             </v-flex>
             <v-flex xs2 offset-xs1>
               <maskedInput class="formbox text-xs-right" mask="11 / 11 / 1111"/>
-              <label class="body-1">Date: {{getChildInfo}}</label>
+              <label class="body-1">Date: </label>
             </v-flex>
           </v-layout>
         </v-layout>
@@ -417,9 +418,9 @@
 <script>
 export default {
   props: {
-    caseData: Object,
+    caseData    : Object,
     providerData: Object,
-    eligDates: String,
+    eligDates   : String,
   },
   data(){
     return {
@@ -438,6 +439,7 @@ export default {
       }
     },
     formatDate(dateStr){
+      console.log(dateStr)
       let month = dateStr.slice(0,2)
       let day   = dateStr.slice(2,4)
       let year  = dateStr.slice(4,8)
@@ -468,7 +470,6 @@ export default {
   },
   computed: {
     getChildInfo(){
-      // console.log(this.providerData)
       return this.familyInfo.children.find(kid => {
         let name = kid.firstName + " " + kid.lastName
         return name == this.providerData.forChild

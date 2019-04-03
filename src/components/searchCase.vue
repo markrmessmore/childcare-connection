@@ -63,17 +63,26 @@
               </v-alert>
             </template>
             <template slot="items" slot-scope="props">
-              <td class="text-xs-left subheading">{{props.item.caseId}}</td>
-              <td class="text-xs-left subheading">
+              <td class="text-xs-left body-1" width="5%">{{props.item.caseId}}</td>
+              <td class="text-xs-left subheading" width="30%">
                 {{props.item.familyInfo.applicant.lastName}}, {{props.item.familyInfo.applicant.firstName}}
               </td>
-              <td class="text-xs-left subheading">{{props.item.activeDate}}</td>
-              <td class="text-xs-left subheading">{{props.item.endDate}}</td>
-              <td class="text-xs-right">
-                <v-btn color="primary" @click="selectCase(props.item)" round outline small>
-                  <v-icon small left>edit</v-icon>
-                  Select
+              <td width="20%" class="text-xs-center">
+                {{props.item.caseStatus[props.item.caseStatus.length - 1].status}}
+              </td>
+              <td width="15%">
+                <v-text-field class="body-1" v-model="props.item.activeDate" mask="##/##/####"></v-text-field>
+              </td>
+              <td width="15%">
+                <v-text-field class="body-1" v-model="props.item.endDate" mask="##/##/####"></v-text-field>
+              </td>
+              <td width="15%" class="pa-0 ma-0 text-xs-center">
+                <v-btn color="primary" @click="selectCase(props.item)" icon round outline small>
+                  <v-icon small>edit</v-icon>
                 </v-btn>
+                <!-- <v-btn color="primary" @click="selectCase(props.item)" icon round outline small>
+                  <v-icon small>edit</v-icon>
+                </v-btn> -->
               </td>
             </template>
           </v-data-table>
@@ -118,28 +127,35 @@ export default {
           align: 'left',
           sortable: false,
           value: 'caseId',
-          class: "subheading"
+          class: "body-1"
         },
         {
           text: 'Applicant Name',
           align: 'left',
           sortable: false,
           value: 'applicantLastName',
-          class: "subheading"
+          class: "body-1"
+        },
+        {
+          text: 'Status',
+          align: 'center',
+          sortable: false,
+          value: 'status',
+          class: "body-1"
         },
         {
           text: 'Start Date',
-          align: 'left',
+          align: 'center',
           sortable: false,
           value: 'activeDate',
-          class: "subheading"
+          class: "body-1"
         },
         {
           text: 'End Date',
-          align: 'left',
+          align: 'center',
           sortable: false,
           value: 'endDate',
-          class: "subheading"
+          class: "body-1"
         },
         {
           sortable: false,
@@ -254,10 +270,6 @@ export default {
 };
 </script>
 
-<style lang="css"></style>
+<style lang="css">
 
-<!--
-* Add ability to search for last name (parent or child), or case ID
-display search results (names & case IDs)
-* select a case and open it in the editCase component
--->
+</style>

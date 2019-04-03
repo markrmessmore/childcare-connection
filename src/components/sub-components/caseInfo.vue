@@ -16,11 +16,29 @@
             </v-text-field>
           </v-toolbar-items>
         </v-toolbar>
-        <v-layout justify-space-between align-center>
-          <v-btn color="secondary" dark @click="statusModal = true" small outline round>
-            <v-icon left>track_changes</v-icon>
-            Set Case Status
-          </v-btn>
+        <v-layout align-center row>
+          <v-flex xs2>
+            <v-btn color="secondary" dark @click="statusModal = true" small outline round>
+              <v-icon left>track_changes</v-icon>
+              Set Case Status
+            </v-btn>
+          </v-flex>
+          <v-flex xs2 offset-xs5 >
+            <v-text-field
+              label="Eligibility Start:"
+              readonly
+              v-model="this.selectedCase.activeDate"
+              mask="##/##/####"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs2 offset-xs1>
+            <v-text-field
+              label="Eligibility End:"
+              readonly
+              v-model="this.selectedCase.endDate"
+              mask="##/##/####"
+            ></v-text-field>
+          </v-flex>
           <!-- <v-btn outline color="red darken-4" dark v-if="getUserRole == 'admin'" small>
             <v-icon left>delete</v-icon>
             Delete Case
@@ -34,21 +52,52 @@
           transition="dialog-transition"
         >
           <v-card>
-            <v-toolbar color="primary" dark>
+            <v-toolbar color="primary" dark dense>
               <v-toolbar-title>Select Current Case Status</v-toolbar-title>
               <v-spacer></v-spacer>
-              <v-btn color="white" outline icon @click="statusModal = false">
+              <v-btn color="white" small outline icon @click="statusModal = false">
                 <v-icon>close</v-icon>
               </v-btn>
             </v-toolbar>
             <v-card-text>
-              <v-layout column>
-                <v-select
-                  :items="statusList"
-                  v-model="selectedStatus"
-                  label="Case Status"
-                ></v-select>
-                <v-btn color="primary" @click="saveStatus()">Set Status</v-btn>
+              <v-layout row wrap>
+                <v-flex xs11>
+                  <v-select
+                    :items="statusList"
+                    v-model="selectedStatus"
+                    label="Case Status"
+                  ></v-select>
+                </v-flex>
+              </v-layout>
+              <v-layout
+                row wrap
+                v-if="
+                selectedStatus == 'Approved' ||
+                selectedStatus == 'Approved with Conditions' ||
+                selectedStatus == 'Reactivated'"
+              >
+                <v-flex xs5>
+                  <v-text-field
+                    label="Eligibility Start:"
+                    mask="##/##/####"
+                    v-model="selectedCase.activeDate"
+                  ></v-text-field>
+                </v-flex>
+                <v-flex xs5 offset-xs1>
+                  <v-text-field
+                    label="Eligibility End:"
+                    mask="##/##/####"
+                    v-model="selectedCase.endDate"
+                  ></v-text-field>
+                </v-flex>
+              </v-layout>
+              <v-layout row wrap>
+                <v-flex xs12 class="text-xs-right">
+                  <v-btn color="primary" @click="saveStatus()" round small outline>
+                    <v-icon left>check_circle_outline</v-icon>
+                    Set Status
+                  </v-btn>
+                </v-flex>
               </v-layout>
             </v-card-text>
           </v-card>
@@ -165,6 +214,7 @@ export default {
       }
       this.selectedCase.caseStatus.push(statusUpdate)
       this.statusModal = false
+      this.saveCase()
     },
     saveCase(){
       this.$store.dispatch('saveCase', this.selectedCase)

@@ -21,7 +21,7 @@
         </v-flex>
         <v-flex xs3 offset-xs1 class="text-xs-left">
           <v-text-field
-            prefix="Date:"
+            prefix="Date:  "
             v-model="getDate"
             readonly
           ></v-text-field>
@@ -46,15 +46,15 @@
         </v-flex>
         <!-- ACCEPTED -->
         <v-flex xs12 v-if="getStatus == 'ACCEPTED'" class="subheading">
-          Your application has been approved for the receipt of a subsidy through the Mercer County Child Care Voucher Program. The eligibility period for this program is for one year only beginning on <input size="15" value="" type="text" class="myInput pl-1 pr-1"></input> and ending on <input size="15" value="" type="text" class="myInput pl-1 pr-1"></input> as long as funding continues to be available.
+          Your application has been approved for the receipt of a subsidy through the Mercer County Child Care Voucher Program. The eligibility period for this program is for one year only beginning on <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/> and ending on <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/> as long as funding continues to be available.
           <br>
           <br>
           Please select your child care provider. Both you and your child care provider must complete and sign the attached PARENT/APPLICANT/PROVIDER AGREEMENT(s) (PAPAs). The completed PAPA form(s) must be received by Child Care Connection by
-          <input size="15" v-model="acceptedDueDate" type="text" class="myInput pl-1 pr-1"></input> in order for payment to begin on
-          <input size="15" value="" type="text" class="myInput pl-1 pr-1"></input>.
+          <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/> in order for payment to begin on
+          <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/>.
           <br>
           <br>
-          Failure to return the PARENT/APPLICANT/PROVIDER AGREEMENT(s) (PAPAs) by <input size="15" v-model="acceptedDueDate" type="text" class="myInput pl-1 pr-1"></input> will result in termination of your case.
+          Failure to return the PARENT/APPLICANT/PROVIDER AGREEMENT(s) (PAPAs) by <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/> will result in termination of your case.
         </v-flex>
         <!-- PENDING -->
         <v-flex xs12 v-if="getStatus == 'PENDING'">
@@ -95,9 +95,9 @@
                 <v-checkbox value=""></v-checkbox>
               </td>
               <td class="pl-1">
-                <v-layout row>
+                <v-layout row align-center>
                   <v-flex xs3>
-                    <v-text-field readonly value="Birth Certificate for:" class="body-1" single-line></v-text-field>
+                    Birth Certificate for:
                   </v-flex>
                   <v-flex xs3 offset-xs1>
                     <v-checkbox label="Parent" value=""></v-checkbox>
@@ -118,7 +118,7 @@
             </tr>
           </table>
           <br>
-          These materials must be submitted to Child Care Connection by <input size="15" value="" type="text" class="myInput pl-1 pr-1"></input>. If these materials are not received by this date, and you have not contacted the agency for an extension, your application will be invalid.
+          These materials must be submitted to Child Care Connection by <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111"/>. If these materials are not received by this date, and you have not contacted the agency for an extension, your application will be invalid.
         </v-flex>
         <!-- WAITING LIST -->
         <v-flex xs12 v-if="getStatus == 'WAITING LIST'" class="subheading">

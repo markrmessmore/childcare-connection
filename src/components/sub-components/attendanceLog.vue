@@ -147,20 +147,22 @@ export default {
       this.deleteDialog = false
     },
     getDates(rec){
-      let providerRecords = this.caseData.providers
-      for (let i=0; i < providerRecords.length; i++){
-        let start = moment(providerRecords[i].papaStart, "MMDDYYYY")
-        let end   = moment(providerRecords[i].papaEnd, "MMDDYYYY")
-        let recordDate = moment(`${rec.month.slice(0,2)}28${rec.year}`, "MMDDYYYY")
-        if (moment(recordDate).isBetween(start, end)) {
-          if (rec.child == providerRecords[i].forChild && rec.facility == providerRecords[i].name) {
-            return true
-          }
+      function withinDate(papaStart, papaEnd, recDate) {
+        let start = moment(papaStart, "MMDDYYYY")
+        let end   = moment(papaEnd, "MMDDYYYY")
+        if (moment(recDate).isBetween(start, end)) {
+          return true
         }
         else {
           return false
         }
       }
+      let providerRecords = this.caseData.providers
+      let testAtt = providerRecords.some(prov => {
+        let recordDate = moment(`${rec.month.slice(0,2)}28${rec.year}`, "MMDDYYYY")
+        return prov.forChild === rec.child && prov.name === rec.facility && withinDate(prov.papaStart, prov.papaEnd, recordDate)
+      })
+      return testAtt
     },
     getPapaAmt(record){
       if (this.getDates(record) == true) {
