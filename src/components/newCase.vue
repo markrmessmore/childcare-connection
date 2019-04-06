@@ -9,7 +9,7 @@
     <v-card-text v-if="!createNewCase">
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="createNewCase = true" large outline>
+          <v-btn color="primary" @click="createNewCase = true" large outline round>
             <v-icon left>add</v-icon>
             Click to Create a New Case
           </v-btn>
@@ -177,8 +177,3 @@ export default {
 </script>
 
 <style lang="css"></style>
-
-<!--
-* see caseInfo.vue and listed sub-components for changes
-* add data for a new record with all pertinent areas being blank. Send data to caseinfo
--->

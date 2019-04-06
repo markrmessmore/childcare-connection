@@ -190,6 +190,13 @@ export default {
       statusModal: false
     }
   },
+  mounted(){
+    document.body.addEventListener('keyup', e => {
+      if (e.keyCode == 81 && e.ctrlKey) {
+        this.saveCase()
+      }
+    })
+  },
   methods: {
     getFamilyData(){
       return this.selectedCase.familyInfo

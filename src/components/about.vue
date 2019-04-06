@@ -47,8 +47,3 @@ export default {};
 </script>
 
 <style lang="css"></style>
-
-<!--
-* CREATE ABOUT CONTENT POTENTIALLY INCLUDING TECHNOLOGIES USED AND LIST OF CONTRIBUTORS
-* include a link to the github repo
--->

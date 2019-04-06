@@ -84,8 +84,3 @@ export default {
 </script>
 
 <style lang="css"></style>
-
-<!--
-* CHANGE BUTTON LANGUAGE AND ACTION BASED ON WHETHER A USER IS SIGNED IN
-* ADD APPROPRIATE ICON
--->

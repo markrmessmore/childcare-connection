@@ -9,7 +9,7 @@
     <v-card-text class="subheading">
       <v-layout row wrap>
         <v-flex xs12 class="subheading">
-          Leaving this page without clicking the 'save' button may result in much weeping and gnashing of teeth.
+          {{getMsg()}}
           <br>
           <br>
           Are you sure you want to leave?
@@ -32,13 +32,28 @@
 
 <script>
 export default {
+  data(){
+    return{
+      confirmMsg: [
+        "Leaving this page without clicking the 'save' button may result in much weeping and gnashing of teeth.",
+        "Confuscious say, person who click in haste, lose work and cry much.",
+        "Christians say 'Jesus saves'...the question is did you?",
+        "Are you going to swear after leaving this page? (If you meant to save and did not the answer is likely yes...)",
+        "<BeginWittyMessage> Did you save? </EndWittyMessage>"
+      ]
+    }
+  },
   methods: {
+    cancel(){
+      this.$emit('cancel')
+    },
+    getMsg(){
+      let sel = Math.floor(Math.random()*this.confirmMsg.length)
+      return this.confirmMsg[sel]
+    },
     leave(){
       this.$emit('leave')
     },
-    cancel(){
-      this.$emit('cancel')
-    }
   }
 }
 </script>

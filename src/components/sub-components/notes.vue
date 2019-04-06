@@ -103,7 +103,3 @@ export default {
 
 <style lang="css">
 </style>
-
-<!--
-* Add a simple form to add notes for historical purposes.
--->

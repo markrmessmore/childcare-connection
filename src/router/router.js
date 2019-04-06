@@ -80,8 +80,3 @@ export default new Router({
     }
   ]
 });
-
-
-// TO DO
-// * Only allow logged in users to access the dashboard
-// * Only allow admin to access the admin page.

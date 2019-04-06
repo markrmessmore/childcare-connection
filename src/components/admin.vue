@@ -213,12 +213,3 @@ export default {
   background: #e0e0e0;
 }
 </style>
-
-<!--
-Create user management interface to:
-* Add users
-* Set passwords
-* Delete Users
-* Delete Notes
-* Edit Letters
--->
