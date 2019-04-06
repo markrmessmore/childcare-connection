@@ -121,7 +121,7 @@
               Attendance Log
             </v-tab>
             <v-tab class="subheading">
-              Letters
+              Letters/Reports
             </v-tab>
             <v-tab class="subheading">
               Notes

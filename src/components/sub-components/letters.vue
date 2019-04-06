@@ -10,19 +10,19 @@
         <v-divider inset></v-divider>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-accepted')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-accepted')" round small outline>
             <v-icon left>check</v-icon>
             Accepted
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-waiting')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-waiting')" round small outline>
             <v-icon left>access_time</v-icon>
             Waiting List
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-pending')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-pending')" round small outline>
             <v-icon left>hourglass_empty</v-icon>
             Pending
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-ineligible')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('letter-ineligible')" round small outline>
             <v-icon left>not_interested</v-icon>
             Ineligible
           </v-btn>
@@ -35,32 +35,32 @@
         </v-layout>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-letter')" round outline>
-            <v-icon left>fas fa-envelope-open-text</v-icon>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-letter')" round small outline>
+            <v-icon left small>fas fa-envelope-open-text</v-icon>
             PAPA Letter
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" disabled round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" round small outline>
             <v-icon left>description</v-icon>
             Pre-PAPA
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-final')" disabled round outline>
-            <v-icon left>fas fa-file-contract</v-icon>
+          <v-btn outline color="primary" @click="openPrintDialog('papa-final')" round small outline>
+            <v-icon left small>fas fa-file-contract</v-icon>
             Finalized PAPA
           </v-btn>
         </v-layout>
         <br>
         <v-layout class="secondary white--text">
           <v-flex xs6 class="subheading ma-1">
-            Other Forms
+            Other Forms & Reports
           </v-flex>
         </v-layout>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('termination')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('termination')" round small outline>
             <v-icon left>close</v-icon>
             Termination Letter
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round outline>
+          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round small outline>
             <v-icon left>date_range</v-icon>
             Attendance Voucher
           </v-btn>
@@ -124,15 +124,15 @@
           v-if="printType == 'attendance'"
           id="attendance"
         ></attendance>
-        <papa
+        <blankPapa
           v-if="printType == 'papa-form'"
           :caseData="caseInfo"
           id="papa-form"
-        ></papa>
+        ></blankPapa>
         <papa
           v-if="printType == 'papa-final' && selectedChild != '' && selectedProvider != ''"
           :caseData="caseInfo"
-          :providerData="getProviderData[0]"
+          :providerData="getProviderData"
           id="papa-final"
         ></papa>
         <papaLetter
@@ -163,6 +163,7 @@
 <script>
 const   mercerLogo  = require('@/assets/mercerLogo.json')
 import  attendance  from '@/components/sub-components/letters/attendance.vue'
+import  blankPapa   from '@/components/sub-components/letters/blankPapa.vue'
 import  eligibility from '@/components/sub-components/letters/eligibility.vue'
 import  papaLetter  from '@/components/sub-components/letters/papaLetter.vue'
 import  papa        from '@/components/sub-components/letters/papa.vue'
@@ -174,7 +175,7 @@ export  default {
     caseInfo: Object
   },
   components: {
-    attendance, eligibility, papa, papaLetter, termination
+    attendance, blankPapa, eligibility, papa, papaLetter, termination
   },
   data(){
     return{

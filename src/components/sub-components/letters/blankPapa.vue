@@ -13,9 +13,9 @@
         </v-flex>
         <v-flex xs9 offset-xs3 class="secondary white--text title text-xs-center">
           RETURN ON OR BY:
-            <input size="2" :value="day" type="text" class="myInput pl-1 pr-1 text-xs-right" autocomplete="off"></input>
+            <input size="2" value="" type="text" class="myInput pl-1 pr-1 text-xs-right" autocomplete="off"></input>
             /15/
-            <input size="4" :value="year" type="text" class="myInput pl-1 pr-1" autocomplete="off"></input>
+            <input size="4" value="" type="text" class="myInput pl-1 pr-1" autocomplete="off"></input>
         </v-flex>
       </v-layout>
       <v-layout row wrap>
@@ -40,11 +40,11 @@
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">From:</label>
-          <input class="formbox text-xs-right" :value="formatDate(caseData.endDate)" readonly>
+          <input class="formbox text-xs-right" value="">
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">To:</label>
-          <input class="formbox text-xs-right" :value="formatDate(caseData.endDate)" readonly>
+          <input class="formbox text-xs-right" value="">
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">Case ID:</label>
@@ -59,41 +59,41 @@
         <v-layout row wrap>
           <v-flex xs7>
             <label class="body-1">Provider Name:</label>
-            <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.name" readonly>
+            <input type="text" class="pa-1 ma-0 formbox" value="" readonly>
           </v-flex>
           <v-flex xs4 offset-xs1>
             <label class="body-1">Phone Number:</label>
-            <input type="text" class="formbox pa-1 ma-0" :value="formatPhone(getProviderInfo.phone)" readonly>
+            <input type="text" class="formbox pa-1 ma-0" value="" readonly>
           </v-flex>
         </v-layout>
         <v-layout row wrap class="grey lighten-3">
           <v-flex xs7>
             <label class="body-1">Address Line 1:</label>
-            <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.address" readonly>
+            <input type="text" class="pa-1 ma-0 formbox" value="" readonly>
           </v-flex>
           <v-flex xs4 offset-xs1>
             <label class="body-1">City:</label>
-            <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.city" readonly>
+            <input type="text" class="pa-1 ma-0 formbox" value="" readonly>
           </v-flex>
         </v-layout>
         <v-layout row wrap>
           <v-flex xs7>
             <label class="body-1">Address Line 2:</label>
-            <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.address2" readonly>
+            <input type="text" class="pa-1 ma-0 formbox" value="" readonly>
           </v-flex>
           <v-flex xs4 offset-xs1>
             <label class="body-1">Zip:</label>
-            <input class="formbox pa-1 ma-0" :value="getProviderInfo.zip" readonly>
+            <input class="formbox pa-1 ma-0" value="" readonly>
           </v-flex>
         </v-layout>
         <v-layout row wrap class="grey lighten-3">
           <v-flex xs6>
             <label class="body-1">Federal ID / Social Security Num:</label>
-            <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.federalId" readonly>
+            <input type="text" class="pa-1 ma-0 formbox" value="" readonly>
           </v-flex>
           <v-flex xs5 offset-xs1>
             <label class="body-1">License / Registration Num:</label>
-            <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.licenseNum" readonly>
+            <input type="text" class="pa-1 ma-0 formbox" value="" readonly>
           </v-flex>
         </v-layout>
         <br>
@@ -105,19 +105,19 @@
           </v-layout>
           <v-layout row align-center class="body-1">
             <v-flex xs1>
-              <v-checkbox :input-value="provType('Licensed Center')"></v-checkbox>
+              <v-checkbox input-value=""></v-checkbox>
             </v-flex>
             <v-flex xs3>
               Licenced Center
             </v-flex>
             <v-flex xs1>
-              <v-checkbox :input-value="provType('Registered Family Child Care')"></v-checkbox>
+              <v-checkbox input-value=""></v-checkbox>
             </v-flex>
             <v-flex xs3>
               Registered Family Child Care
             </v-flex>
             <v-flex xs1 offset-xs1>
-              <v-checkbox :input-value="provType('Camp')"></v-checkbox>
+              <v-checkbox input-value=""></v-checkbox>
             </v-flex>
             <v-flex xs2>
               Camp
@@ -134,7 +134,7 @@
           <v-flex xs12 class="body-1">
             <v-layout row wrap>
               <v-flex xs1>
-                <v-checkbox class="pa-0 ma-0" :input-value="careType('Full Day')"></v-checkbox>
+                <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
                 Full-day Care @ 30 or more hours/week(maximum payment @ $200/month)
@@ -142,7 +142,7 @@
             </v-layout>
             <v-layout row>
               <v-flex xs1>
-                <v-checkbox class="pa-0 ma-0" :input-value="careType('Before School')"></v-checkbox>
+                <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
                 Before-School Care (maximum payment @ $75/month)
@@ -150,7 +150,7 @@
             </v-layout>
             <v-layout row class="pa-0 ma-0">
               <v-flex xs1>
-                <v-checkbox class="pa-0 ma-0" :input-value="careType('After School')"></v-checkbox>
+                <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
                 After-School Care (maximum payment @ $75/month)
@@ -158,7 +158,7 @@
             </v-layout>
             <v-layout row>
               <v-flex xs1>
-                <v-checkbox class="pa-0 ma-0" :input-value="careType('Summer Camp')"></v-checkbox>
+                <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
                 Summer Camp<br>(maximum payment @ $500/8 week session.  Payment is prorated @ $62.50/week for less than 8 weeks of camp.)
@@ -176,23 +176,23 @@
         <v-layout row wrap>
           <v-flex xs4>
             <label class="body-1">First Name:</label>
-            <input type="text" class="pa-0 ma-0 formbox" readonly :value="getChildInfo.firstName">
+            <input type="text" class="pa-0 ma-0 formbox" readonly value="">
           </v-flex>
           <v-flex xs2 offset-xs1>
             <label class="body-1">Middle Initial:</label>
-            <input type="text" class="pa-0 ma-0 formbox" readonly :value="getChildInfo.midInitial">
+            <input type="text" class="pa-0 ma-0 formbox" readonly value="">
           </v-flex>
           <v-flex xs4 offset-xs1>
             <label class="body-1">Last Name:</label>
-            <input type="text" class="pa-0 ma-0 formbox" readonly :value="getChildInfo.firstName">
+            <input type="text" class="pa-0 ma-0 formbox" readonly value="">
           </v-flex>
           <v-flex xs4>
             <label class="body-1">Date of Birth:</label>
-            <input class="formbox text-xs-right" readonly :value="formatDate(getChildInfo.dob)" />
+            <input class="formbox text-xs-right" readonly value="" />
           </v-flex>
           <v-flex xs7 offset-xs1>
             <label class="body-1">Social Security Num:</label>
-            <input class="formbox text-xs-right" readonly :value="formatSsn(getChildInfo.ssn)">
+            <input class="formbox text-xs-right" readonly value="">
           </v-flex>
         </v-layout>
         <br>
@@ -208,24 +208,46 @@
               </v-flex>
             </v-layout>
             <v-divider inset></v-divider>
-            <v-layout row wrap align-center v-for="(prov, index) in getPos" :key="index" :class="getColor(index)">
+            <v-layout row wrap align-center :class="getColor(0)">
               <v-flex xs2 class="pl-1">
                 <label class="body-1">From:</label>
-                <input class="formbox text-xs-right" :value="formatDate(prov.papaStart)" readonly>
+                <input class="formbox text-xs-right" value="" readonly>
               </v-flex>
               <v-flex xs2 offset-xs1>
                 <label class="body-1">To:</label>
-                <input class="formbox text-xs-right" :value="formatDate(prov.papaEnd)" readonly>
+                <input class="formbox text-xs-right" value="" readonly>
               </v-flex>
               <v-flex xs6 class="body-1">
                 <v-layout row align-center>
-                  <v-checkbox class="pl-3" :input-value="checkPos('Full Day', prov.typeOfCare)"></v-checkbox>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
                   <label class="body-1">Full-Day:</label>
-                  <v-checkbox class="pl-3" :input-value="checkPos('Before School', prov.typeOfCare)"></v-checkbox>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
                   <label class="body-1">Before School:</label>
-                  <v-checkbox class="pl-3" :input-value="checkPos('After School', prov.typeOfCare)"></v-checkbox>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
                   <label class="body-1">After School:</label>
-                  <v-checkbox class="pl-3" :input-value="checkPos('Summer Camp', prov.typeOfCare)"></v-checkbox>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">Summer Camp:</label>
+                </v-layout>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap align-center :class="getColor(1)">
+              <v-flex xs2 class="pl-1">
+                <label class="body-1">From:</label>
+                <input class="formbox text-xs-right" value="" readonly>
+              </v-flex>
+              <v-flex xs2 offset-xs1>
+                <label class="body-1">To:</label>
+                <input class="formbox text-xs-right" value="" readonly>
+              </v-flex>
+              <v-flex xs6 class="body-1">
+                <v-layout row align-center>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">Full-Day:</label>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">Before School:</label>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">After School:</label>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
                   <label class="body-1">Summer Camp:</label>
                 </v-layout>
               </v-flex>
@@ -395,88 +417,21 @@
 <script>
 export default {
   props: {
-    caseData    : Object,
-    providerData: Object,
-    eligDates   : String,
+    caseData    : Object
   },
   data(){
     return {
-      familyInfo: this.caseData.familyInfo,
-      day: "",
-      year: ""
+      familyInfo: this.caseData.familyInfo
     }
   },
   methods: {
-    careType(val){
-      if (this.providerData.typeOfCare.includes(val)) {
-        return true
-      }
-      else {
-        return false
-      }
-    },
-    checkPos(cur, prov){
-      if (prov.includes(cur)){
-        return true
-      }
-      else {
-        return false
-      }
-    },
-    formatDate(dateStr){
-      let month = dateStr.slice(0,2)
-      let day   = dateStr.slice(2,4)
-      let year  = dateStr.slice(4,8)
-      return `${month}/${day}/${year}`
-    },
-    formatPhone(phone){``
-      if (phone) {
-        return `(${phone.slice(0,3)}) ${phone.slice(3,6)}-${phone.slice(6)}`
-      }
-      else {
-        return ""
-      }
-    },
-    formatSsn(str){
-      let first = str.slice(0,3)
-      let sec   = str.slice(3,5)
-      let last  = str.slice(5)
-      return `${first}-${sec}-${last}`
-    },
     getColor(i){
       if (i%2 == 0){
         return
       }
       else {
-        return 'grey lighten-3'
+        return "grey lighten-3"
       }
-    },
-    provType(val){
-      if (this.getProviderInfo.typeOfProvider.includes(val)) {
-        return true
-      }
-      else {
-        return false
-      }
-    }
-  },
-  computed: {
-    getChildInfo(){
-      return this.familyInfo.children.find(kid => {
-        let name = kid.firstName + " " + kid.lastName
-        return name == this.providerData.forChild
-      })
-    },
-    getPos(){
-      return this.caseData.providers.filter(prov => {
-        let name = this.getChildInfo.firstName + " " + this.getChildInfo.lastName
-        return prov.forChild == name && prov.name == this.getProviderInfo.name
-      })
-    },
-    getProviderInfo(){
-      return this.$store.getters.getProviders.find(prov => {
-        return prov.name == this.providerData.name
-      })
     }
   }
 }

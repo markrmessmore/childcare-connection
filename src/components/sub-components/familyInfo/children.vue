@@ -100,13 +100,26 @@
                 label="Gender"
               ></v-select>
             </v-flex>
-            <v-flex xs12>
+            <v-flex xs4>
               <v-select
                 multiple
                 :items="careType"
                 v-model="kid.typeOfCare"
                 label="Type Of Care"
               ></v-select>
+            </v-flex>
+            <v-flex xs4 offset-xs1>
+              <v-select
+                :items="childStatus"
+                v-model="kid.kidStatus"
+                label="Child Status:"
+              ></v-select>
+            </v-flex>
+            <v-flex xs2 offset-xs1>
+              <v-text-field
+                label="Status Date:"
+                mask="##/##/####"
+              ></v-text-field>
             </v-flex>
           </v-layout>
         </v-card-text>
@@ -125,6 +138,7 @@ export default {
     return{
       careType: ["Full Day", "Before School", "After School", "Summer Camp", "None"],
       childRecordToRemove: "",
+      childStatus: ["Active", "Pending", "Terminated"],
       children: this.kidInfo,
       confirmChildDel: false,
       gender: ["Female", "Male"],
