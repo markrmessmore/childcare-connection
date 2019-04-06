@@ -186,7 +186,7 @@ export default {
       selectedCase: this.caseData,
       selectedStatus: "",
       statusColor: "",
-      statusList: ['Approved','Approved with Conditions', 'Reactivated','Pending', 'Ineligible', 'Waiting List', 'Received, Not Reviewed'],
+      statusList: ['Approved','Approved with Conditions', 'Reactivated','Pending', 'Inactive', 'Ineligible', 'Waiting List', 'Received, Not Reviewed'],
       statusModal: false
     }
   },
