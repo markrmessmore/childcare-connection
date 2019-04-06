@@ -1,7 +1,11 @@
 <template lang="html">
   <v-card>
     <v-card-text>
-      <v-card>
+      <v-card flat>
+        <v-alert color="red darken-3" :value="true" outline dense dismissible>
+          <v-icon left>save</v-icon>
+          For convenience, CTRL + Q on your keyboard will save.
+        </v-alert>
         <v-toolbar color="primary" dark dense flat>
           <v-toolbar-title>
             Case ID: {{ selectedCase.caseId == 0 ? "TBD" : selectedCase.caseId }}
