@@ -29,9 +29,6 @@
               {{getTitle[0].btnText}}
             </v-toolbar-title>
           </v-toolbar>
-          <v-alert type="info" color='secondary' :value="reportType == 'attendance'" outline>
-            This is an example, full report will be generated when downloaded.
-          </v-alert>
           <br>
           <!-- IMPORTED REPORTS BASED ON WHAT WAS SELECTED ABOVE -->
           <current v-if="reportType == 'current'" id="current" :allCases="getCases"></current>
