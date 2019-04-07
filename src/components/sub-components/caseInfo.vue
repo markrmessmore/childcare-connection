@@ -2,7 +2,7 @@
   <v-card>
     <v-card-text>
       <v-card flat>
-        <v-alert color="red darken-3" :value="true" outline dense dismissible>
+        <v-alert color="accent2" :value="true" dense dismissible outline>
           <v-icon left>save</v-icon>
           For convenience, CTRL + Q on your keyboard will save.
         </v-alert>

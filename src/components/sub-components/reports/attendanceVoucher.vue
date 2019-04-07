@@ -74,7 +74,9 @@
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 export default {
+  mixins: [sharedFunctions],
   props: {
     allCases: Array
   },
@@ -92,12 +94,6 @@ export default {
       else {
         return false
       }
-    },
-    formatDate(dateStr){
-      let month = dateStr.slice(0,2)
-      let day   = dateStr.slice(2,4)
-      let year  = dateStr.slice(4,8)
-      return `${month}/${day}/${year}`
     },
     getChildId(kids, selectedKid){
       let kidData = kids.filter(child => {

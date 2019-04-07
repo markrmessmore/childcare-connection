@@ -46,23 +46,13 @@
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 export default {
+  mixins: [sharedFunctions],
   props: {
     allCases: Array
   },
   methods: {
-    formatDate(dateStr){
-      let month = dateStr.slice(0,2)
-      let day   = dateStr.slice(2,4)
-      let year  = dateStr.slice(4,8)
-      return `${month}/${day}/${year}`
-    },
-    formatPhone(str){
-      let area = str.slice(0,3)
-      let nxx  = str.slice(3,6)
-      let ext  = str.slice(6)
-      return `(${area}) ${nxx}-${ext}`
-    },
     getColor(i){
       if (i%2 == 0){
         return

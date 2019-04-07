@@ -161,6 +161,7 @@
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 const   mercerLogo  = require('@/assets/mercerLogo.json')
 import  attendance  from '@/components/sub-components/letters/attendance.vue'
 import  blankPapa   from '@/components/sub-components/letters/blankPapa.vue'
@@ -171,6 +172,7 @@ import  termination from '@/components/sub-components/letters/termination.vue'
 import  html2pdf    from 'html2pdf.js'
 import  moment      from 'moment'
 export  default {
+  mixins: [sharedFunctions],
   props: {
     caseInfo: Object
   },
@@ -203,12 +205,6 @@ export  default {
         toPrint = document.getElementById(this.printType)
       }
       html2pdf().set(opt).from(toPrint).save();
-    },
-    formatDate(dateStr){
-      let month = dateStr.slice(0,2)
-      let day   = dateStr.slice(2,4)
-      let year  = dateStr.slice(4,8)
-      return `${month}/${day}/${year}`
     },
     openPrintDialog(id){
       this.printType    = id
