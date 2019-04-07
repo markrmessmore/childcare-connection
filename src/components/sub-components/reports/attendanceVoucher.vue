@@ -23,52 +23,80 @@
           <maskedInput class="formbox text-xs-center" mask="11 / 11 / 1111" v-model="issuedDate" />
         </v-flex>
       </v-layout>
-      <v-layout row wrap class="num-box mt-1 pa-1" align-center>
-        <v-flex xs4 class="body-1">
-          <label class="body-2">Parent Name: </label>
-          <u>{{record.familyInfo.applicant.firstName}} {{record.familyInfo.applicant.lastName}}</u>
-        </v-flex>
-        <v-flex xs4 class="body-1">
-          <label class="body-2">Child Name: </label>
-          <u>{{record.provider.forChild}}</u>
-        </v-flex>
-        <v-flex xs2 class="body-1">
-          <label class="body-2">Case Id: </label>
-          <u>{{record.caseId}}</u>
-        </v-flex>
-        <v-flex xs2 class="body-1">
-          <label class="body-2">Child Id: </label>
-          <u>{{getChildId(record.familyInfo.children, record.provider.forChild)}}</u>
-        </v-flex>
-        <v-flex xs12>
-          <v-layout row align-center justify-center class="body-2">
-            Program Component:
-            <v-flex xs1>
-              <v-checkbox class="alterbox" :input-value="checkPos('Full Day', record.provider.typeOfCare)"></v-checkbox>
-            </v-flex>
-            <v-flex xs1>
-              <label class="body-1">Full-Day:</label>
-            </v-flex>
-            <label >Before School:</label>
-            <v-checkbox class="pa-0" :input-value="checkPos('Before School', record.provider.typeOfCare)"></v-checkbox>
-            <label class="body-1">After School:</label>
-            <v-checkbox class="pa-0" :input-value="checkPos('After School', record.provider.typeOfCare)"></v-checkbox>
-            <label class="body-1">Summer Camp:</label>
-            <v-checkbox class="pa-0" :input-value="checkPos('Summer Camp', record.provider.typeOfCare)"></v-checkbox>
-          </v-layout>
-        </v-flex>
-        <v-flex xs5>
-          <label class="body-2">Period of Service: </label>
-          <v-layout row class="body-1">
-            <v-flex xs5>
-              From: <u>{{formatDate(record.provider.papaStart)}}</u>
-            </v-flex>
-            <v-flex xs6>
-              To: <u>{{formatDate(record.provider.papaEnd)}}</u>
-            </v-flex>
-          </v-layout>
-        </v-flex>
-      </v-layout>
+      <div class="num-box mt-1">
+        <v-layout row wrap align-center>
+          <v-flex xs4 class="body-1">
+            <label class="body-2">Parent Name: </label>
+            <u>{{record.familyInfo.applicant.firstName}} {{record.familyInfo.applicant.lastName}}</u>
+          </v-flex>
+          <v-flex xs4 class="body-1">
+            <label class="body-2">Child Name: </label>
+            <u>{{record.provider.forChild}}</u>
+          </v-flex>
+          <v-flex xs2 class="body-1">
+            <label class="body-2">Case Id: </label>
+            <u>{{record.caseId}}</u>
+          </v-flex>
+          <v-flex xs2 class="body-1">
+            <label class="body-2">Child Id: </label>
+            <u>{{getChildId(record.familyInfo.children, record.provider.forChild)}}</u>
+          </v-flex>
+        </v-layout>
+        <v-layout row align-center class="body-1">
+          <v-flex xs12>
+            <v-layout row wrap align-center>
+              <label class="pr-2 body-2">Program Component:</label>
+              Full-Day:
+              <v-checkbox :input-value="checkPos('Full Day', record.provider.typeOfCare)"></v-checkbox>
+              Before School:
+              <v-checkbox :input-value="checkPos('Before School', record.provider.typeOfCare)"></v-checkbox>
+              After School:
+              <v-checkbox :input-value="checkPos('After School', record.provider.typeOfCare)"></v-checkbox>
+              Summer Camp:
+              <v-checkbox :input-value="checkPos('Summer Camp', record.provider.typeOfCare)"></v-checkbox>
+            </v-layout>
+          </v-flex>
+        </v-layout>
+        <v-layout row>
+          <v-flex xs2>
+            <v-layout column class="body-2">
+              Provider Name:<br>
+              Provider Address:<br>
+              <br v-if="getProviderData(record.provider.name)[0].address2 ? getProviderData(record.provider.name)[0].address2 : ''">
+            </v-layout>
+          </v-flex>
+          <v-flex xs3>
+            <v-layout column class="body-1">
+              {{getProviderData(record.provider.name)[0].name}}<br>
+              {{getProviderData(record.provider.name)[0].address}}<br>
+              {{getProviderData(record.provider.name)[0].address2 ? getProviderData(record.provider.name)[0].address2 : ""}}
+              <br v-if="getProviderData(record.provider.name)[0].address2 ? getProviderData(record.provider.name)[0].address2 : ''">
+              {{getProviderData(record.provider.name)[0].city}}, NJ {{getProviderData(record.provider.name)[0].zip}}<br>
+            </v-layout>
+          </v-flex>
+          <v-flex xs2 class="body-2">
+            <v-layout column>
+              Provider Phone:<br>
+              Provider Number:
+            </v-layout>
+          </v-flex>
+          <v-flex xs2 class="body-1">
+            <v-layout column>
+              {{formatPhone(getProviderData(record.provider.name)[0].phone)}}<br>
+              {{getProviderData(record.provider.name)[0].licenseNum}}<br>
+            </v-layout>
+          </v-flex>
+          <v-flex xs3 class="grey">
+            <v-layout column class="body-2">
+              Period of Service:
+              <br>
+              From: <span style="display: inline">{{formatDate(record.provider.papaStart)}}</span>
+              <br>
+              To: {{formatDate(record.provider.papaEnd)}}
+            </v-layout>
+          </v-flex>
+        </v-layout>
+      </div>
     </v-card-text>
   </v-card>
 </template>
@@ -101,6 +129,12 @@ export default {
         return name == selectedKid
       })
       return kidData[0].childId
+    },
+    getProviderData(provName){
+      let allProv = this.$store.getters.getProviders
+      return allProv.filter(prov => {
+        return prov.name == provName
+      })
     }
   },
   computed: {
@@ -130,9 +164,6 @@ export default {
 </script>
 
 <style lang="css" scoped>
-.alterbox {
-  padding: 0 0 -10px 0;
-}
 .formbox {
   width: 100%;
   border-style: solid;
