@@ -2,7 +2,7 @@
   <v-card flat>
     <v-card-text>
       <div class="text-xs-right">
-        <v-btn color="primary" @click="addChild()" round outline>
+        <v-btn color="primary" @click="addChild()" round outline small>
           <v-icon>add</v-icon>
           Add Child
         </v-btn>

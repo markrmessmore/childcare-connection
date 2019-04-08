@@ -60,9 +60,9 @@
             <v-icon left>close</v-icon>
             Termination Letter
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round small outline>
-            <v-icon left>date_range</v-icon>
-            Attendance Voucher
+          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round disabled small outline>
+            <v-icon left>description</v-icon>
+            Full Case Report
           </v-btn>
         </v-layout>
       </v-card-text>

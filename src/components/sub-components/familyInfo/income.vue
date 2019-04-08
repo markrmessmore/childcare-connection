@@ -10,7 +10,7 @@
           <v-card flat>
             <v-card-title>
               <v-spacer></v-spacer>
-              <v-btn color="primary" outline @click="addIncome(true)" round outline>
+              <v-btn color="primary" outline @click="addIncome(true)" round outline small>
                 <v-icon left>add_circle</v-icon>
                 Add Applicant Income
               </v-btn>
@@ -63,7 +63,7 @@
           <v-card flat>
             <v-card-title primary-title>
               <v-spacer></v-spacer>
-              <v-btn color="primary" outline @click="addIncome(false)" round outline>
+              <v-btn color="primary" outline @click="addIncome(false)" round outline small>
                 <v-icon left>add_circle</v-icon>
                 Add Applicant Income
               </v-btn>

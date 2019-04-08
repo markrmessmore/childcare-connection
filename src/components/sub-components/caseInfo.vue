@@ -116,18 +116,23 @@
             slider-color="secondary"
           >
             <v-tab class="subheading">
+              <v-icon small left>fas fa-users</v-icon>
               Family Information
             </v-tab>
             <v-tab class="subheading">
+              <v-icon small left>fas fa-info-circle</v-icon>
               Provider Information
             </v-tab>
             <v-tab class="subheading">
+              <v-icon small left>fas fa-calendar-alt</v-icon>
               Attendance Log
             </v-tab>
             <v-tab class="subheading">
+              <v-icon small left>far fa-file-alt</v-icon>
               Letters/Reports
             </v-tab>
             <v-tab class="subheading">
+              <v-icon small left>far fa-sticky-note</v-icon>
               Notes
             </v-tab>
             <!-- BEGIN TAB COMPONENTS -->
@@ -152,7 +157,7 @@
     </v-card-text>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
-        <v-btn color="primary" @click="saveCase()" round outline>
+        <v-btn color="primary" @click="saveCase()" round outline small>
           <v-icon left>save</v-icon>
           Save Case Information
         </v-btn>

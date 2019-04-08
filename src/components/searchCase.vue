@@ -39,7 +39,7 @@
               </v-flex>
             </v-layout>
             <v-layout row justify-end>
-              <v-btn color="primary" @click="searchCases()" round outline>
+              <v-btn color="primary" @click="searchCases()" round outline small>
                 <v-icon left>search</v-icon>
                 Search
               </v-btn>
