@@ -9,7 +9,7 @@
     <v-card-text v-if="!createNewCase">
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="createNewCase = true" large outline round>
+          <v-btn color="primary" @click="createNewCase = true" small outline round>
             <v-icon left>add</v-icon>
             Click to Create a New Case
           </v-btn>

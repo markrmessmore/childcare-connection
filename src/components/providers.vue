@@ -12,7 +12,7 @@
     <v-card-text v-else>
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="addProvider()" outline round>
+          <v-btn color="primary" @click="addProvider()" outline round small>
             <v-icon left>add_circle</v-icon>
             Add Provider
           </v-btn>
