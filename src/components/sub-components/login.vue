@@ -54,16 +54,6 @@ export default {
       showPass: false
     }
   },
-  mounted(){
-    document.body.addEventListener('keyup', e => {
-      if (e.keyCode == 13) {
-        this.signIn()
-      }
-      if (e.keyCode == 27) {
-        this.deactivateSignIn()
-      }
-    })
-  },
   methods: {
     signIn(){
       this.$store.dispatch('signIn', this.login)

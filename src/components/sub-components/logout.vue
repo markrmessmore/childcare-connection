@@ -29,16 +29,6 @@ export default {
       showPass: false
     }
   },
-  mounted(){
-    document.body.addEventListener('keyup', e => {
-      if (e.keyCode == 13) {
-        this.signOut()
-      }
-      if (e.keyCode == 27) {
-        this.deactivateSignOut()
-      }
-    })
-  },
   methods: {
     signOut(){
       this.$store.dispatch('signOut')

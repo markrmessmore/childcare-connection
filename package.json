@@ -10,7 +10,15 @@
   },
   "presite": {
     "routes": [
-      "/", "/about", "/accountDeactivated", "/admin", "/dashboard", "/new", "/providers", "/reports", "/search"
+      "/",
+      "/about",
+      "/accountDeactivated",
+      "/admin",
+      "/dashboard",
+      "/new",
+      "/providers",
+      "/reports",
+      "/search"
     ]
   },
   "dependencies": {
