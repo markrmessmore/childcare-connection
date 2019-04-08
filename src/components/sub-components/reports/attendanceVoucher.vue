@@ -86,17 +86,122 @@
               {{getProviderData(record.provider.name)[0].licenseNum}}<br>
             </v-layout>
           </v-flex>
-          <v-flex xs3 class="grey">
-            <v-layout column class="body-2">
-              Period of Service:
-              <br>
-              From: <span style="display: inline">{{formatDate(record.provider.papaStart)}}</span>
-              <br>
-              To: {{formatDate(record.provider.papaEnd)}}
+          <v-flex xs3>
+            <v-layout row wrap class="body-2">
+              <v-flex xs12>
+                Period of Service:
+              </v-flex>
+              <v-flex xs5 offset-xs1>
+                From:
+              </v-flex>
+              <v-flex xs6 class="body-1">
+                {{formatDate(record.provider.papaStart)}}
+              </v-flex>
+              <v-flex xs5 offset-xs1>
+                To:
+              </v-flex>
+              <v-flex xs6 class="body-1">
+                {{formatDate(record.provider.papaEnd)}}
+              </v-flex>
             </v-layout>
           </v-flex>
         </v-layout>
       </div>
+      <br>
+      <v-layout row wrap>
+        <v-flex xs10 offset-xs1>
+          <v-layout row wrap class="subheading grey lighten-3">
+            <v-flex xs12 class="text-xs-center">
+              Attendance Record: {{swapDate(startDate)}} -- {{swapDate(endDate)}}
+            </v-flex>
+          </v-layout>
+          <v-calendar
+            type="custom-weekly"
+            short-months
+            :start="startDate"
+            :end="endDate"
+          >
+          </v-calendar>
+        </v-flex>
+      </v-layout>
+      <br>
+      <v-layout row wrap class="pt-1 mt-1">
+        <v-flex xs10 offset-xs1 class="text-xs-center num-box">
+          Mark attendance in the appropriate spaces with the following codes:<br>
+          <span class="pa-2">P = Present</span>
+          <span class="pa-2">A = Absent</span>
+          <span class="pa-2">H = Holiday</span>
+          <span class="pa-2">S = Sick</span>
+          <span class="pa-2">C = Center Closed</span>
+        </v-flex>
+      </v-layout>
+      <br>
+      <v-layout row wrap>
+        I certify that the information is correct in all particulars; that the services described above have been provided as indicated. I further certify that services are provided to all recipients without regard to race, color, sex, marital status, handicap or nationality.
+      </v-layout>
+      <br>
+      <v-layout row wrap>
+        <v-flex xs7>
+          <label class="body-2">Provider Signature:</label>
+          <input class="formbox text-xs-right"readonly>
+        </v-flex>
+        <v-flex xs4 offset-xs1>
+          <label class="body-2">Date:</label>
+          <input class="formbox text-xs-right"readonly>
+        </v-flex>
+      </v-layout>
+      <br>
+      <v-layout row wrap>
+        I certify that the attendance of my child is reported accurately for this period of service:
+      </v-layout>
+      <br>
+      <v-layout row wrap>
+        <v-flex xs7>
+          <label class="body-2">Parent Signature:</label>
+          <input class="formbox text-xs-right"readonly>
+        </v-flex>
+        <v-flex xs4 offset-xs1>
+          <label class="body-2">Date:</label>
+          <input class="formbox text-xs-right"readonly>
+        </v-flex>
+      </v-layout>
+      <br>
+      <div class="grey lighten-3">
+        <v-layout row wrap>
+          <v-flex xs12 class="body-2 text-xs-center">
+            *****************FOR OFFICIAL USE ONLY*****************
+          </v-flex>
+        </v-layout>
+        <v-divider></v-divider>
+        <v-layout row wrap>
+          <v-flex xs7>
+            <label class="body-2">Authorization:</label>
+            <input class="formbox text-xs-right"readonly>
+          </v-flex>
+          <v-flex xs4 offset-xs1>
+            <label class="body-2">Date:</label>
+            <input class="formbox text-xs-right"readonly>
+          </v-flex>
+        </v-layout>
+      </div>
+      <v-layout row wrap class="pt-1">
+        <v-flex xs3>
+          <v-img :src="require('@/assets/ccc-logo-black.png')" height="75px" width="auto" contain></v-img>
+        </v-flex>
+        <v-flex xs3 offset-xs1>
+          RETURN TO:<br>
+          Child Care Connection <br>
+          1001 Spruce Street, Suite 201 <br>
+          Trenton, NJ 08638 <br>
+          (609) 989-9010
+        </v-flex>
+        <v-flex xs4 offset-xs1>
+          -Please complete document using ink. <br>
+          -Please return at the end of period of service. <br>
+          -Please FAX to 609-989-8060 or mail in
+        </v-flex>
+      </v-layout>
+      <br class="html2pdf__page-break">
     </v-card-text>
   </v-card>
 </template>
@@ -106,7 +211,9 @@ import { sharedFunctions } from '@/assets/sharedFunctions.js'
 export default {
   mixins: [sharedFunctions],
   props: {
-    allCases: Array
+    allCases: Array,
+    startDate: String,
+    endDate: String
   },
   data(){
     return{
@@ -135,6 +242,10 @@ export default {
       return allProv.filter(prov => {
         return prov.name == provName
       })
+    },
+    swapDate(date){
+      date = date.split('-')
+      return `${date[1]}/${date[2]}/${date[0]}`
     }
   },
   computed: {
