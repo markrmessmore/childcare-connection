@@ -1,5 +1,22 @@
+import moment from 'moment'
 export const sharedFunctions = {
   methods: {
+    getAge(dob){
+      let now   = moment()
+      let year  = dob.substr(4,4)
+      let month = dob.substr(0,2)
+      let day   = dob.substr(2,2)
+      let bday  = moment(`${month}-${day}-${year}`, "MM-DD-YYYY")
+      let difference = now.diff(bday, 'months')
+      let ageYears = (difference/12).toString().split(".")[0]
+      let ageMonths = (difference % 12)
+      if (dob == ""){
+        return ""
+      }
+      else {
+        return `${ageYears} years, ${ageMonths} months`
+      }
+    },
     formatDate(dateStr){
       let month = dateStr.slice(0,2)
       let day   = dateStr.slice(2,4)

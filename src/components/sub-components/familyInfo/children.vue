@@ -129,8 +129,9 @@
 </template>
 
 <script>
-import moment from 'moment'
+import {sharedFunctions} from '@/assets/sharedFunctions.js'
 export default {
+  mixins: [sharedFunctions],
   props: {
     kidInfo: Array
   },
@@ -168,22 +169,6 @@ export default {
     confirmDel(index){
       this.childRecordToRemove = this.getChildId(index + 1)
       this.confirmChildDel     = true
-    },
-    getAge(dob){
-      let now   = moment()
-      let year  = dob.substr(4,4)
-      let month = dob.substr(0,2)
-      let day   = dob.substr(2,2)
-      let bday  = moment(`${month}-${day}-${year}`, "MM-DD-YYYY")
-      let difference = now.diff(bday, 'months')
-      let ageYears = (difference/12).toString().split(".")[0]
-      let ageMonths = (difference % 12)
-      if (dob == ""){
-        return ""
-      }
-      else {
-        return `${ageYears} years, ${ageMonths} months`
-      }
     },
     getChildId(id){
       return `0${id}`

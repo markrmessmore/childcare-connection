@@ -60,7 +60,7 @@
             <v-icon left>close</v-icon>
             Termination Letter
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round disabled small outline>
+          <v-btn outline color="primary" @click="openPrintDialog('case-report')" round small outline>
             <v-icon left>description</v-icon>
             Full Case Report
           </v-btn>
@@ -145,6 +145,12 @@
           :caseData="caseInfo"
           id="termination"
         ></termination>
+        <caseReport
+          v-if="printType == 'case-report'"
+          :caseInfo="caseInfo"
+          id="case-report"
+        >
+        </caseReport>
         <v-toolbar color="info" dense>
           <v-btn outline @click="downloadForm()" small round>
             <v-icon left>cloud_download</v-icon>
@@ -165,6 +171,7 @@ import { sharedFunctions } from '@/assets/sharedFunctions.js'
 const   mercerLogo  = require('@/assets/mercerLogo.json')
 import  attendance  from '@/components/sub-components/letters/attendance.vue'
 import  blankPapa   from '@/components/sub-components/letters/blankPapa.vue'
+import  caseReport  from '@/components/sub-components/letters/caseReport.vue'
 import  eligibility from '@/components/sub-components/letters/eligibility.vue'
 import  papaLetter  from '@/components/sub-components/letters/papaLetter.vue'
 import  papa        from '@/components/sub-components/letters/papa.vue'
@@ -177,7 +184,7 @@ export  default {
     caseInfo: Object
   },
   components: {
-    attendance, blankPapa, eligibility, papa, papaLetter, termination
+    attendance, blankPapa, caseReport, eligibility, papa, papaLetter, termination
   },
   data(){
     return{
