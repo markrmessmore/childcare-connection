@@ -37,5 +37,13 @@ export const sharedFunctions = {
       let last  = str.slice(5)
       return `${first}-${sec}-${last}`
     },
+    switchDate(type){
+      if (type == 'start'){
+        return `${this.startDate.year}-${this.startDate.month.slice(0,2)}-${this.startDate.day}`
+      }
+      if (type == 'end') {
+        return `${this.endDate.year}-${this.endDate.month.slice(0,2)}-${this.endDate.day}`
+      }
+    }
   }
 }

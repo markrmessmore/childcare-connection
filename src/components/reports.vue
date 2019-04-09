@@ -31,71 +31,18 @@
           </v-toolbar>
           <br>
           <!-- IMPORTED REPORTS BASED ON WHAT WAS SELECTED ABOVE -->
-          <v-layout row wrap v-if="reportType == 'attendance'">
-            <v-flex xs12>
-              <v-layout row wrap>
-                <v-flex xs5>
-                  <v-layout row wrap class="secondary white--text pl-1">
-                    Begin Date:
-                  </v-layout>
-                  <v-layout row wrap>
-                    <v-flex xs3>
-                      <v-autocomplete
-                        :items="months"
-                        v-model="startDate.month"
-                        label="Month"
-                      ></v-autocomplete>
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      <v-autocomplete
-                        :items="getDays"
-                        v-model="startDate.day"
-                        label="Day"
-                      ></v-autocomplete>
-                    </v-flex>
-                    <v-flex xs3 offset-xs1>
-                      <v-autocomplete
-                        :items="years"
-                        v-model="startDate.year"
-                        label="Year"
-                      ></v-autocomplete>
-                    </v-flex>
-                  </v-layout>
-                </v-flex>
-                <v-flex xs6 offset-xs1>
-                  <v-layout row wrap class="secondary white--text pl-1">
-                    End Date:
-                  </v-layout>
-                  <v-layout row wrap>
-                    <v-flex xs3>
-                      <v-autocomplete
-                        :items="months"
-                        v-model="endDate.month"
-                        label="Month"
-                      ></v-autocomplete>
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      <v-autocomplete
-                        :items="getDays"
-                        v-model="endDate.day"
-                        label="Day"
-                      ></v-autocomplete>
-                    </v-flex>
-                    <v-flex xs3 offset-xs1>
-                      <v-autocomplete
-                        :items="years"
-                        v-model="endDate.year"
-                        label="Year"
-                      ></v-autocomplete>
-                    </v-flex>
-                  </v-layout>
-                </v-flex>
-              </v-layout>
-            </v-flex>
-          </v-layout>
+          <dateSelect v-if="reportType == 'attendance'" @reportStart="setDateStart" @reportEnd="setDateEnd"></dateSelect>
           <v-divider></v-divider>
           <current v-if="reportType == 'current'" id="current" :allCases="getCases"></current>
-          <attendance v-if="reportType == 'attendance' && switchDate('start').length == 10 && switchDate('end').length == 10" :endDate="switchDate('end')" :startDate="switchDate('start')" id="attendance" :allCases="getCases"></attendance>
+          <attendance
+            v-if="reportType == 'attendance' &&
+            switchDate('start').length == 10 &&
+            switchDate('end').length == 10"
+            :endDate="switchDate('end')"
+            :startDate="switchDate('start')"
+            id="attendance"
+            :allCases="getCases">
+          </attendance>
         </v-card-text>
       </v-card>
     </v-card-text>
@@ -103,14 +50,17 @@
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 import attendance from '@/components/sub-components/reports/attendanceVoucher.vue'
 import current    from '@/components/sub-components/reports/current.vue'
+import dateSelect from '@/components/sub-components/dateSelect.vue'
 import download   from '@/components/sub-components/reports/downloadBar.vue'
 import html2pdf   from 'html2pdf.js'
 import moment     from 'moment'
 export default {
+  mixins: [sharedFunctions],
   components: {
-    attendance, current, download
+    attendance, current, dateSelect, download
   },
   data(){
     return{
@@ -165,30 +115,18 @@ export default {
       this.reportType     = type
       this.reportSelected = true
     },
-    switchDate(type){
-      if (type == 'start'){
-        return `${this.startDate.year}-${this.startDate.month.slice(0,2)}-${this.startDate.day}`
-      }
-      if (type == 'end') {
-        return `${this.endDate.year}-${this.endDate.month.slice(0,2)}-${this.endDate.day}`
-      }
+    setDateEnd(dateObj){
+      this.endDate = dateObj
+      this.switchDate('end')
+    },
+    setDateStart(dateObj){
+      this.startDate = dateObj
+      this.switchDate('start')
     }
   },
   computed: {
     getCases(){
       return this.$store.getters.getCases
-    },
-    getDays(){
-      let month = this.startDate.month
-      if (month.startsWith('02')) {
-        return ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29']
-      }
-      else if (month.startsWith('04') || month.startsWith('06') || month.startsWith('09') || month.startsWith('11')){
-        return ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30']
-      }
-      else {
-        return ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21', '22', '23', '24', '25', '26', '27', '28', '29', '30', '31']
-      }
     },
     getFileName(){
       return `${this.getTitle[0].btnText}_${moment().format('MM/DD/YYYY')}`

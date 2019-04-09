@@ -56,13 +56,17 @@
         </v-layout>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('termination')" round small outline>
-            <v-icon left>close</v-icon>
-            Termination Letter
+          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round small outline>
+            <v-icon left>calendar_today</v-icon>
+            Attendance Voucher
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('case-report')" round small outline>
             <v-icon left>description</v-icon>
             Full Case Report
+          </v-btn>
+          <v-btn outline color="primary" @click="openPrintDialog('termination')" round small outline>
+            <v-icon left>close</v-icon>
+            Termination Letter
           </v-btn>
         </v-layout>
       </v-card-text>
@@ -120,10 +124,18 @@
           :printType="printType"
           :caseData="caseInfo"
         ></eligibility>
+        <v-card-text v-if="printType == 'attendance'">
+          <dateSelect @reportStart="setDateStart" @reportEnd="setDateEnd"></dateSelect>
+        </v-card-text>
         <attendance
-          v-if="printType == 'attendance'"
+          v-if="printType == 'attendance' &&
+          switchDate('start').length == 10 &&
+          switchDate('end').length == 10"
+          :endDate="switchDate('end')"
+          :startDate="switchDate('start')"
           id="attendance"
-        ></attendance>
+          :allCases="getCases">
+        </attendance>
         <blankPapa
           v-if="printType == 'papa-form'"
           :caseData="caseInfo"
@@ -169,9 +181,10 @@
 <script>
 import { sharedFunctions } from '@/assets/sharedFunctions.js'
 const   mercerLogo  = require('@/assets/mercerLogo.json')
-import  attendance  from '@/components/sub-components/letters/attendance.vue'
+import  attendance  from '@/components/sub-components/reports/attendanceVoucher.vue'
 import  blankPapa   from '@/components/sub-components/letters/blankPapa.vue'
 import  caseReport  from '@/components/sub-components/letters/caseReport.vue'
+import  dateSelect  from '@/components/sub-components/dateSelect.vue'
 import  eligibility from '@/components/sub-components/letters/eligibility.vue'
 import  papaLetter  from '@/components/sub-components/letters/papaLetter.vue'
 import  papa        from '@/components/sub-components/letters/papa.vue'
@@ -184,14 +197,24 @@ export  default {
     caseInfo: Object
   },
   components: {
-    attendance, blankPapa, caseReport, eligibility, papa, papaLetter, termination
+    attendance, blankPapa, caseReport, dateSelect, eligibility, papa, papaLetter, termination
   },
   data(){
     return{
+      endDate: {
+        month: "",
+        day: "",
+        year: ""
+      },
       printDialog: false,
       printType: "",
       selectedChild: "",
-      selectedProvider: ""
+      selectedProvider: "",
+      startDate: {
+        month: "",
+        day: "",
+        year: ""
+      },
     }
   },
   methods: {
@@ -220,9 +243,20 @@ export  default {
     reset(){
       this.selectedChild    = ""
       this.selectedProvider =""
+    },
+    setDateEnd(dateObj){
+      this.endDate = dateObj
+      this.switchDate('end')
+    },
+    setDateStart(dateObj){
+      this.startDate = dateObj
+      this.switchDate('start')
     }
   },
   computed: {
+    getCases(){
+      return [this.caseInfo]
+    },
     getFileName(){
       let appData = this.caseInfo.familyInfo.applicant
       return `${appData.firstName}_${appData.lastName}_${this.printType}_${moment().format('MM/DD/YYYY')}`
