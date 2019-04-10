@@ -255,7 +255,9 @@ export  default {
   },
   computed: {
     getCases(){
-      return [this.caseInfo]
+      let sel = []
+      sel.push(this.caseInfo)
+      return sel
     },
     getFileName(){
       let appData = this.caseInfo.familyInfo.applicant
