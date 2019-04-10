@@ -125,7 +125,13 @@
           :caseData="caseInfo"
         ></eligibility>
         <v-card-text v-if="printType == 'attendance'">
-          <dateSelect @reportStart="setDateStart" @reportEnd="setDateEnd"></dateSelect>
+          <dateSelect @reportStart="setDateStart" @reportEnd="setDateEnd">
+            <template v-slot:alert>
+              <i>
+                NOTE: The dates set here are <b>ONLY</b> for generating the report's calendar and <b>DO NOT</b> filter based on elibitility dates.
+              </i>
+            </template>
+          </dateSelect>
         </v-card-text>
         <attendance
           v-if="printType == 'attendance' &&

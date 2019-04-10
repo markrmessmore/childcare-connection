@@ -34,7 +34,9 @@
           <dateSelect
             v-if="reportType == 'attendance' || reportType == 'precheck'"
             @reportStart="setDateStart"
-            @reportEnd="setDateEnd">
+            @reportEnd="setDateEnd"
+            :resetCode="resetCode"
+            >
             <template v-slot:alert>
               <i v-if="reportType == 'attendance'">
                 NOTE: The dates set here are <b>ONLY</b> for generating the report's calendar and <b>DO NOT</b> filter based on elibitility dates.
@@ -58,6 +60,7 @@
             :endDate="switchDate('end')"
             :startDate="switchDate('start')"
             id="precheck"
+            :allCases="getCases"
           ></precheck>
         </v-card-text>
       </v-card>
@@ -107,11 +110,12 @@ export default {
           icon      : "fas fa-money-check",
           shortCode : "precheck",
           tooltip   : "Generates a report of accounts to be paid based on attendance.",
-          disabled  : true
+          disabled  : false
         }
       ],
       reportSelected: false,
       reportType    : "",
+      resetCode: "",
       startDate: {
         month: "",
         day: "",
@@ -139,12 +143,7 @@ export default {
       html2pdf().set(opt).from(toPrint).save();
     },
     generateReport(type){
-      let blankObj = {
-        day     : "",
-        month   : "",
-        year    : ""
-      }
-      this.setDateStart(blankObj)
+      this.resetCode      = Math.random().toString()
       this.reportType     = type
       this.reportSelected = true
     },

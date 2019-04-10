@@ -74,6 +74,24 @@
 
 <script>
 export default {
+  props: {
+    resetCode: String
+  },
+  watch: {
+    resetCode: function(){
+      this.endDate = {
+        month: "",
+        day: "",
+        year: ""
+      },
+      this.startDate = {
+        month: "",
+        day: "",
+        year: ""
+      }
+      this.setDates()
+    }
+  },
   data(){
     return{
       endDate: {
@@ -116,7 +134,7 @@ export default {
       else {
         return false
       }
-    }
+    },
   }
 }
 </script>
