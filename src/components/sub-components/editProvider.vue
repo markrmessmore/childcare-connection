@@ -11,18 +11,24 @@
     </v-toolbar>
     <v-card-text>
       <v-layout row wrap>
-        <v-flex xs7>
+        <v-flex xs5>
           <v-text-field
             name="name"
             label="Name"
             v-model="facility.name"
           ></v-text-field>
         </v-flex>
-        <v-flex xs4 offset-xs1>
+        <v-flex xs3 offset-xs1>
           <v-text-field
             name="federalId"
             label="Federal ID"
             v-model="facility.federalId"
+          ></v-text-field>
+        </v-flex>
+        <v-flex xs2 offset-xs1>
+          <v-text-field
+            label="CCC Account #"
+            v-model="facility.cccId"
           ></v-text-field>
         </v-flex>
         <v-flex xs12>

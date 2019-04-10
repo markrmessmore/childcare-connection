@@ -2,9 +2,7 @@
   <v-layout row wrap>
     <v-flex xs12>
       <v-alert color="accent2" :value="true" outline class="text-xs-center">
-        <i>
-          NOTE: The dates set here are <b>ONLY</b> for generating the report's calendar and <b>DO NOT</b> filter based on elibitility dates.
-        </i>
+        <slot name="alert"></slot>
       </v-alert>
       <v-layout row wrap>
         <v-flex xs5>
