@@ -1,5 +1,8 @@
 <template lang="html">
   <v-card flat>
+    <v-alert color="accent2" :value="true" outline class="text-xs-center">
+      <slot name="alert"></slot>
+    </v-alert>
     <!-- HEADINGS -->
     <v-layout class="text-xs-left secondary white--text">
       <v-flex xs1 class="pl-1">

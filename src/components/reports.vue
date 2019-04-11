@@ -46,8 +46,6 @@
               </i>
             </template>
           </dateSelect>
-          <v-divider></v-divider>
-          <current v-if="reportType == 'current'" id="current" :allCases="getCases"></current>
           <attendance
             v-if="reportType == 'attendance' && switchDate('start').length == 10 && switchDate('end').length == 10"
             :endDate="switchDate('end')"
@@ -55,6 +53,14 @@
             id="attendance"
             :allCases="getCases">
           </attendance>
+          <countyReport v-if="reportType == 'county'" id="county" ></countyReport>
+          <current v-if="reportType == 'current'" id="current" :allCases="getCases">
+            <template v-slot:alert>
+              <i>
+                A quick run-down of all cases currently in the program (i.e. not inactive).
+              </i>
+            </template>
+          </current>
           <precheck
             v-if="reportType == 'precheck' && switchDate('start').length == 10 && switchDate('end').length == 10"
             :endDate="switchDate('end')"
@@ -69,18 +75,19 @@
 </template>
 
 <script>
-import { sharedFunctions } from '@/assets/sharedFunctions.js'
-import attendance from '@/components/sub-components/reports/attendanceVoucher.vue'
-import current    from '@/components/sub-components/reports/current.vue'
-import dateSelect from '@/components/sub-components/dateSelect.vue'
-import download   from '@/components/sub-components/reports/downloadBar.vue'
-import html2pdf   from 'html2pdf.js'
-import moment     from 'moment'
-import precheck   from '@/components/sub-components/reports/precheck.vue'
+import { sharedFunctions }  from '@/assets/sharedFunctions.js'
+import attendance           from '@/components/sub-components/reports/attendanceVoucher.vue'
+import countyReport         from '@/components/sub-components/reports/countyReport.vue'
+import current              from '@/components/sub-components/reports/current.vue'
+import dateSelect           from '@/components/sub-components/dateSelect.vue'
+import download             from '@/components/sub-components/reports/downloadBar.vue'
+import html2pdf             from 'html2pdf.js'
+import moment               from 'moment'
+import precheck             from '@/components/sub-components/reports/precheck.vue'
 export default {
   mixins: [sharedFunctions],
   components: {
-    attendance, current, dateSelect, download, precheck
+    attendance, countyReport, current, dateSelect, download, precheck
   },
   data(){
     return{
@@ -103,6 +110,13 @@ export default {
           icon      : "fas fa-list",
           shortCode : "current",
           tooltip   : "A list of all cases NOT marked 'inactive' or 'ineligible'.",
+          disabled  : false
+        },
+        {
+          btnText   : "Mercer County Report",
+          icon      : "far fa-calendar-alt",
+          shortCode : "county",
+          tooltip   : "A report submitted to Mercer County delineating totals for the program..",
           disabled  : false
         },
         {
