@@ -1,31 +1,72 @@
 <template lang="html">
   <v-card flat>
-    <v-card-text>
+    <!-- REPORT HEADER -->
       <v-layout row wrap align-center justify-center>
-        <v-flex xs3>
+        <v-flex xs2>
           <v-img :src="require('@/assets/ccc-logo-black.png')" height="100px" width="auto" contain></v-img>
         </v-flex>
-        <v-flex xs9>
-          <v-layout row wrap class="subheading">
-            <v-flex xs12 class="text-xs-center">
+        <v-flex xs8>
+          <v-layout row wrap>
+            <v-flex xs12 class="text-xs-center title">
               Mercer County Child Care Voucher Program
             </v-flex>
-            <v-flex xs2>
+            <v-flex xs12 class="body-1 text-xs-center grey lighten-3">
+              <b>Report Date:</b> {{reportDate()}}
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap align-center class="body-1">
+            <v-flex xs3>
               Report Prepared By:
             </v-flex>
             <v-flex xs3>
-              <input type="text" class="formbox">
+              <input type="text" class="formbox pl-1">
             </v-flex>
-            <v-flex xs2 offset-xs1 class="text-xs-right">
+            <v-flex xs2 class="text-xs-right">
               Title:
             </v-flex>
+            <v-flex xs4>
+              <input type="text" class="formbox pl-1">
+            </v-flex>
+          </v-layout>
+          <v-layout row wrap>
             <v-flex xs3>
-              <input type="text" class="formbox">
+              Period Covered:
+            </v-flex>
+            <v-flex xs3>
+              <input type="text" class="formbox pl-1" value="">
+            </v-flex>
+            <v-flex xs2 class="text-xs-right">
+              Agency:
+            </v-flex>
+            <v-flex xs4>
+              <input type="text" class="formbox pl-1" value="Child Care Connection">
             </v-flex>
           </v-layout>
         </v-flex>
+        <v-flex xs2>
+          <v-img :src="require('@/assets/mercerBW.png')" height="100px" width="auto" contain></v-img>
+        </v-flex>
       </v-layout>
-    </v-card-text>
+      <!-- BEGIN REPORT BODY -->
+      <v-layout row wrap>
+        <v-flex xs2>
+
+        </v-flex>
+        <v-flex xs8>
+          <v-layout row wrap>
+            <v-flex xs1>
+              Jan
+            </v-flex>
+            <v-flex xs1>
+              Jan
+            </v-flex>
+          </v-layout>
+        </v-flex>
+        <v-flex xs2>
+
+        </v-flex>
+      </v-layout>
+      {{parseCases}}
   </v-card>
 </template>
 
@@ -41,7 +82,15 @@ export default {
     }
   },
   computed: {
-
+    parseCases(){
+      let allCases = this.$store.getters.getCases
+      allCases.forEach(rec => {
+        rec.caseStatus.forEach(stat => {
+          console.log(stat)
+        })
+      })
+      return 1
+    }
   }
 }
 </script>

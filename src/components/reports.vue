@@ -117,7 +117,7 @@ export default {
           icon      : "far fa-calendar-alt",
           shortCode : "county",
           tooltip   : "A report submitted to Mercer County delineating totals for the program..",
-          disabled  : false
+          disabled  : true
         },
         {
           btnText   : "Pre-Check",
@@ -144,22 +144,27 @@ export default {
       this.reportSelected = false
     },
     downloadReport(){
+      this.$store.dispatch('setLoading', true)
+      let repOrientation = this.reportType == 'county' ? 'landscape' : 'portrait'
       let toPrint
       let opt = {
         margin:       .5,
         filename:     this.getFileName,
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { scale: 2 },
-        jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' },
+        jsPDF:        { unit: 'in', format: 'letter', orientation: repOrientation },
         pagebreak:    {mode: 'legacy'}
       }
       toPrint = document.getElementById(this.reportType)
       html2pdf().set(opt).from(toPrint).save();
+      this.$store.dispatch('setLoading', false)
     },
     generateReport(type){
+      this.$store.dispatch('setLoading', true)
       this.resetCode      = Math.random().toString()
       this.reportType     = type
       this.reportSelected = true
+      this.$store.dispatch('setLoading', false)
     },
     setDateEnd(dateObj){
       this.endDate = dateObj
