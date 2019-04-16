@@ -1,7 +1,6 @@
-import firebase from 'firebase/app'
-import 'firebase/auth'
-import 'firebase/firestore'
-import {config} from '@/firebase.js'
+import  firebase from 'firebase/app'
+import  'firebase/auth'
+import  'firebase/firestore'
 
 export default {
   activateSignIn({commit}, payload){

@@ -61,6 +61,19 @@
               </i>
             </template>
           </current>
+          <v-card v-if="reportType == 'excel'">
+            <v-layout row wrap class="text-xs-center subheading">
+              <v-flex xs12>
+                Download all case data as a CSV file which can be opened in Excel.
+              </v-flex>
+              <v-flex xs12>
+                <v-btn color="primary" small outline round @click="downloadExcel()">
+                  <v-icon left small>fas fa-file-csv</v-icon>
+                  Download
+                </v-btn>
+              </v-flex>
+            </v-layout>
+          </v-card>
           <precheck
             v-if="reportType == 'precheck' && switchDate('start').length == 10 && switchDate('end').length == 10"
             :endDate="switchDate('end')"
@@ -75,15 +88,16 @@
 </template>
 
 <script>
-import { sharedFunctions }  from '@/assets/sharedFunctions.js'
-import attendance           from '@/components/sub-components/reports/attendanceVoucher.vue'
-import countyReport         from '@/components/sub-components/reports/countyReport.vue'
-import current              from '@/components/sub-components/reports/current.vue'
-import dateSelect           from '@/components/sub-components/dateSelect.vue'
-import download             from '@/components/sub-components/reports/downloadBar.vue'
-import html2pdf             from 'html2pdf.js'
-import moment               from 'moment'
-import precheck             from '@/components/sub-components/reports/precheck.vue'
+import { sharedFunctions }      from '@/assets/sharedFunctions.js'
+import attendance               from '@/components/sub-components/reports/attendanceVoucher.vue'
+import countyReport             from '@/components/sub-components/reports/countyReport.vue'
+import current                  from '@/components/sub-components/reports/current.vue'
+import dateSelect               from '@/components/sub-components/dateSelect.vue'
+import download                 from '@/components/sub-components/reports/downloadBar.vue'
+import html2pdf                 from 'html2pdf.js'
+import moment                   from 'moment'
+import precheck                 from '@/components/sub-components/reports/precheck.vue'
+import json2csv                 from 'json2csv'
 export default {
   mixins: [sharedFunctions],
   components: {
@@ -116,8 +130,15 @@ export default {
           btnText   : "Mercer County Report",
           icon      : "far fa-calendar-alt",
           shortCode : "county",
-          tooltip   : "A report submitted to Mercer County delineating totals for the program..",
+          tooltip   : "A report submitted to Mercer County delineating totals for the program.",
           disabled  : true
+        },
+        {
+          btnText   : "Dowload All Data",
+          icon      : "cloud_download",
+          shortCode : "excel",
+          tooltip   : "Download all case data in Excel format.",
+          disabled  : false
         },
         {
           btnText   : "Pre-Check",
@@ -143,6 +164,138 @@ export default {
       this.reportType     = ""
       this.reportSelected = false
     },
+    downloadExcel(){
+      this.$store.dispatch('setLoading', true)
+      try {
+        let fields = [
+          {
+            label: "Case ID",
+            value: "caseId"
+          },
+          {
+            label: "Address",
+            value: "familyInfo.address"
+          },
+          {
+            label: "Address 2",
+            value: "familyInfo.address2"
+          },
+          {
+            label: "City",
+            value: "familyInfo.city"
+          },
+          {
+            label: "Zip",
+            value: "familyInfo.zip"
+          },
+          {
+            label: "Phone 1",
+            value: "familyInfo.phone1.num"
+          },
+          {
+            label: "Phone 2",
+            value: "familyInfo.phone2.num"
+          },
+          {
+            label: "Applicant First Name",
+            value: "familyInfo.applicant.firstName"
+          },
+          {
+            label: "Applicant Last Name",
+            value: "familyInfo.applicant.lastName"
+          },
+          {
+            label: "Applicant Relation",
+            value: "familyInfo.applicant.appRelation"
+          },
+          {
+            label: "Applicant SSN",
+            value: "familyInfo.applicant.ssn"
+          },
+          {
+            label: "Applicant Primary Work",
+            value: "familyInfo.applicant.primaryWork"
+          },
+          {
+            label: "Applicant Secondary Work",
+            value: "familyInfo.applicant.secondaryWork"
+          },
+          {
+            label: "Applicant Income",
+            value: "familyInfo.applicant.income"
+          },
+          {
+            label: "Co-Applicant First Name",
+            value: "familyInfo.coapplicant.firstName"
+          },
+          {
+            label: "Co-Applicant Last Name",
+            value: "familyInfo.coapplicant.lastName"
+          },
+          {
+            label: "Co-Applicant Relation",
+            value: "familyInfo.coapplicant.appRelation"
+          },
+          {
+            label: "Co-Applicant SSN",
+            value: "familyInfo.coapplicant.ssn"
+          },
+          {
+            label: "Co-Applicant Primary Work",
+            value: "familyInfo.coapplicant.primaryWork"
+          },
+          {
+            label: "Co-Applicant Secondary Work",
+            value: "familyInfo.coapplicant.secondaryWork"
+          },
+          {
+            label: "Co-Applicant Income",
+            value: "familyInfo.applicant.income"
+          },
+          {
+            label: "Children",
+            value: "familyInfo.children"
+          },
+          {
+            label: "Providers",
+            value: "providers"
+          },
+          {
+            label: "Attendance",
+            value: "attendance"
+          },
+          {
+            label: "Notes",
+            value: "notes"
+          },
+        ]
+        let options = {
+          fields,
+          excelStrings: true,
+          unwind: ['familyInfo.applicant.income', 'familyInfo.coapplicant.income', "familyInfo.children", "providers", "attendance", "notes"]
+        }
+        let csvData = json2csv.parse(this.getCases, options)
+        let hiddenElement = document.createElement('a')
+        let res = {
+          status  : true,
+          msg     : 'The data has been exported and downloaded to your PC.'
+        }
+        hiddenElement.href = 'data:text/csv;charset=utf-8,' + encodeURI(csvData)
+        hiddenElement.target = '_blank'
+        hiddenElement.download = 'people.csv'
+        hiddenElement.click()
+        this.$store.dispatch('setLoading', false)
+        this.$store.dispatch('setToast', res)
+      }
+      catch {
+        let res = {
+          status  : true,
+          msg     : 'There was an error exporting the data.'
+        }
+        this.$store.dispatch('setLoading', false)
+        this.$store.dispatch('setToast', res)
+      }
+    },
     downloadReport(){
       this.$store.dispatch('setLoading', true)
       let repOrientation = this.reportType == 'county' ? 'landscape' : 'portrait'
@@ -166,6 +319,9 @@ export default {
       this.reportSelected = true
       this.$store.dispatch('setLoading', false)
     },
+    getFullName(f, m, l){
+      return `${f} ${m} ${l}`
+    },
     setDateEnd(dateObj){
       this.endDate = dateObj
       this.switchDate('end')
@@ -173,6 +329,9 @@ export default {
     setDateStart(dateObj){
       this.startDate = dateObj
       this.switchDate('start')
+    },
+    setLoading(status){
+      this.$store.dispatch('setLoading', status)
     }
   },
   computed: {
