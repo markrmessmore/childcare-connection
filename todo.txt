@@ -1,0 +1,29 @@
+Small:
+* Case Info           - MCV ID: String
+* Child Status        - Add Inactive & Waiting List
+* prePapa             - Full Day care - listed at $200, needs to be $300
+* prePapa             - Add another line to POS
+* Reports             - Arial font
+* Reports             - remove years prior to 2018
+* SSN                 - Mask SSNs
+
+Medium:
+* Admin               - Alter standard amounts on admin page
+* Attendance Log      - Amounts - what is showing up and why? Fix calculations
+* Attendance Voucher  - Run based on eligibility date and not status.
+* Full Case Report    - Finish
+* Log Out             - Get rid of error.
+* Provider Status     - Active/Inactive (inactive as of - date.)
+* Reports             - Payment expiration post card.
+
+Large:
+* Online Attendance record entry for providers
+
+Unknown:
+* Record Editing      - One person at a time 'lock' a record.
+* Timeout             - Is it possible to time out after certain amount of inactivity.
+
+Future Considerations:
+* Flexible Reporting System
+* Component to track financial side
+* Online application & email to CCC
