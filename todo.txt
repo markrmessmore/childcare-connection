@@ -1,10 +1,9 @@
 Small:
-* Case Info           - MCV ID: String
-* Child Status        - Add Inactive & Waiting List
+*** Case Info           - MCV ID: String
+*** Child Status        - Add Inactive & Waiting List
 * prePapa             - Full Day care - listed at $200, needs to be $300
-* prePapa             - Add another line to POS
-* Reports             - Arial font
-* Reports             - remove years prior to 2018
+*** prePapa             - Add another line to POS
+*** Reports             - remove years prior to 2018
 * SSN                 - Mask SSNs
 
 Medium:
@@ -21,6 +20,7 @@ Large:
 
 Unknown:
 * Record Editing      - One person at a time 'lock' a record.
+* Reports             - Arial font
 * Timeout             - Is it possible to time out after certain amount of inactivity.
 
 Future Considerations:

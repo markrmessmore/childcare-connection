@@ -87,7 +87,6 @@ export default {
   getCases({commit}) {
     commit('setLoading', true)
     firebase.firestore().collection('Cases').onSnapshot(allCases => {
-      // unsubCases = allCases
       let caseArray = []
       allCases.forEach( getData => {
         let currentcase = getData.data()
@@ -97,6 +96,18 @@ export default {
       commit('setCases', caseArray)
       commit('setLoading', false)
     })
+  },
+  getDbVariables({commit}) {
+    commit('setLoading', true)
+    let allVariables = []
+    firebase.firestore().collection('Variables').onSnapshot(dbVariables => {
+      // PARSE THROUGH ALL VARIABLE LISTINGS, SET EACH TO APPROPRIATE PLACE IN STATE
+      dbVariables.forEach(dbVar => {
+        allVariables.push(dbVar.data())
+      })
+    })
+    commit('setVariables', allVariables)
+    commit('setLoading', false)
   },
   getProviders({commit}){
     commit('setLoading', true)
@@ -172,6 +183,26 @@ export default {
       commit('setToast', toastMsg)
     })
   },
+  saveVariables({commit}, payload){
+    commit('setLoading', true)
+    firebase.firestore().collection('Variables').doc('programData').update({ paymentAmts: payload })
+    .then(() => {
+      let toastMsg = {
+        status: true,
+        msg   : 'Program information has been updated.'
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+    .catch(e => {
+      let toastMsg = {
+        status  : true,
+        msg     : e
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+  },
   setLoading({commit}, payload){
     commit('setLoading', payload)
   },
@@ -185,6 +216,7 @@ export default {
       user => {
         dispatch('getCases')
         dispatch('getProviders')
+        dispatch('getDbVariables')
         commit('setUserRole', payload)
         commit('setLoading', false)
         commit('activateSignIn', false)
@@ -205,7 +237,7 @@ export default {
       }
     )
   },
-  signOut ({commit, dispatch}) {
+  signOut ({commit}) {
     firebase.auth().signOut()
     .then(() => {
       commit('signOut')

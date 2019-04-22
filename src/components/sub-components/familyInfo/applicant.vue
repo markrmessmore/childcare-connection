@@ -19,7 +19,7 @@
           <v-text-field
             label="Applicant Last Name"
             v-model="applicant.lastName"
-            >
+          >
           </v-text-field>
         </v-flex>
         <v-flex xs5>
@@ -27,7 +27,7 @@
             label="Applicant Social Security Number"
             v-model="applicant.ssn"
             mask="social"
-            >
+          >
           </v-text-field>
         </v-flex>
         <v-flex xs6 offset-xs1>
@@ -35,7 +35,7 @@
             label="Relationship to Child(ren)"
             :items="relationshipItems"
             v-model="applicant.appRelation"
-            >
+          >
           </v-select>
         </v-flex>
       </v-layout>

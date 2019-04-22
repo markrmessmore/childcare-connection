@@ -2,6 +2,7 @@
 export default {
   allUsers: [],
   cases: [],
+  dbVariables: [],
   loading: false,
   nav     : [
     {

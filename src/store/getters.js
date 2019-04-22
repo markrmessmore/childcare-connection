@@ -2,6 +2,9 @@ export default {
   getCases(state){
     return state.cases
   },
+  getDbVariables(state){
+    return state.dbVariables
+  },
   getLoading(state){
     return state.loading
   },

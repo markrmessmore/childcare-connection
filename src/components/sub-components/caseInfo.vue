@@ -21,32 +21,32 @@
           </v-toolbar-items>
         </v-toolbar>
         <v-layout align-center row>
-          <v-flex xs2>
+          <v-flex xs3>
             <v-btn color="secondary" dark @click="statusModal = true" small outline round>
               <v-icon left>track_changes</v-icon>
               Set Case Status
             </v-btn>
           </v-flex>
-          <v-flex xs2 offset-xs5 >
+          <v-flex xs2 offset-xs1>
+            <v-text-field
+              label="MVC ID:"
+              v-model="selectedCase.mvcId"
+            ></v-text-field>
+          </v-flex>
+          <v-flex xs2 offset-xs1>
             <v-text-field
               label="Eligibility Start:"
-              readonly
-              v-model="this.selectedCase.activeDate"
+              v-model="selectedCase.activeDate"
               mask="##/##/####"
             ></v-text-field>
           </v-flex>
           <v-flex xs2 offset-xs1>
             <v-text-field
               label="Eligibility End:"
-              readonly
-              v-model="this.selectedCase.endDate"
+              v-model="selectedCase.endDate"
               mask="##/##/####"
             ></v-text-field>
           </v-flex>
-          <!-- <v-btn outline color="red darken-4" dark v-if="getUserRole == 'admin'" small>
-            <v-icon left>delete</v-icon>
-            Delete Case
-          </v-btn> -->
         </v-layout>
         <!-- STATUS MODAL -->
         <v-dialog

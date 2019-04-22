@@ -139,7 +139,7 @@ export default {
     return{
       careType: ["Full Day", "Before School", "After School", "Summer Camp", "None"],
       childRecordToRemove: "",
-      childStatus: ["Active", "Pending", "Terminated"],
+      childStatus: ["Active", "Inactive", "Pending", "Terminated", "Waiting List"],
       children: this.kidInfo,
       confirmChildDel: false,
       gender: ["Female", "Male"],

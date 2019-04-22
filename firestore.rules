@@ -13,5 +13,8 @@ service cloud.firestore {
     match /Providers/{prov} {
       allow read, write: if request.auth.uid != null;
     }
+    match /Variables/{m} {
+      allow read, write: if request.auth.uid != null;
+    }
   }
 }

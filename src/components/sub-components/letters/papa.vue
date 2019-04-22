@@ -137,7 +137,7 @@
                 <v-checkbox class="pa-0 ma-0" :input-value="careType('Full Day')"></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                Full-day Care @ 30 or more hours/week(maximum payment @ $200/month)
+                Full-day Care @ 30 or more hours/week(maximum payment @ $<b>{{getAmt('Monthly')}}</b>/month)
               </v-flex>
             </v-layout>
             <v-layout row>
@@ -145,7 +145,7 @@
                 <v-checkbox class="pa-0 ma-0" :input-value="careType('Before School')"></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                Before-School Care (maximum payment @ $75/month)
+                Before-School Care (maximum payment @ $<b>{{getAmt('Before School')}}</b>/month)
               </v-flex>
             </v-layout>
             <v-layout row class="pa-0 ma-0">
@@ -153,7 +153,7 @@
                 <v-checkbox class="pa-0 ma-0" :input-value="careType('After School')"></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                After-School Care (maximum payment @ $75/month)
+                After-School Care (maximum payment @ $<b>{{getAmt('After School')}}</b>/month)
               </v-flex>
             </v-layout>
             <v-layout row>
@@ -161,7 +161,7 @@
                 <v-checkbox class="pa-0 ma-0" :input-value="careType('Summer Camp')"></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                Summer Camp<br>(maximum payment @ $500/8 week session.  Payment is prorated @ $62.50/week for less than 8 weeks of camp.)
+                Summer Camp<br>(maximum payment @ $<b>{{getAmt('Summer Camp (8 Week Session)')}}</b>/8 week session.  Payment is prorated @ $<b>{{getAmt('Summer Camp (Weekly pro rate)')}}</b>/week for less than 8 weeks of camp.)
               </v-flex>
             </v-layout>
           </v-flex>
@@ -425,6 +425,12 @@ export default {
         return false
       }
     },
+    getAmt(req){
+      let dbVar = Object.entries(this.getDbVariables.paymentAmts).filter(item => {
+        return item[0] == req
+      })
+      return dbVar[0][1].currentAmt
+    },
     getColor(i){
       if (i%2 == 0){
         return
@@ -448,6 +454,9 @@ export default {
         let name = kid.firstName + " " + kid.lastName
         return name == this.providerData.forChild
       })
+    },
+    getDbVariables(){
+      return this.$store.getters.getDbVariables[0]
     },
     getPos(){
       return this.caseData.providers.filter(prov => {

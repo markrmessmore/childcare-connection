@@ -6,77 +6,99 @@
         Admin Control Panel
       </v-toolbar-title>
     </v-toolbar>
-    <v-container>
-      <v-layout row>
-        <v-spacer></v-spacer>
-        <v-btn color="accent2" outline @click="addUserDialog = true" round outline small>
-          <v-icon left>add_circle</v-icon>
-          Add User
-        </v-btn>
-      </v-layout>
-      <v-tabs
-        v-model="activeTab"
-        color="info"
-        slider-color="secondary"
-        grow
-        centered
-      >
-        <v-tab>Active Users</v-tab>
-        <v-tab>Deactivated Users</v-tab>
-        <v-tab-item>
-          <v-data-table
-            :headers="tableHeaders"
-            :items="getActiveUsers"
-            hide-actions
-            class=""
-            item-key="id"
+    <v-tabs
+      v-model="rowOneTab"
+      color="primary"
+      dark
+      grow
+      centered
+      slider-color="secondary"
+    >
+      <v-tab>
+        <v-icon left>group</v-icon>
+        Users
+      </v-tab>
+      <v-tab>
+        <v-icon left small>fas fa-file-invoice-dollar</v-icon>
+        Program Values
+      </v-tab>
+      <v-tab-item>
+        <v-container>
+          <v-layout row>
+            <v-spacer></v-spacer>
+            <v-btn color="accent2" outline @click="addUserDialog = true" round outline small>
+              <v-icon left>add_circle</v-icon>
+              Add User
+            </v-btn>
+          </v-layout>
+          <v-tabs
+            v-model="activeTab"
+            color="info"
+            slider-color="secondary"
+            grow
+            centered
           >
-            <template v-slot:items="props">
-              <tr class="tableRow">
-                <td class="subheading">{{ props.item.email }}</td>
-                <td class="subheading">{{ props.item.role }}</td>
-                <td class="text-xs-center">
-                  <v-btn color="accent" small icon @click="resetPassword(props.item)">
-                    <v-icon small>settings_backup_restore</v-icon>
-                  </v-btn>
-                </td>
-                <td class="text-xs-center">
-                  <v-btn color="accent" small icon @click="changeRole(props.item)">
-                    <v-icon small>security</v-icon>
-                  </v-btn>
-                </td>
-                <td class="text-xs-center">
-                  <v-btn color="accent" small icon @click="deactivateUser(props.item)">
-                    <v-icon small>not_interested</v-icon>
-                  </v-btn>
-                </td>
-              </tr>
-            </template>
-          </v-data-table>
-        </v-tab-item>
-        <v-tab-item>
-          <v-data-table
-            :headers="inactiveTableHeaders"
-            :items="getInactiveUsers"
-            hide-actions
-            class=""
-            item-key="id"
-          >
-            <template v-slot:items="props">
-              <tr class="tableRow">
-                <td>{{ props.item.email }}</td>
-                <td>{{ props.item.role }}</td>
-                <td class="text-xs-center">
-                  <v-btn color="accent" small icon @click="activateUser(props.item)">
-                    <v-icon small>refresh</v-icon>
-                  </v-btn>
-                </td>
-              </tr>
-            </template>
-          </v-data-table>
-        </v-tab-item>
-      </v-tabs>
-    </v-container>
+            <v-tab>Active Users</v-tab>
+            <v-tab>Deactivated Users</v-tab>
+            <v-tab-item>
+              <v-data-table
+                :headers="tableHeaders"
+                :items="getActiveUsers"
+                hide-actions
+                class=""
+                item-key="id"
+              >
+                <template v-slot:items="props">
+                  <tr class="tableRow">
+                    <td class="subheading">{{ props.item.email }}</td>
+                    <td class="subheading">{{ props.item.role }}</td>
+                    <td class="text-xs-center">
+                      <v-btn color="accent" small icon @click="resetPassword(props.item)">
+                        <v-icon small>settings_backup_restore</v-icon>
+                      </v-btn>
+                    </td>
+                    <td class="text-xs-center">
+                      <v-btn color="accent" small icon @click="changeRole(props.item)">
+                        <v-icon small>security</v-icon>
+                      </v-btn>
+                    </td>
+                    <td class="text-xs-center">
+                      <v-btn color="accent" small icon @click="deactivateUser(props.item)">
+                        <v-icon small>not_interested</v-icon>
+                      </v-btn>
+                    </td>
+                  </tr>
+                </template>
+              </v-data-table>
+            </v-tab-item>
+            <v-tab-item>
+              <v-data-table
+                :headers="inactiveTableHeaders"
+                :items="getInactiveUsers"
+                hide-actions
+                class=""
+                item-key="id"
+              >
+                <template v-slot:items="props">
+                  <tr class="tableRow">
+                    <td>{{ props.item.email }}</td>
+                    <td>{{ props.item.role }}</td>
+                    <td class="text-xs-center">
+                      <v-btn color="accent" small icon @click="activateUser(props.item)">
+                        <v-icon small>refresh</v-icon>
+                      </v-btn>
+                    </td>
+                  </tr>
+                </template>
+              </v-data-table>
+            </v-tab-item>
+          </v-tabs>
+        </v-container>
+      </v-tab-item>
+      <v-tab-item>
+        <dbVariables :programAmts="getValues"></dbVariables>
+      </v-tab-item>
+    </v-tabs>
     <!-- ADD USER DIALOG -->
     <v-dialog
       v-model="addUserDialog"
@@ -126,24 +148,26 @@
 </template>
 
 <script>
-import activateUser from '@/components/admin/activateUser'
-import addUser    from '@/components/admin/addUser'
-import changeRole from '@/components/admin/changeRole'
+import activateUser   from '@/components/admin/activateUser'
+import addUser        from '@/components/admin/addUser'
+import changeRole     from '@/components/admin/changeRole'
+import dbVariables    from '@/components/admin/dbVariables'
 import deactivateUser from '@/components/admin/deactivateUser'
-import resetPass  from '@/components/admin/resetPass'
+import resetPass      from '@/components/admin/resetPass'
 
 export default {
   components: {
-    activateUser, addUser, changeRole, deactivateUser, resetPass
+    activateUser, addUser, changeRole, dbVariables, deactivateUser, resetPass
   },
   data(){
     return{
-      activeTab: "",
+      activeTab           : "",
       activateUserDialog  : false,
       addUserDialog       : false,
       changeRoleDialog    : false,
       deactivateUserDialog: false,
       resetPassDialog     : false,
+      rowOneTab           : "",
       selectedUser: {
         email : "",
         role  : "",
@@ -203,6 +227,9 @@ export default {
       return this.$store.getters.getUsersAndRoles.filter(usr => {
         return usr.role === "inactive"
       })
+    },
+    getValues(){
+      return this.$store.getters.getDbVariables[0].paymentAmts
     }
   }
 }

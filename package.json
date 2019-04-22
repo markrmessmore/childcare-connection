@@ -29,7 +29,6 @@
     "moment": "^2.24.0",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
-    "vue-json-excel": "^0.2.98",
     "vue-masked-input": "^0.5.2",
     "vue-router": "^3.0.5",
     "vuetify": "^1.5.11",

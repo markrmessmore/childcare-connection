@@ -137,7 +137,7 @@
                 <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                Full-day Care @ 30 or more hours/week(maximum payment @ $200/month)
+                Full-day Care @ 30 or more hours/week (maximum payment @ $<b>{{getAmt('Monthly')}}</b>/month)
               </v-flex>
             </v-layout>
             <v-layout row>
@@ -145,7 +145,7 @@
                 <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                Before-School Care (maximum payment @ $75/month)
+                Before-School Care (maximum payment @ $<b>{{getAmt('Before School')}}</b>/month)
               </v-flex>
             </v-layout>
             <v-layout row class="pa-0 ma-0">
@@ -153,7 +153,7 @@
                 <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                After-School Care (maximum payment @ $75/month)
+                After-School Care (maximum payment @ $<b>{{getAmt('After School')}}</b>/month)
               </v-flex>
             </v-layout>
             <v-layout row>
@@ -161,7 +161,7 @@
                 <v-checkbox class="pa-0 ma-0" input-value=""></v-checkbox>
               </v-flex>
               <v-flex xs11>
-                Summer Camp<br>(maximum payment @ $500/8 week session.  Payment is prorated @ $62.50/week for less than 8 weeks of camp.)
+                Summer Camp (maximum payment @ $<b>{{getAmt('Summer Camp (8 Week Session)')}}</b>/8 week session.  Payment is prorated @ $<b>{{getAmt('Summer Camp (Weekly pro rate)')}}</b>/week for less than 8 weeks of camp.)
               </v-flex>
             </v-layout>
           </v-flex>
@@ -231,6 +231,28 @@
               </v-flex>
             </v-layout>
             <v-layout row wrap align-center :class="getColor(1)">
+              <v-flex xs2 class="pl-1">
+                <label class="body-1">From:</label>
+                <input class="formbox text-xs-right" value="" readonly>
+              </v-flex>
+              <v-flex xs2 offset-xs1>
+                <label class="body-1">To:</label>
+                <input class="formbox text-xs-right" value="" readonly>
+              </v-flex>
+              <v-flex xs6 class="body-1">
+                <v-layout row align-center>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">Full-Day:</label>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">Before School:</label>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">After School:</label>
+                  <v-checkbox class="pl-3" input-value=""></v-checkbox>
+                  <label class="body-1">Summer Camp:</label>
+                </v-layout>
+              </v-flex>
+            </v-layout>
+            <v-layout row wrap align-center :class="getColor(2)">
               <v-flex xs2 class="pl-1">
                 <label class="body-1">From:</label>
                 <input class="formbox text-xs-right" value="" readonly>
@@ -415,6 +437,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
     caseData    : Object
@@ -425,6 +448,12 @@ export default {
     }
   },
   methods: {
+    getAmt(req){
+      let dbVar = Object.entries(this.getDbVariables.paymentAmts).filter(item => {
+        return item[0] == req
+      })
+      return dbVar[0][1].currentAmt
+    },
     getColor(i){
       if (i%2 == 0){
         return
@@ -432,6 +461,11 @@ export default {
       else {
         return "grey lighten-3"
       }
+    }
+  },
+  computed: {
+    getDbVariables(){
+      return this.$store.getters.getDbVariables[0]
     }
   }
 }

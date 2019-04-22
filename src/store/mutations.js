@@ -58,6 +58,9 @@ export default {
       }
     })
   },
+  setVariables(state, payload){
+    state.dbVariables = payload
+  },
   signOut (state) {
     router.push('/')
     state.user = null
