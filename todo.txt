@@ -4,13 +4,14 @@ Small:
 *** prePapa             - Full Day care - listed at $200, needs to be $300
 *** prePapa             - Add another line to POS
 *** Reports             - remove years prior to 2018
-* SSN                 - Mask SSNs
+*** SSN                 - Mask SSNs
+*** Provider            - radio button or toggle switch for federal id or SSN.
 
 Medium:
 * Admin               - Alter standard amounts on admin page (papa coming from this, now enter into calculations)
 * Attendance Log      - Amounts - what is showing up and why? Fix calculations
 * Attendance Voucher  - Run based on eligibility date and not status.
-* Full Case Report    - Finish
+*** Full Case Report    - Finish
 * Log Out             - Get rid of error.
 * Provider Status     - Active/Inactive (inactive as of - date.)
 * Reports             - Payment expiration post card.
@@ -29,5 +30,3 @@ Future Considerations:
 * Online application & email to CCC
 
 Questions:
-* Provider - if SSN instead of Fed ID, how will we tell?
-* SSN      - Click to display, shows full SSN. Ok?

@@ -221,7 +221,8 @@ export default {
         commit('setLoading', false)
         commit('activateSignIn', false)
         const newUser = {
-          id: user.uid
+          id    : user.uid,
+          email : user.user.email
         }
         commit('setUser', newUser)
       }

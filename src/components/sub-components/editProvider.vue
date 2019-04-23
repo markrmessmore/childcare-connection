@@ -11,7 +11,7 @@
     </v-toolbar>
     <v-card-text>
       <v-layout row wrap>
-        <v-flex xs5>
+        <v-flex xs2>
           <v-text-field
             name="name"
             label="Name"
@@ -19,8 +19,32 @@
           ></v-text-field>
         </v-flex>
         <v-flex xs3 offset-xs1>
+          <span class="grey--text">Type of Prov. ID:</span>
+          <v-radio-group v-model="facility.provIdType" row class="ma-0">
+            <v-radio
+              label="Fed. ID"
+              value="fedId"
+            ></v-radio>
+            <v-radio
+              label="SSN"
+              value="ssn"
+            ></v-radio>
+          </v-radio-group>
+        </v-flex>
+        <v-flex xs2 offset-xs1>
+          <v-tooltip top v-if="facility.provIdType == 'ssn'">
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                type="password"
+                label="Social Sec Num"
+                v-model="facility.federalId"
+                v-on="on"
+              ></v-text-field>
+            </template>
+            <span>SSN ending in :  {{facility.federalId.slice(-4)}}</span>
+          </v-tooltip>
           <v-text-field
-            name="federalId"
+            v-else
             label="Federal ID"
             v-model="facility.federalId"
           ></v-text-field>
@@ -107,6 +131,7 @@
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 export default {
   props: {
     editType: String,
@@ -116,6 +141,7 @@ export default {
     return {
       careTypes: ['After School', 'Before School', 'Full Day', 'Summer Camp'],
       facility: this.providerData,
+      provIdType: 1,
       providerTypes: ['Camp','Licensed Center', 'Registered Family Child Care'],
     }
   },

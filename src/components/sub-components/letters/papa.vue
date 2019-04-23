@@ -88,8 +88,14 @@
         </v-layout>
         <v-layout row wrap class="grey lighten-3">
           <v-flex xs6>
-            <label class="body-1">Federal ID / Social Security Num:</label>
-            <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.federalId" readonly>
+            <template v-if="getProviderInfo.provIdType == 'fedId'">
+              <label class="body-1">Federal ID:</label>
+              <input type="text" class="pa-1 ma-0 formbox" :value="getProviderInfo.federalId" readonly>
+            </template>
+            <template v-else>
+              <label class="body-1">Social Security Num:</label>
+              <input type="text" class="pa-1 ma-0 formbox" :value="maskSocial(getProviderInfo.federalId)" readonly>
+            </template>
           </v-flex>
           <v-flex xs5 offset-xs1>
             <label class="body-1">License / Registration Num:</label>

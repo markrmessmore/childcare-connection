@@ -77,7 +77,8 @@ export default {
     addNote(){
       let blankNote = {
         date: "",
-        text: ""
+        text: "",
+        author: this.getAuth
       }
       this.notes.unshift(blankNote)
     },
@@ -96,6 +97,11 @@ export default {
       else {
         return "grey lighten-2"
       }
+    }
+  },
+  computed: {
+    getAuth(){
+      return this.$store.getters.getUser
     }
   }
 }

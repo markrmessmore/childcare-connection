@@ -119,6 +119,7 @@ export default {
         zip               : "",
         phone             : "",
         monthlyAmt        : null,
+        provIdType        : "fedId"
       }
       this.editDialogInfo   = blankProvider
       this.editType         = "new"
