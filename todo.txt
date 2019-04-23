@@ -1,13 +1,13 @@
 Small:
 *** Case Info           - MCV ID: String
 *** Child Status        - Add Inactive & Waiting List
-* prePapa             - Full Day care - listed at $200, needs to be $300
+*** prePapa             - Full Day care - listed at $200, needs to be $300
 *** prePapa             - Add another line to POS
 *** Reports             - remove years prior to 2018
 * SSN                 - Mask SSNs
 
 Medium:
-* Admin               - Alter standard amounts on admin page
+* Admin               - Alter standard amounts on admin page (papa coming from this, now enter into calculations)
 * Attendance Log      - Amounts - what is showing up and why? Fix calculations
 * Attendance Voucher  - Run based on eligibility date and not status.
 * Full Case Report    - Finish
@@ -27,3 +27,7 @@ Future Considerations:
 * Flexible Reporting System
 * Component to track financial side
 * Online application & email to CCC
+
+Questions:
+* Provider - if SSN instead of Fed ID, how will we tell?
+* SSN      - Click to display, shows full SSN. Ok?

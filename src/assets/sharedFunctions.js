@@ -37,6 +37,9 @@ export const sharedFunctions = {
       let last  = str.slice(5)
       return `${first}-${sec}-${last}`
     },
+    maskSocial(str){
+      return `XXX-XX-${str.slice(-4)}`
+    },
     switchDate(type){
       if (type == 'start'){
         return `${this.startDate.year}-${this.startDate.month.slice(0,2)}-${this.startDate.day}`

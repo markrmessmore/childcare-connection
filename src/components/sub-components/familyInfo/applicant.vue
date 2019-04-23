@@ -23,12 +23,19 @@
           </v-text-field>
         </v-flex>
         <v-flex xs5>
-          <v-text-field
-            label="Applicant Social Security Number"
-            v-model="applicant.ssn"
-            mask="social"
-          >
-          </v-text-field>
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                label="Applicant Social Security Number"
+                v-model="applicant.ssn"
+                mask="social"
+                type="password"
+                v-on="on"
+              >
+              </v-text-field>
+            </template>
+            <span>SSN ending in :  {{applicant.ssn.slice(-4)}}</span>
+          </v-tooltip>
         </v-flex>
         <v-flex xs6 offset-xs1>
           <v-select
@@ -51,7 +58,8 @@ export default {
   },
   data(){
     return{
-      applicant: this.applicantData
+      applicant: this.applicantData,
+      showAppSsn: false
     }
   }
 }

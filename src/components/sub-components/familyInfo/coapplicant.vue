@@ -23,12 +23,19 @@
           </v-text-field>
         </v-flex>
         <v-flex xs5>
-          <v-text-field
-            label="Co-applicant Social Security Number"
-            v-model="coapplicant.ssn"
-            mask="social"
-            >
-          </v-text-field>
+          <v-tooltip top>
+            <template v-slot:activator="{ on }">
+              <v-text-field
+                label="Co-applicant Social Security Number"
+                v-model="coapplicant.ssn"
+                mask="social"
+                type="password"
+                v-on="on"
+                >
+              </v-text-field>
+            </template>
+            <span>SSN ending in :  {{coapplicant.ssn.slice(-4)}}</span>
+          </v-tooltip>
         </v-flex>
         <v-flex xs6 offset-xs1>
           <v-select
@@ -47,11 +54,12 @@
 export default {
   props: {
     coapplicantData: Object,
-    relationshipItems: Array
+    relationshipItems: Array,
   },
   data(){
     return{
-      coapplicant: this.coapplicantData
+      coapplicant: this.coapplicantData,
+      showCoAppSsn: false
     }
   }
 }

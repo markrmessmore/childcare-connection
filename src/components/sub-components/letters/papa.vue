@@ -192,7 +192,7 @@
           </v-flex>
           <v-flex xs7 offset-xs1>
             <label class="body-1">Social Security Num:</label>
-            <input class="formbox text-xs-right" readonly :value="formatSsn(getChildInfo.ssn)">
+            <input class="formbox text-xs-right" readonly :value="maskSocial(getChildInfo.ssn)">
           </v-flex>
         </v-layout>
         <br>

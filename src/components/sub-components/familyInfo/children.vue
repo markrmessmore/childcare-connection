@@ -75,17 +75,22 @@
               ></v-text-field>
             </v-flex>
             <v-flex xs2>
-              <v-text-field
-                label="Child Social Security Number"
-
-                mask="social"
-                v-model="kid.ssn"
-              ></v-text-field>
+              <v-tooltip top>
+                <template v-slot:activator="{ on }">
+                  <v-text-field
+                    label="Child Social Security Number"
+                    mask="social"
+                    v-model="kid.ssn"
+                    type="password"
+                    v-on="on"
+                  ></v-text-field>
+                </template>
+                <span>SSN ending in :  {{kid.ssn.slice(-4)}}</span>
+              </v-tooltip>
             </v-flex>
             <v-flex xs2 offset-xs1>
               <v-text-field
                 label="Child Date of Birth"
-
                 mask="##-##-####"
                 v-model="kid.dob"
               ></v-text-field>
