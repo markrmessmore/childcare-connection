@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar color="primary" dark>
       <v-toolbar-title>
-        <v-icon>not_interested</v-icon>
+        <v-icon left>not_interested</v-icon>
         ACCOUNT INACTIVE
       </v-toolbar-title>
     </v-toolbar>

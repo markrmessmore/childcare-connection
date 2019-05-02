@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon>fas fa-child</v-icon>
+        <v-icon left>fas fa-child</v-icon>
         Providers
       </v-toolbar-title>
     </v-toolbar>

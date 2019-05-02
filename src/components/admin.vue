@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon>person_outline</v-icon>
+        <v-icon left>person_outline</v-icon>
         Admin Control Panel
       </v-toolbar-title>
     </v-toolbar>

@@ -1,9 +1,27 @@
 export default {
+  getCareType(state){
+    return state.careType
+  },
   getCases(state){
     return state.cases
   },
+  getChildStatus(state){
+    return state.childStatus
+  },
   getDbVariables(state){
     return state.dbVariables
+  },
+  getIncomeFrequency(state){
+    return state.incomeFrequency
+  },
+  getIncomeType(state){
+    return state.incomeType
+  },
+  getLocationItems(state){
+    return state.locationItems
+  },
+  getLocationStatus(state){
+    return state.locationStatus
   },
   getLoading(state){
     return state.loading
@@ -19,8 +37,14 @@ export default {
       return state.nav
     }
   },
+  getPhoneTypes(state){
+    return state.phoneTypes
+  },
   getProviders(state){
     return state.providers
+  },
+  getRelationships(state){
+    return state.relationshipItems
   },
   getSignInStatus(state){
     return state.signInStatus

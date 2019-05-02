@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon>view_carousel</v-icon>
+        <v-icon left>view_carousel</v-icon>
         Reports
       </v-toolbar-title>
     </v-toolbar>

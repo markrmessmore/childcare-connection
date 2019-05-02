@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon>add_circle</v-icon>
+        <v-icon left>add_circle</v-icon>
         Create a New Case
       </v-toolbar-title>
     </v-toolbar>
@@ -17,7 +17,7 @@
       </v-layout>
     </v-card-text>
     <v-card-text v-else>
-      <caseInfo :caseData="blankCase" ref="caseInfo"></caseInfo>
+      <application ref="caseInfo"></application>
     </v-card-text>
     <v-dialog
       v-model="confirmLeave"
@@ -31,11 +31,11 @@
 </template>
 
 <script>
-import caseInfo from '@/components/sub-components/caseInfo.vue'
+import application from '@/components/application.vue'
 import confirmLeave from '@/components/sub-components/confirmLeave.vue'
 export default {
   components: {
-    caseInfo,confirmLeave
+    application,confirmLeave
   },
   data() {
     return {
@@ -50,93 +50,14 @@ export default {
         activeDate  : "",
         endDate     : "",
         familyInfo  : {
-          address     : "",
-          address2    : "",
-          city        : "",
-          state       : "NJ",
-          zip         : "",
-          phone1      : {
-            type                  : "",
-            num                   : ""
-          },
-          phone2      : {
-            type                  : "",
-            num                   : ""
-          },
-          cellphone   : "",
-          numAdults   : null,
-          numKids     : null,
+          phone2      : {},
           applicant   : {
-            firstName             : "",
-            midInitial            : "",
-            lastName              : "",
-            ssn                   : "",
-            appRelation           : "",
-            income    : [],
-            primaryWork : {
-              locationName        : "",
-              type                : "",
-              address             : "",
-              city                : "",
-              state               : "",
-              zip                 : "",
-              phone               : "",
-              phoneext            : "",
-              startDate           : "",
-              status              : "",
-              hoursPerWeek        : null,
-              monthsPerYear       : null,
-            },
-            secondaryWork : {
-              locationName        : "",
-              type                : "",
-              address             : "",
-              city                : "",
-              state               : "",
-              zip                 : "",
-              phone               : "",
-              phoneext            : "",
-              startDate           : "",
-              status              : "",
-              hoursPerWeek        : null,
-              monthsPerYear       : null,
-            }
+            primaryWork : {},
+            secondaryWork : {}
           },
           coapplicant   : {
-            firstName             : "",
-            midInitial            : "",
-            lastName              : "",
-            ssn                   : "",
-            appRelation           : "",
-            income    : [],
-            primaryWork  : {
-              locationName        : "",
-              type                : "",
-              address             : "",
-              city                : "",
-              state               : "",
-              zip                 : "",
-              phone               : "",
-              phoneext            : "",
-              startDate           : "",
-              status              : "",
-              hoursPerWeek        : null,
-              monthsPerYear       : null,
-            },
-            secondaryWork : {
-              locationName        : "",
-              type                : "",
-              address             : "",
-              city                : "",
-              state               : "",
-              zip                 : "",
-              phone               : "",
-              phoneext            : "",
-              startDate           : "",
-              status              : "",
-              hoursPerWeek        : null,
-              monthsPerYear       : null,
-            }
+            primaryWork  : {},
+            secondaryWork : {}
           },
           children    : [],
         },

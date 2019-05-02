@@ -167,7 +167,7 @@
                 <v-flex xs1 offset-xs1>
                   <v-text-field
                     label="Ext"
-                    v-model="coapplicant.secondaryWork.phoneext"
+                    v-model="applicant.secondaryWork.phoneext"
                     >
                   </v-text-field>
                 </v-flex>
@@ -367,9 +367,15 @@ export default {
   data(){
     return {
       applicant: this.applicantData,
-      coapplicant: this.coapplicantData,
-      locationItems: ['Work', 'School', 'Training Program'],
-      locationStatus: ['Full Time', 'Part Time', 'Seasonal'],
+      coapplicant: this.coapplicantData
+    }
+  },
+  computed: {
+    locationItems(){
+      return this.$store.getters.getLocationItems
+    },
+    locationStatus(){
+      return this.$store.getters.getLocationStatus
     }
   }
 }

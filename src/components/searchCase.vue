@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon>search</v-icon>
+        <v-icon left>search</v-icon>
         Case Search:
       </v-toolbar-title>
       <v-spacer></v-spacer>

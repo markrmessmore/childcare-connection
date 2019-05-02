@@ -1,9 +1,15 @@
 
 export default {
   allUsers: [],
+  careType: ["Full Day", "Before School", "After School", "Summer Camp", "None"],
   cases: [],
+  childStatus: ["Active", "Inactive", "Pending", "Terminated", "Waiting List"],
   dbVariables: [],
+  incomeFrequency: ['Weekly', 'Bi-Weekly', 'Semi-Monthly', 'Monthly'],
+  incomeType: ['Wages & Salary', 'Pension/Retirement/Supplemental/Social Sec.', 'Unemployment/Workers Comp.', 'Public Assist./TANF', 'Child Support/Alimony', 'Other'],
   loading: false,
+  locationItems: ['Work', 'School', 'Training Program'],
+  locationStatus: ['Full Time', 'Part Time', 'Seasonal'],
   nav     : [
     {
       item: "Dashboard",
@@ -62,7 +68,9 @@ export default {
       dark: false
     }
   ],
+  phoneTypes: ['Applicant Cell', 'Co-Applicant Cell', 'Home Phone'],
   providers: [],
+  relationshipItems: ['Father', 'Mother', 'Legally Responsible Adult (proof of custody provided)'],
   signInStatus  : false,
   signOutStatus : false,
   toast         : {

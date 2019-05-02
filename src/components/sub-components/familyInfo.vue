@@ -79,7 +79,11 @@ export default {
   data(){
     return {
       familyInfo: this.familyData,
-      relationshipItems: ['Father', 'Mother', 'Legally Responsible Adult (proof of custody provided)'],
+    }
+  },
+  computed: {
+    relationshipItems(){
+      return this.$store.getters.getRelationships
     }
   }
 }

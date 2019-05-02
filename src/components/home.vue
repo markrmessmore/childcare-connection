@@ -2,7 +2,7 @@
   <v-card height="500px">
     <v-toolbar color="secondary" dark flat>
       <v-toolbar-title>
-        <v-icon>home</v-icon>
+        <v-icon left>home</v-icon>
         Welcome
       </v-toolbar-title>
     </v-toolbar>

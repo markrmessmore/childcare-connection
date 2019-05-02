@@ -1,126 +1,122 @@
 <template lang="html">
   <v-card flat>
+    <hr>
+    <v-card-title primary-title class="title">
+      Financial Information
+    </v-card-title>
+    <hr>
     <v-card-text>
-      <p class="subheading">
-        Click into the appropriate cell. Calculations will be performed automatically.
-      </p>
-      <v-expansion-panel>
-        <v-expansion-panel-content lazy class="accent2 white--text">
-          <div slot="header" class="subheading">Primary Applicant</div>
-          <v-card flat>
-            <v-card-title>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" outline @click="addIncome(true)" round outline small>
-                <v-icon left>add_circle</v-icon>
-                Add Applicant Income
-              </v-btn>
-            </v-card-title>
+      <v-card flat>
+        <v-toolbar color="secondary" dense dark>
+          <v-toolbar-title>Primary Applicant</v-toolbar-title>
+        </v-toolbar>
+        <v-card-title>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" outline @click="addIncome(true)" round outline small>
+            <v-icon left>add_circle</v-icon>
+            Add Applicant Income
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-card color="info" v-if="this.applicant.income" flat>
             <v-card-text>
-              <v-card color="info" v-if="this.applicant.income" flat>
-                <v-card-text>
-                  <v-layout row wrap class="subheading text-xs-left">
-                    <v-flex xs5>
-                      Income Type
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      Frequency
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      Annual Total
-                    </v-flex>
-                  </v-layout>
-                </v-card-text>
-              </v-card>
-              <v-card v-for="(record, index) in this.applicant.income" flat :key='index' :color="getCardColor(index)">
-                <v-card-text>
-                  <v-layout row wrap class="subheading">
-                    <v-flex xs5>
-                      {{record.type}}
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      {{record.frequency}}
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      ${{record.total}}
-                    </v-flex>
-                    <v-flex xs1 class="text-xs-right">
-                      <v-btn color="primary" icon outline small @click="confirmDelete('app', index)">
-                        <v-icon small>delete</v-icon>
-                      </v-btn>
-                    </v-flex>
-                  </v-layout>
-                </v-card-text>
-              </v-card>
+              <v-layout row wrap class="subheading text-xs-left">
+                <v-flex xs5>
+                  Income Type
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  Frequency
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  Annual Total
+                </v-flex>
+              </v-layout>
             </v-card-text>
           </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <br>
-<!-- FINANCIAL INFO: CO-APPLICANT -->
-    <v-expansion-panel>
-      <v-expansion-panel-content lazy class="accent2 white--text">
-        <div slot="header" class="subheading">Co-applicant</div>
-          <v-card flat>
-            <v-card-title primary-title>
-              <v-spacer></v-spacer>
-              <v-btn color="primary" outline @click="addIncome(false)" round outline small>
-                <v-icon left>add_circle</v-icon>
-                Add Applicant Income
-              </v-btn>
-            </v-card-title>
+          <v-card v-for="(record, index) in this.applicant.income" flat :key='index' :color="getCardColor(index)">
             <v-card-text>
-              <v-card color="info" v-if="this.coapplicant.income" flat>
-                <v-card-text>
-                  <v-layout row wrap class="subheading text-xs-left">
-                    <v-flex xs5>
-                      Income Type
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      Frequency
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      Annual Total
-                    </v-flex>
-                  </v-layout>
-                </v-card-text>
-              </v-card>
-              <v-card v-for="(record, index) in this.coapplicant.income" flat :key='index' :color="getCardColor(index)">
-                <v-card-text>
-                  <v-layout row wrap class="subheading">
-                    <v-flex xs5>
-                      {{record.type}}
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      {{record.frequency}}
-                    </v-flex>
-                    <v-flex xs2 offset-xs1>
-                      ${{record.total}}
-                    </v-flex>
-                    <v-flex xs1 class="text-xs-right">
-                      <v-btn color="primary" icon outline small @click="confirmDelete('coapp', index)">
-                        <v-icon small>delete</v-icon>
-                      </v-btn>
-                    </v-flex>
-                  </v-layout>
-                </v-card-text>
-              </v-card>
+              <v-layout row wrap class="subheading">
+                <v-flex xs5>
+                  {{record.type}}
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  {{record.frequency}}
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  ${{record.total}}
+                </v-flex>
+                <v-flex xs1 class="text-xs-right">
+                  <v-btn color="primary" icon outline small @click="confirmDelete('app', index)">
+                    <v-icon small>delete</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
             </v-card-text>
           </v-card>
-        </v-expansion-panel-content>
-      </v-expansion-panel>
-      <br>
+        </v-card-text>
+        <hr>
+        <v-layout row wrap>
+          <v-flex xs1>
+            <slot name="prev"></slot>
+          </v-flex>
+          <v-flex xs1 offset-xs8>
+            <slot name="skip"></slot>
+          </v-flex>
+          <v-flex xs1 offset-xs1>
+            <slot name="next"></slot>
+          </v-flex>
+        </v-layout>
+      </v-card>
+      <v-card flat v-if="coapplicant.firstName">
+        <v-toolbar color="secondary" dense dark>
+          <v-toolbar-title>Co-Applicant</v-toolbar-title>
+        </v-toolbar>
+        <v-card-title primary-title>
+          <v-spacer></v-spacer>
+          <v-btn color="primary" outline @click="addIncome(false)" round outline small>
+            <v-icon left>add_circle</v-icon>
+            Add Co-Applicant Income
+          </v-btn>
+        </v-card-title>
+        <v-card-text>
+          <v-card color="info" v-if="this.coapplicant.income" flat>
+            <v-card-text>
+              <v-layout row wrap class="subheading text-xs-left">
+                <v-flex xs5>
+                  Income Type
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  Frequency
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  Annual Total
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+          <v-card v-for="(record, index) in this.coapplicant.income" flat :key='index' :color="getCardColor(index)">
+            <v-card-text>
+              <v-layout row wrap class="subheading">
+                <v-flex xs5>
+                  {{record.type}}
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  {{record.frequency}}
+                </v-flex>
+                <v-flex xs2 offset-xs1>
+                  ${{record.total}}
+                </v-flex>
+                <v-flex xs1 class="text-xs-right">
+                  <v-btn color="primary" icon outline small @click="confirmDelete('coapp', index)">
+                    <v-icon small>delete</v-icon>
+                  </v-btn>
+                </v-flex>
+              </v-layout>
+            </v-card-text>
+          </v-card>
+        </v-card-text>
+      </v-card>
     </v-card-text>
-    <v-toolbar color="info" dense v-if="this.applicant.income" flat>
-      <v-layout row wrap class="subheading">
-        <v-flex xs10 class="text-xs-left pl-2">
-          HOUSEHOLD TOTAL:
-        </v-flex>
-        <v-flex xs2 class="text-xs-right pr-2">
-          ${{getTotal()}}
-        </v-flex>
-      </v-layout>
-    </v-toolbar>
-    <!-- ADD INCOME DIALOG -->
     <v-dialog
       v-model="addIncomeDialog"
       persistent :overlay="false"
@@ -251,8 +247,6 @@ export default {
       applicant: this.appIncome,
       coapplicant: this.coAppIncome,
       deleteDialog: false,
-      incomeFrequency: ['Weekly', 'Bi-Weekly', 'Semi-Monthly', 'Monthly'],
-      incomeType: ['Wages & Salary', 'Pension/Retirement/Supplemental/Social Sec.', 'Unemployment/Workers Comp.', 'Public Assist./TANF', 'Child Support/Alimony', 'Other'],
       tempIncome: {
         type: "",
         frequency: "",
@@ -316,6 +310,9 @@ export default {
       }
       return grandTotal.toFixed(2)
     },
+    next(){
+      this.$emit('next')
+    },
     saveIncomeItem(){
       let incomeRecord = this.tempIncome
       incomeRecord.total = this.getTempAnnual
@@ -375,5 +372,5 @@ export default {
 }
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 </style>

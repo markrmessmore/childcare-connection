@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon>info</v-icon>
+        <v-icon left>info</v-icon>
         About this Web App...
       </v-toolbar-title>
     </v-toolbar>
