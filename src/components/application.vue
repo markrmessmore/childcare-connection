@@ -194,7 +194,7 @@ export default {
   },
   computed: {
     getBarText(){
-      return `Form Progress: Page ${this.activeTab + 1} of 6.`
+      return `Application Progress: Page ${this.activeTab + 1} of 6.`
     },
     getProgress(){
       let n = this.activeTab

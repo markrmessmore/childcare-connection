@@ -28,5 +28,3 @@ Future Considerations:
 * Flexible Reporting System
 * Component to track financial side
 * Online application & email to CCC
-
-Questions:

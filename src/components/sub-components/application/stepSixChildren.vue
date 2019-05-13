@@ -137,10 +137,10 @@
       <v-flex xs1>
         <slot name="prev"></slot>
       </v-flex>
-      <v-flex xs1 offset-xs8>
+      <v-flex xs1 offset-xs7>
         <slot name="skip"></slot>
       </v-flex>
-      <v-flex xs1 offset-xs1>
+      <v-flex offset-xs1 class="text-xs-right">
         <slot name="next"></slot>
       </v-flex>
     </v-layout>

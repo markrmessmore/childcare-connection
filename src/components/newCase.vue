@@ -6,17 +6,7 @@
         Create a New Case
       </v-toolbar-title>
     </v-toolbar>
-    <v-card-text v-if="!createNewCase">
-      <v-layout row wrap>
-        <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="createNewCase = true" small outline round>
-            <v-icon left>add</v-icon>
-            Click to Create a New Case
-          </v-btn>
-        </v-flex>
-      </v-layout>
-    </v-card-text>
-    <v-card-text v-else>
+    <v-card-text>
       <application ref="caseInfo"></application>
     </v-card-text>
     <v-dialog
