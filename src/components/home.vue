@@ -19,10 +19,25 @@
         <v-img :src="require('@/assets/ccc-logo-original.jpg')" height="150px" width="auto" contain></v-img>
         <v-img :src="require('@/assets/mercerColor.png')" height="150px" width="auto" contain></v-img>
       </v-layout>
+      <br>
+      <v-layout row align-center>
+        <v-flex xs6 offset-xs3>
+          <v-btn color="primary" outline block large round v-if="!getUser" to="/apply" class="title">
+            <v-icon left>fab fa-wpforms</v-icon>
+            Fill Out The Application Online
+          </v-btn>
+        </v-flex>
+      </v-layout>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-export default {};
+export default {
+  computed: {
+    getUser(){
+      return this.$store.getters.getUser
+    }
+  }
+};
 </script>

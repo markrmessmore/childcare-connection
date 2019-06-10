@@ -1,5 +1,9 @@
 <template lang="html">
   <v-card>
+    <v-toolbar flat color="" v-if="!getUser">
+      <v-icon left>fab fa-wpforms</v-icon>
+      <v-toolbar-title>Mercer Co. Subsidy Mgt. Online Application</v-toolbar-title>
+    </v-toolbar>
     <v-layout row wrap>
       <v-flex xs10 offset-xs1>
         <v-text-field
@@ -188,8 +192,13 @@ export default {
       this.activeTab = (active < 6 ? active - 1 : 0)
     },
     submit(){
-      // this.$store.dispatch('saveCase', this.caseInfo)
-      console.log(this.caseInfo)
+      this.$store.dispatch('saveCase', this.caseInfo)
+      if (this.getUser){
+        this.$router.push('/dashboard')
+      }
+      else {
+        this.$router.push('/')
+      }
     }
   },
   computed: {
@@ -199,6 +208,9 @@ export default {
     getProgress(){
       let n = this.activeTab
       return ((n/6) * 100)
+    },
+    getUser(){
+      return this.$store.getters.getUser
     },
     relationshipItems(){
       return this.$store.getters.getRelationships

@@ -115,7 +115,7 @@
                 label="Type Of Care"
               ></v-select>
             </v-flex>
-            <v-flex xs4 offset-xs1>
+            <!-- <v-flex xs4 offset-xs1>
               <v-select
                 :items="childStatus"
                 v-model="kid.kidStatus"
@@ -127,7 +127,7 @@
                 label="Status Date:"
                 mask="##/##/####"
               ></v-text-field>
-            </v-flex>
+            </v-flex> -->
           </v-layout>
         </v-card-text>
       </v-card>

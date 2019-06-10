@@ -2,7 +2,7 @@
   <v-card flat>
     <hr>
     <v-card-title primary-title class="title">
-      Work Information
+      Employment/School/Training Information
     </v-card-title>
     <hr>
     <v-card-text>
@@ -13,7 +13,7 @@
           </v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location</v-toolbar>
+          <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Employment/School/Training Location</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>
@@ -95,7 +95,7 @@
               </v-text-field>
             </v-flex>
           </v-layout>
-          <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location (if applicable)</v-toolbar>
+          <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Employment/School/Training Location (if applicable)</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>
@@ -189,7 +189,7 @@
           </v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location (if applicable)</v-toolbar>
+          <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Employment/School/Training Location (if applicable)</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>
@@ -273,7 +273,7 @@
               </v-text-field>
             </v-flex>
           </v-layout>
-          <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location (if applicable)</v-toolbar>
+          <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Employment/School/Training Location (if applicable)</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>

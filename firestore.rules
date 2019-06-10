@@ -5,10 +5,11 @@ service cloud.firestore {
       allow write: if request.auth.uid != null;
     }
     match /Cases/{caseData}  {
-      allow read, write: if request.auth.uid != null;
+      allow read: if request.auth.uid != null;
+      allow write;
     }
     match /CaseIds/{id}  {
-      allow read, write: if request.auth.uid != null;
+      allow read, write;
     }
     match /Providers/{prov} {
       allow read, write: if request.auth.uid != null;

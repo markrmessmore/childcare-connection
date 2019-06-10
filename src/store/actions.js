@@ -265,7 +265,7 @@ export default {
         firebase.firestore().collection('Cases').add(payload)
         let toastMsg = {
           status: true,
-          msg   : `Case ${payload.caseId} has been saved.`
+          msg   : state.user ? `Case ${payload.caseId} has been saved.` : "Your application has been submitted. Our staff will review and get back to you as soon as possible."
         }
         commit('newCase', payload)
         commit('setToast', toastMsg)
