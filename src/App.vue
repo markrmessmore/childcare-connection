@@ -17,10 +17,23 @@ export default {
   components: {
     loading,toast
   },
+  methods: {
+    inactiveTimeout(){
+      console.log('click')
+      // setTimeout(function () {
+      //   location.reload()
+      // }, 10000);
+    }
+  },
   computed: {
     layout(){
       return this.$route.meta.layout
     }
+  },
+  created(){
+    document.body.addEventListener('click', function(){
+      console.log('click')
+    })
   }
 };
 </script>
