@@ -39,7 +39,6 @@
               <v-flex xs12>
                 <v-select
                   :items="careTypes"
-                  multiple
                   v-model="facility.typeOfCare"
                   label="Type of Care:"
                 ></v-select>
@@ -60,6 +59,7 @@
                 label="PAPA End"
                 v-model="facility.papaEnd"
                 mask="##/##/####"
+                @blur="getDefaultVal(facility)"
                 ></v-text-field>
               </v-flex>
               <v-flex xs4 offset-xs1>
@@ -72,6 +72,7 @@
               </v-flex>
             </v-layout>
           </v-card-text>
+          {{getValues}}
         </v-card>
       </template>
     </v-card-text>
@@ -104,6 +105,7 @@
 </template>
 
 <script>
+import moment from 'moment'
 export default {
   props: {
     caseInfo: Object
@@ -137,6 +139,20 @@ export default {
       this.providers.splice(this.providerToRemove, 1)
       this.confirmRemoveProvider = false
     },
+    getDefaultVal(facInfo){
+      let values    = this.getValues
+      let selected  = values[facInfo.typeOfCare]
+      console.log(moment(selected.changeDate).isBetween(moment(facInfo.papaStart), moment(facInfo.papaEnd)))
+      // if (selected.changeDate){
+      //   let changeDate  = moment(selected.changeDate)
+      //   let papaStart   = moment(facInfo.papaStart)
+      //   let papaEnd     = moment(facInfo.papaEnd)
+      //   console.log
+      // }
+      // else {
+      //   return selected.currentAmt
+      // }
+    },
     setCardColor(i){
       if ((i % 2) == 0) {
         return
@@ -163,6 +179,10 @@ export default {
         list.push(prov.name)
       })
       return list.sort()
+    },
+    getValues(){
+      let values = this.$store.getters.getDbVariables[0].paymentAmts
+      return values
     }
   }
 }

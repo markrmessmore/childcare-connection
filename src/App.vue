@@ -18,12 +18,7 @@ export default {
     loading,toast
   },
   methods: {
-    inactiveTimeout(){
-      console.log('click')
-      // setTimeout(function () {
-      //   location.reload()
-      // }, 10000);
-    }
+
   },
   computed: {
     layout(){
@@ -31,9 +26,16 @@ export default {
     }
   },
   created(){
-    document.body.addEventListener('click', function(){
-      console.log('click')
-    })
+    var timeout
+    function refresh(){
+      clearTimeout(timeout)
+      timeout = setTimeout(() => {
+        location.reload()
+        //Log out the user
+      }, 60 * 60 * 1000)
+    }
+    refresh()
+    document.addEventListener('click', refresh)
   }
 };
 </script>
