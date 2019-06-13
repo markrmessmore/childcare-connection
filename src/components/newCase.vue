@@ -30,26 +30,41 @@ export default {
   data() {
     return {
       blankCase: {
-        caseId      : null,
-        caseStatus  : [
+        caseId            : null,
+        caseStatus        : [
           {
-            status  : "TBD",
-            date    : ""
+            status        : "TBD",
+            date          : ""
           }
         ],
-        activeDate  : "",
-        endDate     : "",
-        familyInfo  : {
-          phone2      : {},
-          applicant   : {
-            primaryWork : {},
-            secondaryWork : {}
+        activeDate        : "",
+        endDate           : "",
+        familyInfo        : {
+          address         : "",
+          address2        : "",
+          phone1          : {},
+          phone2          : {},
+          applicant       : {
+            appRelation   : "",
+            firstName     : "",
+            lastName      : "",
+            midInitial    : "",
+            primaryWork   : {},
+            secondaryWork : {},
+            ssn           : ""
           },
-          coapplicant   : {
-            primaryWork  : {},
-            secondaryWork : {}
+          coapplicant     : {
+            appRelation   : "",
+            firstName     : "",
+            lastName      : "",
+            midInitial    : "",
+            primaryWork   : {},
+            secondaryWork : {},
+            ssn           : ""
           },
-          children    : [],
+          state           : "NJ",
+          zip             : "",
+          children        : [],
         },
         notes: [
           {

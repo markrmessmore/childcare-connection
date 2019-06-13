@@ -2,6 +2,10 @@ import  firebase from 'firebase/app'
 import  'firebase/auth'
 import  'firebase/firestore'
 
+let     unsubCases      = null
+let     unsubProviders  = null
+let     unsubVariables  = null
+
 export default {
   activateSignIn({commit}, payload){
     commit('activateSignIn', payload)
@@ -84,9 +88,9 @@ export default {
       commit('setToast', toastMsg)
     })
   },
-  getCases({commit}) {
+  getCases({commit, state}) {
     commit('setLoading', true)
-    firebase.firestore().collection('Cases').onSnapshot(allCases => {
+    unsubCases = firebase.firestore().collection('Cases').onSnapshot(allCases => {
       let caseArray = []
       allCases.forEach( getData => {
         let currentcase = getData.data()
@@ -96,23 +100,24 @@ export default {
       commit('setCases', caseArray)
       commit('setLoading', false)
     })
+    unsubCases()
   },
   getDbVariables({commit}) {
     commit('setLoading', true)
     let allVariables = []
-    firebase.firestore().collection('Variables').onSnapshot(dbVariables => {
+    unsubVariables = firebase.firestore().collection('Variables').onSnapshot(dbVariables => {
       // PARSE THROUGH ALL VARIABLE LISTINGS, SET EACH TO APPROPRIATE PLACE IN STATE
       dbVariables.forEach(dbVar => {
         allVariables.push(dbVar.data())
       })
     })
+    unsubVariables()
     commit('setVariables', allVariables)
     commit('setLoading', false)
   },
   getProviders({commit}){
     commit('setLoading', true)
-    firebase.firestore().collection('Providers').onSnapshot(allProviders => {
-      // unsubProviders = allProviders
+    unsubProviders = firebase.firestore().collection('Providers').onSnapshot(allProviders => {
       let facilities = []
       allProviders.forEach(provider => {
         let currentFac  = provider.data()
@@ -130,11 +135,11 @@ export default {
       commit('setToast', toastMsg)
       commit('setLoading', false)
     })
+    unsubProviders()
   },
   getUsersAndRoles({commit, dispatch}){
     commit('setLoading', true)
     firebase.firestore().collection('Users').onSnapshot(allUsers => {
-      // unsubUsersAndRoles = allUsers
       let userData = []
       allUsers.forEach(usr => {
         let currentUser = usr.data()
@@ -238,18 +243,26 @@ export default {
       }
     )
   },
-  signOut ({commit}) {
+  signOut ({commit, state}) {
+    unsubCases()
+    unsubProviders()
+    unsubVariables()
     firebase.auth().signOut()
     .then(() => {
       commit('signOut')
       commit('activateSignOut', false)
+      let toastMsg = {
+        status: true,
+        msg   : 'You have successfully signed out.'
+      }
+      commit('setToast', toastMsg)
     })
     .catch(err => {
       let toastMsg = {
         status: true,
         msg   : err
       }
-      commit('setToast', toastMsg)
+    commit('setToast', toastMsg)
     })
   },
   saveCase({commit, state}, payload){

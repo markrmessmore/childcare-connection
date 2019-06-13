@@ -34,7 +34,7 @@
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
           <v-btn color="primary" @click="signIn()" outline round>
-            <v-icon left>fas fa-sign-in-alt</v-icon>
+            <v-icon left>navigate_next</v-icon>
             Login
           </v-btn>
         </v-flex>

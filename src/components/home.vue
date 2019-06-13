@@ -23,7 +23,7 @@
       <v-layout row align-center>
         <v-flex xs6 offset-xs3>
           <v-btn color="primary" outline block large round v-if="!getUser" to="/apply" class="title">
-            <v-icon left>fab fa-wpforms</v-icon>
+            <v-icon left>edit</v-icon>
             Fill Out The Application Online
           </v-btn>
         </v-flex>
