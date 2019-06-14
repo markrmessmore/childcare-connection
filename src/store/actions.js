@@ -2,10 +2,64 @@ import  firebase from 'firebase/app'
 import  'firebase/auth'
 import  'firebase/firestore'
 
-let     unsubCases      = null
-let     unsubProviders  = null
-let     unsubVariables  = null
+// CALLS TO ATTACH/DETACH FIRESTORE LISTENERS
+const cases      =
+  function (commit) {
+    firebase.firestore().collection('Cases').onSnapshot(allCases => {
+      let caseArray = []
+      allCases.forEach( getData => {
+        let currentcase = getData.data()
+        currentcase.id = getData.id
+        caseArray.push(currentcase)
+      })
+      commit('setCases', caseArray)
+      commit('setLoading', false)
+    },
+    err => {
+      let toastMsg = {
+        status: true,
+        msg   : err
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+  }
 
+const providers  =
+  function(commit){
+    firebase.firestore().collection('Providers').onSnapshot(allProviders => {
+      let facilities = []
+      allProviders.forEach(provider => {
+        let currentFac  = provider.data()
+        currentFac.id   = provider.id
+        facilities.push(currentFac)
+      })
+      commit('setProviders', facilities)
+      commit('setLoading', false)
+    },
+    err => {
+      let toastMsg = {
+        status: true,
+        msg   : err
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+  }
+
+const dbVariables  =
+  function(commit){
+    let allVariables = []
+    firebase.firestore().collection('Variables').onSnapshot(dbVariables => {
+      // PARSE THROUGH ALL VARIABLE LISTINGS, SET EACH TO APPROPRIATE PLACE IN STATE
+      dbVariables.forEach(dbVar => {
+        allVariables.push(dbVar.data())
+      })
+    })
+    commit('setVariables', allVariables)
+    commit('setLoading', false)
+  }
+// BEGIN REGULAR STORE ACTIONS
 export default {
   activateSignIn({commit}, payload){
     commit('activateSignIn', payload)
@@ -88,54 +142,17 @@ export default {
       commit('setToast', toastMsg)
     })
   },
-  getCases({commit, state}) {
+  getCases({commit}) {
     commit('setLoading', true)
-    unsubCases = firebase.firestore().collection('Cases').onSnapshot(allCases => {
-      let caseArray = []
-      allCases.forEach( getData => {
-        let currentcase = getData.data()
-        currentcase.id = getData.id
-        caseArray.push(currentcase)
-      })
-      commit('setCases', caseArray)
-      commit('setLoading', false)
-    })
-    unsubCases()
+    cases(commit)
   },
   getDbVariables({commit}) {
     commit('setLoading', true)
-    let allVariables = []
-    unsubVariables = firebase.firestore().collection('Variables').onSnapshot(dbVariables => {
-      // PARSE THROUGH ALL VARIABLE LISTINGS, SET EACH TO APPROPRIATE PLACE IN STATE
-      dbVariables.forEach(dbVar => {
-        allVariables.push(dbVar.data())
-      })
-    })
-    unsubVariables()
-    commit('setVariables', allVariables)
-    commit('setLoading', false)
+    dbVariables(commit)
   },
   getProviders({commit}){
     commit('setLoading', true)
-    unsubProviders = firebase.firestore().collection('Providers').onSnapshot(allProviders => {
-      let facilities = []
-      allProviders.forEach(provider => {
-        let currentFac  = provider.data()
-        currentFac.id   = provider.id
-        facilities.push(currentFac)
-      })
-      commit('setProviders', facilities)
-      commit('setLoading', false)
-    },
-    err => {
-      let toastMsg = {
-        status: true,
-        msg   : err
-      }
-      commit('setToast', toastMsg)
-      commit('setLoading', false)
-    })
-    unsubProviders()
+    providers(commit)
   },
   getUsersAndRoles({commit, dispatch}){
     commit('setLoading', true)
@@ -220,8 +237,8 @@ export default {
     .then(
       user => {
         dispatch('getCases')
-        dispatch('getProviders')
-        dispatch('getDbVariables')
+        // dispatch('getProviders')
+        // dispatch('getDbVariables')
         commit('setUserRole', payload)
         commit('setLoading', false)
         commit('activateSignIn', false)
@@ -244,9 +261,9 @@ export default {
     )
   },
   signOut ({commit, state}) {
-    unsubCases()
-    unsubProviders()
-    unsubVariables()
+    cases(commit)
+    providers(commit)
+    dbVariables(commit)
     firebase.auth().signOut()
     .then(() => {
       commit('signOut')
