@@ -2,64 +2,40 @@ import  firebase from 'firebase/app'
 import  'firebase/auth'
 import  'firebase/firestore'
 
-// CALLS TO ATTACH/DETACH FIRESTORE LISTENERS
-const cases      =
-  function (commit) {
-    firebase.firestore().collection('Cases').onSnapshot(allCases => {
-      let caseArray = []
-      allCases.forEach( getData => {
-        let currentcase = getData.data()
-        currentcase.id = getData.id
-        caseArray.push(currentcase)
-      })
-      commit('setCases', caseArray)
-      commit('setLoading', false)
-    },
-    err => {
-      let toastMsg = {
-        status: true,
-        msg   : err
-      }
-      commit('setToast', toastMsg)
-      commit('setLoading', false)
+// ATTACH/DETACH LISTENERS FOR FIREBASE
+var cases = function(commit){
+  firebase.firestore().collection('Cases').onSnapshot(allCases => {
+    let caseArray = []
+    allCases.forEach( getData => {
+      let currentcase = getData.data()
+      currentcase.id = getData.id
+      caseArray.push(currentcase)
     })
-  }
-
-const providers  =
-  function(commit){
-    firebase.firestore().collection('Providers').onSnapshot(allProviders => {
-      let facilities = []
-      allProviders.forEach(provider => {
-        let currentFac  = provider.data()
-        currentFac.id   = provider.id
-        facilities.push(currentFac)
-      })
-      commit('setProviders', facilities)
-      commit('setLoading', false)
-    },
-    err => {
-      let toastMsg = {
-        status: true,
-        msg   : err
-      }
-      commit('setToast', toastMsg)
-      commit('setLoading', false)
+    commit('setCases', caseArray)
+  })
+}
+var providers = function(commit){
+  firebase.firestore().collection('Providers').onSnapshot(allProviders => {
+    let facilities = []
+    allProviders.forEach(provider => {
+      let currentFac  = provider.data()
+      currentFac.id   = provider.id
+      facilities.push(currentFac)
     })
-  }
-
-const dbVariables  =
-  function(commit){
-    let allVariables = []
-    firebase.firestore().collection('Variables').onSnapshot(dbVariables => {
-      // PARSE THROUGH ALL VARIABLE LISTINGS, SET EACH TO APPROPRIATE PLACE IN STATE
-      dbVariables.forEach(dbVar => {
-        allVariables.push(dbVar.data())
-      })
+    commit('setProviders', facilities)
+  })
+}
+var dbVariables = function(commit){
+  let allVariables = []
+  firebase.firestore().collection('Variables').onSnapshot(dbVariables => {
+    // PARSE THROUGH ALL VARIABLE LISTINGS, SET EACH TO APPROPRIATE PLACE IN STATE
+    dbVariables.forEach(dbVar => {
+      allVariables.push(dbVar.data())
     })
-    commit('setVariables', allVariables)
-    commit('setLoading', false)
-  }
-// BEGIN REGULAR STORE ACTIONS
+  })
+  commit('setVariables', allVariables)
+}
+// BEGIN STANDARD FIRESTORE ACTIONS
 export default {
   activateSignIn({commit}, payload){
     commit('activateSignIn', payload)
@@ -142,7 +118,7 @@ export default {
       commit('setToast', toastMsg)
     })
   },
-  getCases({commit}) {
+  getCases({commit, state}) {
     commit('setLoading', true)
     cases(commit)
   },
@@ -237,8 +213,8 @@ export default {
     .then(
       user => {
         dispatch('getCases')
-        // dispatch('getProviders')
-        // dispatch('getDbVariables')
+        dispatch('getProviders')
+        dispatch('getDbVariables')
         commit('setUserRole', payload)
         commit('setLoading', false)
         commit('activateSignIn', false)
@@ -260,27 +236,32 @@ export default {
       }
     )
   },
-  signOut ({commit, state}) {
+  signOut ({commit}) {
+    commit('setLoading', true)
     cases(commit)
     providers(commit)
     dbVariables(commit)
-    firebase.auth().signOut()
-    .then(() => {
-      commit('signOut')
-      commit('activateSignOut', false)
-      let toastMsg = {
-        status: true,
-        msg   : 'You have successfully signed out.'
-      }
-      commit('setToast', toastMsg)
-    })
-    .catch(err => {
-      let toastMsg = {
-        status: true,
-        msg   : err
-      }
-    commit('setToast', toastMsg)
-    })
+    setTimeout(function(){
+      firebase.auth().signOut()
+      .then(() => {
+        commit('signOut')
+        commit('activateSignOut', false)
+        commit('setLoading', false)
+        let toastMsg = {
+          status: true,
+          msg   : 'You have successfully signed out.'
+        }
+        commit('setToast', toastMsg)
+      })
+      .catch(err => {
+        let toastMsg = {
+          status: true,
+          msg   : err
+        }
+        commit('setLoading', false)
+        commit('setToast', toastMsg)
+      })
+    }, 1000)
   },
   saveCase({commit, state}, payload){
     commit('setLoading', true)
