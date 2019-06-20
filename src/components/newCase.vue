@@ -29,52 +29,6 @@ export default {
   },
   data() {
     return {
-      blankCase: {
-        caseId            : null,
-        caseStatus        : [
-          {
-            status        : "TBD",
-            date          : ""
-          }
-        ],
-        activeDate        : "",
-        endDate           : "",
-        familyInfo        : {
-          address         : "",
-          address2        : "",
-          phone1          : {},
-          phone2          : {},
-          applicant       : {
-            appRelation   : "",
-            firstName     : "",
-            lastName      : "",
-            midInitial    : "",
-            primaryWork   : {},
-            secondaryWork : {},
-            ssn           : ""
-          },
-          coapplicant     : {
-            appRelation   : "",
-            firstName     : "",
-            lastName      : "",
-            midInitial    : "",
-            primaryWork   : {},
-            secondaryWork : {},
-            ssn           : ""
-          },
-          state           : "NJ",
-          zip             : "",
-          children        : [],
-        },
-        notes: [
-          {
-            date            : "",
-            text            : ""
-          }
-        ],
-        providers: [],
-        attendance: []
-      },
       confirmLeave: false,
       createNewCase: false,
       nextRoute: null

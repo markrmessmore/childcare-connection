@@ -76,19 +76,54 @@
               <td width="15%">
                 <v-text-field class="body-1" v-model="props.item.endDate" mask="##/##/####"></v-text-field>
               </td>
-              <td width="15%" class="pa-0 ma-0 text-xs-center">
+              <td width="10%" class="pa-0 ma-0 text-xs-center">
                 <v-btn color="primary" @click="selectCase(props.item)" icon round outline small>
                   <v-icon small>edit</v-icon>
                 </v-btn>
-                <!-- <v-btn color="primary" @click="selectCase(props.item)" icon round outline small>
-                  <v-icon small>edit</v-icon>
-                </v-btn> -->
+              </td>
+              <td width="10%" class="pa-0 ma-0 text-xs-center" v-if="getUserRole == 'admin'">
+                <v-btn color="red darken-3" small icon @click="confirmDel(props.item)" outline>
+                  <v-icon small>delete</v-icon>
+                </v-btn>
               </td>
             </template>
           </v-data-table>
         </v-card>
       </div>
     </v-card-text>
+    <v-dialog
+      v-model="caseRemoveDialog"
+      persistent :overlay="false"
+      max-width="500px"
+      transition="dialog-transition"
+    >
+      <v-card>
+        <v-toolbar color="primary" dark dense>
+          <v-toolbar-title>
+            <v-icon left>check_circle</v-icon>
+            Confirm Removal of Case:{{caseRemove.caseId}}
+          </v-toolbar-title>
+        </v-toolbar>
+        <v-card-text>
+          <v-layout row wrap>
+            <v-flex xs12 class="subheading">
+              Are you sure you want to delete {{caseRemove.caseId}}?
+            </v-flex>
+          </v-layout>
+          <br>
+          <v-layout row wrap justify-space-around>
+            <v-btn color="primary" outline @click="delCase()" round outline>
+              <v-icon left>check</v-icon>
+              Yes
+            </v-btn>
+            <v-btn color="red darken-4" @click="caseRemoveDialog = false" dark round outline>
+              <v-icon left>close</v-icon>
+              No
+            </v-btn>
+          </v-layout>
+        </v-card-text>
+      </v-card>`
+    </v-dialog>
     <v-dialog
       v-model="confirmLeave"
       persistent :overlay="false"
@@ -110,6 +145,8 @@ export default {
   data(){
     return{
       caseEdit: false,
+      caseRemove: {},
+      caseRemoveDialog: false,
       confirmLeave: false,
       nextRoute: null,
       rowsPerPageItems: [25,50,100],
@@ -169,6 +206,10 @@ export default {
       this.confirmLeave = false
       this.nextRoute    = null
     },
+    confirmDel(caseData){
+      this.caseRemove       = caseData
+      this.caseRemoveDialog = true
+    },
     confirmReset(){
       if (this.selectedCase.caseId == undefined){
         this.resetSearch()
@@ -177,6 +218,11 @@ export default {
         this.confirmLeave = true
         this.nextRoute = "reset"
       }
+    },
+    delCase(){
+      this.$store.dispatch('removeCase', this.caseRemove)
+      this.resetSearch()
+      this.caseRemoveDialog = false
     },
     leave(){
       this.confirmLeave = false
@@ -256,6 +302,9 @@ export default {
         cases.push(c[1])
       })
       return cases
+    },
+    getUserRole(){
+      return this.$store.getters.getUserRole
     }
   },
   beforeRouteLeave(to, from, next){

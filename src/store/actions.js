@@ -151,6 +151,26 @@ export default {
         commit('setLoading', false)
     })
   },
+  removeCase({commit}, payload){
+    commit('setLoading', true)
+    firebase.firestore().collection('Cases').doc(payload.id).delete()
+    .then(() => {
+      let toastMsg = {
+        status: true,
+        msg   : `Case ${payload.caseId} has been deleted.`
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+    .catch(err => {
+      let toastMsg = {
+        status: true,
+        msg   : err
+      }
+      commit('setToast', toastMsg)
+      commit('setLoading', false)
+    })
+  },
   removeProvider({commit}, payload){
     commit('setLoading', true)
     firebase.firestore().collection('Providers').doc(payload.id).delete()

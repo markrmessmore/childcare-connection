@@ -46,7 +46,7 @@
           Child Info
         </v-tab>
         <v-tab-item>
-          <applicant :applicantInfo="caseInfo.applicant" :relationshipItems="relationshipItems" @next="nextTab()">
+          <applicant :applicantInfo="caseInfo.familyInfo.applicant" :relationshipItems="relationshipItems" @next="nextTab()">
             <template v-slot:next>
               <v-btn color="primary" @click="nextTab()" round>
                 <v-icon left>fas fa-caret-right</v-icon>
@@ -56,7 +56,7 @@
           </applicant>
         </v-tab-item>
         <v-tab-item>
-          <coapplicant :coapplicantInfo="caseInfo.coapplicant" :relationshipItems="relationshipItems" @next="nextTab()">
+          <coapplicant :coapplicantInfo="caseInfo.familyInfo.coapplicant" :relationshipItems="relationshipItems" @next="nextTab()">
             <template v-slot:prev>
               <v-btn color="primary" @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
@@ -94,7 +94,7 @@
           </family>
         </v-tab-item>
         <v-tab-item>
-          <work :applicantData="caseInfo.applicant" :coapplicantData="caseInfo.coapplicant" @next="nextTab()">
+          <work :applicantData="caseInfo.familyInfo.applicant" :coapplicantData="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template v-slot:prev>
               <v-btn color="primary" @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
@@ -110,7 +110,7 @@
           </work>
         </v-tab-item>
         <v-tab-item>
-          <finances :appIncome="caseInfo.applicant" :coAppIncome="caseInfo.coapplicant" @next="nextTab()">
+          <finances :appIncome="caseInfo.familyInfo.applicant" :coAppIncome="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template v-slot:prev>
               <v-btn color="primary" @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
@@ -126,7 +126,7 @@
           </finances>
         </v-tab-item>
         <v-tab-item>
-          <children :kidInfo="caseInfo.children">
+          <children :kidInfo="caseInfo.familyInfo.children">
             <template v-slot:prev>
               <v-btn color="primary" @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
@@ -147,12 +147,12 @@
 </template>
 
 <script>
-import applicant    from '@/components/sub-components/application/stepOneApplicant'
-import children     from '@/components/sub-components/application/stepSixChildren'
-import coapplicant  from '@/components/sub-components/application/stepTwoCoApplicant'
-import family       from '@/components/sub-components/application/stepThreeHome'
-import finances     from '@/components/sub-components/application/stepFiveFinances'
-import work         from '@/components/sub-components/application/stepFourWork'
+import applicant    from '@/components/sub-components/application/applicant'
+import children     from '@/components/sub-components/application/children'
+import coapplicant  from '@/components/sub-components/application/coapplicant'
+import family       from '@/components/sub-components/application/home'
+import finances     from '@/components/sub-components/application/finances'
+import work         from '@/components/sub-components/application/work'
 export default {
   components: {
     applicant,
@@ -165,22 +165,11 @@ export default {
   data(){
     return{
       activeTab: null,
-      caseInfo: {
-        applicant: {
-          primaryWork: {},
-          secondaryWork: {}
-        },
-        coapplicant: {
-          primaryWork: {},
-          secondaryWork: {}
-        },
-        familyInfo: {
-          phone1: {},
-          phone2: {}
-        },
-        children: []
-      }
+      caseInfo: {}
     }
+  },
+  created(){
+    this.caseInfo = this.getBlankCase
   },
   methods: {
     nextTab() {
@@ -204,6 +193,9 @@ export default {
   computed: {
     getBarText(){
       return `Application Progress: Page ${this.activeTab + 1} of 6.`
+    },
+    getBlankCase(){
+      return this.$store.getters.getBlankCase
     },
     getProgress(){
       let n = this.activeTab

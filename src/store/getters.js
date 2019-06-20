@@ -1,4 +1,7 @@
 export default {
+  getBlankCase(state){
+    return state.blankCase
+  },
   getCareType(state){
     return state.careType
   },
