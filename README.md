@@ -24,31 +24,9 @@ npm install
 * See [Configuration Reference](https://cli.vuejs.org/config/).
 
 #### App Structure
-##### THIS APP IS SET UP IN THE FOLLOWING WAY (all files referenced are .vue files):
 
 + Everything in the `/src/components/directory` is a file with a ROUTE in router.js
 + Everything in the `/src/components/sub-components/` directory is NOT a routed file and instead is included within another component
 
-App
-- home
-- about
-- dashboard*
-  - admin*
-    - users
-  - newCase*
-    - caseInfo*
-      - familyInfo
-      - providerInfo
-      - attendanceLog
-      - notes
-      - letters
-  - searchCase*
-    - editCase
-      - caseInfo
-        - familyInfo
-        - providerInfo
-        - attendanceLog
-        - notes
-        - letters
-
-`* = this component and all sub-components require login permissions to access`
+#### Note:
+* For my own development practices I created both a PROD and DEV environment on firebase. This allowed me to not mess with the working version when making updates. `firebase deploy -P *alias*`

@@ -437,8 +437,10 @@
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 import moment from 'moment'
 export default {
+  mixins: [sharedFunctions],
   props: {
     caseData    : Object
   },

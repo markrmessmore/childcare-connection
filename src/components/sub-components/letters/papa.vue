@@ -11,16 +11,9 @@
           <span class="subheading">PARENT/APPLICANT/PROVIDER AGREEMENT (PAPA)</span>
           <br>
         </v-flex>
-        <v-flex xs9 offset-xs3 class="secondary white--text title text-xs-center">
-          RETURN ON OR BY:
-            <input size="2" :value="day" type="text" class="myInput pl-1 pr-1 text-xs-right" autocomplete="off"></input>
-            /15/
-            <input size="4" :value="year" type="text" class="myInput pl-1 pr-1" autocomplete="off"></input>
-        </v-flex>
       </v-layout>
       <v-layout row wrap>
         <v-flex xs4 class="body-1">
-          <b>RETURN TO:</b><br>
           Child Care Connection<br>
           1001 Spruce Street, Suite 201<br>
           Trenton, NJ 08638<br>
@@ -40,7 +33,7 @@
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">From:</label>
-          <input class="formbox text-xs-right" :value="formatDate(caseData.endDate)" readonly>
+          <input class="formbox text-xs-right" :value="formatDate(caseData.activeDate)" readonly>
         </v-flex>
         <v-flex xs2 offset-xs1 class="pb-1">
           <label class="body-1">To:</label>

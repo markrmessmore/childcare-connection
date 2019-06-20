@@ -2,6 +2,7 @@
   <v-card>
     <v-toolbar color="primary" dark dense>
       <v-toolbar-title>
+        <v-icon left>contact_support</v-icon>
         Are you sure you want to sign out?
       </v-toolbar-title>
     </v-toolbar>

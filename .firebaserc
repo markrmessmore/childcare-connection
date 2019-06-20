@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "ccc-mercer-co"
+    "default": "ccc-mercer-co",
+    "dev": "ccc-mercer-co-test",
+    "prod": "ccc-mercer-co"
   }
 }
