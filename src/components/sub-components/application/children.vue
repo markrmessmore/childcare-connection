@@ -83,7 +83,6 @@
                     label="Child Social Security Number"
                     mask="social"
                     v-model="kid.ssn"
-                    type="password"
                     v-on="on"
                   ></v-text-field>
                 </template>
@@ -175,13 +174,7 @@ export default {
         age                 : "",
         typeOfCare          : []
       }
-      if (this.children){
-        this.children.push(blankChild)
-      }
-      else {
-        this.children = []
-        this.children.push(blankChild)
-      }
+      this.children.push(blankChild)
     },
     confirmDel(index){
       this.childRecordToRemove = this.getChildId(index + 1)

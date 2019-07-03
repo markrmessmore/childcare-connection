@@ -32,7 +32,6 @@
             label="Applicant Social Security Number"
             v-model="applicant.ssn"
             mask="social"
-            type="password"
           >
           </v-text-field>
         </v-flex>

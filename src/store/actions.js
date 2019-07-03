@@ -307,6 +307,7 @@ export default {
           status: true,
           msg   : err
         }
+        console.log(err)
         commit('setToast', toastMsg)
         commit('setLoading', false)
       })
