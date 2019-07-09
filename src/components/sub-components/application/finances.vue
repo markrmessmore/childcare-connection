@@ -54,18 +54,6 @@
             </v-card-text>
           </v-card>
         </v-card-text>
-        <hr>
-        <v-layout row wrap>
-          <v-flex xs1>
-            <slot name="prev"></slot>
-          </v-flex>
-          <v-flex xs1 offset-xs8>
-            <slot name="skip"></slot>
-          </v-flex>
-          <v-flex xs1 offset-xs1>
-            <slot name="next"></slot>
-          </v-flex>
-        </v-layout>
       </v-card>
       <v-card flat v-if="coapplicant.firstName">
         <v-toolbar color="secondary" dense dark>
@@ -117,6 +105,18 @@
         </v-card-text>
       </v-card>
     </v-card-text>
+    <hr>
+    <v-layout row wrap>
+      <v-flex xs1>
+        <slot name="prev"></slot>
+      </v-flex>
+      <v-flex xs1 offset-xs8>
+        <slot name="skip"></slot>
+      </v-flex>
+      <v-flex xs1 offset-xs1>
+        <slot name="next"></slot>
+      </v-flex>
+    </v-layout>
     <v-dialog
       v-model="addIncomeDialog"
       persistent :overlay="false"
