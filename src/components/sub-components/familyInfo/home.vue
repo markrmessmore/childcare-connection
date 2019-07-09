@@ -112,7 +112,7 @@ export default {
     calcFamily(){
       return Number(this.familyInfo.numAdults) + Number(this.familyInfo.numKids)
     },
-    getPhoneTypes(){
+    phoneTypes(){
       return this.$store.getters.getPhoneTypes
     }
   }

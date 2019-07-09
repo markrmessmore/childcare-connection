@@ -34,7 +34,6 @@
             label="Co-Applicant Social Security Number"
             v-model="coapplicant.ssn"
             mask="social"
-            type="password"
           >
           </v-text-field>
         </v-flex>

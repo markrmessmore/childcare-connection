@@ -181,23 +181,15 @@ export default {
       this.activeTab = (active < 6 ? active - 1 : 0)
     },
     submit(){
-      if (this.caseInfo.familyInfo.children.length == 0) {
-        let toastMsg = {
-          status: true,
-          msg   : "There needs to be at least one child listed for this record to be submitted."
-        }
-        this.$store.dispatch('setToast', toastMsg)
+      this.$store.dispatch('saveCase', this.caseInfo)
+      if (this.getUser){
+        this.$router.push('/dashboard')
       }
       else {
-        this.$store.dispatch('saveCase', this.caseInfo)
-        if (this.getUser){
-          this.$router.push('/dashboard')
-        }
-        else {
-          this.$router.push('/')
-        }
+        this.$router.push('/')
       }
-    }
+      this.caseInfo = this.getBlankCase
+  }
   },
   computed: {
     getBarText(){

@@ -164,7 +164,6 @@ export default {
   methods: {
     addChild(){
       let blankChild = {
-        childId             : this.getChildId,
         lastName            : "",
         midInitial          : "",
         firstName           : "",
@@ -174,6 +173,7 @@ export default {
         age                 : "",
         typeOfCare          : []
       }
+      blankChild.childId = this.getChildId(this.children.length + 1)
       this.children.push(blankChild)
     },
     confirmDel(index){
