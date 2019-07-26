@@ -67,8 +67,17 @@ export default {
   },
   computed: {
     getCases(){
-      return this.allCases.filter(currentCase => {
+      let activeCases = this.allCases.filter(currentCase => {
         return currentCase.caseStatus[currentCase.caseStatus.length - 1].status != "Inactive"
+      })
+      console.log(activeCases)
+      return activeCases.sort((caseA, caseB) => {
+        if (caseA.caseId > caseB.caseId) {
+          return 1
+        }
+        else {
+          return -1
+        }
       })
     }
   }
