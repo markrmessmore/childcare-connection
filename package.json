@@ -27,6 +27,7 @@
     "json2csv": "^4.5.1",
     "material-design-icons-iconfont": "^4.0.5",
     "moment": "^2.24.0",
+    "presite": "^1.0.0",
     "roboto-fontface": "*",
     "vue": "^2.6.10",
     "vue-masked-input": "^0.5.2",
