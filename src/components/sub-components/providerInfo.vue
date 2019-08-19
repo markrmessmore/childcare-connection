@@ -38,7 +38,7 @@
               </v-flex>
               <v-flex xs12>
                 <v-select
-                  :items="careTypes"
+                  :items="getCareTypes"
                   v-model="facility.typeOfCare"
                   label="Type of Care:"
                 ></v-select>
@@ -72,7 +72,6 @@
               </v-flex>
             </v-layout>
           </v-card-text>
-          {{getValues}}
         </v-card>
       </template>
     </v-card-text>
@@ -142,7 +141,7 @@ export default {
     getDefaultVal(facInfo){
       let values    = this.getValues
       let selected  = values[facInfo.typeOfCare]
-      console.log(moment(selected.changeDate).isBetween(moment(facInfo.papaStart), moment(facInfo.papaEnd)))
+      // console.log(moment(selected.changeDate).isBetween(moment(facInfo.papaStart), moment(facInfo.papaEnd)))
       // if (selected.changeDate){
       //   let changeDate  = moment(selected.changeDate)
       //   let papaStart   = moment(facInfo.papaStart)
@@ -163,6 +162,9 @@ export default {
     }
   },
   computed: {
+    getCareTypes(){
+      return this.$store.getters.getCareTypes
+    },
     getKids(){
       let children = this.caseInfo.familyInfo.children
       let kids = []

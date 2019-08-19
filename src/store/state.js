@@ -47,7 +47,7 @@ export default {
     providers: [],
     attendance: []
   },
-  careType: ["Full Day", "Before School", "After School", "Summer Camp", "None"],
+  careTypes: ["Full Day", "Before School", "Before & After School","After School", "Summer Camp", "None"],
   cases: [],
   childStatus: ["Active", "Inactive", "Pending", "Terminated", "Waiting List"],
   dbVariables: [],

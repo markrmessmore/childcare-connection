@@ -253,7 +253,14 @@ export default {
         this.search.coApplicantLastName == "" &&
         this.search.childLastName == ""
       ){
-        this.searchResults = this.getCases
+        this.searchResults = this.getCases.sort((caseA, caseB) => {
+          if (caseA.caseId > caseB.caseId){
+            return 1
+          }
+          else {
+            return -1
+          }
+        })
       }
       else {
         let filteredCases = []
@@ -287,7 +294,15 @@ export default {
             }
           })
         }
-        this.searchResults = filteredCases
+        this.searchResults = filteredCases.sort((caseA, caseB) =>{
+          if (caseA.caseId > caseB.caseId){
+            return 1
+          }
+          else {
+            return -1
+          }
+        })
+
       }
     },
     selectCase(selected){

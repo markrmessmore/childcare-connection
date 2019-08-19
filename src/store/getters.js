@@ -14,6 +14,9 @@ export default {
   getDbVariables(state){
     return state.dbVariables
   },
+  getCareTypes(state){
+    return state.careTypes
+  },
   getIncomeFrequency(state){
     return state.incomeFrequency
   },
