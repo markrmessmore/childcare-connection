@@ -29,4 +29,7 @@ npm install
 + Everything in the `/src/components/sub-components/` directory is NOT a routed file and instead is included within another component
 
 #### Note:
-* For my own development practices I created both a PROD and DEV environment on firebase. This allowed me to not mess with the working version when making updates. `firebase deploy -P *alias*`
+* Any information and changes seen on the app is in the *DEV* environment and will not impact production. I will only build and post to Prod upon merging the PR.
+* Login information is as follows:
+    - Username: dev@dev.us
+    - Password: dev@dev
