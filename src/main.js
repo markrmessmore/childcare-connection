@@ -11,7 +11,7 @@ import maskedInput from 'vue-masked-input'
 Vue.component('maskedInput', maskedInput)
 
 // IMPORTS FOR FIREBASE
-import {config} from "./firebase.js"
+import {config} from "./firebase-dev.js"
 import firebase from 'firebase/app'
 Vue.use(firebase)
 
