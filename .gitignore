@@ -21,4 +21,3 @@ yarn-error.log*
 *.sln
 *.sw*
 firebase.js
-firebase-dev.js
