@@ -106,14 +106,14 @@
                 label="Gender"
               ></v-select>
             </v-flex>
-            <v-flex xs4>
+            <!-- <v-flex xs4>
               <v-select
                 multiple
                 :items="careType"
                 v-model="kid.typeOfCare"
                 label="Type Of Care"
               ></v-select>
-            </v-flex>
+            </v-flex> -->
             <!-- <v-flex xs4 offset-xs1>
               <v-select
                 :items="childStatus"
