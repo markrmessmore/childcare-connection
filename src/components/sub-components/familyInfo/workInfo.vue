@@ -69,7 +69,7 @@
                   <v-text-field
                     label="Zip"
                     v-model="applicant.primaryWork.zip"
-                    maxlength="5"
+                    mask="#####"
                     >
                   </v-text-field>
                 </v-flex>
@@ -154,7 +154,7 @@
                   <v-text-field
                     label="Zip"
                     v-model="applicant.secondaryWork.zip"
-                    maxlength="5"
+                    mask="#####"
                     >
                   </v-text-field>
                 </v-flex>
@@ -249,8 +249,7 @@
                   <v-text-field
                     label="Zip"
                     v-model="coapplicant.primaryWork.zip"
-                    min=0
-                    max=5
+                    mask="#####"
                     >
                   </v-text-field>
                 </v-flex>
@@ -335,8 +334,7 @@
                   <v-text-field
                     label="Zip"
                     v-model="coapplicant.secondaryWork.zip"
-                    min=0
-                    max=5
+                    mask="#####"
                     >
                   </v-text-field>
                 </v-flex>
