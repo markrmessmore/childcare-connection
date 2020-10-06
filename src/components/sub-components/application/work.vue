@@ -76,6 +76,7 @@
               <v-text-field
                 label="Zip"
                 v-model="applicant.primaryWork.zip"
+                mask="#####"
                 >
               </v-text-field>
             </v-flex>
@@ -160,6 +161,7 @@
               <v-text-field
                 label="Zip"
                 v-model="applicant.secondaryWork.zip"
+                  mask="#####"
                 >
               </v-text-field>
             </v-flex>
@@ -254,6 +256,7 @@
               <v-text-field
                 label="Zip"
                 v-model="coapplicant.primaryWork.zip"
+                 mask="#####"
                 >
               </v-text-field>
             </v-flex>
@@ -338,6 +341,7 @@
               <v-text-field
                 label="Zip"
                 v-model="coapplicant.secondaryWork.zip"
+                mask="#####"
                 >
               </v-text-field>
             </v-flex>
@@ -379,28 +383,28 @@
 export default {
   props: {
     applicantData: Object,
-    coapplicantData: Object
+    coapplicantData: Object,
   },
-  data(){
+  data() {
     return {
       applicant: this.applicantData,
-      coapplicant: this.coapplicantData
-    }
+      coapplicant: this.coapplicantData,
+    };
   },
   methods: {
-    next(){
-      this.$emit('next')
-    }
+    next() {
+      this.$emit("next");
+    },
   },
   computed: {
-    locationItems(){
-      return this.$store.getters.getLocationItems
+    locationItems() {
+      return this.$store.getters.getLocationItems;
     },
-    locationStatus(){
-      return this.$store.getters.getLocationStatus
-    }
-  }
-}
+    locationStatus() {
+      return this.$store.getters.getLocationStatus;
+    },
+  },
+};
 </script>
 
 <style lang="css" scoped>
