@@ -132,12 +132,7 @@ export default {
   },
   computed: {
     calcFamily(){
-      if (this.familyInfo.numAdults == undefined || this.familyInfo.numAdults == "") {
-        return null
-      }
-      else {
-        return Number(this.familyInfo.numAdults) + Number(this.familyInfo.numKids)
-      }
+        return Number(this.familyInfo.numAdults || 0) + Number(this.familyInfo.numKids || 0)
     },
     phoneTypes(){
       return this.$store.getters.getPhoneTypes
