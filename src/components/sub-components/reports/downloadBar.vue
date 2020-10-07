@@ -6,7 +6,7 @@
     </v-btn>
     <v-spacer></v-spacer>
     <v-btn small icon outline @click="closeReport()">
-      <v-icon>close</v-icon>
+      <v-icon>fas fa-times</v-icon>
     </v-btn>
   </v-toolbar>
 </template>

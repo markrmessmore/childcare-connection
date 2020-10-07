@@ -60,7 +60,7 @@ export default {
     {
       item: "Dashboard",
       link: "/dashboard",
-      icon: "dashboard",
+      icon: "fas fa-columns",
       access: "user",
       color: "primary darken-1",
       dark: true
@@ -68,7 +68,7 @@ export default {
     {
       item: "New Case",
       link: "/new",
-      icon: "add_circle",
+      icon: "fas fa-plus-circle",
       access: "user",
       color: "secondary lighten-1",
       dark: true
@@ -76,7 +76,7 @@ export default {
     {
       item: "Search Case",
       link: "/search",
-      icon: "search",
+      icon: "fas fa-search",
       access: "user",
       color: "accent1",
       dark: false
@@ -92,7 +92,7 @@ export default {
     {
       item: "Run Reports",
       link: "/reports",
-      icon: "view_carousel",
+      icon: "fas fa-play",
       access: "user",
       color: "secondary lighten-3",
       dark: true
@@ -100,7 +100,7 @@ export default {
     {
       item: "About",
       link: "/about",
-      icon: "info",
+      icon: "fas fa-exclamation-circle",
       access: "all",
       color: "accent2",
       dark: true
@@ -108,7 +108,7 @@ export default {
     {
       item: "Admin",
       link: "/admin",
-      icon: "person_outline",
+      icon: "fas fa-user",
       access: "admin",
       color: "info",
       dark: false

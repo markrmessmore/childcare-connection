@@ -8,11 +8,11 @@
       <v-spacer></v-spacer>
       <!-- CHANGE BUTTON BASED ON WHETHER A USER IS LOGGED IN OR OUT -->
       <v-btn v-if="getUser == null" small color="white" outline @click="activateSignIn" round>
-        <v-icon left small>navigate_next</v-icon>
+        <v-icon left small>fas fa-chevron-right</v-icon>
         Sign In
       </v-btn>
       <v-btn v-else small color="white" outline @click="activateSignOut" round>
-        <v-icon left>navigate_before</v-icon>
+        <v-icon left>fas fa-chevron-left</v-icon>
         Sign Out
       </v-btn>
     </v-toolbar>

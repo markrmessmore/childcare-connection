@@ -11,19 +11,19 @@
         <br>
         <v-layout row wrap justify-space-around>
           <v-btn outline color="primary" @click="openPrintDialog('letter-accepted')" round small outline>
-            <v-icon left>check</v-icon>
+            <v-icon left>fas fa-check</v-icon>
             Accepted
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('letter-waiting')" round small outline>
-            <v-icon left>access_time</v-icon>
+            <v-icon left>far fa-clock</v-icon>
             Waiting List
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('letter-pending')" round small outline>
-            <v-icon left>hourglass_empty</v-icon>
+            <v-icon left>far fa-hourglass</v-icon>
             Pending
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('letter-ineligible')" round small outline>
-            <v-icon left>not_interested</v-icon>
+            <v-icon left>fas fa-ban</v-icon>
             Ineligible
           </v-btn>
         </v-layout>
@@ -40,7 +40,7 @@
             PAPA Letter
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('papa-form')" round small outline>
-            <v-icon left>description</v-icon>
+            <v-icon left>fas fa-file-alt</v-icon>
             Pre-PAPA
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('papa-final')" round small outline>
@@ -57,15 +57,15 @@
         <br>
         <v-layout row wrap justify-space-around>
           <v-btn outline color="primary" @click="openPrintDialog('attendance')" round small outline>
-            <v-icon left>calendar_today</v-icon>
+            <v-icon left>fas fa-calendar-week</v-icon>
             Attendance Voucher
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('case-report')" round small outline>
-            <v-icon left>description</v-icon>
+            <v-icon left>fas fa-file-alt</v-icon>
             Full Case Report
           </v-btn>
           <v-btn outline color="primary" @click="openPrintDialog('termination')" round small outline>
-            <v-icon left>close</v-icon>
+            <v-icon left>fas fa-times</v-icon>
             Termination Letter
           </v-btn>
         </v-layout>
@@ -110,12 +110,12 @@
     <v-card>
       <v-toolbar color="info" dense>
         <v-btn outline @click="downloadForm()" small round>
-          <v-icon left>cloud_download</v-icon>
+          <v-icon left>fas fa-cloud-download-alt</v-icon>
           Download Form
         </v-btn>
         <v-spacer></v-spacer>
         <v-btn icon outline @click="printDialog = false" small>
-          <v-icon>close</v-icon>
+          <v-icon>fas fa-times</v-icon>
         </v-btn>
       </v-toolbar>
         <eligibility
@@ -171,12 +171,12 @@
         </caseReport>
         <v-toolbar color="info" dense>
           <v-btn outline @click="downloadForm()" small round>
-            <v-icon left>cloud_download</v-icon>
+            <v-icon left>fas fa-cloud-download-alt</v-icon>
             Download Form
           </v-btn>
           <v-spacer></v-spacer>
           <v-btn icon outline @click="printDialog = false" small>
-            <v-icon>close</v-icon>
+            <v-icon>fas fa-times</v-icon>
           </v-btn>
         </v-toolbar>
       </v-card>

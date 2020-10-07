@@ -1,6 +1,7 @@
 import Vue from "vue";
 import Vuetify from "vuetify";
 import "vuetify/dist/vuetify.min.css";
+import '@fortawesome/fontawesome-free/css/all.css'
 
 Vue.use(Vuetify, {
   theme: {
@@ -11,7 +12,7 @@ Vue.use(Vuetify, {
     error: "#bfa89e",
     info: "#ebf5ee"
   },
-  iconfont: "md"
+  iconfont: "fa"
 });
 
 // https://coolors.co/78a1bb-394f49-ebf5ee-bfa89e-8b786d

@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon left>add_circle</v-icon>
+        <v-icon left>fas fa-plus-circle</v-icon>
         Create a New Case
       </v-toolbar-title>
     </v-toolbar>

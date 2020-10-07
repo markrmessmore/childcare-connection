@@ -6,7 +6,7 @@
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn small outline icon @click="deactivateSignIn()">
-        <v-icon>close</v-icon>
+        <v-icon>fas fa-times</v-icon>
       </v-btn>
     </v-toolbar>
     <v-card-text>
@@ -25,7 +25,7 @@
             label="Password"
             box
             v-model="login.pass"
-            :append-icon="showPass ? 'visibility_off' : 'visibility'"
+            :append-icon="showPass ? 'fas fa-eye-slash' : 'fas fa-eye'"
             @click:append="showPass = !showPass"
             :type="showPass ? 'text' : 'password'"
           ></v-text-field>
@@ -34,7 +34,7 @@
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
           <v-btn color="primary" @click="signIn()" outline round>
-            <v-icon left>navigate_next</v-icon>
+            <v-icon left>fas fa-chevron-right</v-icon>
             Login
           </v-btn>
         </v-flex>

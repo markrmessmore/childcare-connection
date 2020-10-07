@@ -1,14 +1,14 @@
 <template lang="html">
   <v-card>
     <v-toolbar color="primary" dense dark>
-      <v-icon>security</v-icon>
+      <v-icon>fas fa-shield-alt</v-icon>
       <v-toolbar-title>
         Change User Role
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn color="white" outline icon small @click="close()">
-          <v-icon>close</v-icon>
+          <v-icon>fas fa-times</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -26,7 +26,7 @@
         </v-flex>
         <v-flex xs12 class="text-xs-right">
           <v-btn color="primary" outline @click="saveChanges()" round outline>
-            <v-icon left>save</v-icon>
+            <v-icon left>fas fa-save</v-icon>
             Save Changes
           </v-btn>
         </v-flex>

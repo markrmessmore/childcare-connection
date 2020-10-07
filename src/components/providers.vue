@@ -13,7 +13,7 @@
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
           <v-btn color="primary" @click="addProvider()" outline round small>
-            <v-icon left>add_circle</v-icon>
+            <v-icon left>fas fa-plus-circle</v-icon>
             Add Provider
           </v-btn>
         </v-flex>
@@ -33,12 +33,12 @@
             <td width="40%" class="subheading">{{ props.item.typeOfProvider.toString().replace(",", " , ") }}</td>
             <td class="text-xs-center">
               <v-btn color="accent" small icon @click="editProvider(props.item)">
-                <v-icon small>edit</v-icon>
+                <v-icon small>fas fa-pen</v-icon>
               </v-btn>
             </td>
             <td class="text-xs-center" v-if="getUserRole == 'admin'">
               <v-btn color="accent" small icon @click="confirmDelProvider(props.item)" outline>
-                <v-icon small>delete</v-icon>
+                <v-icon small>fas fa-trash</v-icon>
               </v-btn>
             </td>
           </tr>
@@ -54,7 +54,7 @@
       <v-card>
         <v-toolbar color="primary" dark dense>
           <v-toolbar-title>
-            <v-icon left>check_circle</v-icon>
+            <v-icon left>fas fa-check-circle</v-icon>
             Confirm Provider Removal:
           </v-toolbar-title>
         </v-toolbar>
@@ -67,11 +67,11 @@
           <br>
           <v-layout row wrap justify-space-around>
             <v-btn color="primary" outline @click="delProvider()" round outline>
-              <v-icon left>check</v-icon>
+              <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
             <v-btn color="red darken-4" @click="delDialog = false" dark round outline>
-              <v-icon left>close</v-icon>
+              <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>
           </v-layout>

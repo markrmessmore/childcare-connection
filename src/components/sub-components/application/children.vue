@@ -8,7 +8,7 @@
     <v-card-text>
       <div class="text-xs-right">
         <v-btn color="primary" @click="addChild()" round outline small>
-          <v-icon>add</v-icon>
+          <v-icon small >fas fa-plus</v-icon>
           Add Child
         </v-btn>
       </div>
@@ -17,7 +17,7 @@
           Child {{`0${index+1}`}}
           <v-spacer></v-spacer>
           <v-btn color="primary" small icon outline @click="confirmDel(index)">
-            <v-icon color="primary">close</v-icon>
+            <v-icon color="primary" small>fas fa-times</v-icon>
           </v-btn>
           <!-- DELETE CHILD RECORD CONFIRM DIALOG -->
           <v-dialog
@@ -36,11 +36,11 @@
               <v-card-text>
                 <v-layout row justify-space-around>
                   <v-btn color="primary" @click="removeChildRecord()" round outline>
-                    <v-icon left>check</v-icon>
+                    <v-icon left small>fas fa-check</v-icon>
                     Yes
                   </v-btn>
                   <v-btn color="red darken-3" outline @click="confirmChildDel = !confirmChildDel" round>
-                    <v-icon left>close</v-icon>
+                    <v-icon left small>fas fa-times</v-icon>
                     No
                   </v-btn>
                 </v-layout>

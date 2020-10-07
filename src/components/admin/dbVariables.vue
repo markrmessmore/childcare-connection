@@ -20,7 +20,7 @@
                   </v-flex>
                   <v-flex xs2>
                     <v-btn color="secondary" outline small icon @click="justTheTip = !justTheTip">
-                      <v-icon small>close</v-icon>
+                      <v-icon small>fas fa-times</v-icon>
                     </v-btn>
                   </v-flex>
                 </v-layout>

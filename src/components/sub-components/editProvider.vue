@@ -5,7 +5,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn color="white" icon small @click="close()" outline>
-          <v-icon>close</v-icon>
+          <v-icon>fas fa-times</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -119,11 +119,11 @@
     </v-card-text>
     <v-layout row wrap justify-space-around align-center>
       <v-btn color="primary" outline @click="saveProvider()" round outline small>
-        <v-icon left>save</v-icon>
+        <v-icon left>fas fa-save</v-icon>
         Save Provider
       </v-btn>
       <v-btn color="red darken-4" dark @click="close()" round outline small>
-        <v-icon left>close</v-icon>
+        <v-icon left>fas fa-times</v-icon>
         Cancel
       </v-btn>
     </v-layout>

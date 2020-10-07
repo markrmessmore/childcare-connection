@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon left>view_carousel</v-icon>
+        <v-icon left>fas fa-folder</v-icon>
         Reports
       </v-toolbar-title>
     </v-toolbar>
@@ -135,7 +135,7 @@ export default {
         },
         {
           btnText   : "Dowload All Data",
-          icon      : "cloud_download",
+          icon      : "fas fa-cloud-download-alt",
           shortCode : "excel",
           tooltip   : "Download all case data in Excel format.",
           disabled  : false

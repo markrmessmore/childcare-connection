@@ -3,7 +3,7 @@
     <v-card-text>
       <v-card flat>
         <v-alert color="accent2" :value="true" dense dismissible outline>
-          <v-icon left>save</v-icon>
+          <v-icon left>fas fa-save</v-icon>
           For convenience, CTRL + Q on your keyboard will save.
         </v-alert>
         <v-toolbar color="primary" dark dense flat>
@@ -60,7 +60,7 @@
               <v-toolbar-title>Select Current Case Status</v-toolbar-title>
               <v-spacer></v-spacer>
               <v-btn color="white" small outline icon @click="statusModal = false">
-                <v-icon>close</v-icon>
+                <v-icon>fas fa-times</v-icon>
               </v-btn>
             </v-toolbar>
             <v-card-text>
@@ -98,7 +98,7 @@
               <v-layout row wrap>
                 <v-flex xs12 class="text-xs-right">
                   <v-btn color="primary" @click="saveStatus()" round small outline>
-                    <v-icon left>check_circle_outline</v-icon>
+                    <v-icon left>far fa-check-circle</v-icon>
                     Set Status
                   </v-btn>
                 </v-flex>
@@ -158,7 +158,7 @@
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
         <v-btn color="primary" @click="saveCase()" round outline small>
-          <v-icon left>save</v-icon>
+          <v-icon left>fas fa-save</v-icon>
           Save Case Information
         </v-btn>
       </v-flex>

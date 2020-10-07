@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon left>person_outline</v-icon>
+        <v-icon left>far fa-user</v-icon>
         Admin Control Panel
       </v-toolbar-title>
     </v-toolbar>
@@ -15,7 +15,7 @@
       slider-color="secondary"
     >
       <v-tab>
-        <v-icon left>group</v-icon>
+        <v-icon left>fas fa-user-friends</v-icon>
         Users
       </v-tab>
       <v-tab>
@@ -27,7 +27,7 @@
           <v-layout row>
             <v-spacer></v-spacer>
             <v-btn color="accent2" outline @click="addUserDialog = true" round outline small>
-              <v-icon left>add_circle</v-icon>
+              <v-icon left>fas fa-plus-circle</v-icon>
               Add User
             </v-btn>
           </v-layout>
@@ -54,17 +54,17 @@
                     <td class="subheading">{{ props.item.role }}</td>
                     <td class="text-xs-center">
                       <v-btn color="accent" small icon @click="resetPassword(props.item)">
-                        <v-icon small>settings_backup_restore</v-icon>
+                        <v-icon small>fas fa-play</v-icon>
                       </v-btn>
                     </td>
                     <td class="text-xs-center">
                       <v-btn color="accent" small icon @click="changeRole(props.item)">
-                        <v-icon small>security</v-icon>
+                        <v-icon small>fas fa-shield-alt</v-icon>
                       </v-btn>
                     </td>
                     <td class="text-xs-center">
                       <v-btn color="accent" small icon @click="deactivateUser(props.item)">
-                        <v-icon small>not_interested</v-icon>
+                        <v-icon small>fas fa-ban</v-icon>
                       </v-btn>
                     </td>
                   </tr>
@@ -85,7 +85,7 @@
                     <td>{{ props.item.role }}</td>
                     <td class="text-xs-center">
                       <v-btn color="accent" small icon @click="activateUser(props.item)">
-                        <v-icon small>refresh</v-icon>
+                        <v-icon small>fas fa-redo</v-icon>
                       </v-btn>
                     </td>
                   </tr>
