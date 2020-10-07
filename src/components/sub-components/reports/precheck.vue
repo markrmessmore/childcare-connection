@@ -1,12 +1,15 @@
 <template lang="html">
   <v-card flat>
-    <v-toolbar color="grey lighten-3" dense class="subheading">
-      Pre-Check Report: {{fixDate(startDate)}} -- {{fixDate(endDate)}}
+    <v-toolbar color="grey lighten-3" dense flat class="subheading">
+      <b>Pre-Check Report</b>: {{fixDate(startDate)}} -- {{fixDate(endDate)}}
       <v-spacer></v-spacer>
       Report Date: {{reportDate()}}
     </v-toolbar>
     <v-card-text>
-      <v-layout row wrap v-for="(activeCase, i) in mapCaseRecords(filterCases)" :key="i" class="subheading pb-5">
+      <v-layout v-if="typeof filterCases == 'string'">
+        {{filterCases}}
+      </v-layout>
+      <v-layout row wrap v-else v-for="(activeCase, i) in mapCaseRecords(filterCases)" :key="i" class="subheading pb-5">
         <v-flex xs12 class="subheading grey lighten-3">
           {{activeCase.name.toUpperCase()}}
           <v-divider></v-divider>
@@ -91,10 +94,14 @@ export default {
       rec.forEach(item => total = total + Number(item.amount))
       return total.toFixed(2)
     },
-    mapCaseRecords(list){
+    mapCaseRecords(recordList){
       let mappedList  = []
       let provList    = this.getProviders
-      list.forEach(item => {
+      if (typeof recordList == 'string') {
+        return "No attendance records are found that fall within the dates above."
+      }
+      else {
+        recordList.forEach(item => {
         let existing = mappedList.find(rec => rec.name == item.facility )
         //IF THERE IS NO RECORD FOR THIS PROVIDER CREATE ONE:
         if (existing == undefined) {
@@ -136,6 +143,7 @@ export default {
           return -1
         }
       })
+      }
     },
     reportDate(){
       return moment().format('MM/DD/YYYY')
