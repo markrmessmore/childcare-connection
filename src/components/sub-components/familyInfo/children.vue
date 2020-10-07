@@ -3,7 +3,7 @@
     <v-card-text>
       <div class="text-xs-right">
         <v-btn color="primary" @click="addChild()" round outline small>
-          <v-icon>fas fa-plus</v-icon>
+          <v-icon small left>fas fa-plus</v-icon>
           Add Child
         </v-btn>
       </div>

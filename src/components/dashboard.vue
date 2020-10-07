@@ -22,7 +22,7 @@
           <v-card-text>
             <v-container>
               <v-layout column align-center>
-                <v-icon large>{{navItem.icon}}</v-icon>
+                <v-icon>{{navItem.icon}}</v-icon>
               </v-layout>
               <br>
               <v-layout column align-center class="title text-xs-center">

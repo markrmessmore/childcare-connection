@@ -8,7 +8,7 @@
       <v-spacer></v-spacer>
       <!-- <v-toolbar-items> -->
         <v-btn color="accent2" outline dark small @click="confirmReset()" round outline>
-          <v-icon left>fas fa-undo</v-icon>
+          <v-icon left small>fas fa-undo</v-icon>
           Reset Search
         </v-btn>
       <!-- </v-toolbar-items> -->
@@ -40,7 +40,7 @@
             </v-layout>
             <v-layout row justify-end>
               <v-btn color="primary" @click="searchCases()" round outline small>
-                <v-icon left>fas fa-search</v-icon>
+                <v-icon left small>fas fa-search</v-icon>
                 Search
               </v-btn>
             </v-layout>
@@ -58,7 +58,7 @@
             :rows-per-page-items="rowsPerPageItems"
           >
             <template v-slot:no-data>
-              <v-alert :value="true" color="secondary" outline icon="search">
+              <v-alert :value="true" color="secondary" outline icon="fas fa-search">
                 Please enter search criteria and search for a case.
               </v-alert>
             </template>
