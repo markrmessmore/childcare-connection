@@ -18,11 +18,11 @@
       <br>
       <v-layout row wrap justify-space-around>
         <v-btn color="primary" outline @click="leave()" round outline>
-          <v-icon left>check</v-icon>
+          <v-icon left>fas fa-check</v-icon>
           Yes
         </v-btn>
         <v-btn color="red darken-4" dark @click="cancel()" round outline>
-          <v-icon left>close</v-icon>
+          <v-icon left>fas fa-times</v-icon>
           No!
         </v-btn>
       </v-layout>

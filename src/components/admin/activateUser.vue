@@ -1,14 +1,14 @@
 <template lang="html">
   <v-card>
     <v-toolbar color="primary" dense dark>
-      <v-icon>person_add</v-icon>
+      <v-icon>fas fa-user-plus</v-icon>
       <v-toolbar-title>
         Confirm user activation:
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
         <v-btn color="white" outline icon small @click="close()">
-          <v-icon>close</v-icon>
+          <v-icon>fas fa-times</v-icon>
         </v-btn>
       </v-toolbar-items>
     </v-toolbar>
@@ -20,11 +20,11 @@
       </p>
       <v-layout row wrap justify-space-around>
         <v-btn color="primary" outline @click="activateUser()" outline round>
-          <v-icon left>check_circle</v-icon>
+         <v-icon left>fas fa-check-circle</v-icon>
           Yes
         </v-btn>
         <v-btn color="red darken-4" dark @click="close()" outline round>
-          <v-icon left>close</v-icon>
+          <v-icon left>fas fa-times</v-icon>
           No
         </v-btn>
       </v-layout>

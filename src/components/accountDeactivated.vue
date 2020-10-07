@@ -2,7 +2,7 @@
   <v-card>
     <v-toolbar color="primary" dark>
       <v-toolbar-title>
-        <v-icon left>not_interested</v-icon>
+        <v-icon left>fas fa-ban</v-icon>
         ACCOUNT INACTIVE
       </v-toolbar-title>
     </v-toolbar>

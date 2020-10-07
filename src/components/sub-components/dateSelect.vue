@@ -65,7 +65,7 @@
     </v-flex>
     <v-flex xs12 class="text-xs-right">
       <v-btn color="primary" outline round small :disabled="readyToGenerate" @click="setDates()">
-        <v-icon left>cached</v-icon>
+        <v-icon left>fas fa-sync</v-icon>
         Generate Report
       </v-btn>
     </v-flex>

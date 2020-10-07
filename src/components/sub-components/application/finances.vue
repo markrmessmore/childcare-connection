@@ -13,7 +13,7 @@
         <v-card-title>
           <v-spacer></v-spacer>
           <v-btn color="primary" outline @click="addIncome(true)" round outline small>
-            <v-icon left>add_circle</v-icon>
+            <v-icon left>fas fa-plus-circle</v-icon>
             Add Applicant Income
           </v-btn>
         </v-card-title>
@@ -47,7 +47,7 @@
                 </v-flex>
                 <v-flex xs1 class="text-xs-right">
                   <v-btn color="primary" icon outline small @click="confirmDelete('app', index)">
-                    <v-icon small>delete</v-icon>
+                    <v-icon small>fas fa-trash</v-icon>
                   </v-btn>
                 </v-flex>
               </v-layout>
@@ -62,7 +62,7 @@
         <v-card-title primary-title>
           <v-spacer></v-spacer>
           <v-btn color="primary" outline @click="addIncome(false)" round outline small>
-            <v-icon left>add_circle</v-icon>
+            <v-icon left>fas fa-plus-circle</v-icon>
             Add Co-Applicant Income
           </v-btn>
         </v-card-title>
@@ -96,7 +96,7 @@
                 </v-flex>
                 <v-flex xs1 class="text-xs-right">
                   <v-btn color="primary" icon outline small @click="confirmDelete('coapp', index)">
-                    <v-icon small>delete</v-icon>
+                    <v-icon small>fas fa-trash</v-icon>
                   </v-btn>
                 </v-flex>
               </v-layout>
@@ -128,7 +128,7 @@
           <v-toolbar-title>Add Income for {{addIncomePerson ? "Applicant" : "Co-Applicant"}}:</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn color="white" outline icon small @click="addIncomeDialog = false">
-            <v-icon>close</v-icon>
+            <v-icon>fas fa-times</v-icon>
           </v-btn>
         </v-toolbar>
         <v-card-text>
@@ -180,7 +180,7 @@
                 <v-flex xs5>
                   <v-text-field
                     label="Average:"
-                    prepend-inner-icon="attach_money"
+                    prepend-inner-icon="fas fa-dollar-sign"
                     readonly
                     v-model="getTempAvg"
                   ></v-text-field>
@@ -188,7 +188,7 @@
                 <v-flex xs5 offset-xs1>
                   <v-text-field
                     label="Annual:"
-                    prepend-inner-icon="attach_money"
+                    prepend-inner-icon="fas fa-dollar-sign"
                     v-model="getTempAnnual"
                     readonly
                   ></v-text-field>
@@ -200,7 +200,7 @@
         <v-layout row wrap>
           <v-spacer></v-spacer>
           <v-btn color="primary" small @click="saveIncomeItem()" outline round>
-            <v-icon left>save</v-icon>
+            <v-icon left>fas fa-save</i></v-icon>
             Save Income
           </v-btn>
         </v-layout>
@@ -220,11 +220,11 @@
         <v-card-text>
           <v-layout row wrap justify-space-around>
             <v-btn color="primary" @click="delRecord()" round outline>
-              <v-icon left>check</v-icon>
+              <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
             <v-btn color="red darken-4" @click="deleteDialog = false" dark round outline>
-              <v-icon left>close</v-icon>
+              <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>
           </v-layout>

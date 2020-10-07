@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
         <v-btn color="primary" outline small @click="addProvider()" round outline>
-          <v-icon left>add_circle</v-icon>
+          <v-icon left>fas fa-plus-circle</v-icon>
           Add Provider Info
         </v-btn>
       </v-flex>
@@ -15,7 +15,7 @@
             {{facility.name}}
             <v-spacer></v-spacer>
             <v-btn color="primary" icon outline small @click="confirmRemoval(index)">
-              <v-icon>close</v-icon>
+              <v-icon>fas fa-times</v-icon>
             </v-btn>
           </v-card-title>
           <v-divider inset></v-divider>
@@ -89,11 +89,11 @@
         <v-card-text>
           <v-layout row wrap justify-space-around>
             <v-btn color="primary" @click="deleteProvider()" outline round>
-              <v-icon left>check</v-icon>
+              <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
             <v-btn color="red darken-4" outline @click="confirmRemoveProvider = false" round>
-              <v-icon left>close</v-icon>
+              <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>
           </v-layout>

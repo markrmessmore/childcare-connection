@@ -3,7 +3,6 @@ import "./plugins/vuetify";
 import App from "./App.vue";
 import store from "@/store/store.js";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
-import "material-design-icons-iconfont/dist/material-design-icons.css";
 import router from "@/router/router.js";
 
 //INPUT MASK FOR NON-VUETIFY INPUTS

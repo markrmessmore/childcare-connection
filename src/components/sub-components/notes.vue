@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
         <v-btn color="primary" small  @click="addNote()" outline round>
-          <v-icon left>add_circle</v-icon>
+          <v-icon left>fas fa-plus-circle</v-icon>
           Add Note:
         </v-btn>
       </v-flex>
@@ -23,7 +23,7 @@
           </v-flex>
           <v-flex xs6 offset-xs3 class="text-xs-right">
             <v-btn color="primary" icon outline small @click="confirmDelete(index)">
-              <v-icon>close</v-icon>
+              <v-icon>fas fa-times</v-icon>
             </v-btn>
           </v-flex>
         </v-layout>
@@ -47,11 +47,11 @@
         </v-toolbar>
         <v-layout row wrap justify-space-around>
           <v-btn color="primary" outline @click="deleteNote()">
-            <v-icon left>check</v-icon>
+            <v-icon left>fas fa-check</v-icon>
             Yes
           </v-btn>
           <v-btn color="red darken-4" dark @click="deleteNoteModal = false">
-            <v-icon left>close</v-icon>
+            <v-icon left>fas fa-times</v-icon>
             No
           </v-btn>
         </v-layout>

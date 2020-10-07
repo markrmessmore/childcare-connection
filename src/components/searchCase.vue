@@ -2,13 +2,13 @@
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
-        <v-icon left>search</v-icon>
+        <v-icon left>fas fa-search</v-icon>
         Case Search:
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- <v-toolbar-items> -->
         <v-btn color="accent2" outline dark small @click="confirmReset()" round outline>
-          <v-icon left>undo</v-icon>
+          <v-icon left>fas fa-undo</v-icon>
           Reset Search
         </v-btn>
       <!-- </v-toolbar-items> -->
@@ -40,7 +40,7 @@
             </v-layout>
             <v-layout row justify-end>
               <v-btn color="primary" @click="searchCases()" round outline small>
-                <v-icon left>search</v-icon>
+                <v-icon left>fas fa-search</v-icon>
                 Search
               </v-btn>
             </v-layout>
@@ -78,12 +78,12 @@
               </td>
               <td width="10%" class="pa-0 ma-0 text-xs-center">
                 <v-btn color="primary" @click="selectCase(props.item)" icon round outline small>
-                  <v-icon small>edit</v-icon>
+                  <v-icon small>fas fa-pen</v-icon>
                 </v-btn>
               </td>
               <td width="10%" class="pa-0 ma-0 text-xs-center" v-if="getUserRole == 'admin'">
                 <v-btn color="red darken-3" small icon @click="confirmDel(props.item)" outline>
-                  <v-icon small>delete</v-icon>
+                  <v-icon small>fas fa-trash</v-icon>
                 </v-btn>
               </td>
             </template>
@@ -100,7 +100,7 @@
       <v-card>
         <v-toolbar color="primary" dark dense>
           <v-toolbar-title>
-            <v-icon left>check_circle</v-icon>
+           <v-icon left>fas fa-check-circle</v-icon>
             Confirm Removal of Case:{{caseRemove.caseId}}
           </v-toolbar-title>
         </v-toolbar>
@@ -113,11 +113,11 @@
           <br>
           <v-layout row wrap justify-space-around>
             <v-btn color="primary" outline @click="delCase()" round outline>
-              <v-icon left>check</v-icon>
+              <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
             <v-btn color="red darken-4" @click="caseRemoveDialog = false" dark round outline>
-              <v-icon left>close</v-icon>
+              <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>
           </v-layout>
