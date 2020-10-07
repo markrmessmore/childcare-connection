@@ -54,7 +54,7 @@
                     <td class="subheading">{{ props.item.role }}</td>
                     <td class="text-xs-center">
                       <v-btn color="accent" small icon @click="resetPassword(props.item)">
-                        <v-icon small>fas fa-play</v-icon>
+                        <v-icon small>fas fa-undo</v-icon>
                       </v-btn>
                     </td>
                     <td class="text-xs-center">
@@ -85,7 +85,7 @@
                     <td>{{ props.item.role }}</td>
                     <td class="text-xs-center">
                       <v-btn color="accent" small icon @click="activateUser(props.item)">
-                        <v-icon small>fas fa-redo</v-icon>
+                        <v-icon small>fas fa-chevron-circle-up</v-icon>
                       </v-btn>
                     </td>
                   </tr>

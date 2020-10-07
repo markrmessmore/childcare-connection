@@ -84,7 +84,7 @@ export default {
     {
       item: "Providers",
       link: "/providers",
-      icon: "fas fa-child",
+      icon: "fas fa-user-friends",
       access: "user",
       color: "primary lighten-2",
       dark: false
@@ -108,7 +108,7 @@ export default {
     {
       item: "Admin",
       link: "/admin",
-      icon: "fas fa-user",
+      icon: "fas fa-user-cog",
       access: "admin",
       color: "info",
       dark: false

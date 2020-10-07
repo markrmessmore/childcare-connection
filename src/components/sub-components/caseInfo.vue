@@ -23,7 +23,7 @@
         <v-layout align-center row>
           <v-flex xs3>
             <v-btn color="secondary" dark @click="statusModal = true" small outline round>
-              <v-icon left>track_changes</v-icon>
+              <v-icon left small>fas fa-history</v-icon>
               Set Case Status
             </v-btn>
           </v-flex>
