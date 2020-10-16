@@ -58,12 +58,12 @@
 </template>
 
 <script>
-import applicant from '@/components/sub-components/familyInfo/applicant.vue'
-import children from '@/components/sub-components/familyInfo/children.vue'
-import coapplicant from '@/components/sub-components/familyInfo/coapplicant.vue'
-import home from '@/components/sub-components/familyInfo/home.vue'
-import income from '@/components/sub-components/familyInfo/income.vue'
-import workInfo from '@/components/sub-components/familyInfo/workInfo.vue'
+import applicant    from '@/components/sub-components/familyInfo/applicant.vue'
+import children     from '@/components/sub-components/familyInfo/children.vue'
+import coapplicant  from '@/components/sub-components/familyInfo/coapplicant.vue'
+import home         from '@/components/sub-components/familyInfo/homeInfo.vue'
+import income       from '@/components/sub-components/familyInfo/income.vue'
+import workInfo     from '@/components/sub-components/familyInfo/workInfo.vue'
 export default {
   components: {
     applicant,

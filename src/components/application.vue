@@ -71,6 +71,10 @@
           </coapplicant>
         </v-tab-item>
         <v-tab-item>
+          <v-layout row wrap class="pa-3">
+            <v-flex xs12 class="title">FAMILY INFORMATION</v-flex>
+          </v-layout>
+          <v-divider inset></v-divider>
           <family :familyData="caseInfo.familyInfo" @next="nextTab()">
             <template #prev>
               <v-btn color="primary" outline @click="prevTab()" round>
@@ -143,7 +147,7 @@
 import applicant    from '@/components/sub-components/familyInfo/applicant'
 import children     from '@/components/sub-components/familyInfo/children'
 import coapplicant  from '@/components/sub-components/familyInfo/coapplicant'
-import family       from '@/components/sub-components/familyInfo/home'
+import family       from '@/components/sub-components/familyInfo/homeInfo'
 import finances     from '@/components/sub-components/familyInfo/income'
 import work         from '@/components/sub-components/familyInfo/workInfo'
 export default {

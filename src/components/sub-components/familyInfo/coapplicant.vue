@@ -8,6 +8,7 @@
               label="Co-applicant First Name"
               v-model="coapplicant.firstName"
               @blur="checkReady()"
+              :rules="[checkField.required, checkField.length]"
             >
             </v-text-field>
           </v-flex>
@@ -15,6 +16,7 @@
             <v-text-field
               label="Mid. Init."
               v-model="coapplicant.midInitial"
+              :rules="[checkField.required]"
               @blur="checkReady()"
             >
             </v-text-field>
@@ -23,6 +25,7 @@
             <v-text-field
               label="Co-applicant Last Name"
               v-model="coapplicant.lastName"
+              :rules="[checkField.required, checkField.length]"
               @blur="checkReady()"
             >
             </v-text-field>
@@ -63,6 +66,7 @@
               label="Relationship to Child(ren)"
               :items="relationshipItems"
               v-model="coapplicant.appRelation"
+              :rules="[checkField.required]"
               @change="checkReady()"
             >
             </v-select>
