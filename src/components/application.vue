@@ -44,25 +44,26 @@
           </applicant>
         </v-tab-item>
         <v-tab-item>
-          <v-layout row class="pa-3">
-            <v-flex xs12 class="title">CO-APPLICANT INFORMATION (if applicable)</v-flex>
+          <v-layout row wrap class="pa-3">
+            <v-flex xs12 class="title pb-3">CO-APPLICANT INFORMATION (if applicable)</v-flex>
+            <v-flex xs12 class="body-1">If you are applying as a solo caretaker feel free to skip.</v-flex>
           </v-layout>
           <v-divider inset></v-divider>
           <coapplicant :coapplicantData="caseInfo.familyInfo.coapplicant" :relationshipItems="relationshipItems" @next="nextTab()">
             <template #prev>
-              <v-btn color="primary" @click="prevTab()" round>
+              <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template #skip>
-              <v-btn color="primary" @click="nextTab()" round>
+              <v-btn color="primary" outline @click="nextTab()" round>
                 <v-icon left>fas fa-forward</v-icon>
                 Skip
               </v-btn>
             </template>
-            <template #next>
-              <v-btn color="primary" @click="nextTab()" round>
+            <template #next=" { checkActive }">
+              <v-btn color="primary" outline @click="nextTab()" round :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -72,13 +73,13 @@
         <v-tab-item>
           <family :familyData="caseInfo.familyInfo" @next="nextTab()">
             <template #prev>
-              <v-btn color="primary" @click="prevTab()" round>
+              <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template #next>
-              <v-btn color="primary" @click="nextTab()" round>
+              <v-btn color="primary" outline  @click="nextTab()" round>
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -88,7 +89,7 @@
         <v-tab-item>
           <work :applicantData="caseInfo.familyInfo.applicant" :coapplicantData="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template v-slot:prev>
-              <v-btn color="primary" @click="prevTab()" round>
+              <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
@@ -104,13 +105,13 @@
         <v-tab-item>
           <finances :appIncome="caseInfo.familyInfo.applicant" :coAppIncome="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template v-slot:prev>
-              <v-btn color="primary" @click="prevTab()" round>
+              <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template v-slot:next>
-              <v-btn color="primary" @click="nextTab()" round>
+              <v-btn color="primary"outline @click="nextTab()" round>
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -120,13 +121,13 @@
         <v-tab-item>
           <children :kidInfo="caseInfo.familyInfo.children">
             <template v-slot:prev>
-              <v-btn color="primary" @click="prevTab()" round>
+              <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template v-slot:next>
-              <v-btn color="primary" @click="submit()" round>
+              <v-btn color="primary" outline @click="submit()" round>
                 <v-icon left>fas fa-share-square</v-icon>
                 Submit
               </v-btn>
