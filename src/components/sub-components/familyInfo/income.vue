@@ -251,8 +251,6 @@ export default {
       applicant: this.appIncome,
       coapplicant: this.coAppIncome,
       deleteDialog: false,
-      incomeFrequency: ['Weekly', 'Bi-Weekly', 'Semi-Monthly', 'Monthly'],
-      incomeType: ['Wages & Salary', 'Pension/Retirement/Supplemental/Social Sec.', 'Unemployment/Workers Comp.', 'Public Assist./TANF', 'Child Support/Alimony', 'Other'],
       tempIncome: {
         type: "",
         frequency: "",

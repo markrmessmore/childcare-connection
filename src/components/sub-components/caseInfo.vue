@@ -175,12 +175,12 @@
 </template>
 
 <script>
-import familyInfo from "@/components/sub-components/familyInfo.vue"
-import providerInfo from "@/components/sub-components/providerInfo.vue"
-import attendanceLog from "@/components/sub-components/attendanceLog.vue"
-import letters from "@/components/sub-components/letters.vue"
-import notes from "@/components/sub-components/notes.vue"
-import confirmLeave from '@/components/sub-components/confirmLeave.vue'
+import familyInfo     from "@/components/sub-components/familyInfo.vue"
+import providerInfo   from "@/components/sub-components/providerInfo.vue"
+import attendanceLog  from "@/components/sub-components/attendanceLog.vue"
+import letters        from "@/components/sub-components/letters.vue"
+import notes          from "@/components/sub-components/notes.vue"
+import confirmLeave   from '@/components/sub-components/confirmLeave.vue'
 export default {
   components: {
     familyInfo, providerInfo, attendanceLog, letters, notes, confirmLeave
@@ -208,7 +208,9 @@ export default {
   },
   methods: {
     getFamilyData(){
-      return this.selectedCase.familyInfo
+      let selectedFamily = this.selectedCase.familyInfo
+      selectedFamily.caseId = this.selectedCase.caseId
+      return selectedFamily
     },
     getAttendance(){
       if (this.selectedCase.attendance){

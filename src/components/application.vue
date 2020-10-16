@@ -4,22 +4,6 @@
       <v-icon left>fab fa-wpforms</v-icon>
       <v-toolbar-title>Mercer Co. Subsidy Mgt. Online Application</v-toolbar-title>
     </v-toolbar>
-    <v-layout row wrap>
-      <v-flex xs10 offset-xs1>
-        <v-text-field
-          :placeholder="getBarText"
-          loading
-          readonly
-        >
-          <template v-slot:progress>
-            <v-progress-linear :value="getProgress" height="10"></v-progress-linear>
-          </template>
-
-        </v-text-field>
-      </v-flex>
-      <v-flex xs10 offset-xs1>
-      </v-flex>
-    </v-layout>
     <v-card-text>
       <v-tabs
         v-model="activeTab"
@@ -27,28 +11,32 @@
         slider-color="primary"
         grow
       >
-        <v-tab>
-          Applicant Info
+        <v-tab disabled>
+          Step 1
         </v-tab>
-        <v-tab>
-          Co-Applicant Info
+        <v-tab disabled>
+          Step 2
         </v-tab>
-        <v-tab>
-          Family Info
+        <v-tab disabled>
+          Step 3
         </v-tab>
-        <v-tab>
-          Work Info
+        <v-tab disabled>
+          Step 4
         </v-tab>
-        <v-tab>
-          Financial Info
+        <v-tab disabled>
+          Step 5
         </v-tab>
-        <v-tab>
-          Child Info
+        <v-tab disabled>
+          Step 6
         </v-tab>
         <v-tab-item>
-          <applicant :applicantInfo="caseInfo.familyInfo.applicant" :relationshipItems="relationshipItems" @next="nextTab()">
-            <template v-slot:next>
-              <v-btn color="primary" @click="nextTab()" round>
+          <v-layout row class="pa-3">
+            <v-flex xs12 class="title">APPLICANT INFORMATION</v-flex>
+          </v-layout>
+          <v-divider inset></v-divider>
+          <applicant :applicantData="caseInfo.familyInfo.applicant" :relationshipItems="relationshipItems" :caseId="caseInfo.caseId" @next="nextTab()">
+            <template #next=" { checkActive }">
+              <v-btn color="primary" outline @click="nextTab()" round :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -56,20 +44,24 @@
           </applicant>
         </v-tab-item>
         <v-tab-item>
-          <coapplicant :coapplicantInfo="caseInfo.familyInfo.coapplicant" :relationshipItems="relationshipItems" @next="nextTab()">
-            <template v-slot:prev>
+          <v-layout row class="pa-3">
+            <v-flex xs12 class="title">CO-APPLICANT INFORMATION (if applicable)</v-flex>
+          </v-layout>
+          <v-divider inset></v-divider>
+          <coapplicant :coapplicantData="caseInfo.familyInfo.coapplicant" :relationshipItems="relationshipItems" @next="nextTab()">
+            <template #prev>
               <v-btn color="primary" @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
-            <template v-slot:skip>
+            <template #skip>
               <v-btn color="primary" @click="nextTab()" round>
                 <v-icon left>fas fa-forward</v-icon>
                 Skip
               </v-btn>
             </template>
-            <template v-slot:next>
+            <template #next>
               <v-btn color="primary" @click="nextTab()" round>
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
@@ -78,14 +70,14 @@
           </coapplicant>
         </v-tab-item>
         <v-tab-item>
-          <family :familyInfo="caseInfo.familyInfo" @next="nextTab()">
-            <template v-slot:prev>
+          <family :familyData="caseInfo.familyInfo" @next="nextTab()">
+            <template #prev>
               <v-btn color="primary" @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
-            <template v-slot:next>
+            <template #next>
               <v-btn color="primary" @click="nextTab()" round>
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
@@ -147,12 +139,12 @@
 </template>
 
 <script>
-import applicant    from '@/components/sub-components/application/applicant'
-import children     from '@/components/sub-components/application/children'
-import coapplicant  from '@/components/sub-components/application/coapplicant'
-import family       from '@/components/sub-components/application/home'
-import finances     from '@/components/sub-components/application/finances'
-import work         from '@/components/sub-components/application/work'
+import applicant    from '@/components/sub-components/familyInfo/applicant'
+import children     from '@/components/sub-components/familyInfo/children'
+import coapplicant  from '@/components/sub-components/familyInfo/coapplicant'
+import family       from '@/components/sub-components/familyInfo/home'
+import finances     from '@/components/sub-components/familyInfo/income'
+import work         from '@/components/sub-components/familyInfo/workInfo'
 export default {
   components: {
     applicant,
@@ -192,6 +184,9 @@ export default {
   }
   },
   computed: {
+    getActiveTab(){
+
+    },
     getBarText(){
       return `Application Progress: Page ${this.activeTab + 1} of 6.`
     },

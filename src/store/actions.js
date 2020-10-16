@@ -285,8 +285,8 @@ export default {
   },
   saveCase({commit, state}, payload){
     commit('setLoading', true)
-    //IF IT IS A NEW CASE, ASSIGN A CASE ID
-    if (payload.caseId == null) {
+    //IF IT IS A NEW CASE IT WILL HAVE THE ID: 1111, ASSIGN A CASE ID
+    if (payload.caseId == 1111) {
       console.log('Creating new case.')
       firebase.firestore().collection('CaseIds').doc('nums').get()
       .then(number => {

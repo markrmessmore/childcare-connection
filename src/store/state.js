@@ -2,7 +2,7 @@
 export default {
   allUsers: [],
   blankCase: {
-    caseId            : null,
+    caseId            : 1111,
     caseStatus        : [
       {
         status        : "TBD",
