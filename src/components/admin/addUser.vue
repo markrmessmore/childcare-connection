@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card>
-    <v-toolbar color="primary" dense dark>
+  <v-card flat>
+    <v-toolbar color="primary" dense flat dark>
       <v-icon>fas fa-user-plus</v-icon>
       <v-toolbar-title>
         Add User

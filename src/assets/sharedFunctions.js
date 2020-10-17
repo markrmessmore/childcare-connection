@@ -1,22 +1,20 @@
 import moment from 'moment'
 export const sharedFunctions = {
+  data(){
+    return {
+      checkField: {
+        arrayReq  : value => value.length > 0     || 'Please make at least one selection.',
+        dob       : value => value.length == 8    || 'Please format your date mm/dd/yyyy',
+        isNum     : value => !Number.isNaN(value) || 'Please enter a valid number.',
+        length    : value => value.length >= 2    || 'Minimum 2 characters',
+        phone     : value => value.length == 10   || "Please enter a valid phone number",
+        required  : value => !!value              || 'Required.',
+        ssn       : value => value.length == 9    || 'Please enter a valid SSN',
+        zip       : value => value.length == 5    || 'Please enter a valid zip code.'
+      }
+    }
+  },
   methods: {
-    getAge(dob){
-      let now   = moment()
-      let year  = dob.substr(4,4)
-      let month = dob.substr(0,2)
-      let day   = dob.substr(2,2)
-      let bday  = moment(`${month}-${day}-${year}`, "MM-DD-YYYY")
-      let difference = now.diff(bday, 'months')
-      let ageYears = (difference/12).toString().split(".")[0]
-      let ageMonths = (difference % 12)
-      if (dob == ""){
-        return ""
-      }
-      else {
-        return `${ageYears} years, ${ageMonths} months`
-      }
-    },
     formatDate(dateStr){
       let month = dateStr.slice(0,2)
       let day   = dateStr.slice(2,4)
@@ -36,6 +34,22 @@ export const sharedFunctions = {
       let sec   = str.slice(3,5)
       let last  = str.slice(5)
       return `${first}-${sec}-${last}`
+    },
+    getAge(dob){
+      let now   = moment()
+      let year  = dob.substr(4,4)
+      let month = dob.substr(0,2)
+      let day   = dob.substr(2,2)
+      let bday  = moment(`${month}-${day}-${year}`, "MM-DD-YYYY")
+      let difference = now.diff(bday, 'months')
+      let ageYears = (difference/12).toString().split(".")[0]
+      let ageMonths = (difference % 12)
+      if (dob == ""){
+        return ""
+      }
+      else {
+        return `${ageYears} years, ${ageMonths} months`
+      }
     },
     maskSocial(str){
       return `XXX-XX-${str.slice(-4)}`

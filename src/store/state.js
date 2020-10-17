@@ -2,7 +2,7 @@
 export default {
   allUsers: [],
   blankCase: {
-    caseId            : null,
+    caseId            : 1111,
     caseStatus        : [
       {
         status        : "TBD",
@@ -14,20 +14,36 @@ export default {
     familyInfo        : {
       address         : "",
       address2        : "",
-      phone1          : {},
+      city            : "",
+      phone1          : {
+        num           : ""
+      },
       phone2          : {},
       applicant       : {
         appRelation   : "",
         firstName     : "",
+        income        : [],
         lastName      : "",
         midInitial    : "",
-        primaryWork   : {},
+        primaryWork   : {
+          address       : "",
+          city          : "",
+          hoursPerWeek  : "",
+          locationName  : "",
+          monthsPerYear : "",
+          phone         : "",
+          state         : "",
+          status        : "",
+          type          : "",
+          zip           : ""
+        },
         secondaryWork : {},
         ssn           : ""
       },
       coapplicant     : {
         appRelation   : "",
         firstName     : "",
+        income        : [],
         lastName      : "",
         midInitial    : "",
         primaryWork   : {},
@@ -41,7 +57,7 @@ export default {
     notes: [
       {
         date            : "",
-        text            : ""
+        text            : "Application Submitted"
       }
     ],
     providers: [],
@@ -78,8 +94,8 @@ export default {
       link: "/search",
       icon: "fas fa-search",
       access: "user",
-      color: "accent1",
-      dark: false
+      color: "accent",
+      dark: true
     },
     {
       item: "Providers",
@@ -110,7 +126,7 @@ export default {
       link: "/admin",
       icon: "fas fa-user-cog",
       access: "admin",
-      color: "info",
+      color: "info darken-1",
       dark: false
     }
   ],

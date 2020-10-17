@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card>
-    <v-toolbar flat>
+  <v-card flat>
+    <v-toolbar flat color="primary">
       <v-toolbar-title>
         <v-icon left>fas fa-info-circle</v-icon>
         About this Web App...

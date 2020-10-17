@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card>
-    <v-toolbar color="primary" dark dense>
+  <v-card flat>
+    <v-toolbar color="primary" dark dense flat>
       <v-toolbar-title>
         <v-icon left>fas fa-question-circle</i></v-icon>
         Are you sure you want to sign out?
