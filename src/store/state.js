@@ -24,7 +24,18 @@ export default {
         firstName     : "",
         lastName      : "",
         midInitial    : "",
-        primaryWork   : {},
+        primaryWork   : {
+          address       : "",
+          city          : "",
+          hoursPerWeek  : "",
+          locationName  : "",
+          monthsPerYear : "",
+          phone         : "",
+          state         : "",
+          status        : "",
+          type          : "",
+          zip           : ""
+        },
         secondaryWork : {},
         ssn           : ""
       },

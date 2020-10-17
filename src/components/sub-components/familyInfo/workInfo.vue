@@ -9,87 +9,111 @@
             <v-card-text>
               <v-toolbar dense flat color="primary" dark class="subheading">Primary Location</v-toolbar>
               <br>
-              <v-layout row wrap>
-                <v-flex xs6>
-                  <v-text-field
-                    label="Name of the Location"
-                    v-model="applicant.primaryWork.locationName"
+              <v-form ref="form">
+                <v-layout row wrap>
+                  <v-flex xs6>
+                    <v-text-field
+                      label="Name of the Location"
+                      v-model="applicant.primaryWork.locationName"
+                      :rules="[checkField.required, checkField.length]"
+                      @blur="checkReady()"
+                      >
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs5 offset-xs1>
+                    <v-select
+                      :items="locationItems"
+                      v-model="applicant.primaryWork.type"
+                      label="Type of Location"
+                      :rules="[checkField.required, checkField.length]"
+                      @change="checkReady()"
+                    ></v-select>
+                  </v-flex>
+                  <v-flex xs4>
+                    <v-select
+                      :items="locationStatus"
+                      v-model="applicant.primaryWork.status"
+                      label="Employment Status"
+                      :rules="[checkField.required, checkField.length]"
+                      @change="checkReady()"
+                    ></v-select>
+                  </v-flex>
+                  <v-flex xs3 offset-xs1>
+                    <v-text-field
+                      label="Hours/Week"
+                      v-model="applicant.primaryWork.hoursPerWeek"
+                      type="number"
+                      :rules="[checkField.required]"
+                      @blur="checkReady()"
                     >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs5 offset-xs1>
-                  <v-select
-                    :items="locationItems"
-                    v-model="applicant.primaryWork.type"
-                    label="Type of Location"
-                  ></v-select>
-                </v-flex>
-                <v-flex xs4>
-                  <v-select
-                    :items="locationStatus"
-                    v-model="applicant.primaryWork.status"
-                    label="Employment Status"
-                  ></v-select>
-                </v-flex>
-                <v-flex xs3 offset-xs1>
-                  <v-text-field
-                    label="Hours/Week"
-                    v-model="applicant.primaryWork.hoursPerWeek"
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs3 offset-xs1>
+                    <v-text-field
+                      label="Months/Year"
+                      type="number"
+                      v-model="applicant.primaryWork.monthsPerYear"
+                      :rules="[checkField.required, checkField.length]"
+                      @blur="checkReady()"
                     >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs3 offset-xs1>
-                  <v-text-field
-                    label="Months/Year"
-                    v-model="applicant.primaryWork.monthsPerYear"
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs12>
+                    <v-text-field
+                      label="Location Address"
+                      v-model="applicant.primaryWork.address"
+                      :rules="[checkField.required, checkField.length]"
+                      @blur="checkReady()"
                     >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs12>
-                  <v-text-field
-                    label="Location Address"
-                    v-model="applicant.primaryWork.address"
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs2>
+                    <v-text-field
+                      label="City"
+                      v-model="applicant.primaryWork.city"
+                      :rules="[checkField.required, checkField.length]"
+                      @blur="checkReady()"
+                      >
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs1 offset-xs1>
+                    <v-text-field
+                      label="State"
+                      v-model="applicant.primaryWork.state"
+                      :rules="[checkField.required]"
+                      @blur="checkReady()"
                     >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs2>
-                  <v-text-field
-                    label="City"
-                    v-model="applicant.primaryWork.city"
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs2 offset-xs1>
+                    <v-text-field
+                      label="Zip"
+                      v-model="applicant.primaryWork.zip"
+                      mask="#####"
+                      :rules="[checkField.required, checkField.zip]"
+                      @blur="checkReady()"
                     >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs1 offset-xs1>
-                  <v-text-field
-                    label="State"
-                    v-model="applicant.primaryWork.state"
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs2 offset-xs1>
+                    <v-text-field
+                      label="Phone"
+                      v-model="applicant.primaryWork.phone"
+                      mask="phone"
+                      :rules="[checkField.required, checkField.phone]"
+                      @blur="checkReady()"
                     >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs2 offset-xs1>
-                  <v-text-field
-                    label="Zip"
-                    v-model="applicant.primaryWork.zip"
-                    mask="#####"
+                    </v-text-field>
+                  </v-flex>
+                  <v-flex xs1 offset-xs1>
+                    <v-text-field
+                      label="Ext"
+                      v-model="applicant.primaryWork.phoneext"
                     >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs2 offset-xs1>
-                  <v-text-field
-                    label="Phone"
-                    v-model="applicant.primaryWork.phone"
-                    mask="phone"
-                    >
-                  </v-text-field>
-                </v-flex>
-                <v-flex xs1 offset-xs1>
-                  <v-text-field
-                    label="Ext"
-                    v-model="applicant.primaryWork.phoneext"
-                    >
-                  </v-text-field>
-                </v-flex>
-              </v-layout>
+                    </v-text-field>
+                  </v-flex>
+                </v-layout>
+              </v-form>
               <v-toolbar color="primary" dark class="subheading" dense flat>Secondary Location</v-toolbar>
               <br>
               <v-layout row wrap>
