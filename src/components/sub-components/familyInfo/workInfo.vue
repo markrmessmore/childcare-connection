@@ -1,12 +1,13 @@
 <template lang="html">
   <v-card flat>
     <v-card-text>
-      <v-expansion-panel>
-        <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
-          <div class="subheading" slot="header">Primary Applicant</div>
-          <v-card>
+      <v-expansion-panel class="elevation-0">
+        <!-- PRIMARY APPLICANT -->
+        <v-expansion-panel-content lazy class="info">
+          <div class="subheading" slot="header">PRIMARY APPLICANT</div>
+          <v-card flat>
             <v-card-text>
-              <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location</v-toolbar>
+              <v-toolbar dense flat color="primary" dark class="subheading">Primary Location</v-toolbar>
               <br>
               <v-layout row wrap>
                 <v-flex xs6>
@@ -89,7 +90,7 @@
                   </v-text-field>
                 </v-flex>
               </v-layout>
-              <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location</v-toolbar>
+              <v-toolbar color="primary" dark class="subheading" dense flat>Secondary Location</v-toolbar>
               <br>
               <v-layout row wrap>
                 <v-flex xs6>
@@ -179,12 +180,13 @@
         </v-expansion-panel-content>
       </v-expansion-panel>
       <br>
-      <v-expansion-panel>
-        <v-expansion-panel-content lazy class="elevation-3 accent2 white--text">
-          <div class="subheading" slot="header">Co-applicant</div>
-          <v-card>
+      <!-- COAPPLICANT -->
+      <v-expansion-panel class="elevation-0">
+        <v-expansion-panel-content lazy class="info">
+          <div class="subheading" slot="header">CO-APPLICANT</div>
+          <v-card flat>
             <v-card-text>
-              <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Location</v-toolbar>
+              <v-toolbar dense flat dark color="primary" class="subheading">Primary Location</v-toolbar>
               <br>
               <v-layout row wrap>
                 <v-flex xs6>
@@ -269,7 +271,7 @@
                   </v-text-field>
                 </v-flex>
               </v-layout>
-              <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Location</v-toolbar>
+              <v-toolbar color="primary" dark class="subheading" dense flat>Secondary Location</v-toolbar>
               <br>
               <v-layout row wrap>
                 <v-flex xs6>
@@ -358,21 +360,37 @@
           </v-card>
         </v-expansion-panel-content>
       </v-expansion-panel>
+      <v-layout row wrap>
+        <v-flex xs1>
+          <slot name="prev"></slot>
+        </v-flex>
+        <v-flex xs2 offset-xs9 class="text-xs-right">
+          <slot name="next" v-bind:checkActive="readyToSubmit"></slot>
+        </v-flex>
+      </v-layout>
     </v-card-text>
   </v-card>
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 export default {
+  mixins: [sharedFunctions],
   props: {
     applicantData: Object,
     coapplicantData: Object,
   },
   data() {
     return {
-      applicant: this.applicantData,
-      coapplicant: this.coapplicantData,
+      applicant     : this.applicantData,
+      coapplicant   : this.coapplicantData,
+      readyToSubmit : false
     };
+  },
+  methods: {
+    checkReady(){
+      this.readyToSubmit = this.$refs.form.validate()
+    }
   },
   computed: {
     locationItems() {

@@ -95,15 +95,19 @@
         </v-tab-item>
         <!-- WORK INFO -->
         <v-tab-item>
+          <v-layout row wrap class="pa-3">
+            <v-flex xs12 class="title">WORK INFORMATION</v-flex>
+          </v-layout>
+          <v-divider inset></v-divider>
           <work :applicantData="caseInfo.familyInfo.applicant" :coapplicantData="caseInfo.familyInfo.coapplicant" @next="nextTab()">
-            <template v-slot:prev>
+            <template #prev>
               <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
-            <template v-slot:next>
-              <v-btn color="primary" @click="nextTab()" round>
+            <template #next="{ checkActive }">
+              <v-btn color="primary" outline @click="nextTab()" round :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
