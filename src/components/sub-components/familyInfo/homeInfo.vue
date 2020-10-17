@@ -40,7 +40,7 @@
               mask="#####"
               v-model="familyInfo.zip"
               :rules="[checkField.required, checkField.zip]"
-              @blur="checkReady()"
+              validate-on-blur
             ></v-text-field>
           </v-flex>
         </v-layout>
@@ -49,7 +49,6 @@
             <v-layout row wrap>
               <v-flex xs5>
                 <v-select
-                  
                   :items="phoneTypes"
                   v-model="familyInfo.phone1.type"
                   label="Primary Phone Type:"
@@ -63,7 +62,7 @@
                   mask="phone"
                   v-model="familyInfo.phone1.num"
                   @blur="checkReady()"
-                  :rules="[checkField.required]"
+                  :rules="[checkField.required, checkField.phone]"
                 ></v-text-field>
               </v-flex>
             </v-layout>

@@ -9,7 +9,7 @@ Vue.use(Vuetify, {
     secondary: "#424242",
     accent: "#394f49",
     accent2: "#8b786d",
-    error: "#bfa89e",
+    error: "#cf3a3a",
     info: "#ebf5ee"
   },
   iconfont: "fa"

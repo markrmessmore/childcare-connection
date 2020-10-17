@@ -15,7 +15,9 @@ export default {
       address         : "",
       address2        : "",
       city            : "",
-      phone1          : {},
+      phone1          : {
+        num           : ""
+      },
       phone2          : {},
       applicant       : {
         appRelation   : "",
