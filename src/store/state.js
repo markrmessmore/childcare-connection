@@ -94,8 +94,8 @@ export default {
       link: "/search",
       icon: "fas fa-search",
       access: "user",
-      color: "accent1",
-      dark: false
+      color: "accent",
+      dark: true
     },
     {
       item: "Providers",
@@ -126,7 +126,7 @@ export default {
       link: "/admin",
       icon: "fas fa-user-cog",
       access: "admin",
-      color: "info",
+      color: "info darken-1",
       dark: false
     }
   ],

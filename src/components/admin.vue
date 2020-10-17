@@ -26,8 +26,8 @@
         <v-container>
           <v-layout row>
             <v-spacer></v-spacer>
-            <v-btn color="accent2" outline @click="addUserDialog = true" round outline small>
-              <v-icon left>fas fa-plus-circle</v-icon>
+            <v-btn color="primary" outline @click="addUserDialog = true" round outline small>
+              <v-icon small left>fas fa-plus-circle</v-icon>
               Add User
             </v-btn>
           </v-layout>

@@ -1,7 +1,7 @@
 <template lang="html">
   <v-container>
     <v-card>
-      <v-toolbar color="info" dense>
+      <v-toolbar color="info" dense flat>
         <v-icon left>fas fa-file-invoice-dollar</v-icon>
         <v-toolbar-title>Set Program Values</v-toolbar-title>
         <v-spacer></v-spacer>

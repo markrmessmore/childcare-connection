@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card>
-    <v-toolbar color="primary" dense dark>
+  <v-card flat>
+    <v-toolbar color="primary" dense dark flat>
       <v-toolbar-title>
         <v-icon>fas fa-user-plus</v-icon>
         Confirm user deactivation:

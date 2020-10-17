@@ -79,7 +79,20 @@
                 ></v-text-field>
               </v-flex>
               <v-flex xs2>
-                <v-tooltip top>
+                <!-- IF THE CASE IS NEW IT WILL HAVE THE ID OF 1111 OTHERWISE IT WILL NOT. THIS IMPACTS IF THE SSN IS DISPLAYABLE OR JUST CAN BE REFERENCED BY THE LAST FOUR -->
+                <v-text-field
+                  v-if="caseId == 1111"
+                  label="Child Social Security Number"
+                  mask="social"
+                  v-model="kid.ssn"
+                  type="password"
+                  :type="showAppSsn? 'password' : 'text'"
+                  :rules="[checkField.required, checkField.ssn]"
+                  :append-icon="showAppSsn ? 'far fa-eye-slash' : 'far fa-eye'"
+                  @click:append="showAppSsn = !showAppSsn"
+                  @change="checkReady()"
+                ></v-text-field>
+                <v-tooltip top v-else>
                   <template v-slot:activator="{ on }">
                     <v-text-field
                       label="Child Social Security Number"
@@ -171,7 +184,8 @@ export default {
       children            : this.kidInfo,
       confirmChildDel     : false,
       gender              : ["Female", "Male"],
-      readyToSubmit       : false
+      readyToSubmit       : false,
+      showAppSsn          : true
     }
   },
   methods: {

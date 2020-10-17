@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card>
-    <v-toolbar color="primary" dense dark>
+  <v-card flat>
+    <v-toolbar color="primary" dense dark flat>
       <v-icon>fas fa-user-plus</v-icon>
       <v-toolbar-title>
         Confirm user activation:

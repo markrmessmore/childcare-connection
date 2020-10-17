@@ -26,7 +26,7 @@
         <v-tab disabled>
           Step 5
         </v-tab>
-        <v-tab>
+        <v-tab disabled>
           Step 6
         </v-tab>
         <!-- APPLICANT -->
