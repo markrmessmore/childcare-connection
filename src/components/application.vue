@@ -29,6 +29,7 @@
         <v-tab disabled>
           Step 6
         </v-tab>
+        <!-- APPLICANT -->
         <v-tab-item>
           <v-layout row class="pa-3">
             <v-flex xs12 class="title">APPLICANT INFORMATION</v-flex>
@@ -43,6 +44,7 @@
             </template>
           </applicant>
         </v-tab-item>
+        <!-- CO-APPLICANT -->
         <v-tab-item>
           <v-layout row wrap class="pa-3">
             <v-flex xs12 class="title pb-3">CO-APPLICANT INFORMATION (if applicable)</v-flex>
@@ -62,7 +64,7 @@
                 Skip
               </v-btn>
             </template>
-            <template #next=" { checkActive }">
+            <template #next="{ checkActive }">
               <v-btn color="primary" outline @click="nextTab()" round :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
@@ -70,6 +72,7 @@
             </template>
           </coapplicant>
         </v-tab-item>
+        <!-- FAMILY INFO -->
         <v-tab-item>
           <v-layout row wrap class="pa-3">
             <v-flex xs12 class="title">FAMILY INFORMATION</v-flex>
@@ -82,14 +85,15 @@
                 Previous
               </v-btn>
             </template>
-            <template #next>
-              <v-btn color="primary" outline  @click="nextTab()" round>
+            <template #next="{ checkActive }">
+              <v-btn color="primary" outline  @click="nextTab()" round :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
             </template>
           </family>
         </v-tab-item>
+        <!-- WORK INFO -->
         <v-tab-item>
           <work :applicantData="caseInfo.familyInfo.applicant" :coapplicantData="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template v-slot:prev>
@@ -106,6 +110,7 @@
             </template>
           </work>
         </v-tab-item>
+        <!-- FINANCES -->
         <v-tab-item>
           <finances :appIncome="caseInfo.familyInfo.applicant" :coAppIncome="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template v-slot:prev>
@@ -122,6 +127,7 @@
             </template>
           </finances>
         </v-tab-item>
+        <!-- CHILDREN -->
         <v-tab-item>
           <children :kidInfo="caseInfo.familyInfo.children">
             <template v-slot:prev>

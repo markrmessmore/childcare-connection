@@ -7,6 +7,7 @@
             <v-text-field
               label="Address"
               v-model="familyInfo.address"
+              :rules="[checkField.required, checkField.length]"
               @blur="checkReady()"
             ></v-text-field>
           </v-flex>
@@ -21,6 +22,7 @@
             <v-text-field
               label="City"
               v-model="familyInfo.city"
+              :rules="[checkField.required, checkField.length]"
               @blur="checkReady()"
             ></v-text-field>
           </v-flex>
@@ -28,6 +30,7 @@
             <v-text-field
               label="State"
               v-model="familyInfo.state"
+              :rules="[checkField.required]"
               @blur="checkReady()"
             ></v-text-field>
           </v-flex>
@@ -36,18 +39,21 @@
               label="Zip"
               mask="#####"
               v-model="familyInfo.zip"
+              :rules="[checkField.required, checkField.zip]"
               @blur="checkReady()"
             ></v-text-field>
           </v-flex>
         </v-layout>
         <v-layout row wrap>
-          <v-flex xs6 class="grey lighten-1 pa-1">
+          <v-flex xs6 class="grey lighten-3 pa-1">
             <v-layout row wrap>
               <v-flex xs5>
                 <v-select
+                  
                   :items="phoneTypes"
                   v-model="familyInfo.phone1.type"
                   label="Primary Phone Type:"
+                  :rules="[checkField.required]"
                   @change="checkReady()"
                 ></v-select>
               </v-flex>
@@ -57,6 +63,7 @@
                   mask="phone"
                   v-model="familyInfo.phone1.num"
                   @blur="checkReady()"
+                  :rules="[checkField.required]"
                 ></v-text-field>
               </v-flex>
             </v-layout>
@@ -86,15 +93,19 @@
         <v-layout row wrap>
           <v-flex xs3>
             <v-text-field
+              type="number"
               label="# of Adults in the Home"
               v-model="familyInfo.numAdults"
+              :rules="[checkField.required, checkField.isNum]"
               @blur="checkReady()"
             ></v-text-field>
           </v-flex>
           <v-flex xs3 offset-xs1>
             <v-text-field
+              type="number"
               label="# of Kids in the Home"
               v-model="familyInfo.numKids"
+              :rules="[checkField.required, checkField.isNum]"
               @blur="checkReady()"
             ></v-text-field>
           </v-flex>
@@ -120,7 +131,7 @@
 </template>
 
 <script>
-import { sharedFunctions }      from '@/assets/sharedFunctions.js'
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 export default {
   mixins: [sharedFunctions],
   props: {

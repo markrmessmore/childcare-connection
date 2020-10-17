@@ -14,6 +14,7 @@ export default {
     familyInfo        : {
       address         : "",
       address2        : "",
+      city            : "",
       phone1          : {},
       phone2          : {},
       applicant       : {

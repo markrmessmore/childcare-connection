@@ -3,9 +3,11 @@ export const sharedFunctions = {
   data(){
     return {
       checkField: {
+        isNum     : value => !Number.isNaN(value) || 'Please enter a valid number.',
         length    : value => value.length >= 2 || 'Minimum 2 characters',
         required  : value => !!value || 'Required.',
-        ssn       : value => value.length < 10 || 'Please enter a valid SSN'
+        ssn       : value => value.length < 10 || 'Please enter a valid SSN',
+        zip       : value => value.length >=5 || 'Please enter a valid zip code.'
       }
     }
   },
