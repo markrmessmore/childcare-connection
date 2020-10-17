@@ -167,6 +167,7 @@ import children     from '@/components/sub-components/familyInfo/children'
 import coapplicant  from '@/components/sub-components/familyInfo/coapplicant'
 import family       from '@/components/sub-components/familyInfo/homeInfo'
 import finances     from '@/components/sub-components/familyInfo/income'
+import moment       from 'moment'
 import work         from '@/components/sub-components/familyInfo/workInfo'
 export default {
   components: {
@@ -204,21 +205,17 @@ export default {
         this.$router.push('/')
       }
       this.caseInfo = this.getBlankCase
-  }
+    }
   },
   computed: {
-    getActiveTab(){
-
-    },
     getBarText(){
       return `Application Progress: Page ${this.activeTab + 1} of 6.`
     },
     getBlankCase(){
-      return this.$store.getters.getBlankCase
-    },
-    getProgress(){
-      let n = this.activeTab
-      return ((n/6) * 100)
+      let blankCase = this.$store.getters.getBlankCase
+      let now = moment().format()
+      blankCase.notes[0].date = now
+      return blankCase
     },
     getUser(){
       return this.$store.getters.getUser

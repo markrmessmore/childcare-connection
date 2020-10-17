@@ -285,7 +285,7 @@ export default {
   },
   saveCase({commit, state}, payload){
     commit('setLoading', true)
-    //IF IT IS A NEW CASE IT WILL HAVE THE ID: 1111, ASSIGN A CASE ID
+    // IF IT IS A NEW CASE IT WILL HAVE THE ID: 1111, ASSIGN A CASE ID
     if (payload.caseId == 1111) {
       console.log('Creating new case.')
       firebase.firestore().collection('CaseIds').doc('nums').get()
@@ -294,6 +294,7 @@ export default {
           currentNum: number.data().currentNum + 1
         })
         payload.caseId = (number.data().currentNum + 1)
+        console.log(payload)
         firebase.firestore().collection('Cases').add(payload)
         let toastMsg = {
           status: true,
@@ -314,6 +315,7 @@ export default {
       })
     }
     else {
+      console.log("Saving Case")
       firebase.firestore().collection('Cases').doc(payload.id).set(payload)
       .then(() => {
         let toastMsg = {

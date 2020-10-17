@@ -57,7 +57,7 @@ export default {
     notes: [
       {
         date            : "",
-        text            : ""
+        text            : "Application Submitted"
       }
     ],
     providers: [],

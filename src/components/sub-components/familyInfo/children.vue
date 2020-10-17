@@ -192,7 +192,7 @@ export default {
     addChild(){
       this.checkReady()
       let blankChild = {
-        childId             : this.getChildId,
+        childId             : this.getChildId(),
         lastName            : "",
         midInitial          : "",
         firstName           : "",
