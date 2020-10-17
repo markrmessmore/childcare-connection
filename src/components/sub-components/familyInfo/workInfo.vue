@@ -16,7 +16,7 @@
                       label="Name of the Location"
                       v-model="applicant.primaryWork.locationName"
                       :rules="[checkField.required, checkField.length]"
-                      @blur="checkReady()"
+                      @change="checkReady()"
                       >
                     </v-text-field>
                   </v-flex>
@@ -44,7 +44,7 @@
                       v-model="applicant.primaryWork.hoursPerWeek"
                       type="number"
                       :rules="[checkField.required]"
-                      @blur="checkReady()"
+                      @change="checkReady()"
                     >
                     </v-text-field>
                   </v-flex>
@@ -53,8 +53,8 @@
                       label="Months/Year"
                       type="number"
                       v-model="applicant.primaryWork.monthsPerYear"
-                      :rules="[checkField.required, checkField.length]"
-                      @blur="checkReady()"
+                      :rules="[checkField.required]"
+                      @change="checkReady()"
                     >
                     </v-text-field>
                   </v-flex>
@@ -63,7 +63,7 @@
                       label="Location Address"
                       v-model="applicant.primaryWork.address"
                       :rules="[checkField.required, checkField.length]"
-                      @blur="checkReady()"
+                      @change="checkReady()"
                     >
                     </v-text-field>
                   </v-flex>
@@ -72,7 +72,7 @@
                       label="City"
                       v-model="applicant.primaryWork.city"
                       :rules="[checkField.required, checkField.length]"
-                      @blur="checkReady()"
+                      @change="checkReady()"
                       >
                     </v-text-field>
                   </v-flex>
@@ -81,7 +81,7 @@
                       label="State"
                       v-model="applicant.primaryWork.state"
                       :rules="[checkField.required]"
-                      @blur="checkReady()"
+                      @change="checkReady()"
                     >
                     </v-text-field>
                   </v-flex>
@@ -91,7 +91,7 @@
                       v-model="applicant.primaryWork.zip"
                       mask="#####"
                       :rules="[checkField.required, checkField.zip]"
-                      @blur="checkReady()"
+                      @change="checkReady()"
                     >
                     </v-text-field>
                   </v-flex>
@@ -101,7 +101,7 @@
                       v-model="applicant.primaryWork.phone"
                       mask="phone"
                       :rules="[checkField.required, checkField.phone]"
-                      @blur="checkReady()"
+                      @change="checkReady()"
                     >
                     </v-text-field>
                   </v-flex>

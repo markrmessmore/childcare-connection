@@ -22,6 +22,7 @@ export default {
       applicant       : {
         appRelation   : "",
         firstName     : "",
+        income        : [],
         lastName      : "",
         midInitial    : "",
         primaryWork   : {
@@ -42,6 +43,7 @@ export default {
       coapplicant     : {
         appRelation   : "",
         firstName     : "",
+        income        : [],
         lastName      : "",
         midInitial    : "",
         primaryWork   : {},

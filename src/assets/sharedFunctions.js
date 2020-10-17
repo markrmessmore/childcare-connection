@@ -3,6 +3,8 @@ export const sharedFunctions = {
   data(){
     return {
       checkField: {
+        arrayReq  : value => value.length > 0     || 'Please make at least one selection.',
+        dob       : value => value.length == 8    || 'Please format your date mm/dd/yyyy',
         isNum     : value => !Number.isNaN(value) || 'Please enter a valid number.',
         length    : value => value.length >= 2    || 'Minimum 2 characters',
         phone     : value => value.length == 10   || "Please enter a valid phone number",

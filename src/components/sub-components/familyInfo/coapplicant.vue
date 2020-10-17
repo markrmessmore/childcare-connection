@@ -7,7 +7,7 @@
             <v-text-field
               label="Co-applicant First Name"
               v-model="coapplicant.firstName"
-              @blur="checkReady()"
+              @change="checkReady()"
               :rules="[checkField.required, checkField.length]"
             >
             </v-text-field>
@@ -17,7 +17,7 @@
               label="Mid. Init."
               v-model="coapplicant.midInitial"
               :rules="[checkField.required]"
-              @blur="checkReady()"
+              @change="checkReady()"
             >
             </v-text-field>
           </v-flex>
@@ -26,7 +26,7 @@
               label="Co-applicant Last Name"
               v-model="coapplicant.lastName"
               :rules="[checkField.required, checkField.length]"
-              @blur="checkReady()"
+              @change="checkReady()"
             >
             </v-text-field>
           </v-flex>
@@ -41,7 +41,7 @@
               :rules="[checkField.required, checkField.ssn]"
               :append-icon="showCoAppSsn ? 'far fa-eye-slash' : 'far fa-eye'"
               @click:append="showCoAppSsn = !showCoAppSsn"
-              @blur="checkReady()"
+              @change="checkReady()"
             >
             </v-text-field>
             <!-- THIS IS FOR VIEWING/EDITING A CASE -->
@@ -54,7 +54,7 @@
                   type="password"
                   :rules="[checkField.required, checkField.ssn]"
                   v-on="on"
-                  @blur="checkReady()"
+                  @change="checkReady()"
                 >
                 </v-text-field>
               </template>

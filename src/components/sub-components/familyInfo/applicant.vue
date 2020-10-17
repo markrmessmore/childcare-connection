@@ -8,7 +8,7 @@
               label="Applicant First Name"
               v-model="applicant.firstName"
               :rules="[checkField.required, checkField.length]"
-              @blur="checkReady()"
+              @change="checkReady()"
             >
             </v-text-field>
           </v-flex>
@@ -17,7 +17,7 @@
               label="Mid. Init."
               v-model="applicant.midInitial"
               :rules="[checkField.required]"
-              @blur="checkReady()"
+              @change="checkReady()"
             >
             </v-text-field>
           </v-flex>
@@ -26,7 +26,7 @@
               label="Applicant Last Name"
               v-model="applicant.lastName"
               :rules="[checkField.required, checkField.length]"
-              @blur="checkReady()"
+              @change="checkReady()"
             >
             </v-text-field>
           </v-flex>
@@ -41,7 +41,7 @@
               :rules="[checkField.required, checkField.ssn]"
               :append-icon="showAppSsn ? 'far fa-eye-slash' : 'far fa-eye'"
               @click:append="showAppSsn = !showAppSsn"
-              @blur="checkReady()"
+              @change="checkReady()"
             >
             </v-text-field>
             <!-- THIS IS FOR VIEWING/EDITING A CASE -->
@@ -54,7 +54,7 @@
                   type="password"
                   :rules="[checkField.required, checkField.ssn]"
                   v-on="on"
-                  @blur="checkReady()"
+                  @change="checkReady()"
                 >
                 </v-text-field>
               </template>

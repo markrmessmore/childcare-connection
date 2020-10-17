@@ -4,19 +4,19 @@
       <p class="subheading">
         Click into the appropriate cell. Calculations will be performed automatically.
       </p>
-      <v-expansion-panel>
-        <v-expansion-panel-content lazy class="accent2 white--text">
-          <div slot="header" class="subheading">Primary Applicant</div>
+      <v-expansion-panel class="elevation-0">
+        <v-expansion-panel-content lazy class="info">
+          <div slot="header" class="subheading">PRIMARY APPLICANT</div>
           <v-card flat>
             <v-card-title>
               <v-spacer></v-spacer>
               <v-btn color="primary" outline @click="addIncome(true)" round outline small>
-                <v-icon left>fas fa-plus-circle</v-icon>
+                <v-icon left small>fas fa-plus-circle</v-icon>
                 Add Applicant Income
               </v-btn>
             </v-card-title>
             <v-card-text>
-              <v-card color="info" v-if="this.applicant.income" flat>
+              <v-card color="primary" v-if="this.applicant.income" flat>
                 <v-card-text>
                   <v-layout row wrap class="subheading text-xs-left">
                     <v-flex xs5>
@@ -31,7 +31,7 @@
                   </v-layout>
                 </v-card-text>
               </v-card>
-              <v-card v-for="(record, index) in this.applicant.income" flat :key='index' :color="getCardColor(index)">
+              <v-card flat v-for="(record, index) in this.applicant.income" flat :key='index' :color="getCardColor(index)">
                 <v-card-text>
                   <v-layout row wrap class="subheading">
                     <v-flex xs5>
@@ -57,9 +57,9 @@
       </v-expansion-panel>
       <br>
 <!-- FINANCIAL INFO: CO-APPLICANT -->
-    <v-expansion-panel>
-      <v-expansion-panel-content lazy class="accent2 white--text">
-        <div slot="header" class="subheading">Co-applicant</div>
+    <v-expansion-panel class="elevation-0">
+      <v-expansion-panel-content lazy class="info">
+        <div slot="header" class="subheading">CO-APPLICANT</div>
           <v-card flat>
             <v-card-title primary-title>
               <v-spacer></v-spacer>
@@ -69,7 +69,7 @@
               </v-btn>
             </v-card-title>
             <v-card-text>
-              <v-card color="info" v-if="this.coapplicant.income" flat>
+              <v-card color="primary" v-if="this.coapplicant.income" flat>
                 <v-card-text>
                   <v-layout row wrap class="subheading text-xs-left">
                     <v-flex xs5>
@@ -110,6 +110,15 @@
       </v-expansion-panel>
       <br>
     </v-card-text>
+      <v-layout row wrap>
+        <v-flex xs1>
+          <slot name="prev"></slot>
+        </v-flex>
+        <v-flex xs2 offset-xs9 class="text-xs-right">
+          <slot name="next" v-bind:checkActive="checkReady()"></slot>
+        </v-flex>
+      </v-layout>
+    </v-card-text>
     <v-toolbar color="info" dense v-if="this.applicant.income" flat>
       <v-layout row wrap class="subheading">
         <v-flex xs10 class="text-xs-left pl-2">
@@ -127,8 +136,8 @@
       max-width="500px"
       transition="dialog-transition"
     >
-      <v-card>
-        <v-toolbar color="primary" dense dark>
+      <v-card flat>
+        <v-toolbar color="primary" dense dark flat>
           <v-toolbar-title>Add Income for {{addIncomePerson ? "Applicant" : "Co-Applicant"}}:</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn color="white" outline icon small @click="addIncomeDialog = false">
@@ -178,33 +187,35 @@
               ></v-text-field>
             </v-flex>
           </v-layout>
-          <v-card>
-            <v-card-text>
-              <v-layout row wrap>
-                <v-flex xs5>
-                  <v-text-field
-                    label="Average:"
-                    prepend-inner-icon="attach_money"
-                    readonly
-                    v-model="getTempAvg"
-                  ></v-text-field>
-                </v-flex>
-                <v-flex xs5 offset-xs1>
-                  <v-text-field
-                    label="Annual:"
-                    prepend-inner-icon="attach_money"
-                    v-model="getTempAnnual"
-                    readonly
-                  ></v-text-field>
-                </v-flex>
-              </v-layout>
-            </v-card-text>
+          <v-card flat>
+            <v-form ref="addIncomeForm">
+              <v-card-text>
+                <v-layout row wrap>
+                  <v-flex xs5>
+                    <v-text-field
+                      label="Average:"
+                      prepend-inner-icon="fas fa-dollar-sign"
+                      readonly
+                      v-model="getTempAvg"
+                    ></v-text-field>
+                  </v-flex>
+                  <v-flex xs5 offset-xs2>
+                    <v-text-field
+                      label="ANNUAL:"
+                      prepend-inner-icon="fas fa-dollar-sign"
+                      v-model="getTempAnnual"
+                      readonly
+                    ></v-text-field>
+                  </v-flex>
+                </v-layout>
+              </v-card-text>
+            </v-form>
           </v-card>
         </v-card-text>
         <v-layout row wrap>
           <v-spacer></v-spacer>
-          <v-btn color="primary" small @click="saveIncomeItem()" outline round>
-            <v-icon left>fas fa-save</v-icon>
+          <v-btn color="primary" small @click="saveIncomeItem()" outline round :disabled="!getTempAnnual || getTempAnnual == '0.00'">
+            <v-icon left small>fas fa-save</v-icon>
             Save Income
           </v-btn>
         </v-layout>
@@ -216,8 +227,8 @@
       max-width="500px"
       transition="dialog-transition"
     >
-      <v-card>
-        <v-toolbar color="primary" class="title" dark dense>
+      <v-card flat>
+        <v-toolbar color="primary" class="title" dark dense flat>
           <v-icon>fas fa-question-circle</v-icon>
           <v-toolbar-title>Delete this income record?</v-toolbar-title>
         </v-toolbar>
@@ -239,18 +250,21 @@
 </template>
 
 <script>
+import { sharedFunctions } from '@/assets/sharedFunctions.js'
 export default {
+  mixins: [sharedFunctions],
   props: {
     appIncome: Object,
     coAppIncome: Object
   },
   data(){
     return{
-      addIncomeDialog: false,
-      addIncomePerson: true,
-      applicant: this.appIncome,
-      coapplicant: this.coAppIncome,
-      deleteDialog: false,
+      addIncomeDialog : false,
+      addIncomePerson : true,
+      applicant       : this.appIncome,
+      coapplicant     : this.coAppIncome,
+      deleteDialog    : false,
+      readyToSubmit   : false,
       tempIncome: {
         type: "",
         frequency: "",
@@ -275,6 +289,14 @@ export default {
       }
       this.addIncomeDialog = true
       this.addIncomePerson = forWhom
+    },
+    checkReady(){
+      if (this.applicant.income.length > 0 || this.coapplicant.income.length > 0){
+        return true
+      }
+      else {
+        return false
+      }
     },
     confirmDelete(forWhom, index){
       this.deleteDialog = true
@@ -350,6 +372,7 @@ export default {
     },
     getTempAnnual(){
       let avg = this.getTempAvg
+      this.checkReady()
       if (this.tempIncome.frequency == "Weekly"){
         return (avg * 52).toFixed(2)
       }

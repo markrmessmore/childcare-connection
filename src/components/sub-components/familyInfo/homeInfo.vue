@@ -8,14 +8,14 @@
               label="Address"
               v-model="familyInfo.address"
               :rules="[checkField.required, checkField.length]"
-              @blur="checkReady()"
+              @change="checkReady()"
             ></v-text-field>
           </v-flex>
           <v-flex xs12>
             <v-text-field
               label="Address 2"
               v-model="familyInfo.address2"
-              @blur="checkReady()"
+              @change="checkReady()"
             ></v-text-field>
           </v-flex>
           <v-flex xs5>
@@ -23,7 +23,7 @@
               label="City"
               v-model="familyInfo.city"
               :rules="[checkField.required, checkField.length]"
-              @blur="checkReady()"
+              @change="checkReady()"
             ></v-text-field>
           </v-flex>
           <v-flex xs2 offset-xs1>
@@ -31,7 +31,7 @@
               label="State"
               v-model="familyInfo.state"
               :rules="[checkField.required]"
-              @blur="checkReady()"
+              @change="checkReady()"
             ></v-text-field>
           </v-flex>
           <v-flex xs3 offset-xs1>
@@ -61,7 +61,7 @@
                   label="Primary Phone Number"
                   mask="phone"
                   v-model="familyInfo.phone1.num"
-                  @blur="checkReady()"
+                  @change="checkReady()"
                   :rules="[checkField.required, checkField.phone]"
                 ></v-text-field>
               </v-flex>
@@ -82,7 +82,7 @@
                   label="Secondary Phone Number"
                   mask="phone"
                   v-model="familyInfo.phone2.num"
-                  @blur="checkReady()"
+                  @change="checkReady()"
                 ></v-text-field>
               </v-flex>
             </v-layout>
@@ -96,7 +96,7 @@
               label="# of Adults in the Home"
               v-model="familyInfo.numAdults"
               :rules="[checkField.required, checkField.isNum]"
-              @blur="checkReady()"
+              @change="checkReady()"
             ></v-text-field>
           </v-flex>
           <v-flex xs3 offset-xs1>
@@ -105,7 +105,7 @@
               label="# of Kids in the Home"
               v-model="familyInfo.numKids"
               :rules="[checkField.required, checkField.isNum]"
-              @blur="checkReady()"
+              @change="checkReady()"
             ></v-text-field>
           </v-flex>
           <v-flex xs3 offset-xs1>

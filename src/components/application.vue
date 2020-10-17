@@ -26,7 +26,7 @@
         <v-tab disabled>
           Step 5
         </v-tab>
-        <v-tab disabled>
+        <v-tab>
           Step 6
         </v-tab>
         <!-- APPLICANT -->
@@ -116,15 +116,19 @@
         </v-tab-item>
         <!-- FINANCES -->
         <v-tab-item>
+          <v-layout row wrap class="pa-3">
+            <v-flex xs12 class="title">FINANCIAL INFORMATION</v-flex>
+          </v-layout>
+          <v-divider inset></v-divider>
           <finances :appIncome="caseInfo.familyInfo.applicant" :coAppIncome="caseInfo.familyInfo.coapplicant" @next="nextTab()">
-            <template v-slot:prev>
+            <template #prev>
               <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
-            <template v-slot:next>
-              <v-btn color="primary"outline @click="nextTab()" round>
+            <template #next="{ checkActive }">
+              <v-btn color="primary"outline @click="nextTab()" round :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -133,16 +137,20 @@
         </v-tab-item>
         <!-- CHILDREN -->
         <v-tab-item>
-          <children :kidInfo="caseInfo.familyInfo.children">
-            <template v-slot:prev>
+           <v-layout row wrap class="pa-3">
+            <v-flex xs12 class="title">CHILD INFORMATION</v-flex>
+          </v-layout>
+          <v-divider inset></v-divider>
+          <children :kidInfo="caseInfo.familyInfo.children" :caseId="caseInfo.caseId">
+            <template #prev>
               <v-btn color="primary" outline @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
-            <template v-slot:next>
-              <v-btn color="primary" outline @click="submit()" round>
-                <v-icon left>fas fa-share-square</v-icon>
+            <template #next="{ checkActive }">
+              <v-btn color="primary" outline @click="submit()" round :disabled="!checkActive">
+                <v-icon small left>fas fa-share-square</v-icon>
                 Submit
               </v-btn>
             </template>
