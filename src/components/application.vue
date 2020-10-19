@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card>
+  <v-card flat>
     <v-toolbar flat color="" v-if="!getUser">
       <v-icon left>fab fa-wpforms</v-icon>
       <v-toolbar-title>Mercer Co. Subsidy Mgt. Online Application</v-toolbar-title>

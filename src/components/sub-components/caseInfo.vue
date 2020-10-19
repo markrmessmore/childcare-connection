@@ -55,8 +55,8 @@
           max-width="500px"
           transition="dialog-transition"
         >
-          <v-card>
-            <v-toolbar color="primary" dark dense>
+          <v-card flat>
+            <v-toolbar color="primary" dark dense flat>
               <v-toolbar-title>Select Current Case Status</v-toolbar-title>
               <v-spacer></v-spacer>
               <v-btn color="white" small outline icon @click="statusModal = false">
