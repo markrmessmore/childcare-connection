@@ -97,8 +97,8 @@
       max-width="500px"
       transition="dialog-transition"
     >
-      <v-card>
-        <v-toolbar color="primary" dark dense>
+      <v-card flat>
+        <v-toolbar color="primary" dark dense flat>
           <v-toolbar-title>
            <v-icon left>fas fa-check-circle</v-icon>
             Confirm Removal of Case:{{caseRemove.caseId}}

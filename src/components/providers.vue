@@ -1,4 +1,4 @@
-`<template lang="html">
+<template lang="html">
   <v-card>
     <v-toolbar flat>
       <v-toolbar-title>
@@ -52,7 +52,7 @@
       transition="dialog-transition"
     >
       <v-card>
-        <v-toolbar color="primary" dark dense>
+        <v-toolbar color="primary" dark dense flat>
           <v-toolbar-title>
             <v-icon left>fas fa-check-circle</v-icon>
             Confirm Provider Removal:

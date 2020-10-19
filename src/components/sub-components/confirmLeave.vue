@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card>
-    <v-toolbar dense color="secondary" dark>
+  <v-card flat>
+    <v-toolbar dense color="secondary" dark flat>
       <v-icon>fas fa-exclamation-triangle</v-icon>
       <v-toolbar-title>
         Just checking...
