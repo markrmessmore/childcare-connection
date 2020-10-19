@@ -2,7 +2,7 @@
   "name": "childcare-connection",
   "author": "Mark Messmore <mark@markmessmore.us> (https://markmessmore.us)",
   "homepage": "https://github.com/markrmessmore/childcare-connection/blob/master/README.md",
-  "version": "0.1.0",
+  "version": "1.5.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
