@@ -198,7 +198,7 @@
       </v-layout>
       <v-layout row wrap v-if="getStatus == 'PENDING'">
         <v-flex xs5 offset-xs7>
-          <v-card color="secondary" dark flat>
+          <v-card color="secondary" dark text>
             <v-card-text class="body-1">
               Please return a copy of this page with all required documentas and communication you submit regarding your application.
             </v-card-text>

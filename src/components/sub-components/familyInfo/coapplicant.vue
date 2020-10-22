@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <v-card-text>
       <v-form ref="form">
         <v-layout row wrap>

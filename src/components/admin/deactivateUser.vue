@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card flat>
-    <v-toolbar color="primary" dense dark flat>
+  <v-card text>
+    <v-toolbar color="primary" dense dark text>
       <v-toolbar-title>
         <v-icon>fas fa-user-plus</v-icon>
         Confirm user deactivation:
@@ -19,11 +19,11 @@
         <b>{{userData.email.toUpperCase()}}</b>
       </p>
       <v-layout row wrap justify-space-around>
-        <v-btn color="primary" outline @click="deactivateUser()" round outline>
+        <v-btn color="primary" @click="deactivateUser()" rounded outlined>
          <v-icon left>fas fa-check-circle</v-icon>
           Yes
         </v-btn>
-        <v-btn color="red darken-4" dark @click="close()" round outline>
+        <v-btn color="red darken-4" dark @click="close()" rounded outlined>
           <v-icon left>fas fa-times</v-icon>
           No
         </v-btn>

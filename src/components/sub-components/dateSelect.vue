@@ -1,7 +1,7 @@
 <template lang="html">
   <v-layout row wrap>
     <v-flex xs12>
-      <v-alert color="accent2" :value="true" outline class="text-xs-center">
+      <v-alert color="accent2" :value="true" outlined class="text-xs-center">
         <slot name="alert"></slot>
       </v-alert>
       <v-layout row wrap>
@@ -64,7 +64,7 @@
       </v-layout>
     </v-flex>
     <v-flex xs12 class="text-xs-right">
-      <v-btn color="primary" outline round small :disabled="readyToGenerate" @click="setDates()">
+      <v-btn color="primary" outlined rounded small :disabled="readyToGenerate" @click="setDates()">
         <v-icon left>fas fa-sync</v-icon>
         Generate Report
       </v-btn>

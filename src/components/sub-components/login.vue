@@ -1,11 +1,11 @@
 <template lang="html">
-  <v-card flat>
-    <v-toolbar color="primary" dark dense flat>
+  <v-card text>
+    <v-toolbar color="primary" dark dense text>
       <v-toolbar-title>
         Mercer Co. SMS
       </v-toolbar-title>
       <v-spacer></v-spacer>
-      <v-btn small outline icon @click="deactivateSignIn()">
+      <v-btn small outlined icon @click="deactivateSignIn()">
         <v-icon>fas fa-times</v-icon>
       </v-btn>
     </v-toolbar>
@@ -15,7 +15,7 @@
           <v-text-field
           name="Username"
           label="Username"
-          box
+          filled
           v-model="login.usr"
           ></v-text-field>
         </v-flex>
@@ -23,7 +23,7 @@
           <v-text-field
             name="Password"
             label="Password"
-            box
+            filled
             v-model="login.pass"
             :append-icon="showPass ? 'fas fa-eye-slash' : 'fas fa-eye'"
             @click:append="showPass = !showPass"
@@ -33,7 +33,7 @@
       </v-layout>
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="signIn()" outline round>
+          <v-btn color="primary" @click="signIn()" outlined rounded>
             <v-icon left>fas fa-chevron-right</v-icon>
             Login
           </v-btn>

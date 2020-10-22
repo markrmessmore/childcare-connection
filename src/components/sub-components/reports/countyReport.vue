@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <!-- REPORT HEADER -->
       <v-layout row wrap align-center justify-center>
         <v-flex xs2>

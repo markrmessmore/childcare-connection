@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat v-if="!getUser">
+    <v-toolbar text v-if="!getUser">
       <v-icon left>fab fa-wpforms</v-icon>
       <v-toolbar-title>Mercer Co. Subsidy Mgt. Online Application</v-toolbar-title>
     </v-toolbar>
@@ -37,7 +37,7 @@
           <v-divider inset></v-divider>
           <applicant :applicantData="caseInfo.familyInfo.applicant" :relationshipItems="relationshipItems" :caseId="caseInfo.caseId" @next="nextTab()">
             <template #next=" { checkActive }">
-              <v-btn color="primary" outline @click="nextTab()" round :disabled="!checkActive">
+              <v-btn color="primary" outlined @click="nextTab()" rounded :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -53,19 +53,19 @@
           <v-divider inset></v-divider>
           <coapplicant :coapplicantData="caseInfo.familyInfo.coapplicant" :relationshipItems="relationshipItems" @next="nextTab()">
             <template #prev>
-              <v-btn color="primary" outline @click="prevTab()" round>
+              <v-btn color="primary" outlined @click="prevTab()" rounded>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template #skip>
-              <v-btn color="primary" outline @click="nextTab()" round>
+              <v-btn color="primary" outlined @click="nextTab()" rounded>
                 <v-icon left>fas fa-forward</v-icon>
                 Skip
               </v-btn>
             </template>
             <template #next="{ checkActive }">
-              <v-btn color="primary" outline @click="nextTab()" round :disabled="!checkActive">
+              <v-btn color="primary" outlined @click="nextTab()" rounded :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -80,13 +80,13 @@
           <v-divider inset></v-divider>
           <family :familyData="caseInfo.familyInfo" @next="nextTab()">
             <template #prev>
-              <v-btn color="primary" outline @click="prevTab()" round>
+              <v-btn color="primary" outlined @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template #next="{ checkActive }">
-              <v-btn color="primary" outline  @click="nextTab()" round :disabled="!checkActive">
+              <v-btn color="primary" outlined  @click="nextTab()" rounded :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -101,13 +101,13 @@
           <v-divider inset></v-divider>
           <work :applicantData="caseInfo.familyInfo.applicant" :coapplicantData="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template #prev>
-              <v-btn color="primary" outline @click="prevTab()" round>
+              <v-btn color="primary" outlined @click="prevTab()" round>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template #next="{ checkActive }">
-              <v-btn color="primary" outline @click="nextTab()" round :disabled="!checkActive">
+              <v-btn color="primary" outlined @click="nextTab()" rounded :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -122,13 +122,13 @@
           <v-divider inset></v-divider>
           <finances :appIncome="caseInfo.familyInfo.applicant" :coAppIncome="caseInfo.familyInfo.coapplicant" @next="nextTab()">
             <template #prev>
-              <v-btn color="primary" outline @click="prevTab()" round>
+              <v-btn color="primary" outlined @click="prevTab()" rounded>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template #next="{ checkActive }">
-              <v-btn color="primary"outline @click="nextTab()" round :disabled="!checkActive">
+              <v-btn color="primary"outlined @click="nextTab()" rounded :disabled="!checkActive">
                 <v-icon left>fas fa-caret-right</v-icon>
                 Next
               </v-btn>
@@ -143,13 +143,13 @@
           <v-divider inset></v-divider>
           <children :kidInfo="caseInfo.familyInfo.children" :caseId="caseInfo.caseId">
             <template #prev>
-              <v-btn color="primary" outline @click="prevTab()" round>
+              <v-btn color="primary" outlined @click="prevTab()" rounded>
                 <v-icon left>fas fa-caret-left</v-icon>
                 Previous
               </v-btn>
             </template>
             <template #next="{ checkActive }">
-              <v-btn color="primary" outline @click="submit()" round :disabled="!checkActive">
+              <v-btn color="primary" outlined @click="submit()" rounded :disabled="!checkActive">
                 <v-icon small left>fas fa-share-square</v-icon>
                 Submit
               </v-btn>

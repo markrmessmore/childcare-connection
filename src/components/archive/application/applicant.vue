@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <hr>
     <v-card-title primary-title class="title">
       Applicant Information

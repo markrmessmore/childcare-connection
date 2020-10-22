@@ -1,13 +1,13 @@
 <template lang="html">
-  <v-card flat>
-    <v-toolbar color="primary" dense flat dark>
+  <v-card text>
+    <v-toolbar color="primary" dense text dark>
       <v-icon>fas fa-user-plus</v-icon>
       <v-toolbar-title>
         Add User
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn color="white" outline icon small @click="close()">
+        <v-btn color="white" outlined icon small @click="close()">
           <v-icon>fas fa-times</v-icon>
         </v-btn>
       </v-toolbar-items>
@@ -32,12 +32,15 @@
         </v-flex>
         <v-flex xs12 class="text-xs-right">
           <v-tooltip top>
-            <v-btn color="primary" outline @click="createUser()" slot="activator" :disabled="checkUser" round>
-              <!-- For this icon it needs the pro version of Awesome Fonts -->
-              <v-icon left>fas fa-plus-circle</v-icon>
-              Create User
-            </v-btn>
-            <span>Once you have enetered an email and selected a role you can create the user.</span>
+            <template v-slot:activator="{ on }">
+              <v-btn color="primary" outlined @click="createUser()" v-on="on" :disabled="checkUser" rounded>
+                <!-- For this icon it needs the pro version of Awesome Fonts -->
+                <v-icon left>fas fa-plus-circle</v-icon>
+                Create User
+              </v-btn>
+            </template>
+
+            <span>Once you have entered an email and selected a role you can create the user.</span>
           </v-tooltip>
         </v-flex>
       </v-layout>

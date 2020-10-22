@@ -1,13 +1,13 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar text>
       <v-toolbar-title>
         <v-icon left>fas fa-search</v-icon>
         Case Search:
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <!-- <v-toolbar-items> -->
-        <v-btn color="accent2" outline dark small @click="confirmReset()" round outline>
+        <v-btn color="accent2" dark small @click="confirmReset()" rounded outlined>
           <v-icon left small>fas fa-undo</v-icon>
           Reset Search
         </v-btn>
@@ -16,8 +16,8 @@
     <v-card-text>
       <editSelected v-if="caseEdit" :selectedCase="selectedCase" ref="editCase"></editSelected>
       <div v-else>
-        <v-card flat >
-          <v-toolbar color="secondary" flat dense dark class="subheading">
+        <v-card text >
+          <v-toolbar color="secondary" text dense dark class="subheading">
             Search By:
           </v-toolbar>
           <v-card-text>
@@ -26,28 +26,28 @@
             </p>
             <v-layout row wrap>
               <v-flex xs5>
-                <v-text-field box label="Case ID" v-model="search.caseId"></v-text-field>
+                <v-text-field filled label="Case ID" v-model="search.caseId"></v-text-field>
               </v-flex>
               <v-flex xs6 offset-xs1>
-                <v-text-field box label="Applicant Last Name" v-model="search.applicantLastName"></v-text-field>
+                <v-text-field filled label="Applicant Last Name" v-model="search.applicantLastName"></v-text-field>
               </v-flex>
               <v-flex xs5>
-                <v-text-field box label="Co-Applicant Last Name" v-model="search.coApplicantLastName"></v-text-field>
+                <v-text-field filled label="Co-Applicant Last Name" v-model="search.coApplicantLastName"></v-text-field>
               </v-flex>
               <v-flex xs6 offset-xs1>
-                <v-text-field box label="Child's Last Name" v-model="search.childLastName"></v-text-field>
+                <v-text-field filled label="Child's Last Name" v-model="search.childLastName"></v-text-field>
               </v-flex>
             </v-layout>
             <v-layout row justify-end>
-              <v-btn color="primary" @click="searchCases()" round outline small>
+              <v-btn color="primary" @click="searchCases()" rounded outlined small>
                 <v-icon left small>fas fa-search</v-icon>
                 Search
               </v-btn>
             </v-layout>
           </v-card-text>
         </v-card>
-        <v-card flat>
-          <v-toolbar color="secondary" flat dense dark class="subheading">
+        <v-card text>
+          <v-toolbar color="secondary" text dense dark class="subheading">
             Search Results:
           </v-toolbar>
           <v-data-table
@@ -55,10 +55,14 @@
             :items="searchResults"
             pagination.sync="pagination"
             item-key="id"
-            :rows-per-page-items="rowsPerPageItems"
+            :footer-props="{
+              options: {
+                itemsPerPage: rowsPerPageItems
+              }
+            }"
           >
             <template v-slot:no-data>
-              <v-alert :value="true" color="secondary" outline icon="fas fa-search">
+              <v-alert :value="true" color="secondary" outlined icon="fas fa-search">
                 Please enter search criteria and search for a case.
               </v-alert>
             </template>
@@ -77,12 +81,12 @@
                 <v-text-field class="body-1" v-model="props.item.endDate" mask="##/##/####"></v-text-field>
               </td>
               <td width="10%" class="pa-0 ma-0 text-xs-center">
-                <v-btn color="primary" @click="selectCase(props.item)" icon round outline small>
+                <v-btn color="primary" @click="selectCase(props.item)" icon rounded outlined small>
                   <v-icon small>fas fa-pen</v-icon>
                 </v-btn>
               </td>
               <td width="10%" class="pa-0 ma-0 text-xs-center" v-if="getUserRole == 'admin'">
-                <v-btn color="red darken-3" small icon @click="confirmDel(props.item)" outline>
+                <v-btn color="red darken-3" small icon @click="confirmDel(props.item)" outlined>
                   <v-icon small>fas fa-trash</v-icon>
                 </v-btn>
               </td>
@@ -97,8 +101,8 @@
       max-width="500px"
       transition="dialog-transition"
     >
-      <v-card flat>
-        <v-toolbar color="primary" dark dense flat>
+      <v-card text>
+        <v-toolbar color="primary" dark dense text>
           <v-toolbar-title>
            <v-icon left>fas fa-check-circle</v-icon>
             Confirm Removal of Case:{{caseRemove.caseId}}
@@ -112,11 +116,11 @@
           </v-layout>
           <br>
           <v-layout row wrap justify-space-around>
-            <v-btn color="primary" outline @click="delCase()" round outline>
+            <v-btn color="primary" @click="delCase()" rounded outlined>
               <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
-            <v-btn color="red darken-4" @click="caseRemoveDialog = false" dark round outline>
+            <v-btn color="red darken-4" @click="caseRemoveDialog = false" dark rounded outlined>
               <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>

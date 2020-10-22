@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <hr>
     <v-card-title primary-title class="title">
       Child Information
@@ -7,7 +7,7 @@
     <hr>
     <v-card-text>
       <div class="text-xs-right">
-        <v-btn color="primary" @click="addChild()" round outline small>
+        <v-btn color="primary" @click="addChild()" rounded outlined small>
           <v-icon small >fas fa-plus</v-icon>
           Add Child
         </v-btn>
@@ -35,11 +35,11 @@
               </v-toolbar>
               <v-card-text>
                 <v-layout row justify-space-around>
-                  <v-btn color="primary" @click="removeChildRecord()" round outline>
+                  <v-btn color="primary" @click="removeChildRecord()" rounded outlined>
                     <v-icon left small>fas fa-check</v-icon>
                     Yes
                   </v-btn>
-                  <v-btn color="red darken-3" outline @click="confirmChildDel = !confirmChildDel" round>
+                  <v-btn color="red darken-3" outlined @click="confirmChildDel = !confirmChildDel" rounded>
                     <v-icon left small>fas fa-times</v-icon>
                     No
                   </v-btn>

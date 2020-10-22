@@ -4,7 +4,7 @@
       <v-toolbar-title>{{facility.name}}</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn color="white" icon small @click="close()" outline>
+        <v-btn color="white" icon small @click="close()" outlined>
           <v-icon>fas fa-times</v-icon>
         </v-btn>
       </v-toolbar-items>
@@ -118,11 +118,11 @@
       </v-layout>
     </v-card-text>
     <v-layout row wrap justify-space-around align-center>
-      <v-btn color="primary" outline @click="saveProvider()" round outline small>
+      <v-btn color="primary" @click="saveProvider()" rounded outlined small>
         <v-icon left>fas fa-save</v-icon>
         Save Provider
       </v-btn>
-      <v-btn color="red darken-4" dark @click="close()" round outline small>
+      <v-btn color="red darken-4" dark @click="close()" rounded outlined small>
         <v-icon left>fas fa-times</v-icon>
         Cancel
       </v-btn>

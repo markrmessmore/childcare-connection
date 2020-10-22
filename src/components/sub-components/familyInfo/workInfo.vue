@@ -1,13 +1,13 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <v-card-text>
       <v-expansion-panel class="elevation-0">
         <!-- PRIMARY APPLICANT -->
         <v-expansion-panel-content lazy class="info">
           <div class="subheading" slot="header">PRIMARY APPLICANT</div>
-          <v-card flat>
+          <v-card text>
             <v-card-text>
-              <v-toolbar dense flat color="primary" dark class="subheading">Primary Location</v-toolbar>
+              <v-toolbar dense text color="primary" dark class="subheading">Primary Location</v-toolbar>
               <br>
               <v-form ref="form">
                 <v-layout row wrap>
@@ -114,7 +114,7 @@
                   </v-flex>
                 </v-layout>
               </v-form>
-              <v-toolbar color="primary" dark class="subheading" dense flat>Secondary Location</v-toolbar>
+              <v-toolbar color="primary" dark class="subheading" dense text>Secondary Location</v-toolbar>
               <br>
               <v-layout row wrap>
                 <v-flex xs6>
@@ -208,9 +208,9 @@
       <v-expansion-panel class="elevation-0">
         <v-expansion-panel-content lazy class="info">
           <div class="subheading" slot="header">CO-APPLICANT</div>
-          <v-card flat>
+          <v-card text>
             <v-card-text>
-              <v-toolbar dense flat dark color="primary" class="subheading">Primary Location</v-toolbar>
+              <v-toolbar dense text dark color="primary" class="subheading">Primary Location</v-toolbar>
               <br>
               <v-layout row wrap>
                 <v-flex xs6>
@@ -295,7 +295,7 @@
                   </v-text-field>
                 </v-flex>
               </v-layout>
-              <v-toolbar color="primary" dark class="subheading" dense flat>Secondary Location</v-toolbar>
+              <v-toolbar color="primary" dark class="subheading" dense text>Secondary Location</v-toolbar>
               <br>
               <v-layout row wrap>
                 <v-flex xs6>
