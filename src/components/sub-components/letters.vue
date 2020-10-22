@@ -1,6 +1,6 @@
 <template lang="html">
   <div>
-    <v-card flat>
+    <v-card text>
       <v-card-text>
         <v-layout class="secondary white--text">
           <v-flex xs6 class="subheading ma-1">
@@ -10,19 +10,19 @@
         <v-divider inset></v-divider>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-accepted')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('letter-accepted')" rounded small outlined>
             <v-icon left small>fas fa-check</v-icon>
             Accepted
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-waiting')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('letter-waiting')" rounded small outlined>
             <v-icon left small>far fa-clock</v-icon>
             Waiting List
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-pending')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('letter-pending')" rounded small outlined>
             <v-icon left small>far fa-hourglass</v-icon>
             Pending
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('letter-ineligible')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('letter-ineligible')" rounded small outlined>
             <v-icon left small>fas fa-ban</v-icon>
             Ineligible
           </v-btn>
@@ -35,15 +35,15 @@
         </v-layout>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-letter')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('papa-letter')" rounded small outlined>
             <v-icon left small>fas fa-envelope-open-text</v-icon>
             PAPA Letter
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-form')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('papa-form')" rounded small outlined>
             <v-icon left small>fas fa-file-alt</v-icon>
             Pre-PAPA
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('papa-final')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('papa-final')" rounded small outlined>
             <v-icon left small>fas fa-file-contract</v-icon>
             Finalized PAPA
           </v-btn>
@@ -56,15 +56,15 @@
         </v-layout>
         <br>
         <v-layout row wrap justify-space-around>
-          <v-btn outline color="primary" @click="openPrintDialog('attendance')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('attendance')" rounded small outlined>
             <v-icon left small>fas fa-calendar-week</v-icon>
             Attendance Voucher
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('case-report')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('case-report')" rounded small outlined>
             <v-icon left small>fas fa-file-alt</v-icon>
             Full Case Report
           </v-btn>
-          <v-btn outline color="primary" @click="openPrintDialog('termination')" round small outline>
+          <v-btn color="primary" @click="openPrintDialog('termination')" rounded small outlined>
             <v-icon left small>fas fa-times</v-icon>
             Termination Letter
           </v-btn>
@@ -76,8 +76,8 @@
       v-if="printDialog"
     >
     <!-- SETTINGS FOR FINALAIZED PAPA FORM -->
-    <v-card color="info" v-if="printType == 'papa-final'" flat>
-      <v-toolbar color="secondary" dark dense flat>
+    <v-card color="info" v-if="printType == 'papa-final'" text>
+      <v-toolbar color="secondary" dark dense text>
         <v-toolbar-title>Please select the appropriate child/provider</v-toolbar-title>
       </v-toolbar>
       <v-layout row wrap>
@@ -99,7 +99,7 @@
           ></v-select>
         </v-flex>
         <v-flex xs12 class="text-xs-right pr-1">
-          <v-btn color="secondary" outline small round @click="reset()">
+          <v-btn color="secondary" outline small rounded @click="reset()">
             <v-icon left small>fas fa-times</v-icon>
             Reset
           </v-btn>
@@ -109,12 +109,12 @@
     <br>
     <v-card>
       <v-toolbar color="info" dense>
-        <v-btn outline @click="downloadForm()" small round>
+        <v-btn outlined @click="downloadForm()" small rounded>
           <v-icon left>fas fa-cloud-download-alt</v-icon>
           Download Form
         </v-btn>
         <v-spacer></v-spacer>
-        <v-btn icon outline @click="printDialog = false" small>
+        <v-btn icon outlined @click="printDialog = false" small>
           <v-icon>fas fa-times</v-icon>
         </v-btn>
       </v-toolbar>
@@ -170,12 +170,12 @@
         >
         </caseReport>
         <v-toolbar color="info" dense>
-          <v-btn outline @click="downloadForm()" small round>
+          <v-btn outlined @click="downloadForm()" small rounded>
             <v-icon left>fas fa-cloud-download-alt</v-icon>
             Download Form
           </v-btn>
           <v-spacer></v-spacer>
-          <v-btn icon outline @click="printDialog = false" small>
+          <v-btn icon outlined @click="printDialog = false" small>
             <v-icon>fas fa-times</v-icon>
           </v-btn>
         </v-toolbar>

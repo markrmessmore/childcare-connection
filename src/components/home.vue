@@ -1,6 +1,6 @@
 <template>
   <v-card height="500px">
-    <v-toolbar color="secondary" dark flat>
+    <v-toolbar color="secondary" dark text>
       <v-toolbar-title>
         <v-icon left>fas fa-home</v-icon>
         Welcome
@@ -22,7 +22,7 @@
       <br>
       <v-layout row align-center>
         <v-flex xs6 offset-xs3>
-          <v-btn color="primary" outline block large round v-if="!getUser" to="/apply" class="title">
+          <v-btn color="primary" outlined block large rounded v-if="!getUser" to="/apply" class="title">
             <v-icon left>fas fa-pen</v-icon>
             Fill Out The Application Online
           </v-btn>

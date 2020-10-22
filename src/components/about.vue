@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar text>
       <v-toolbar-title>
         <v-icon left>fas fa-info-circle</v-icon>
         About this Web App...
@@ -83,7 +83,7 @@ export default {
     getColor(i){
       if (i % 2 == 0) {
         return "grey lighten-3 subheading pt-1 pb-1"
-      } 
+      }
       else {
         return "subheading pt-1 pb-1"
       }

@@ -1,12 +1,12 @@
 <template lang="html">
   <v-card>
     <v-card-text>
-      <v-card flat>
+      <v-card text>
         <v-alert color="accent2" :value="true" dense dismissible outline>
           <v-icon left>fas fa-save</v-icon>
           For convenience, CTRL + Q on your keyboard will save.
         </v-alert>
-        <v-toolbar color="primary" dark dense flat>
+        <v-toolbar color="primary" dark dense text>
           <v-toolbar-title>
             Case ID: {{ selectedCase.caseId == 0 ? "TBD" : selectedCase.caseId }}
           </v-toolbar-title>
@@ -16,13 +16,13 @@
               solo label="Case Status"
               :value="getStatus"
               :background-color="statusColor"
-              readonly flat>
+              readonly text>
             </v-text-field>
           </v-toolbar-items>
         </v-toolbar>
         <v-layout align-center row>
           <v-flex xs3>
-            <v-btn color="secondary" dark @click="statusModal = true" small outline round>
+            <v-btn color="secondary" dark @click="statusModal = true" small outlined rounded>
               <v-icon left small>fas fa-history</v-icon>
               Set Case Status
             </v-btn>
@@ -55,8 +55,8 @@
           max-width="500px"
           transition="dialog-transition"
         >
-          <v-card flat>
-            <v-toolbar color="primary" dark dense flat>
+          <v-card text>
+            <v-toolbar color="primary" dark dense text>
               <v-toolbar-title>Select Current Case Status</v-toolbar-title>
               <v-spacer></v-spacer>
               <v-btn color="white" small outline icon @click="statusModal = false">
@@ -97,7 +97,7 @@
               </v-layout>
               <v-layout row wrap>
                 <v-flex xs12 class="text-xs-right">
-                  <v-btn color="primary" @click="saveStatus()" round small outline>
+                  <v-btn color="primary" @click="saveStatus()" rounded small outlined>
                     <v-icon left>far fa-check-circle</v-icon>
                     Set Status
                   </v-btn>
@@ -157,7 +157,7 @@
     </v-card-text>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
-        <v-btn color="primary" @click="saveCase()" round outline small>
+        <v-btn color="primary" @click="saveCase()" rounded outlined small>
           <v-icon left>fas fa-save</v-icon>
           Save Case Information
         </v-btn>

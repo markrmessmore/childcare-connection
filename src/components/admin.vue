@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar text>
       <v-toolbar-title>
         <v-icon left>far fa-user</v-icon>
         Admin Control Panel
@@ -26,7 +26,7 @@
         <v-container>
           <v-layout row>
             <v-spacer></v-spacer>
-            <v-btn color="primary" outline @click="addUserDialog = true" round outline small>
+            <v-btn color="primary" @click="addUserDialog = true" rounded outlined small>
               <v-icon small left>fas fa-plus-circle</v-icon>
               Add User
             </v-btn>
@@ -44,7 +44,7 @@
               <v-data-table
                 :headers="tableHeaders"
                 :items="getActiveUsers"
-                hide-actions
+                hide-default-footer
                 class=""
                 item-key="id"
               >
@@ -75,7 +75,7 @@
               <v-data-table
                 :headers="inactiveTableHeaders"
                 :items="getInactiveUsers"
-                hide-actions
+                hide-default-footer
                 class=""
                 item-key="id"
               >

@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <hr>
     <v-card-title primary-title class="title">
       Employment/School/Training Information
@@ -7,13 +7,13 @@
     <hr>
     <v-card-text>
       <v-card>
-        <v-toolbar color="secondary" dark dense flat>
+        <v-toolbar color="secondary" dark dense text>
           <v-toolbar-title>
             Primary Applicant
           </v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Employment/School/Training Location</v-toolbar>
+          <v-toolbar dense text color="primary lighten-2" class="subheading">Primary Employment/School/Training Location</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>
@@ -96,7 +96,7 @@
               </v-text-field>
             </v-flex>
           </v-layout>
-          <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Employment/School/Training Location (if applicable)</v-toolbar>
+          <v-toolbar color="primary lighten-2" class="subheading" dense text>Secondary Employment/School/Training Location (if applicable)</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>
@@ -185,13 +185,13 @@
       </v-card>
       <br>
       <v-card color="grey lighten-3" v-if="coapplicant.firstName">
-        <v-toolbar color="secondary" dark dense flat>
+        <v-toolbar color="secondary" dark dense text>
           <v-toolbar-title>
             Co-applicant
           </v-toolbar-title>
         </v-toolbar>
         <v-card-text>
-          <v-toolbar dense flat color="primary lighten-2" class="subheading">Primary Employment/School/Training Location (if applicable)</v-toolbar>
+          <v-toolbar dense text color="primary lighten-2" class="subheading">Primary Employment/School/Training Location (if applicable)</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>
@@ -276,7 +276,7 @@
               </v-text-field>
             </v-flex>
           </v-layout>
-          <v-toolbar color="primary lighten-2" class="subheading" dense flat>Secondary Employment/School/Training Location (if applicable)</v-toolbar>
+          <v-toolbar color="primary lighten-2" class="subheading" dense text>Secondary Employment/School/Training Location (if applicable)</v-toolbar>
           <br>
           <v-layout row wrap>
             <v-flex xs6>

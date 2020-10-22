@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card flat>
-    <v-alert color="accent2" :value="true" outline class="text-xs-center">
+  <v-card text>
+    <v-alert color="accent2" :value="true" outlined class="text-xs-center">
       <slot name="alert"></slot>
     </v-alert>
     <!-- HEADINGS -->

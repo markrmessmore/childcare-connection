@@ -45,7 +45,7 @@
         </v-flex>
       </v-layout>
       <br>
-      <v-card flat class="subheading">
+      <v-card text class="subheading">
         <v-layout row wrap class="secondary white--text subheading text-xs-center pl-1">
           PART A -	CHILD CARE PROVIDER INFORMATION
         </v-layout>
@@ -167,7 +167,7 @@
           </v-layout>
       </v-card>
       <br class="html2pdf__page-break">
-      <v-card flat class="subheading">
+      <v-card text class="subheading">
         <v-layout row wrap class="secondary white--text subheading text-xs-center pl-1">
           PART B -	CHILD INFORMATION
         </v-layout>

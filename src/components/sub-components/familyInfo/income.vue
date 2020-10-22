@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <v-card-text>
       <p class="subheading">
         Click into the appropriate cell. Calculations will be performed automatically.
@@ -7,16 +7,16 @@
       <v-expansion-panel class="elevation-0">
         <v-expansion-panel-content lazy class="info">
           <div slot="header" class="subheading">PRIMARY APPLICANT</div>
-          <v-card flat>
+          <v-card text>
             <v-card-title>
               <v-spacer></v-spacer>
-              <v-btn color="primary" outline @click="addIncome(true)" round outline small>
+              <v-btn color="primary" @click="addIncome(true)" rounded outlined small>
                 <v-icon left small>fas fa-plus-circle</v-icon>
                 Add Applicant Income
               </v-btn>
             </v-card-title>
             <v-card-text>
-              <v-card color="primary" v-if="this.applicant.income" flat>
+              <v-card color="primary" v-if="this.applicant.income" text>
                 <v-card-text>
                   <v-layout row wrap class="subheading text-xs-left">
                     <v-flex xs5>
@@ -31,7 +31,7 @@
                   </v-layout>
                 </v-card-text>
               </v-card>
-              <v-card flat v-for="(record, index) in this.applicant.income" flat :key='index' :color="getCardColor(index)">
+              <v-card text v-for="(record, index) in this.applicant.income" text :key='index' :color="getCardColor(index)">
                 <v-card-text>
                   <v-layout row wrap class="subheading">
                     <v-flex xs5>
@@ -60,16 +60,16 @@
     <v-expansion-panel class="elevation-0">
       <v-expansion-panel-content lazy class="info">
         <div slot="header" class="subheading">CO-APPLICANT</div>
-          <v-card flat>
+          <v-card text>
             <v-card-title primary-title>
               <v-spacer></v-spacer>
-              <v-btn color="primary" outline @click="addIncome(false)" round outline small>
+              <v-btn color="primary" outline @click="addIncome(false)" rounded outlined small>
                 <v-icon left>fas fa-plus-circle</v-icon>
                 Add Applicant Income
               </v-btn>
             </v-card-title>
             <v-card-text>
-              <v-card color="primary" v-if="this.coapplicant.income" flat>
+              <v-card color="primary" v-if="this.coapplicant.income" text>
                 <v-card-text>
                   <v-layout row wrap class="subheading text-xs-left">
                     <v-flex xs5>
@@ -84,7 +84,7 @@
                   </v-layout>
                 </v-card-text>
               </v-card>
-              <v-card v-for="(record, index) in this.coapplicant.income" flat :key='index' :color="getCardColor(index)">
+              <v-card v-for="(record, index) in this.coapplicant.income" text :key='index' :color="getCardColor(index)">
                 <v-card-text>
                   <v-layout row wrap class="subheading">
                     <v-flex xs5>
@@ -119,7 +119,7 @@
         </v-flex>
       </v-layout>
     </v-card-text>
-    <v-toolbar color="info" dense v-if="this.applicant.income" flat>
+    <v-toolbar color="info" dense v-if="this.applicant.income" text>
       <v-layout row wrap class="subheading">
         <v-flex xs10 class="text-xs-left pl-2">
           HOUSEHOLD TOTAL:
@@ -136,8 +136,8 @@
       max-width="500px"
       transition="dialog-transition"
     >
-      <v-card flat>
-        <v-toolbar color="primary" dense dark flat>
+      <v-card text>
+        <v-toolbar color="primary" dense dark text>
           <v-toolbar-title>Add Income for {{addIncomePerson ? "Applicant" : "Co-Applicant"}}:</v-toolbar-title>
           <v-spacer></v-spacer>
           <v-btn color="white" outline icon small @click="addIncomeDialog = false">
@@ -187,7 +187,7 @@
               ></v-text-field>
             </v-flex>
           </v-layout>
-          <v-card flat>
+          <v-card text>
             <v-form ref="addIncomeForm">
               <v-card-text>
                 <v-layout row wrap>
@@ -214,7 +214,7 @@
         </v-card-text>
         <v-layout row wrap>
           <v-spacer></v-spacer>
-          <v-btn color="primary" small @click="saveIncomeItem()" outline round :disabled="!getTempAnnual || getTempAnnual == '0.00'">
+          <v-btn color="primary" small @click="saveIncomeItem()" outlined rounded :disabled="!getTempAnnual || getTempAnnual == '0.00'">
             <v-icon left small>fas fa-save</v-icon>
             Save Income
           </v-btn>
@@ -227,18 +227,18 @@
       max-width="500px"
       transition="dialog-transition"
     >
-      <v-card flat>
-        <v-toolbar color="primary" class="title" dark dense flat>
+      <v-card text>
+        <v-toolbar color="primary" class="title" dark dense text>
           <v-icon>fas fa-question-circle</v-icon>
           <v-toolbar-title>Delete this income record?</v-toolbar-title>
         </v-toolbar>
         <v-card-text>
           <v-layout row wrap justify-space-around>
-            <v-btn color="primary" @click="delRecord()" round outline>
+            <v-btn color="primary" @click="delRecord()" rounded outlined>
               <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
-            <v-btn color="red darken-4" @click="deleteDialog = false" dark round outline>
+            <v-btn color="red darken-4" @click="deleteDialog = false" dark rounded outlined>
               <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>

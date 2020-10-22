@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card flat>
-    <v-toolbar color="primary" dense dark flat>
+  <v-card text>
+    <v-toolbar color="primary" dense dark text>
       <v-icon>fas fa-shield-alt</v-icon>
       <v-toolbar-title>
         Change User Role
@@ -25,7 +25,7 @@
           ></v-select>
         </v-flex>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" outline @click="saveChanges()" round outline>
+          <v-btn color="primary" @click="saveChanges()" rounded outlined>
             <v-icon left>fas fa-save</v-icon>
             Save Changes
           </v-btn>

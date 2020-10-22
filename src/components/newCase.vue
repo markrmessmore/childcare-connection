@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar text>
       <v-toolbar-title>
         <v-icon left>fas fa-plus-circle</v-icon>
         Create a New Case

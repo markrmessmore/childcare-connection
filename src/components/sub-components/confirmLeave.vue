@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card flat>
-    <v-toolbar dense color="secondary" dark flat>
+  <v-card text>
+    <v-toolbar dense color="secondary" dark text>
       <v-icon>fas fa-exclamation-triangle</v-icon>
       <v-toolbar-title>
         Just checking...
@@ -17,11 +17,11 @@
       </v-layout>
       <br>
       <v-layout row wrap justify-space-around>
-        <v-btn color="primary" outline @click="leave()" round outline>
+        <v-btn color="primary" @click="leave()" rounded outlined>
           <v-icon left>fas fa-check</v-icon>
           Yes
         </v-btn>
-        <v-btn color="red darken-4" dark @click="cancel()" round outline>
+        <v-btn color="red darken-4" dark @click="cancel()" rounded outlined>
           <v-icon left>fas fa-times</v-icon>
           No!
         </v-btn>

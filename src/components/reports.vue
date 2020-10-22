@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar text>
       <v-toolbar-title>
         <v-icon left>fas fa-folder</v-icon>
         Reports
@@ -11,7 +11,7 @@
       <v-layout row wrap align-center>
         <v-tooltip top v-for="report in reportList" :key="report.btnText">
           <template v-slot:activator="{ on }">
-            <v-btn color="primary" :disabled="report.disabled" outline round @click="generateReport(report.shortCode)" v-on="on">
+            <v-btn color="primary" :disabled="report.disabled" outlined rounded @click="generateReport(report.shortCode)" v-on="on">
               <v-icon left small>{{report.icon}}</v-icon>
               {{report.btnText}}
             </v-btn>
@@ -20,10 +20,10 @@
         </v-tooltip>
       </v-layout>
       <br>
-      <v-card v-if="reportSelected" flat>
+      <v-card v-if="reportSelected" text>
         <download @close="closeReport()" @download="downloadReport()"></download>
         <v-card-text>
-          <v-toolbar color="info" dense flat>
+          <v-toolbar color="info" dense text>
             <v-toolbar-title>
               <v-icon left>{{getTitle[0].icon}}</v-icon>
               {{getTitle[0].btnText}}
@@ -67,7 +67,7 @@
                 Download all case data as a CSV file which can be opened in Excel.
               </v-flex>
               <v-flex xs12>
-                <v-btn color="primary" small outline round @click="downloadExcel()">
+                <v-btn color="primary" small outlined rounded @click="downloadExcel()">
                   <v-icon left small>fas fa-file-csv</v-icon>
                   Download
                 </v-btn>

@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card flat>
-    <v-toolbar color="primary" dense dark flat>
+  <v-card text>
+    <v-toolbar color="primary" dense dark text>
       <v-icon>fas fa-undo</v-icon>
       <v-toolbar-title>
         Confirm reset password
@@ -19,11 +19,11 @@
         <b>{{user.email}}?</b>
       </p>
       <v-layout row wrap justify-space-around>
-        <v-btn color="primary" outline @click="resetPassword()" round outline>
+        <v-btn color="primary" @click="resetPassword()" rounded outlined>
          <v-icon left>fas fa-check-circle</v-icon>
           Yes
         </v-btn>
-        <v-btn color="red darken-4" dark @click="close()" round outline>
+        <v-btn color="red darken-4" dark @click="close()" rounded outlined>
           <v-icon left>fas fa-times</v-icon>
           No
         </v-btn>

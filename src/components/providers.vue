@@ -1,6 +1,6 @@
 <template lang="html">
   <v-card>
-    <v-toolbar flat>
+    <v-toolbar text>
       <v-toolbar-title>
         <v-icon left>fas fa-child</v-icon>
         Providers
@@ -12,7 +12,7 @@
     <v-card-text v-else>
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="addProvider()" outline round small>
+          <v-btn color="primary" @click="addProvider()" outlined rounded small>
             <v-icon left>fas fa-plus-circle</v-icon>
             Add Provider
           </v-btn>
@@ -22,10 +22,14 @@
       <v-data-table
         :headers="tableHeaders"
         :items="getProviders"
-        :rows-per-page-items='rows'
         class="elevation-2"
         item-key="id"
         expand
+        :footer-props="{
+          options: {
+            itemsPerPage: rows
+          }
+        }"
       >
         <template v-slot:items="props">
           <tr class="tableRow">
@@ -52,7 +56,7 @@
       transition="dialog-transition"
     >
       <v-card>
-        <v-toolbar color="primary" dark dense flat>
+        <v-toolbar color="primary" dark dense text>
           <v-toolbar-title>
             <v-icon left>fas fa-check-circle</v-icon>
             Confirm Provider Removal:
@@ -66,11 +70,11 @@
           </v-layout>
           <br>
           <v-layout row wrap justify-space-around>
-            <v-btn color="primary" outline @click="delProvider()" round outline>
+            <v-btn color="primary" outlined @click="delProvider()" rounded outlined>
               <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
-            <v-btn color="red darken-4" @click="delDialog = false" dark round outline>
+            <v-btn color="red darken-4" @click="delDialog = false" dark rounded outlined>
               <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>

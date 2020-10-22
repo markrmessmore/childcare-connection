@@ -1,14 +1,14 @@
 <template lang="html">
   <v-container>
     <v-card>
-      <v-toolbar color="info" dense flat>
+      <v-toolbar color="info" dense text>
         <v-icon left>fas fa-file-invoice-dollar</v-icon>
         <v-toolbar-title>Set Program Values</v-toolbar-title>
         <v-spacer></v-spacer>
         <v-toolbar-items>
           <v-tooltip v-model="justTheTip" left>
             <template v-slot:activator="{ on }">
-              <v-btn color="primary" icon small outline @click="justTheTip = !justTheTip">
+              <v-btn color="primary" icon small outlined @click="justTheTip = !justTheTip">
                 <v-icon small>fas fa-question</v-icon>
               </v-btn>
             </template>
@@ -19,7 +19,7 @@
                     What is happening here?
                   </v-flex>
                   <v-flex xs2>
-                    <v-btn color="secondary" outline small icon @click="justTheTip = !justTheTip">
+                    <v-btn color="secondary" outlined small icon @click="justTheTip = !justTheTip">
                       <v-icon small>fas fa-times</v-icon>
                     </v-btn>
                   </v-flex>
@@ -68,7 +68,7 @@
       </v-card-text>
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" outline round @click="saveValues()">
+          <v-btn color="primary" outlined rounded @click="saveValues()">
             <v-icon left small>fas fa-save</v-icon>
             Save Values
           </v-btn>

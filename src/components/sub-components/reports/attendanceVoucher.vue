@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <v-card-text v-for="(record, i) in getCases" :key="i">
       <v-layout row wrap align-center>
         <v-flex xs3>

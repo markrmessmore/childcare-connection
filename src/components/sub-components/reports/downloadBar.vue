@@ -1,11 +1,11 @@
 <template>
-  <v-toolbar color="secondary" dense flat dark>
-    <v-btn small round outline @click="download()">
+  <v-toolbar color="secondary" dense text dark>
+    <v-btn small rounded outlined @click="download()">
       <v-icon left small>fas fa-file-download</v-icon>
         Download Report
     </v-btn>
     <v-spacer></v-spacer>
-    <v-btn small icon outline @click="closeReport()">
+    <v-btn small icon outlined @click="closeReport()">
       <v-icon>fas fa-times</v-icon>
     </v-btn>
   </v-toolbar>

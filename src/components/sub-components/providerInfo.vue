@@ -1,8 +1,8 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
-        <v-btn color="primary" outline small @click="addProvider()" round outline>
+        <v-btn color="primary" small @click="addProvider()" rounded outlined>
           <v-icon left>fas fa-plus-circle</v-icon>
           Add Provider Info
         </v-btn>
@@ -88,11 +88,11 @@
         </v-toolbar>
         <v-card-text>
           <v-layout row wrap justify-space-around>
-            <v-btn color="primary" @click="deleteProvider()" outline round>
+            <v-btn color="primary" @click="deleteProvider()" outlined rounded>
               <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
-            <v-btn color="red darken-4" outline @click="confirmRemoveProvider = false" round>
+            <v-btn color="red darken-4" outlined @click="confirmRemoveProvider = false" rounded>
               <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>

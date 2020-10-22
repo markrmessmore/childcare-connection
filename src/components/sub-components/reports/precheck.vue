@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card flat>
-    <v-toolbar color="grey lighten-3" dense flat class="subheading">
+  <v-card text>
+    <v-toolbar color="grey lighten-3" dense text class="subheading">
       <b>Pre-Check Report</b>: {{fixDate(startDate)}} -- {{fixDate(endDate)}}
       <v-spacer></v-spacer>
       Report Date: {{reportDate()}}

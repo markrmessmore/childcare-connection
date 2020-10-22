@@ -2,7 +2,7 @@
   <v-layout row wrap>
     <v-flex xs12 sm8 offset-sm2>
       <v-card>
-        <v-toolbar flat>
+        <v-toolbar text>
           <v-toolbar-title>
             <v-icon left>fas fa-columns</v-icon>
             Dashboard
@@ -11,7 +11,7 @@
         <v-card-text>
           <v-layout row wrap align-center justify-space-around>
             <v-card
-              flat
+              text
               ripple width="100%"
               max-width="200px"
               max-height="200px"

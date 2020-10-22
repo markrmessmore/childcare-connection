@@ -1,8 +1,8 @@
 <template lang="html">
-  <v-card flat>
+  <v-card text>
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-right">
-        <v-btn color="primary" outline small @click="addRecord()" round>
+        <v-btn color="primary" outlined small @click="addRecord()" rounded>
           <v-icon left>fas fa-plus-circle</v-icon>
           Add Attendance Record
         </v-btn>
@@ -89,11 +89,11 @@
         </v-toolbar>
         <v-card-text>
           <v-layout row wrap justify-space-around>
-            <v-btn color="primary" @click="deleteRecord()" round outline>
+            <v-btn color="primary" @click="deleteRecord()" rounded outlined>
               <v-icon left>fas fa-check</v-icon>
               Yes
             </v-btn>
-            <v-btn color="red darken-4" dark @click="deleteDialog = false" round outline>
+            <v-btn color="red darken-4" dark @click="deleteDialog = false" rounded outlined>
               <v-icon left>fas fa-times</v-icon>
               No
             </v-btn>
