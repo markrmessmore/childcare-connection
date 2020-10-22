@@ -1,5 +1,5 @@
 import Vue from "vue";
-import "./plugins/vuetify";
+import Vuetify from "./plugins/vuetify";
 import App from "./App.vue";
 import store from "@/store/store.js";
 import "roboto-fontface/css/roboto/roboto-fontface.css";
@@ -17,6 +17,7 @@ Vue.use(firebase)
 // DIFFERENT LAYOUT VIEWS
 import defaultLayout from '@/layouts/defaultLayout.vue'
 import reportLayout from '@/layouts/reportLayout.vue'
+import vuetify from './plugins/vuetify';
 Vue.component('defaultLayout', defaultLayout)
 Vue.component('reportLayout', reportLayout)
 
@@ -26,7 +27,10 @@ new Vue({
   el: '#app',
   store,
   router,
+  Vuetify,
   render: h => h(App),
+  vuetify,
+
   created () {
     firebase.initializeApp(config)
     this.$store.dispatch('getUsersAndRoles')
