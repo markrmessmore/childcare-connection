@@ -1,6 +1,6 @@
 <template lang="html">
-  <v-card text>
-    <v-toolbar color="primary" dark dense text>
+  <v-container class="white">
+    <v-toolbar color="secondary" dark dense flat>
       <v-toolbar-title>
         Mercer Co. SMS
       </v-toolbar-title>
@@ -9,38 +9,37 @@
         <v-icon>fas fa-times</v-icon>
       </v-btn>
     </v-toolbar>
-    <v-card-text>
-      <v-layout row wrap align-center justify-center>
-        <v-flex xs12>
-          <v-text-field
+    <v-row dense>
+      <v-col cols="12">
+        <v-text-field
           name="Username"
           label="Username"
+          color="secondary"
           filled
           v-model="login.usr"
-          ></v-text-field>
-        </v-flex>
-        <v-flex xs12>
-          <v-text-field
-            name="Password"
-            label="Password"
-            filled
-            v-model="login.pass"
-            :append-icon="showPass ? 'fas fa-eye-slash' : 'fas fa-eye'"
-            @click:append="showPass = !showPass"
-            :type="showPass ? 'text' : 'password'"
-          ></v-text-field>
-        </v-flex>
-      </v-layout>
-      <v-layout row wrap>
-        <v-flex xs12 class="text-xs-right">
-          <v-btn color="primary" @click="signIn()" outlined rounded>
+        ></v-text-field>
+      </v-col>
+      <v-col cols="12">
+        <v-text-field
+          name="Password"
+          label="Password"
+          filled
+          v-model="login.pass"
+          :append-icon="showPass ? 'fas fa-eye-slash' : 'fas fa-eye'"
+          @click:append="showPass = !showPass"
+          :type="showPass ? 'text' : 'password'"
+        ></v-text-field>
+      </v-col>
+    </v-row>
+      <v-row>
+        <v-col cols="12" class="text-right">
+          <v-btn color="secondary" @click="signIn()" outlined rounded>
             <v-icon left>fas fa-chevron-right</v-icon>
             Login
           </v-btn>
-        </v-flex>
-      </v-layout>
-    </v-card-text>
-  </v-card>
+        </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

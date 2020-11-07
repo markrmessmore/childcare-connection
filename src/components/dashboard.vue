@@ -1,44 +1,42 @@
 <template lang="html">
-  <v-layout row wrap>
-    <v-flex xs12 sm8 offset-sm2>
-      <v-card>
-        <v-toolbar text>
-          <v-toolbar-title>
-            <v-icon left>fas fa-columns</v-icon>
-            Dashboard
-          </v-toolbar-title>
-        </v-toolbar>
-        <v-card-text>
-          <v-layout row wrap align-center justify-space-around>
-            <v-card
-              text
-              ripple width="100%"
-              max-width="200px"
-              max-height="200px"
-              :color="navItem.color"
-              :dark="navItem.dark"
-              :to="navItem.link"
-              class="ma-2"
-              v-for="navItem in getDashboard"
-              :key="navItem.item"
-            >
-              <v-card-text>
-                <v-container>
-                  <v-layout column align-center>
-                    <v-icon>{{navItem.icon}}</v-icon>
-                  </v-layout>
-                  <br>
-                  <v-layout column align-center class="title text-xs-center">
-                    {{navItem.item}}
-                  </v-layout>
-                </v-container>
-              </v-card-text>
-            </v-card>
-          </v-layout>
-        </v-card-text>
-      </v-card>
-    </v-flex>
-  </v-layout>
+  <v-container class="elevation-1" fluid>
+    <v-toolbar flat color="secondary" dense dark>
+      <v-toolbar-title>
+        <v-icon left>fas fa-columns</v-icon>
+        Dashboard
+      </v-toolbar-title>
+    </v-toolbar>
+    <v-row>
+      <v-col cols="12">
+        <v-row justify="center">
+          <v-card
+            flat
+            ripple width="100%"
+            max-width="150px"
+            max-height="150px"
+            :color="navItem.color"
+            :dark="navItem.dark"
+            :to="navItem.link"
+            class="ma-2"
+            v-for="navItem in getDashboard"
+            :key="navItem.item"
+          >
+            <v-card-text>
+              <v-row class="text-center">
+                <v-col cols="12">
+                  <v-icon>{{navItem.icon}}</v-icon>
+                </v-col>
+                <br>
+                <v-col cols="12" class="title">
+                  {{navItem.item}}
+                </v-col>
+              </v-row>
+            </v-card-text>
+          </v-card>
+        </v-row>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script>

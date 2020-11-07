@@ -40,4 +40,9 @@ export default {
 };
 </script>
 
-<style lang="css"></style>
+<style lang="css">
+.box {
+  border: 10px;
+  border-color: #000;
+}
+</style>

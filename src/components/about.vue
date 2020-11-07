@@ -1,5 +1,5 @@
 <template lang="html">
-  <v-container>
+  <v-container class="elevation-1">
     <v-toolbar flat color="secondary" dark dense>
       <v-toolbar-title>
         <v-icon left>fas fa-info-circle</v-icon>
