@@ -2,17 +2,23 @@
   <v-dialog
     v-model="getLoading"
     persistent :overlay="false"
-    max-width="400px"
+    height="300px"
+    width="400px"
     transition="dialog-transition"
   >
-    <v-card height="100px" width="400px" >
-      <v-card-text>
-        <v-layout row wrap align-center justify-center>
-          <v-progress-linear indeterminate color="secondary"></v-progress-linear>
-          <br>
-          <span class="headline">Loading...</span>
-        </v-layout>
-      </v-card-text>
+    <v-card color="white" height="300px" width="400px">
+      <v-container>
+        <v-row class="pa-3">
+          <v-col cols="12" class="text-center">
+            <v-img :src="require('@/assets/ccc-logo-original.jpg')" height="150px" width="auto" contain></v-img>
+          </v-col>
+          <v-col cols="12" class="text-center headline">
+            <v-icon>fas fa-spinner fa-spin</v-icon>
+            <span class="pr-5 pl-5">Loading</span>
+            <v-icon>fas fa-spinner fa-spin</v-icon>
+          </v-col>
+        </v-row>
+      </v-container>
     </v-card>
   </v-dialog>
 </template>
