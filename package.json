@@ -17,13 +17,13 @@
     "roboto-fontface": "*",
     "vue": "^2.6.12",
     "vue-masked-input": "^0.5.2",
-    "vue-router": "^3.4.7",
-    "vuetify": "^2.2.11",
+    "vue-router": "^3.4.9",
+    "vuetify": "^2.3.16",
     "vuex": "^3.5.1"
   },
   "devDependencies": {
     "@fortawesome/fontawesome-free": "^5.15.1",
-    "sass": "^1.19.0",
+    "sass": "^1.29.0",
     "sass-loader": "^8.0.0",
     "vue-cli-plugin-vuetify": "~2.0.7",
     "vue-template-compiler": "^2.6.12",
