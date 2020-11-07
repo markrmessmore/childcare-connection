@@ -2,13 +2,12 @@
   <div>
     <appHeader></appHeader>
     <v-container fluid>
-      <v-layout row wrap>
-        <v-flex xs12 sm10 offset-xs1>
+      <v-row>
+        <v-col xs="12" sm="10" offset-sm="1">
           <router-view></router-view>
-        </v-flex>
-      </v-layout>
+        </v-col>
+      </v-row>
     </v-container>
-    <!-- <appFooter></appFooter> -->
   </div>
 </template>
 

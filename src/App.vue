@@ -8,8 +8,8 @@
 
 <script>
 //LOADING DIALOG SHARED THROUGHOUT
-import loading from '@/components/sub-components/loading.vue'
-import toast from '@/components/sub-components/toast.vue'
+import loading  from '@/components/sub-components/loading.vue'
+import toast    from '@/components/sub-components/toast.vue'
 export default {
   data() {
     return {};

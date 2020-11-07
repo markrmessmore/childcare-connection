@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="">
-    <v-toolbar dense color="primary" dark>
+    <v-toolbar dense flat color="secondary" dark>
       <img src="@/assets/ccc-logo.png" height="42px" width="auto" style="cursor: pointer" @click="goHome()"></img>
       <v-toolbar-title style="cursor: pointer" @click="goHome()">
         Mercer Co. Subsidy Mgt. System
@@ -16,10 +16,10 @@
         Sign Out
       </v-btn>
     </v-toolbar>
-    <v-toolbar text dense>
+    <v-toolbar color="primary darken-3" flat dense>
       <v-spacer></v-spacer>
       <v-toolbar-items>
-        <v-btn text color="" v-for="item in getNav" :key="item.item" :to="item.link">
+        <v-btn text color="white" v-for="item in getNav" :key="item.item" :to="item.link">
           <v-icon left>{{item.icon}}</v-icon>
           {{item.item}}
         </v-btn>
