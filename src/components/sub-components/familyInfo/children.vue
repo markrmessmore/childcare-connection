@@ -7,7 +7,7 @@
           Add Child
         </v-btn>
       </div>
-      <v-form ref="form">
+      <v-form ref="kids">
         <v-card v-for="(kid, index) in children" class="mb-1 mt-1" :key="index" :color="getColor(index)">
           <v-card-title class="subheading">
             Child {{`0${index+1}`}}
@@ -211,7 +211,7 @@ export default {
       }
     },
     checkReady(){
-      if (this.children.length > 0 && this.$refs.form.validate()){
+      if (this.children.length > 0 && this.$refs.kids.validate()){
         this.readyToSubmit = true
       }
       else {

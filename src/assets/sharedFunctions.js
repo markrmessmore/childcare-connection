@@ -9,12 +9,16 @@ export const sharedFunctions = {
         length    : value => value.length >= 2    || 'Minimum 2 characters',
         phone     : value => value.length == 10   || "Please enter a valid phone number",
         required  : value => !!value              || 'Required.',
-        ssn       : value => value.length == 9    || 'Please enter a valid SSN',
+        ssn       : value => value.length == 11   || 'Please enter a valid SSN',
         zip       : value => value.length == 5    || 'Please enter a valid zip code.'
       }
     }
   },
   methods: {
+    fixSsn(data){
+      console.log(data)
+      return 1
+    },
     formatDate(dateStr){
       let month = dateStr.slice(0,2)
       let day   = dateStr.slice(2,4)

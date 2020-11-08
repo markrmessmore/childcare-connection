@@ -8,9 +8,8 @@
     </v-toolbar>
     <v-row>
       <v-col cols="12">
-        <application ref="caseInfo"></application>
+        <application></application>
       </v-col>
-      <!-- <editCase :selectedCase="getBlankCase"></editCase> -->
     </v-row>
     <v-dialog
       v-model="confirmLeave"
@@ -26,16 +25,14 @@
 <script>
   import application  from '@/components/application.vue'
   import confirmLeave from '@/components/sub-components/confirmLeave.vue'
-  import editCase     from '@/components/sub-components/editCase.vue'
   export default {
     components: {
-      application,confirmLeave, editCase
+      application,confirmLeave
     },
     data() {
       return {
         confirmLeave: false,
-        createNewCase: false,
-        nextRoute: null
+        nextRoute   : null
       }
     },
     methods: {
@@ -48,19 +45,10 @@
         this.nextRoute()
       },
     },
-    computed: {
-      getBlankCase(){
-        return this.$store.getters.getBlankCase
-      }
-    },
     beforeRouteLeave(to, from, next){
-      if (this.createNewCase == true){
+        this.clear()
         this.confirmLeave = true
-        this.nextRoute = next
-      }
-      else {
-        next()
-      }
+        this.nextRoute    = next
     }
   };
 </script>

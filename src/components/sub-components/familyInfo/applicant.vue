@@ -1,6 +1,6 @@
 <template lang="html">
   <v-container>
-    <v-form ref="form">
+    <v-form ref="applicant">
       <v-row>
         <v-col cols="12" sm="4">
           <v-text-field
@@ -39,6 +39,7 @@
             :rules="[checkField.required, checkField.ssn]"
             :append-icon="showAppSsn ? 'far fa-eye-slash' : 'far fa-eye'"
             @click:append="showAppSsn = !showAppSsn"
+            v-mask="'###-##-####'"
             @change="checkReady()"
           >
           </v-text-field>
@@ -92,12 +93,13 @@ export default {
     return{
       applicant     : this.applicantData,
       readyToSubmit : false,
-      showAppSsn    : true
+      showAppSsn    : true,
+      ssnInfo       : ""
     }
   },
   methods: {
     checkReady(){
-      this.readyToSubmit = this.$refs.form.validate()
+      this.readyToSubmit = this.$refs.applicant.validate()
     }
   }
 }

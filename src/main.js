@@ -9,6 +9,10 @@ import router from "@/router/router.js";
 import maskedInput from 'vue-masked-input'
 Vue.component('maskedInput', maskedInput)
 
+// TO MOVE AWAY FROM VUE-MASKED-INPUT
+import VueMask from 'v-mask'
+Vue.use(VueMask);
+
 // IMPORTS FOR FIREBASE
 import {config} from "./firebase.js"
 import firebase from 'firebase/app'

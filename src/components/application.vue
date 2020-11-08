@@ -176,14 +176,18 @@ export default {
     finances,
     work
   },
+  props: {
+    blankCase: Object
+  },
   data(){
     return{
-      activeTab: 0,
-      caseInfo: {}
+      activeTab : 0,
+      caseInfo  : this.blankCase
     }
   },
-  created(){
+  beforeMount(){
     this.caseInfo = this.getBlankCase
+    console.log(this.$refs.applicant)
   },
   methods: {
     nextTab() {
@@ -202,7 +206,7 @@ export default {
       else {
         this.$router.push('/')
       }
-      this.caseInfo = this.getBlankCase
+      // this.caseInfo = this.getBlankCase
     }
   },
   computed: {
