@@ -1,10 +1,9 @@
 <template lang="html">
-  <v-card>
-    <v-toolbar text v-if="!getUser">
+  <v-container :class="!getUser ? 'elevation-1' : ''">
+    <v-toolbar flat dark dense v-if="!getUser" color="secondary">
       <v-icon left>fab fa-wpforms</v-icon>
       <v-toolbar-title>Mercer Co. Subsidy Mgt. Online Application</v-toolbar-title>
     </v-toolbar>
-    <v-card-text>
       <v-tabs
         v-model="activeTab"
         color="info"
@@ -30,7 +29,7 @@
           Step 6
         </v-tab>
         <!-- APPLICANT -->
-        <v-tab-item>
+        <v-tab-item v-model="activeTab">
           <v-layout row class="pa-3">
             <v-flex xs12 class="title">APPLICANT INFORMATION</v-flex>
           </v-layout>
@@ -157,8 +156,7 @@
           </children>
         </v-tab-item>
       </v-tabs>
-    </v-card-text>
-  </v-card>
+  </v-container>
 </template>
 
 <script>
@@ -180,7 +178,7 @@ export default {
   },
   data(){
     return{
-      activeTab: null,
+      activeTab: 0,
       caseInfo: {}
     }
   },
