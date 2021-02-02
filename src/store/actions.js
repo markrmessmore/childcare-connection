@@ -232,7 +232,7 @@ export default {
     firebase.auth().signInWithEmailAndPassword(payload.usr, payload.pass)
     .then(
       user => {
-        console.log(user)
+        // console.log(user)
         dispatch('getCases')
         dispatch('getProviders')
         dispatch('getDbVariables')
