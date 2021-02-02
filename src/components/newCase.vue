@@ -46,7 +46,7 @@
       },
     },
     beforeRouteLeave(to, from, next){
-        this.clear()
+        // this.clear()
         this.confirmLeave = true
         this.nextRoute    = next
     }

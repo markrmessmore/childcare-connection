@@ -232,7 +232,7 @@ export default {
     firebase.auth().signInWithEmailAndPassword(payload.usr, payload.pass)
     .then(
       user => {
-        // console.log(user)
+        console.log(firebase.auth().currentUser.metadata)
         dispatch('getCases')
         dispatch('getProviders')
         dispatch('getDbVariables')
@@ -240,8 +240,9 @@ export default {
         commit('setLoading', false)
         commit('activateSignIn', false)
         const newUser = {
-          id    : user.user.uid,
-          email : user.user.email
+          id          : user.user.uid,
+          email       : user.user.email,
+          lastSignIn  : firebase.auth().currentUser.metadata.lastSignInTime
         }
         commit('setUser', newUser)
       }

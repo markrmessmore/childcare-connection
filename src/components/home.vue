@@ -20,9 +20,12 @@
       </v-col>
       <br>
     </v-row>
-    <v-row align-center class="text-center text-h5" v-else>
-      <v-col cols="12" sm="8" offset-sm="2">
-        {{getUser}}
+    <v-row align-center v-else>
+      <v-col cols="12" sm="8" offset-sm="2" class="text-center title">
+        Welcome {{getUser.email}}!
+      </v-col>
+      <v-col cols="12" sm="8" offset-sm="2" class="text-center subtitle-1">
+        Last Sign In: {{getUser.lastSignIn}}
       </v-col>
     </v-row>
     <v-row class="secondary ml-1 mr-1 mt-2" v-if="!getUser">
@@ -41,6 +44,9 @@ export default {
   computed: {
     getUser(){
       return this.$store.getters.getUser
+    },
+    getUsersAndRoles(){
+      return this.$store.getters.getUsersAndRoles
     }
   }
 };
