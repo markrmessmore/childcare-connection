@@ -6,7 +6,8 @@
         Welcome
       </v-toolbar-title>
     </v-toolbar>
-    <v-row align-center class="text-center text-h5">
+    <!-- DEFAULT LANGUAGE IF USER IS NOT LOGGED IN. -->
+    <v-row align-center class="text-center text-h5" v-if="!getUser">
       <v-col cols="12" sm="8" offset-sm="2">
           <p>Please sign in to access the Mercer County Subsidy Management System.</p>
           <p>Unauthorized access to this database is prohibited!</p>
@@ -19,9 +20,14 @@
       </v-col>
       <br>
     </v-row>
+    <v-row align-center class="text-center text-h5" v-else>
+      <v-col cols="12" sm="8" offset-sm="2">
+        {{getUser}}
+      </v-col>
+    </v-row>
     <v-row class="secondary ml-1 mr-1 mt-2" v-if="!getUser">
       <v-col xs="12" class="text-center text-md-right">
-        <v-btn outlined small color="white" rounded to="/apply" class="title">
+        <v-btn outlined small color="white" rounded to="/apply" class="subtitle-1">
           <v-icon left dark>fas fa-pen</v-icon>
           Apply Online
         </v-btn>
